@@ -1,0 +1,55 @@
+<mission_data version="1.0" background_id_arme="77d373f9-ed2e-4726-a2b2-74bd775ac998" playerShipNames_arme="Artemis\Intrepid\Aegis\Horatio\Excalibur\Hera\Ceres\Diana">
+  <start id_arme="77d373f9-ed2e-4726-a2b2-74bd775ac998">
+    <!---->
+  </start>
+  <folder_arme name="S16 custom ships" id_arme="8d34f566-84d9-4830-a518-47fee928470a" />
+
+  <!-- Monkey patch custom keys bar -->
+  <event name="Custom Keys Menu" id_arme="acca2d78-a30b-4570-96d4-2b1356a27f4d" parent_id_arme="8d34f566-84d9-4830-a518-47fee928470a">
+    <if_timer_finished name="GM Menu" />
+    <if_variable name="GM Menu" comparator="EQUALS" value="12.0" />
+    <set_gm_button text="Clear" x="120" y="60" h="30" w="60" />
+    <set_gm_button text="Custom vessels\Bell Mare" />
+    <set_gm_button text="Menu 1\Custom 1D" />
+  </event>
+  <event name="Clear" id_arme="509244b2-e84d-4e16-9777-0782dc5214e9" parent_id_arme="8d34f566-84d9-4830-a518-47fee928470a">
+    <if_variable name="GM Menu" comparator="EQUALS" value="2.0" />
+    <if_gm_button text="Clear" />
+    <clear_gm_button text="Custom vessels\Bell Mare" />
+  </event>
+
+  <event name="Bell Mare" id_arme="1923bd22-e490-4245-a797-2d14e56dd7f6" parent_id_arme="8d34f566-84d9-4830-a518-47fee928470a">
+    <if_gm_button text="Custom vessels\Bell Mare" />
+    <create type="enemy" use_gm_position="" angle="0" name="Bell Mare" hullID="7506" sideValue="1" fleetnumber="1" />
+
+    <set_object_property property="shieldMaxStateFront" value="400" name="Bell Mare" />
+    <set_object_property property="shieldMaxStateBack" value="400" name="Bell Mare" />
+    <set_object_property property="shieldStateFront" value="400" name="Bell Mare" />
+    <set_object_property property="shieldStateBack" value="400" name="Bell Mare" />
+
+    <clear_ai name="Bell Mare" />
+
+    <set_object_property property="surrenderChance" value="0" name="Bell Mare" />
+
+    <add_ai type="SPCL_AI" name="Bell Mare" />
+    <add_ai type="TRY_TO_BECOME_LEADER" name="Bell Mare" />
+    <add_ai type="CHASE_PLAYER" name="Bell Mare" />
+    <add_ai type="CHASE_STATION" value1="1000" name="Bell Mare" />
+    <add_ai type="CHASE_AI_SHIP" value1="3000" value2="500" name="Bell Mare" />
+    <add_ai type="CHASE_PLAYER" value1="3000" value2="500" name="Bell Mare" />
+    <add_ai type="CHASE_ANGER" name="Bell Mare" />
+    <add_ai type="LEADER_LEADS" name="Bell Mare" />
+    <add_ai type="FOLLOW_LEADER" name="Bell Mare" />
+
+    <set_special name="Bell Mare" ability="HET" />
+    <set_special name="Bell Mare" ability="Warp" />
+    <set_special name="Bell Mare" ability="Tractor" />
+    <set_special name="Bell Mare" ability="ShldDrain" />
+    <set_special name="Bell Mare" ability="ShldReset" />
+
+    <set_ship_text name="Bell Mare"
+      desc="This Ximni Dreadnaught strikes fear into the heart of anyone who encounters it."
+      scan_desc="Commanded by legendary captain Bor-Nova. He is a cannibalistic bounty hunter who knows no limits and can't be reasoned with. It's better to not be taken prisoner. Specials: HET Warp Trator ShldDrain ShldReset" />
+
+  </event>
+</mission_data>
