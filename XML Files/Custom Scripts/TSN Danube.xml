@@ -6,54 +6,20 @@
 
   <!-- Monkey patch custom keys bar -->
   <event name="Custom Keys Menu" id_arme="7092f4c5-172d-4c36-8eef-2ede7a6ef0a3" parent_id_arme="78b82965-29e0-44a9-922a-6953969ca6d7">
-    <if_timer_finished name="GM Menu" />
-    <if_variable name="GM Menu" comparator="EQUALS" value="12.0" />
-    <set_gm_button text="Custom vessels\TSN Danube (friendly)" />
-    <set_gm_button text="Custom vessels\TSN Danube (hostile)" />
+    <if_variable name="Ship Spawn Menu" comparator="EQUALS" value="3.0" />
+    <if_timer_finished name="Ship Spawn Menu" />
+    <set_gm_button text="TSN Ships\TSN Danube" />
   </event>
-
   <event name="Clear" id_arme="754bacc1-915c-4e6a-af2b-b3d715422519" parent_id_arme="78b82965-29e0-44a9-922a-6953969ca6d7">
-    <if_variable name="GM Menu" comparator="EQUALS" value="2.0" />
-    <if_gm_button text="Clear" />
-    <clear_gm_button text="Custom vessels\TSN Danube (friendly)" />
-    <clear_gm_button text="Custom vessels\TSN Danube (hostile)" />
+    <!-- FIXME: Race condition on variable CycleSpawnMenu, rarely works.  -->
+    <if_variable name="CycleSpawnMenu" comparator="EQUALS" value="1.0" /> 
+    <clear_gm_button text="TSN Ships\TSN Danube" />
   </event>
 
   <event name="TSN Danube" id_arme="4363ee89-b871-40f3-b6c4-e7357a27ce38" parent_id_arme="78b82965-29e0-44a9-922a-6953969ca6d7">
-    <if_gm_button text="Custom vessels\TSN Danube (friendly)" />
+    <if_gm_button text="TSN Ships\TSN Danube" />
 
-    <destroy name="TSN Danube" />
-    <create type="enemy" use_gm_position="" angle="0" ship="1" name="TSN Danube" hullID="7" sideValue="2" fleetnumber="-1" />
-
-    <set_object_property property="surrenderChance" value="0" name="TSN Danube" />
-
-    <set_object_property property="shieldMaxStateFront" value="500" name="TSN Danube" />
-    <set_object_property property="shieldMaxStateBack" value="400" name="TSN Danube" />
-    <set_object_property property="shieldStateFront" value="500" name="TSN Danube" />
-    <set_object_property property="shieldStateBack" value="400" name="TSN Danube" />
-
-    <set_object_property property="shieldBandStrength0" value="0.8" name="TSN Danube" />
-    <set_object_property property="shieldBandStrength1" value="0.8" name="TSN Danube" />
-    <set_object_property property="shieldBandStrength2" value="0.8" name="TSN Danube" />
-    <set_object_property property="shieldBandStrength3" value="0.8" name="TSN Danube" />
-    <set_object_property property="shieldBandStrength4" value="0.8" name="TSN Danube" />
-
-    <clear_ai name="TSN Danube" />
-    <add_ai type="CHASE_STATION" value1="1000" name="TSN Danube" />
-    <add_ai type="CHASE_AI_SHIP" value1="3000" value2="500" name="TSN Danube" />
-    <add_ai type="CHASE_ANGER" name="TSN Danube" />
-    <add_ai type="LAUNCH_FIGHTERS" value1="8000" name="TSN Danube" />
-
-    <set_ship_text name="TSN Danube" race="TSN" class="Scout"
-      desc="TSN Scout^Long range scout vessel of the TSN.^1 forward beam^1 Torpedo tube^Stores for 6 homing, 2 mines, 2 ECM, 1 PShock."
-      scan_desc="Intel on this vessel and its captain is classified on level Rho. *ACCESS DENIED*" />
-  </event>
-
-  <event name="TSN Danube" id_arme="4363ee89-b871-40f3-b6c4-e7357a27ce38" parent_id_arme="78b82965-29e0-44a9-922a-6953969ca6d7">
-    <if_gm_button text="Custom vessels\TSN Danube (hostile)" />
-
-    <destroy name="TSN Danube" />
-    <create type="enemy" use_gm_position="" angle="0" ship="1" name="TSN Danube" hullID="7" sideValue="1" fleetnumber="-1" />
+    <create type="enemy" use_gm_position="" angle="0" ship="1" name="TSN Danube" hullID="7" sideValue="SideValue" fleetnumber="-1" />
 
     <set_object_property property="surrenderChance" value="0" name="TSN Danube" />
 
@@ -71,7 +37,10 @@
     <set_special name="TSN Danube" ability="Stealth" />
     <set_special name="TSN Danube" ability="LowVis" />
     <set_special name="TSN Danube" ability="Cloak" />
+    <set_special name="TSN Danube" ability="Cloak" />
     <set_special name="TSN Danube" ability="Warp" />
+    <set_special name="TSN Danube" ability="ShldDrain" />
+    <set_special name="TSN Danube" ship="1" /> <!-- overpowered -->
 
     <clear_ai name="TSN Danube" />
     <add_ai type="SPCL_AI" name="TSN Danube" />
@@ -82,8 +51,9 @@
     <add_ai type="CHASE_ANGER" name="TSN Danube" />
     <add_ai type="LAUNCH_FIGHTERS" value1="8000" name="TSN Danube" />
 
-    <set_ship_text name="TSN Danube" race="TSN" class="Juggernaut?"
-      desc="Failed to match radar signature against database of known vessel types. Likely a customized Juggernaut stealth variant."
-      scan_desc="Intel on this vessel and its captain is classified on level Rho. *ACCESS DENIED*^Specials: Signature scrambler, +others?" />
+    <set_ship_text name="TSN Danube" race="TSN" class="Slth Jgrnt"
+      desc="Experimental Stealth Juggernaut."
+      scan_desc="Intel on this vessel and its captain is classified on level Rho. *ACCESS DENIED*" />
+
   </event>
 </mission_data>

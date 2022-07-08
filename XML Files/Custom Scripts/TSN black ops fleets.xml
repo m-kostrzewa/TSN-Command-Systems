@@ -1,0 +1,128 @@
+<mission_data version="1.0" background_id_arme="77d373f9-ed2e-4726-a2b2-74bd775ac998" playerShipNames_arme="Artemis\Intrepid\Aegis\Horatio\Excalibur\Hera\Ceres\Diana">
+  <start id_arme="77d373f9-ed2e-4726-a2b2-74bd775ac998">
+    <!---->
+  </start>
+  <folder_arme name="S16 custom ships" id_arme="78b82965-29e0-44a9-922a-6953969ca6d7" />
+
+  <!-- Monkey patch custom keys bar -->
+  <event name="Custom Keys Menu" id_arme="729b6531-919b-46f4-8870-67badda472ec" parent_id_arme="78b82965-29e0-44a9-922a-6953969ca6d7">
+    <if_variable name="Ship Spawn Menu" comparator="EQUALS" value="3.0" />
+    <if_timer_finished name="Ship Spawn Menu" />
+    <set_gm_button text="TSN Fleets\BlckOps brawler flt" />
+    <set_gm_button text="TSN Fleets\BlckOps scout tractor flt" />
+  </event>
+  <event name="Clear" id_arme="74edee67-a8b0-4500-9c3d-cda65d084433" parent_id_arme="78b82965-29e0-44a9-922a-6953969ca6d7">
+    <!-- FIXME: Race condition on variable CycleSpawnMenu, rarely works.  -->
+    <if_variable name="CycleSpawnMenu" comparator="EQUALS" value="1.0" />
+    <clear_gm_button text="TSN Fleets\BlckOps brawler flt" />
+    <clear_gm_button text="TSN Fleets\BlckOps scout tractor flt" />
+  </event>
+
+  <event name="BlckOps brawler flt" id_arme="7d6dd4f7-b3ca-4efb-87b3-b75fece10505" parent_id_arme="78b82965-29e0-44a9-922a-6953969ca6d7">
+    <if_gm_button text="TSN Fleets\BlckOps brawler flt" />
+
+    <!-- 1 battleship -->
+    <create type="enemy" use_gm_position="" name="newShip" hullID="2" sideValue="SideValue" fleetnumber="Fleetnumber" />
+    <set_special name="newShip" ability="Stealth" />
+    <set_special name="newShip" ability="LowVis" />
+    <set_special name="newShip" ability="Cloak" />
+    <set_special name="newShip" ability="Warp" />
+    <set_special name="newShip" ability="HET" />
+    <set_special name="newShip" ship="1" /> <!-- overpowered -->
+    <set_ship_text name="newShip" newname="--" race="Faction?" class="Class?" desc="Failed to match radar signature against database of known vessel types." scan_desc="Specials: Signature scrambler, +others?" />
+
+    <!-- 3 artemis class -->
+    <create type="enemy" use_gm_position="" name="newShip" hullID="0" sideValue="SideValue" fleetnumber="Fleetnumber" />
+    <set_special name="newShip" ability="Stealth" />
+    <set_special name="newShip" ability="LowVis" />
+    <set_special name="newShip" ability="Cloak" />
+    <set_special name="newShip" ability="Warp" />
+    <set_special name="newShip" ability="HET" />
+    <set_special name="newShip" ability="AntiMine" />
+    <set_special name="newShip" ship="1" /> <!-- overpowered -->
+    <set_ship_text name="newShip" newname="--" race="Faction?" class="Class?" desc="Failed to match radar signature against database of known vessel types." scan_desc="Specials: Signature scrambler, AntiMine, +others?" />
+
+    <create type="enemy" use_gm_position="" name="newShip" hullID="0" sideValue="SideValue" fleetnumber="Fleetnumber" />
+    <set_special name="newShip" ability="Stealth" />
+    <set_special name="newShip" ability="LowVis" />
+    <set_special name="newShip" ability="Cloak" />
+    <set_special name="newShip" ability="Warp" />
+    <set_special name="newShip" ability="HET" />
+    <set_special name="newShip" ability="AntiTorp" />
+    <set_special name="newShip" ship="1" /> <!-- overpowered -->
+    <set_ship_text name="newShip" newname="--" race="Faction?" class="Class?" desc="Failed to match radar signature against database of known vessel types." scan_desc="Specials: Signature scrambler, AntiTorp, +others?" />
+
+    <create type="enemy" use_gm_position="" name="newShip" hullID="0" sideValue="SideValue" fleetnumber="Fleetnumber" />
+    <set_special name="newShip" ability="Stealth" />
+    <set_special name="newShip" ability="LowVis" />
+    <set_special name="newShip" ability="Cloak" />
+    <set_special name="newShip" ability="Warp" />
+    <set_special name="newShip" ability="HET" />
+    <set_special name="newShip" ship="1" /> <!-- overpowered -->
+    <set_ship_text name="newShip" newname="--" race="Faction?" class="Class?" desc="Failed to match radar signature against database of known vessel types." scan_desc="Specials: Signature scrambler, +others?" />
+
+    <set_variable name="Fleet Settings" value="1.0" />
+    <set_variable name="Auto AI Type" value="1.0" />
+    <set_variable name="Random Direction" value="1.0" />
+    <set_variable name="Name Assign" value="1.0" integer="yes" />
+  </event>
+
+  <event name="BlckOps scout tractor flt" id_arme="0ebbe779-741a-4bdf-8e36-17e23aaac9f9" parent_id_arme="78b82965-29e0-44a9-922a-6953969ca6d7">
+    <if_gm_button text="TSN Fleets\BlckOps scout tractor flt" />
+    <!-- 5 scouts -->
+    <create type="enemy" use_gm_position="" name="newShip" hullID="1" sideValue="SideValue" fleetnumber="Fleetnumber" />
+    <set_special name="newShip" ability="Stealth" />
+    <set_special name="newShip" ability="LowVis" />
+    <set_special name="newShip" ability="Cloak" />
+    <set_special name="newShip" ability="Warp" />
+    <set_special name="newShip" ability="HET" />
+    <set_special name="newShip" ability="Tractor" />
+    <set_special name="newShip" ship="1" /> <!-- overpowered -->
+    <set_ship_text name="newShip" newname="--" race="Faction?" class="Class?" desc="Failed to match radar signature against database of known vessel types." scan_desc="Specials: Signature scrambler, +others?" />
+
+    <create type="enemy" use_gm_position="" name="newShip" hullID="1" sideValue="SideValue" fleetnumber="Fleetnumber" />
+    <set_special name="newShip" ability="Stealth" />
+    <set_special name="newShip" ability="LowVis" />
+    <set_special name="newShip" ability="Cloak" />
+    <set_special name="newShip" ability="Warp" />
+    <set_special name="newShip" ability="HET" />
+    <set_special name="newShip" ability="Tractor" />
+    <set_special name="newShip" ship="1" /> <!-- overpowered -->
+    <set_ship_text name="newShip" newname="--" race="Faction?" class="Class?" desc="Failed to match radar signature against database of known vessel types." scan_desc="Specials: Signature scrambler, +others?" />
+
+    <create type="enemy" use_gm_position="" name="newShip" hullID="1" sideValue="SideValue" fleetnumber="Fleetnumber" />
+    <set_special name="newShip" ability="Stealth" />
+    <set_special name="newShip" ability="LowVis" />
+    <set_special name="newShip" ability="Cloak" />
+    <set_special name="newShip" ability="Warp" />
+    <set_special name="newShip" ability="HET" />
+    <set_special name="newShip" ability="Tractor" />
+    <set_special name="newShip" ship="1" /> <!-- overpowered -->
+    <set_ship_text name="newShip" newname="--" race="Faction?" class="Class?" desc="Failed to match radar signature against database of known vessel types." scan_desc="Specials: Signature scrambler, +others?" />
+
+    <create type="enemy" use_gm_position="" name="newShip" hullID="1" sideValue="SideValue" fleetnumber="Fleetnumber" />
+    <set_special name="newShip" ability="Stealth" />
+    <set_special name="newShip" ability="LowVis" />
+    <set_special name="newShip" ability="Cloak" />
+    <set_special name="newShip" ability="Warp" />
+    <set_special name="newShip" ability="HET" />
+    <set_special name="newShip" ability="Tractor" />
+    <set_special name="newShip" ship="1" /> <!-- overpowered -->
+    <set_ship_text name="newShip" newname="--" race="Faction?" class="Class?" desc="Failed to match radar signature against database of known vessel types." scan_desc="Specials: Signature scrambler, +others?" />
+
+    <create type="enemy" use_gm_position="" name="newShip" hullID="1" sideValue="SideValue" fleetnumber="Fleetnumber" />
+    <set_special name="newShip" ability="Stealth" />
+    <set_special name="newShip" ability="LowVis" />
+    <set_special name="newShip" ability="Cloak" />
+    <set_special name="newShip" ability="Warp" />
+    <set_special name="newShip" ability="HET" />
+    <set_special name="newShip" ability="Tractor" />
+    <set_special name="newShip" ship="1" /> <!-- overpowered -->
+    <set_ship_text name="newShip" newname="--" race="Faction?" class="Class?" desc="Failed to match radar signature against database of known vessel types." scan_desc="Specials: Signature scrambler, +others?" />
+
+    <set_variable name="Fleet Settings" value="1.0" />
+    <set_variable name="Auto AI Type" value="1.0" />
+    <set_variable name="Random Direction" value="1.0" />
+    <set_variable name="Name Assign" value="1.0" integer="yes" />
+  </event>
+</mission_data>

@@ -14,6 +14,6 @@
   <event name="Scramble Sign" id_arme="aa1012f5-fc9c-4641-900d-1be041cb36c3" parent_id_arme="2f1f1ba7-9b26-4c15-9dea-f2e7c5906c01">
     <if_variable name="AI Commands Menu" comparator="EQUALS" value="1.0" />
     <if_gm_button text="Assign Specials\Add\Scramble Sign." />
-    <set_ship_text use_gm_selection="" race="Race?" class="Class?" desc="Failed to match radar signature against database of known vessel types." scan_desc="Specials: Signature scrambler, +others?" />
+    <set_ship_text use_gm_selection="" race="Faction?" class="Class?" desc="Failed to match radar signature against database of known vessel types." scan_desc="Specials: Signature scrambler, +others?" />
   </event>
 </mission_data>
