@@ -6,50 +6,113 @@
 
   <!-- Monkey patch custom keys bar -->
   <event name="Custom Keys Menu" id_arme="acca2d78-a30b-4570-96d4-2b1356a27f4d" parent_id_arme="8d34f566-84d9-4830-a518-47fee928470a">
-    <if_variable name="Ship Spawn Menu" comparator="EQUALS" value="10.0" />
+    <if_variable name="Ship Spawn Menu" comparator="EQUALS" value="5.0" />
     <if_timer_finished name="Ship Spawn Menu" />
-    <set_gm_button text="Pirate Assets\Bell Mare" />
+    <set_gm_button text="Single Ximni\Bell Mare" />
   </event>
   <event name="Clear" id_arme="509244b2-e84d-4e16-9777-0782dc5214e9" parent_id_arme="8d34f566-84d9-4830-a518-47fee928470a">
     <!-- FIXME: Race condition on variable CycleSpawnMenu, rarely works.  -->
     <if_variable name="CycleSpawnMenu" comparator="EQUALS" value="1.0" />
-    <clear_gm_button text="Pirate Assets\Bell Mare" />
+    <clear_gm_button text="Single Ximni\Bell Mare" />
   </event>
 
   <event name="Bell Mare" id_arme="1923bd22-e490-4245-a797-2d14e56dd7f6" parent_id_arme="8d34f566-84d9-4830-a518-47fee928470a">
-    <if_gm_button text="Pirate Assets\Bell Mare" />
+    <if_gm_button text="Single Ximni\Bell Mare" />
 
-    <create type="enemy" use_gm_position="" angle="0" name="Bell Mare" hullID="7506" sideValue="SideValue" fleetnumber="1" />
+    <create type="enemy" use_gm_position="" angle="0" name="Bell Mare" hullID="7506" sideValue="SideValue" fleetnumber="Fleetnumber" />
 
-    <set_object_property property="shieldMaxStateFront" value="400" name="Bell Mare" />
-    <set_object_property property="shieldMaxStateBack" value="400" name="Bell Mare" />
-    <set_object_property property="shieldStateFront" value="400" name="Bell Mare" />
-    <set_object_property property="shieldStateBack" value="400" name="Bell Mare" />
+    <set_object_property property="shieldMaxStateFront" value="800" name="Bell Mare" />
+    <set_object_property property="shieldMaxStateBack" value="800" name="Bell Mare" />
+    <set_object_property property="shieldStateFront" value="800" name="Bell Mare" />
+    <set_object_property property="shieldStateBack" value="800" name="Bell Mare" />
 
     <clear_ai name="Bell Mare" />
 
     <set_object_property property="surrenderChance" value="0" name="Bell Mare" />
 
     <add_ai type="SPCL_AI" name="Bell Mare" />
-    <add_ai type="TRY_TO_BECOME_LEADER" name="Bell Mare" />
     <add_ai type="CHASE_PLAYER" name="Bell Mare" />
     <add_ai type="CHASE_STATION" value1="1000" name="Bell Mare" />
     <add_ai type="CHASE_AI_SHIP" value1="3000" value2="500" name="Bell Mare" />
     <add_ai type="CHASE_PLAYER" value1="3000" value2="500" name="Bell Mare" />
     <add_ai type="CHASE_ANGER" name="Bell Mare" />
-    <add_ai type="LEADER_LEADS" name="Bell Mare" />
-    <add_ai type="FOLLOW_LEADER" name="Bell Mare" />
 
     <set_special name="Bell Mare" ability="HET" />
     <set_special name="Bell Mare" ability="Warp" />
+    <set_special name="Bell Mare" ability="Teleport" />
     <set_special name="Bell Mare" ability="Tractor" />
+    <set_special name="Bell Mare" ability="AntiMine" />
+    <set_special name="Bell Mare" ability="AntiTorp" />
     <set_special name="Bell Mare" ability="ShldDrain" />
     <set_special name="Bell Mare" ability="ShldReset" />
     <set_special name="Bell Mare" ship="1" /> <!-- overpowered -->
 
-    <set_ship_text name="Bell Mare"
-      desc="This Ximni Dreadnaught strikes fear into the heart of anyone who encounters it."
-      scan_desc="Commanded by legendary captain Bor-Nova. He is a cannibalistic bounty hunter who knows no limits and can't be reasoned with. It's better to not be taken prisoner. Specials: HET Warp Trator ShldDrain ShldReset" />
+    <set_ship_text name="Bell Mare" desc="This Ximni Dreadnaught strikes fear into the heart of anyone who encounters it."
+      scan_desc="Commanded by legendary captain Bor-Nova, cannibalistic bounty hunter who knows no limits and can't be reasoned with. It's better not to be taken prisoner. Specials: Brd-T HET Warp Trator AntiMine AntiTorp ShldDrain ShldReset" />
 
+    <set_timer name="boardingTorpCharging" seconds="1" />
   </event>
+
+  <!-- TSN Sabre\TSN Valiant\TSN Lancer\TSN Stalker\TSN Viper\TSN Horizon\TSN Necessity\TSN Hunter -->
+
+  <event  >
+    <if_timer_finished name="boardingTorpCharging" />
+    <if_distance name1="Bell Mare" name2="Artemis" comparator="<" value="5000" />
+  
+    <create type="enemy" use_gm_position="" name="Brd-T" hullID="131" fleetnumber="-1" />
+    <copy_object_property name1="Bell Mare" name2="Brd-T" property="sideValue" />
+    <copy_object_property name1="Bell Mare" name2="Brd-T" property="angle" />
+    <!-- <copy_object_property name1="Bell Mare" name2="Brd-T" property="positionX" />
+    <copy_object_property name1="Bell Mare" name2="Brd-T" property="positionZ" /> -->
+
+    <set_object_property property="topSpeed" value="2.5" name="Brd-T" />
+    <set_object_property property="throttle" value="2.5" name="Brd-T" />
+
+    <set_variable name="MarinesInTorpedo" randomIntLow="50" randomIntHigh="100" />
+    <set_variable name="TorpedoFuelSeconds" randomIntLow="10" randomIntHigh="20" />
+
+    <set_object_property property="surrenderChance" value="0" name="Brd-T" />
+    <set_object_property property="shieldMaxStateFront" value="10" name="Brd-T" />
+    <set_object_property property="shieldMaxStateBack" value="10" name="Brd-T" />
+    <set_object_property property="shieldStateFront" value="10" name="Brd-T" />
+    <set_object_property property="shieldStateBack" value="10" name="Brd-T" />
+
+    <!-- Does this work lol? -->
+    <set_object_property property="systemDamageBeam" value="1.0" name="Brd-T" />
+
+    <set_ship_text name="Brd-T" class="Torpedo" desc="Command-guided boarding torpedo. Lifesigns: |MarinesInTorpedo|. Fuel: |TorpedoFuelSeconds| sec. Target: Artemis."
+      scan_desc="Marines onboard. Prepare for boarding!" />
+    
+    <clear_ai name="Brd-T" />
+    <add_ai type="TARGET_THROTTLE" value1="10.0" targetName="Artemis" name="Brd-T" />
+
+    <set_timer name="boardingTorpCharging" seconds="21" />
+    <set_timer name="boardingTorpTTL" seconds="TorpedoFuelSeconds" />
+
+    <set_variable name="boardingTorpSpawned" value="1.0" interger="yes"/>
+  </event>
+
+  <event >
+    <if_variable name="boardingTorpSpawned" comparator="EQUALS" value="1.0" />
+    <set_relative_position name1="Bell Mare" name2="Brd-T" angle="0" distance="300" />
+    <set_variable name="boardingTorpSpawned" value="0.0" interger="yes"/>
+  </event>
+
+  <event >
+    <if_distance name1="Brd-T" name2="Artemis" comparator="<" value="300.0" />
+
+    <destroy name="Brd-T" />
+  
+    <warning_popup_message message="Intruder Alert!" consoles="MHWESC" player_slot="1">Intruder Alert!</warning_popup_message>
+    <incoming_comms_text from="Ship1" type="STATUS">We have a hull breach! Marines are moving to respond.</incoming_comms_text>
+
+    <set_variable name="Atk Ship1" value="1.0" />
+    <set_variable name="Ship1Attackers" value="MarinesInTorpedo" />
+  </event>
+
+  <event >
+    <if_timer_finished name="boardingTorpTTL" />
+    <destroy name="Brd-T" />
+  </event>
+
 </mission_data>
