@@ -8,16 +8,16 @@
   <event name="Custom Keys Menu" id_arme="728b075a-6d9a-43d2-b513-e86179063ca2" parent_id_arme="78b82965-29e0-44a9-922a-6953969ca6d7">
     <if_variable name="Ship Spawn Menu" comparator="EQUALS" value="3.0" />
     <if_timer_finished name="Ship Spawn Menu" />
-    <set_gm_button text="TSN Fleets\Loyalist Fleet" />
+    <set_gm_button text="TSN Fleets\Loyalist Flt Grant Battlegroup" />
   </event>
   <event name="Clear" id_arme="98706f5f-a06d-4ed4-b937-b52ba7bd98f3" parent_id_arme="78b82965-29e0-44a9-922a-6953969ca6d7">
     <!-- FIXME: Race condition on variable CycleSpawnMenu, rarely works.  -->
     <if_variable name="CycleSpawnMenu" comparator="EQUALS" value="1.0" />
-    <clear_gm_button text="TSN Fleets\Loyalist Fleet" />
+    <clear_gm_button text="TSN Fleets\Loyalist Flt Grant Battlegroup" />
   </event>
 
-  <event name="Loyalist Fleet" id_arme="88217de5-9f9a-4a16-9c81-c340b986242c" parent_id_arme="78b82965-29e0-44a9-922a-6953969ca6d7">
-    <if_gm_button text="TSN Fleets\Loyalist Fleet" />
+  <event name="Loyalist Flt Grant Battlegroup" id_arme="88217de5-9f9a-4a16-9c81-c340b986242c" parent_id_arme="78b82965-29e0-44a9-922a-6953969ca6d7">
+    <if_gm_button text="TSN Fleets\Loyalist Flt Grant Battlegroup" />
 
     <create type="enemy" use_gm_position="" name="Grant" hullID="1605" sideValue="SideValue" fleetnumber="Fleetnumber" />
     <get_object_property property="positionX" name="Grant" variable="posX" />
