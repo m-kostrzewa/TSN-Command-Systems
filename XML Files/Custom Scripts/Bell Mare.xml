@@ -1,4 +1,4 @@
-<mission_data version="1.0" background_id_arme="77d373f9-ed2e-4726-a2b2-74bd775ac998" playerShipNames_arme="Artemis\Intrepid\Aegis\Horatio\Excalibur\Hera\Ceres\Diana">
+<mission_data version="1.0" background_id_arme="77d373f9-ed2e-4726-a2b2-74bd775ac998" playerShipNames_arme="TSN Sabre\Intrepid\Aegis\Horatio\Excalibur\Hera\Ceres\Diana">
   <start id_arme="77d373f9-ed2e-4726-a2b2-74bd775ac998">
     <!---->
   </start>
@@ -36,83 +36,526 @@
     <add_ai type="CHASE_AI_SHIP" value1="3000" value2="500" name="Bell Mare" />
     <add_ai type="CHASE_PLAYER" value1="3000" value2="500" name="Bell Mare" />
     <add_ai type="CHASE_ANGER" name="Bell Mare" />
+    <add_ai type="LAUNCH_FIGHTERS" value1="5000" name="Bell Mare" />
 
     <set_special name="Bell Mare" ability="HET" />
     <set_special name="Bell Mare" ability="Warp" />
     <set_special name="Bell Mare" ability="Teleport" />
-    <set_special name="Bell Mare" ability="Tractor" />
     <set_special name="Bell Mare" ability="AntiMine" />
     <set_special name="Bell Mare" ability="AntiTorp" />
     <set_special name="Bell Mare" ability="ShldDrain" />
     <set_special name="Bell Mare" ability="ShldReset" />
     <set_special name="Bell Mare" ship="1" /> <!-- overpowered -->
 
-    <set_ship_text name="Bell Mare" desc="This Ximni Dreadnaught strikes fear into the heart of anyone who encounters it."
-      scan_desc="Commanded by legendary captain Bor-Nova, cannibalistic bounty hunter who knows no limits and can't be reasoned with. It's better not to be taken prisoner. Specials: Brd-T HET Warp Trator AntiMine AntiTorp ShldDrain ShldReset" />
+    <set_ship_text name="Bell Mare" desc="This battle-scarred overpowered Ximni Dreadnaught strikes fear into the heart of anyone who encounters it."
+      scan_desc="Commanded by legendary captain Bor-Nova, cannibalistic bounty hunter who knows no limits and can't be reasoned with. It's better not to be taken prisoner. Specials: Brd-D HET Warp AntiMine AntiTorp ShldDrain ShldReset" />
 
-    <set_timer name="boardingTorpCharging" seconds="1" />
+    <set_variable name="MarinesInTorpedoLow" value="30" integer="yes" />
+    <set_variable name="MarinesInTorpedoHigh" value="60" integer="yes" />
+    <set_variable name="TorpedoFuelSecondsLow" value="25" integer="yes" />
+    <set_variable name="TorpedoFuelSecondsHigh" value="35" integer="yes" />
+
+    <set_timer name="boardingTorp1Charging" seconds="1" />
+    <set_timer name="boardingTorp2Charging" seconds="31" />
+    <set_timer name="boardingTorp2Stagger" seconds="1" />
   </event>
 
-  <!-- TSN Sabre\TSN Valiant\TSN Lancer\TSN Stalker\TSN Viper\TSN Horizon\TSN Necessity\TSN Hunter -->
 
+  <event >
+    <if_variable name="boardingTorp1Spawned" comparator="EQUALS" value="1.0" />
+    <set_relative_position name1="Bell Mare" name2="Brd-D" angle="0" distance="300" />
+    <set_variable name="boardingTorp1Spawned" value="0.0" integer="yes"/>
+
+    <set_object_property property="topSpeed" value="100.0" name="Brd-D" />
+    <set_object_property property="speed" value="100.0" name="Brd-D" />
+    <set_object_property property="throttle" value="100.0" name="Brd-D" />
+  </event>
+  <event >
+    <if_timer_finished name="boardingTorp1TTL" />
+    <destroy name="Brd-D" />
+  </event>
+
+  <event >
+    <if_variable name="boardingTorp2Spawned" comparator="EQUALS" value="1.0" />
+    <set_relative_position name1="Bell Mare" name2="Brd-D " angle="0" distance="300" />
+    <set_variable name="boardingTorp2Spawned" value="0.0" integer="yes"/>
+
+    <set_object_property property="topSpeed" value="100.0" name="Brd-D " />
+    <set_object_property property="speed" value="100.0" name="Brd-D " />
+    <set_object_property property="throttle" value="100.0" name="Brd-D " />
+  </event>
+  <event >
+    <if_timer_finished name="boardingTorp2TTL" />
+    <destroy name="Brd-D " />
+  </event>
+
+  <!-- TSN Sabre -->
   <event  >
-    <if_timer_finished name="boardingTorpCharging" />
-    <if_distance name1="Bell Mare" name2="Artemis" comparator="<" value="5000" />
+    <if_timer_finished name="boardingTorp1Charging" />
+    <if_timer_finished name="boardingTorp2Stagger" />
+    <if_distance name1="Bell Mare" name2="TSN Sabre" comparator="<" value="5000" />
   
-    <create type="enemy" use_gm_position="" name="Brd-T" hullID="131" fleetnumber="-1" />
-    <copy_object_property name1="Bell Mare" name2="Brd-T" property="sideValue" />
-    <copy_object_property name1="Bell Mare" name2="Brd-T" property="angle" />
-    <!-- <copy_object_property name1="Bell Mare" name2="Brd-T" property="positionX" />
-    <copy_object_property name1="Bell Mare" name2="Brd-T" property="positionZ" /> -->
+    <create type="enemy" use_gm_position="" name="Brd-D" hullID="131" fleetnumber="-1" />
+    <copy_object_property name1="Bell Mare" name2="Brd-D" property="sideValue" />
+    <copy_object_property name1="Bell Mare" name2="Brd-D" property="angle" />
+    <copy_object_property name1="Bell Mare" name2="Brd-D" property="positionX" />
+    <copy_object_property name1="Bell Mare" name2="Brd-D" property="positionZ" />
 
-    <set_object_property property="topSpeed" value="2.5" name="Brd-T" />
-    <set_object_property property="throttle" value="2.5" name="Brd-T" />
+    <set_variable name="TorpedoFuelSeconds" randomIntLow="TorpedoFuelSecondsLow" randomIntHigh="TorpedoFuelSecondsHigh" />
 
-    <set_variable name="MarinesInTorpedo" randomIntLow="50" randomIntHigh="100" />
-    <set_variable name="TorpedoFuelSeconds" randomIntLow="10" randomIntHigh="20" />
+    <set_object_property property="surrenderChance" value="0" name="Brd-D" />
+    <set_object_property property="shieldMaxStateFront" value="10" name="Brd-D" />
+    <set_object_property property="shieldMaxStateBack" value="10" name="Brd-D" />
+    <set_object_property property="shieldStateFront" value="10" name="Brd-D" />
+    <set_object_property property="shieldStateBack" value="10" name="Brd-D" />
 
-    <set_object_property property="surrenderChance" value="0" name="Brd-T" />
-    <set_object_property property="shieldMaxStateFront" value="10" name="Brd-T" />
-    <set_object_property property="shieldMaxStateBack" value="10" name="Brd-T" />
-    <set_object_property property="shieldStateFront" value="10" name="Brd-T" />
-    <set_object_property property="shieldStateBack" value="10" name="Brd-T" />
+    <set_object_property property="systemDamageBeam" value="1.0" name="Brd-D" />
 
-    <!-- Does this work lol? -->
-    <set_object_property property="systemDamageBeam" value="1.0" name="Brd-T" />
-
-    <set_ship_text name="Brd-T" class="Torpedo" desc="Command-guided boarding torpedo. Lifesigns: |MarinesInTorpedo|. Fuel: |TorpedoFuelSeconds| sec. Target: Artemis."
-      scan_desc="Marines onboard. Prepare for boarding!" />
+    <set_ship_text name="Brd-D" race="" class="Torpedo" desc="Command-guided boarding torpedo. Lifesigns detected. Target: TSN Sabre."
+      scan_desc="Marines onboard. Prepare for intruders!" />
     
-    <clear_ai name="Brd-T" />
-    <add_ai type="TARGET_THROTTLE" value1="10.0" targetName="Artemis" name="Brd-T" />
+    <clear_ai name="Brd-D" />
+    <add_ai type="TARGET_THROTTLE" value1="100.0" targetName="TSN Sabre" name="Brd-D" />
+    <add_ai type="SPCL_AI" name="Brd-D" />
 
-    <set_timer name="boardingTorpCharging" seconds="21" />
-    <set_timer name="boardingTorpTTL" seconds="TorpedoFuelSeconds" />
+    <set_timer name="boardingTorp1Charging" seconds="40" />
+    <set_timer name="boardingTorp1TTL" seconds="TorpedoFuelSeconds" />
 
-    <set_variable name="boardingTorpSpawned" value="1.0" interger="yes"/>
+    <set_variable name="boardingTorp1Spawned" value="1.0" interger="yes"/>
+    <set_timer name="boardingTorp1Stagger" seconds="25" />
   </event>
-
   <event >
-    <if_variable name="boardingTorpSpawned" comparator="EQUALS" value="1.0" />
-    <set_relative_position name1="Bell Mare" name2="Brd-T" angle="0" distance="300" />
-    <set_variable name="boardingTorpSpawned" value="0.0" interger="yes"/>
-  </event>
+    <if_distance name1="Brd-D" name2="TSN Sabre" comparator="<" value="300.0" />
 
-  <event >
-    <if_distance name1="Brd-T" name2="Artemis" comparator="<" value="300.0" />
-
-    <destroy name="Brd-T" />
+    <destroy name="Brd-D" />
   
-    <warning_popup_message message="Intruder Alert!" consoles="MHWESC" player_slot="1">Intruder Alert!</warning_popup_message>
+    <warning_popup_message message="Intruder Alert!" consoles="MHWESC" player_slot="0">Intruder Alert!</warning_popup_message>
     <incoming_comms_text from="Ship1" type="STATUS">We have a hull breach! Marines are moving to respond.</incoming_comms_text>
 
     <set_variable name="Atk Ship1" value="1.0" />
-    <set_variable name="Ship1Attackers" value="MarinesInTorpedo" />
+    <set_variable name="Ship1Attackers" randomIntLow="MarinesInTorpedoLow" randomIntHigh="MarinesInTorpedoHigh" />
   </event>
 
-  <event >
-    <if_timer_finished name="boardingTorpTTL" />
-    <destroy name="Brd-T" />
+  <event  >
+    <if_timer_finished name="boardingTorp2Charging" />
+    <if_timer_finished name="boardingTorp1Stagger" />
+    <if_distance name1="Bell Mare" name2="TSN Sabre" comparator="<" value="5000" />
+  
+    <create type="enemy" use_gm_position="" name="Brd-D " hullID="131" fleetnumber="-1" />
+    <copy_object_property name1="Bell Mare" name2="Brd-D " property="sideValue" />
+    <copy_object_property name1="Bell Mare" name2="Brd-D " property="angle" />
+    <copy_object_property name1="Bell Mare" name2="Brd-D " property="positionX" />
+    <copy_object_property name1="Bell Mare" name2="Brd-D " property="positionZ" />
+
+    <set_variable name="TorpedoFuelSeconds" randomIntLow="TorpedoFuelSecondsLow" randomIntHigh="TorpedoFuelSecondsHigh" />
+
+    <set_object_property property="surrenderChance" value="0" name="Brd-D " />
+    <set_object_property property="shieldMaxStateFront" value="10" name="Brd-D " />
+    <set_object_property property="shieldMaxStateBack" value="10" name="Brd-D " />
+    <set_object_property property="shieldStateFront" value="10" name="Brd-D " />
+    <set_object_property property="shieldStateBack" value="10" name="Brd-D " />
+
+    <set_object_property property="systemDamageBeam" value="1.0" name="Brd-D " />
+
+    <set_ship_text name="Brd-D " race="" class="Torpedo" desc="Command-guided boarding torpedo. Lifesigns detected. Target: TSN Sabre."
+      scan_desc="Marines onboard. Prepare for intruders!" />
+    
+    <clear_ai name="Brd-D " />
+    <add_ai type="TARGET_THROTTLE" value1="100.0" targetName="TSN Sabre" name="Brd-D " />
+    <add_ai type="SPCL_AI" name="Brd-D " />
+
+    <set_timer name="boardingTorp2Charging" seconds="40" />
+    <set_timer name="boardingTorp2TTL" seconds="TorpedoFuelSeconds" />
+
+    <set_variable name="boardingTorp2Spawned" value="1.0" interger="yes"/>
+    <set_timer name="boardingTorp2Stagger" seconds="25" />
   </event>
+  <event >
+    <if_distance name1="Brd-D " name2="TSN Sabre" comparator="<" value="300.0" />
+
+    <destroy name="Brd-D " />
+  
+    <warning_popup_message message="Intruder Alert!" consoles="MHWESC" player_slot="0">Intruder Alert!</warning_popup_message>
+    <incoming_comms_text from="Ship1" type="STATUS">We have a hull breach! Marines are moving to respond.</incoming_comms_text>
+
+    <set_variable name="Atk Ship1" value="1.0" />
+    <set_variable name="Ship1Attackers" randomIntLow="MarinesInTorpedoLow" randomIntHigh="MarinesInTorpedoHigh" />
+  </event>
+
+  <!-- TSN Horizon -->
+  <event  >
+    <if_timer_finished name="boardingTorp1Charging" />
+    <if_timer_finished name="boardingTorp2Stagger" />
+    <if_distance name1="Bell Mare" name2="TSN Horizon" comparator="<" value="5000" />
+  
+    <create type="enemy" use_gm_position="" name="Brd-D" hullID="131" fleetnumber="-1" />
+    <copy_object_property name1="Bell Mare" name2="Brd-D" property="sideValue" />
+    <copy_object_property name1="Bell Mare" name2="Brd-D" property="angle" />
+    <copy_object_property name1="Bell Mare" name2="Brd-D" property="positionX" />
+    <copy_object_property name1="Bell Mare" name2="Brd-D" property="positionZ" />
+
+    <set_variable name="TorpedoFuelSeconds" randomIntLow="TorpedoFuelSecondsLow" randomIntHigh="TorpedoFuelSecondsHigh" />
+
+    <set_object_property property="surrenderChance" value="0" name="Brd-D" />
+    <set_object_property property="shieldMaxStateFront" value="10" name="Brd-D" />
+    <set_object_property property="shieldMaxStateBack" value="10" name="Brd-D" />
+    <set_object_property property="shieldStateFront" value="10" name="Brd-D" />
+    <set_object_property property="shieldStateBack" value="10" name="Brd-D" />
+
+    <set_object_property property="systemDamageBeam" value="1.0" name="Brd-D" />
+
+    <set_ship_text name="Brd-D" race="" class="Torpedo" desc="Command-guided boarding torpedo. Lifesigns detected. Target: TSN Horizon."
+      scan_desc="Marines onboard. Prepare for intruders!" />
+    
+    <clear_ai name="Brd-D" />
+    <add_ai type="TARGET_THROTTLE" value1="100.0" targetName="TSN Horizon" name="Brd-D" />
+    <add_ai type="SPCL_AI" name="Brd-D" />
+
+    <set_timer name="boardingTorp1Charging" seconds="40" />
+    <set_timer name="boardingTorp1TTL" seconds="TorpedoFuelSeconds" />
+
+    <set_variable name="boardingTorp1Spawned" value="1.0" interger="yes"/>
+    <set_timer name="boardingTorp1Stagger" seconds="25" />
+  </event>
+  <event >
+    <if_distance name1="Brd-D" name2="TSN Horizon" comparator="<" value="300.0" />
+
+    <destroy name="Brd-D" />
+  
+    <warning_popup_message message="Intruder Alert!" consoles="MHWESC" player_slot="1">Intruder Alert!</warning_popup_message>
+    <incoming_comms_text from="Ship2" type="STATUS">We have a hull breach! Marines are moving to respond.</incoming_comms_text>
+
+    <set_variable name="Atk Ship2" value="1.0" />
+    <set_variable name="Ship2Attackers" randomIntLow="MarinesInTorpedoLow" randomIntHigh="MarinesInTorpedoHigh" />
+  </event>
+  <event  >
+    <if_timer_finished name="boardingTorp2Charging" />
+    <if_timer_finished name="boardingTorp1Stagger" />
+    <if_distance name1="Bell Mare" name2="TSN Horizon" comparator="<" value="5000" />
+  
+    <create type="enemy" use_gm_position="" name="Brd-D " hullID="131" fleetnumber="-1" />
+    <copy_object_property name1="Bell Mare" name2="Brd-D " property="sideValue" />
+    <copy_object_property name1="Bell Mare" name2="Brd-D " property="angle" />
+    <copy_object_property name1="Bell Mare" name2="Brd-D " property="positionX" />
+    <copy_object_property name1="Bell Mare" name2="Brd-D " property="positionZ" />
+
+    <set_variable name="TorpedoFuelSeconds" randomIntLow="TorpedoFuelSecondsLow" randomIntHigh="TorpedoFuelSecondsHigh" />
+
+    <set_object_property property="surrenderChance" value="0" name="Brd-D " />
+    <set_object_property property="shieldMaxStateFront" value="10" name="Brd-D " />
+    <set_object_property property="shieldMaxStateBack" value="10" name="Brd-D " />
+    <set_object_property property="shieldStateFront" value="10" name="Brd-D " />
+    <set_object_property property="shieldStateBack" value="10" name="Brd-D " />
+
+    <set_object_property property="systemDamageBeam" value="1.0" name="Brd-D " />
+
+    <set_ship_text name="Brd-D " race="" class="Torpedo" desc="Command-guided boarding torpedo. Lifesigns detected. Target: TSN Horizon."
+      scan_desc="Marines onboard. Prepare for intruders!" />
+    
+    <clear_ai name="Brd-D " />
+    <add_ai type="TARGET_THROTTLE" value1="100.0" targetName="TSN Horizon" name="Brd-D " />
+    <add_ai type="SPCL_AI" name="Brd-D " />
+
+    <set_timer name="boardingTorp2Charging" seconds="40" />
+    <set_timer name="boardingTorp2TTL" seconds="TorpedoFuelSeconds" />
+
+    <set_variable name="boardingTorp2Spawned" value="1.0" interger="yes"/>
+    <set_timer name="boardingTorp2Stagger" seconds="25" />
+  </event>
+  <event >
+    <if_distance name1="Brd-D " name2="TSN Horizon" comparator="<" value="300.0" />
+
+    <destroy name="Brd-D " />
+  
+    <warning_popup_message message="Intruder Alert!" consoles="MHWESC" player_slot="1">Intruder Alert!</warning_popup_message>
+    <incoming_comms_text from="Ship2" type="STATUS">We have a hull breach! Marines are moving to respond.</incoming_comms_text>
+
+    <set_variable name="Atk Ship2" value="1.0" />
+    <set_variable name="Ship2Attackers" randomIntLow="MarinesInTorpedoLow" randomIntHigh="MarinesInTorpedoHigh" />
+  </event>
+
+
+  <!-- TSN Viper -->
+  <event  >
+    <if_timer_finished name="boardingTorp1Charging" />
+    <if_timer_finished name="boardingTorp2Stagger" />
+    <if_distance name1="Bell Mare" name2="TSN Viper" comparator="<" value="5000" />
+  
+    <create type="enemy" use_gm_position="" name="Brd-D" hullID="131" fleetnumber="-1" />
+    <copy_object_property name1="Bell Mare" name2="Brd-D" property="sideValue" />
+    <copy_object_property name1="Bell Mare" name2="Brd-D" property="angle" />
+    <copy_object_property name1="Bell Mare" name2="Brd-D" property="positionX" />
+    <copy_object_property name1="Bell Mare" name2="Brd-D" property="positionZ" />
+
+    <set_variable name="TorpedoFuelSeconds" randomIntLow="TorpedoFuelSecondsLow" randomIntHigh="TorpedoFuelSecondsHigh" />
+
+    <set_object_property property="surrenderChance" value="0" name="Brd-D" />
+    <set_object_property property="shieldMaxStateFront" value="10" name="Brd-D" />
+    <set_object_property property="shieldMaxStateBack" value="10" name="Brd-D" />
+    <set_object_property property="shieldStateFront" value="10" name="Brd-D" />
+    <set_object_property property="shieldStateBack" value="10" name="Brd-D" />
+
+    <set_object_property property="systemDamageBeam" value="1.0" name="Brd-D" />
+
+    <set_ship_text name="Brd-D" race="" class="Torpedo" desc="Command-guided boarding torpedo. Lifesigns detected. Target: TSN Viper."
+      scan_desc="Marines onboard. Prepare for intruders!" />
+    
+    <clear_ai name="Brd-D" />
+    <add_ai type="TARGET_THROTTLE" value1="100.0" targetName="TSN Viper" name="Brd-D" />
+    <add_ai type="SPCL_AI" name="Brd-D" />
+
+    <set_timer name="boardingTorp1Charging" seconds="40" />
+    <set_timer name="boardingTorp1TTL" seconds="TorpedoFuelSeconds" />
+
+    <set_variable name="boardingTorp1Spawned" value="1.0" interger="yes"/>
+    <set_timer name="boardingTorp1Stagger" seconds="25" />
+  </event>
+  <event >
+    <if_distance name1="Brd-D" name2="TSN Viper" comparator="<" value="300.0" />
+
+    <destroy name="Brd-D" />
+  
+    <warning_popup_message message="Intruder Alert!" consoles="MHWESC" player_slot="2">Intruder Alert!</warning_popup_message>
+    <incoming_comms_text from="Ship3" type="STATUS">We have a hull breach! Marines are moving to respond.</incoming_comms_text>
+
+    <set_variable name="Atk Ship3" value="1.0" />
+    <set_variable name="Ship3Attackers" randomIntLow="MarinesInTorpedoLow" randomIntHigh="MarinesInTorpedoHigh" />
+  </event>
+
+  <event  >
+    <if_timer_finished name="boardingTorp2Charging" />
+    <if_timer_finished name="boardingTorp1Stagger" />
+    <if_distance name1="Bell Mare" name2="TSN Viper" comparator="<" value="5000" />
+  
+    <create type="enemy" use_gm_position="" name="Brd-D " hullID="131" fleetnumber="-1" />
+    <copy_object_property name1="Bell Mare" name2="Brd-D " property="sideValue" />
+    <copy_object_property name1="Bell Mare" name2="Brd-D " property="angle" />
+    <copy_object_property name1="Bell Mare" name2="Brd-D " property="positionX" />
+    <copy_object_property name1="Bell Mare" name2="Brd-D " property="positionZ" />
+
+    <set_variable name="TorpedoFuelSeconds" randomIntLow="TorpedoFuelSecondsLow" randomIntHigh="TorpedoFuelSecondsHigh" />
+
+    <set_object_property property="surrenderChance" value="0" name="Brd-D " />
+    <set_object_property property="shieldMaxStateFront" value="10" name="Brd-D " />
+    <set_object_property property="shieldMaxStateBack" value="10" name="Brd-D " />
+    <set_object_property property="shieldStateFront" value="10" name="Brd-D " />
+    <set_object_property property="shieldStateBack" value="10" name="Brd-D " />
+
+    <set_object_property property="systemDamageBeam" value="1.0" name="Brd-D " />
+
+    <set_ship_text name="Brd-D " race="" class="Torpedo" desc="Command-guided boarding torpedo. Lifesigns detected. Target: TSN Viper."
+      scan_desc="Marines onboard. Prepare for intruders!" />
+    
+    <clear_ai name="Brd-D " />
+    <add_ai type="TARGET_THROTTLE" value1="100.0" targetName="TSN Viper" name="Brd-D " />
+    <add_ai type="SPCL_AI" name="Brd-D " />
+
+    <set_timer name="boardingTorp2Charging" seconds="40" />
+    <set_timer name="boardingTorp2TTL" seconds="TorpedoFuelSeconds" />
+
+    <set_variable name="boardingTorp2Spawned" value="1.0" interger="yes"/>
+    <set_timer name="boardingTorp2Stagger" seconds="25" />
+  </event>
+  <event >
+    <if_distance name1="Brd-D " name2="TSN Viper" comparator="<" value="300.0" />
+
+    <destroy name="Brd-D " />
+  
+    <warning_popup_message message="Intruder Alert!" consoles="MHWESC" player_slot="2">Intruder Alert!</warning_popup_message>
+    <incoming_comms_text from="Ship3" type="STATUS">We have a hull breach! Marines are moving to respond.</incoming_comms_text>
+
+    <set_variable name="Atk Ship3" value="1.0" />
+    <set_variable name="Ship3Attackers" randomIntLow="MarinesInTorpedoLow" randomIntHigh="MarinesInTorpedoHigh" />
+  </event>
+
+    
+  <!-- TSN Lancer -->
+  <event  >
+    <if_timer_finished name="boardingTorp1Charging" />
+    <if_timer_finished name="boardingTorp2Stagger" />
+    <if_distance name1="Bell Mare" name2="TSN Lancer" comparator="<" value="5000" />
+  
+    <create type="enemy" use_gm_position="" name="Brd-D" hullID="131" fleetnumber="-1" />
+    <copy_object_property name1="Bell Mare" name2="Brd-D" property="sideValue" />
+    <copy_object_property name1="Bell Mare" name2="Brd-D" property="angle" />
+    <copy_object_property name1="Bell Mare" name2="Brd-D" property="positionX" />
+    <copy_object_property name1="Bell Mare" name2="Brd-D" property="positionZ" />
+
+    <set_variable name="TorpedoFuelSeconds" randomIntLow="TorpedoFuelSecondsLow" randomIntHigh="TorpedoFuelSecondsHigh" />
+
+    <set_object_property property="surrenderChance" value="0" name="Brd-D" />
+    <set_object_property property="shieldMaxStateFront" value="10" name="Brd-D" />
+    <set_object_property property="shieldMaxStateBack" value="10" name="Brd-D" />
+    <set_object_property property="shieldStateFront" value="10" name="Brd-D" />
+    <set_object_property property="shieldStateBack" value="10" name="Brd-D" />
+
+    <set_object_property property="systemDamageBeam" value="1.0" name="Brd-D" />
+
+    <set_ship_text name="Brd-D" race="" class="Torpedo" desc="Command-guided boarding torpedo. Lifesigns detected. Target: TSN Lancer."
+      scan_desc="Marines onboard. Prepare for intruders!" />
+    
+    <clear_ai name="Brd-D" />
+    <add_ai type="TARGET_THROTTLE" value1="100.0" targetName="TSN Lancer" name="Brd-D" />
+    <add_ai type="SPCL_AI" name="Brd-D" />
+
+    <set_timer name="boardingTorp1Charging" seconds="40" />
+    <set_timer name="boardingTorp1TTL" seconds="TorpedoFuelSeconds" />
+
+    <set_variable name="boardingTorp1Spawned" value="1.0" interger="yes"/>
+    <set_timer name="boardingTorp1Stagger" seconds="25" />
+  </event>
+  <event >
+    <if_distance name1="Brd-D" name2="TSN Lancer" comparator="<" value="300.0" />
+
+    <destroy name="Brd-D" />
+  
+    <warning_popup_message message="Intruder Alert!" consoles="MHWESC" player_slot="3">Intruder Alert!</warning_popup_message>
+    <incoming_comms_text from="Ship4" type="STATUS">We have a hull breach! Marines are moving to respond.</incoming_comms_text>
+
+    <set_variable name="Atk Ship4" value="1.0" />
+    <set_variable name="Ship4Attackers" randomIntLow="MarinesInTorpedoLow" randomIntHigh="MarinesInTorpedoHigh" />
+  </event>
+
+  <event  >
+    <if_timer_finished name="boardingTorp2Charging" />
+    <if_timer_finished name="boardingTorp1Stagger" />
+    <if_distance name1="Bell Mare" name2="TSN Lancer" comparator="<" value="5000" />
+  
+    <create type="enemy" use_gm_position="" name="Brd-D " hullID="131" fleetnumber="-1" />
+    <copy_object_property name1="Bell Mare" name2="Brd-D " property="sideValue" />
+    <copy_object_property name1="Bell Mare" name2="Brd-D " property="angle" />
+    <copy_object_property name1="Bell Mare" name2="Brd-D " property="positionX" />
+    <copy_object_property name1="Bell Mare" name2="Brd-D " property="positionZ" />
+
+    <set_variable name="TorpedoFuelSeconds" randomIntLow="TorpedoFuelSecondsLow" randomIntHigh="TorpedoFuelSecondsHigh" />
+
+    <set_object_property property="surrenderChance" value="0" name="Brd-D " />
+    <set_object_property property="shieldMaxStateFront" value="10" name="Brd-D " />
+    <set_object_property property="shieldMaxStateBack" value="10" name="Brd-D " />
+    <set_object_property property="shieldStateFront" value="10" name="Brd-D " />
+    <set_object_property property="shieldStateBack" value="10" name="Brd-D " />
+
+    <set_object_property property="systemDamageBeam" value="1.0" name="Brd-D " />
+
+    <set_ship_text name="Brd-D " race="" class="Torpedo" desc="Command-guided boarding torpedo. Lifesigns detected. Target: TSN Lancer."
+      scan_desc="Marines onboard. Prepare for intruders!" />
+    
+    <clear_ai name="Brd-D " />
+    <add_ai type="TARGET_THROTTLE" value1="100.0" targetName="TSN Lancer" name="Brd-D " />
+    <add_ai type="SPCL_AI" name="Brd-D " />
+
+    <set_timer name="boardingTorp2Charging" seconds="40" />
+    <set_timer name="boardingTorp2TTL" seconds="TorpedoFuelSeconds" />
+
+    <set_variable name="boardingTorp2Spawned" value="1.0" interger="yes"/>
+    <set_timer name="boardingTorp2Stagger" seconds="25" />
+  </event>
+  <event >
+    <if_distance name1="Brd-D " name2="TSN Lancer" comparator="<" value="300.0" />
+
+    <destroy name="Brd-D " />
+  
+    <warning_popup_message message="Intruder Alert!" consoles="MHWESC" player_slot="3">Intruder Alert!</warning_popup_message>
+    <incoming_comms_text from="Ship4" type="STATUS">We have a hull breach! Marines are moving to respond.</incoming_comms_text>
+
+    <set_variable name="Atk Ship4" value="1.0" />
+    <set_variable name="Ship4Attackers" randomIntLow="MarinesInTorpedoLow" randomIntHigh="MarinesInTorpedoHigh" />
+  </event>
+
+
+
+  <!-- TSN Stalker -->
+  <event  >
+    <if_timer_finished name="boardingTorp1Charging" />
+    <if_timer_finished name="boardingTorp2Stagger" />
+    <if_distance name1="Bell Mare" name2="TSN Stalker" comparator="<" value="5000" />
+  
+    <create type="enemy" use_gm_position="" name="Brd-D" hullID="131" fleetnumber="-1" />
+    <copy_object_property name1="Bell Mare" name2="Brd-D" property="sideValue" />
+    <copy_object_property name1="Bell Mare" name2="Brd-D" property="angle" />
+    <copy_object_property name1="Bell Mare" name2="Brd-D" property="positionX" />
+    <copy_object_property name1="Bell Mare" name2="Brd-D" property="positionZ" />
+
+    <set_variable name="TorpedoFuelSeconds" randomIntLow="TorpedoFuelSecondsLow" randomIntHigh="TorpedoFuelSecondsHigh" />
+
+    <set_object_property property="surrenderChance" value="0" name="Brd-D" />
+    <set_object_property property="shieldMaxStateFront" value="10" name="Brd-D" />
+    <set_object_property property="shieldMaxStateBack" value="10" name="Brd-D" />
+    <set_object_property property="shieldStateFront" value="10" name="Brd-D" />
+    <set_object_property property="shieldStateBack" value="10" name="Brd-D" />
+
+    <set_object_property property="systemDamageBeam" value="1.0" name="Brd-D" />
+
+    <set_ship_text name="Brd-D" race="" class="Torpedo" desc="Command-guided boarding torpedo. Lifesigns detected. Target: TSN Stalker."
+      scan_desc="Marines onboard. Prepare for intruders!" />
+    
+    <clear_ai name="Brd-D" />
+    <add_ai type="TARGET_THROTTLE" value1="100.0" targetName="TSN Stalker" name="Brd-D" />
+    <add_ai type="SPCL_AI" name="Brd-D" />
+
+    <set_timer name="boardingTorp1Charging" seconds="40" />
+    <set_timer name="boardingTorp1TTL" seconds="TorpedoFuelSeconds" />
+
+    <set_variable name="boardingTorp1Spawned" value="1.0" interger="yes"/>
+    <set_timer name="boardingTorp1Stagger" seconds="25" />
+  </event>
+  <event >
+    <if_distance name1="Brd-D" name2="TSN Stalker" comparator="<" value="300.0" />
+
+    <destroy name="Brd-D" />
+  
+    <warning_popup_message message="Intruder Alert!" consoles="MHWESC" player_slot="6">Intruder Alert!</warning_popup_message>
+    <incoming_comms_text from="Ship7" type="STATUS">We have a hull breach! Marines are moving to respond.</incoming_comms_text>
+
+    <set_variable name="Atk Ship7" value="1.0" />
+    <set_variable name="Ship7Attackers" randomIntLow="MarinesInTorpedoLow" randomIntHigh="MarinesInTorpedoHigh" />
+  </event>
+
+  <event  >
+    <if_timer_finished name="boardingTorp2Charging" />
+    <if_timer_finished name="boardingTorp1Stagger" />
+    <if_distance name1="Bell Mare" name2="TSN Stalker" comparator="<" value="5000" />
+  
+    <create type="enemy" use_gm_position="" name="Brd-D " hullID="131" fleetnumber="-1" />
+    <copy_object_property name1="Bell Mare" name2="Brd-D " property="sideValue" />
+    <copy_object_property name1="Bell Mare" name2="Brd-D " property="angle" />
+    <copy_object_property name1="Bell Mare" name2="Brd-D " property="positionX" />
+    <copy_object_property name1="Bell Mare" name2="Brd-D " property="positionZ" />
+
+    <set_variable name="TorpedoFuelSeconds" randomIntLow="TorpedoFuelSecondsLow" randomIntHigh="TorpedoFuelSecondsHigh" />
+
+    <set_object_property property="surrenderChance" value="0" name="Brd-D " />
+    <set_object_property property="shieldMaxStateFront" value="10" name="Brd-D " />
+    <set_object_property property="shieldMaxStateBack" value="10" name="Brd-D " />
+    <set_object_property property="shieldStateFront" value="10" name="Brd-D " />
+    <set_object_property property="shieldStateBack" value="10" name="Brd-D " />
+
+    <set_object_property property="systemDamageBeam" value="1.0" name="Brd-D " />
+
+    <set_ship_text name="Brd-D " race="" class="Torpedo" desc="Command-guided boarding torpedo. Lifesigns detected. Target: TSN Stalker."
+      scan_desc="Marines onboard. Prepare for intruders!" />
+    
+    <clear_ai name="Brd-D " />
+    <add_ai type="TARGET_THROTTLE" value1="100.0" targetName="TSN Stalker" name="Brd-D " />
+    <add_ai type="SPCL_AI" name="Brd-D " />
+
+    <set_timer name="boardingTorp2Charging" seconds="40" />
+    <set_timer name="boardingTorp2TTL" seconds="TorpedoFuelSeconds" />
+
+    <set_variable name="boardingTorp2Spawned" value="1.0" interger="yes"/>
+    <set_timer name="boardingTorp2Stagger" seconds="25" />
+  </event>
+  <event >
+    <if_distance name1="Brd-D " name2="TSN Stalker" comparator="<" value="300.0" />
+
+    <destroy name="Brd-D " />
+  
+    <warning_popup_message message="Intruder Alert!" consoles="MHWESC" player_slot="6">Intruder Alert!</warning_popup_message>
+    <incoming_comms_text from="Ship7" type="STATUS">We have a hull breach! Marines are moving to respond.</incoming_comms_text>
+
+    <set_variable name="Atk Ship7" value="1.0" />
+    <set_variable name="Ship7Attackers" randomIntLow="MarinesInTorpedoLow" randomIntHigh="MarinesInTorpedoHigh" />
+  </event>
+
 
 </mission_data>
