@@ -8,20 +8,20 @@
   <event name="Custom Keys Menu" id_arme="728b075a-6d9a-43d2-b513-e86179063ca2" parent_id_arme="78b82965-29e0-44a9-922a-6953969ca6d7">
     <if_variable name="Ship Spawn Menu" comparator="EQUALS" value="3.0" />
     <if_timer_finished name="Ship Spawn Menu" />
-    <set_gm_button text="TSN Fleets\Loyalist Flt Grant Battlegroup" />
+    <set_gm_button text="TSN Fleets\Loyalist Flt Goblin Battlegroup" />
   </event>
   <event name="Clear" id_arme="98706f5f-a06d-4ed4-b937-b52ba7bd98f3" parent_id_arme="78b82965-29e0-44a9-922a-6953969ca6d7">
     <!-- FIXME: Race condition on variable CycleSpawnMenu, rarely works.  -->
     <if_variable name="CycleSpawnMenu" comparator="EQUALS" value="1.0" />
-    <clear_gm_button text="TSN Fleets\Loyalist Flt Grant Battlegroup" />
+    <clear_gm_button text="TSN Fleets\Loyalist Flt Goblin Battlegroup" />
   </event>
 
-  <event name="Loyalist Flt Grant Battlegroup" id_arme="88217de5-9f9a-4a16-9c81-c340b986242c" parent_id_arme="78b82965-29e0-44a9-922a-6953969ca6d7">
-    <if_gm_button text="TSN Fleets\Loyalist Flt Grant Battlegroup" />
+  <event name="Loyalist Flt Goblin Battlegroup" id_arme="88217de5-9f9a-4a16-9c81-c340b986242c" parent_id_arme="78b82965-29e0-44a9-922a-6953969ca6d7">
+    <if_gm_button text="TSN Fleets\Loyalist Flt Goblin Battlegroup" />
 
-    <create type="enemy" use_gm_position="" name="Grant" hullID="1605" sideValue="SideValue" fleetnumber="Fleetnumber" />
-    <get_object_property property="positionX" name="Grant" variable="posX" />
-    <get_object_property property="positionZ" name="Grant" variable="posZ" />
+    <create type="enemy" use_gm_position="" name="Goblin" hullID="1605" sideValue="SideValue" fleetnumber="Fleetnumber" />
+    <get_object_property property="positionX" name="Goblin" variable="posX" />
+    <get_object_property property="positionZ" name="Goblin" variable="posZ" />
 
     <!-- TSN Battleships -->
     <create type="enemy" x="posX - 1500" z="posZ - 1500" name="Loyal 1" hullID="2" sideValue="SideValue" fleetnumber="Fleetnumber" />
@@ -47,75 +47,83 @@
     <set_variable name="Auto AI Type" value="203.0" integer="yes" /> 
 
     <set_timer name="FormationTimer" seconds="5"/>
-    <set_variable name="GranetDescUpdate" value="1.0" integer="yes"/>
+    <set_variable name="GoblinDescUpdate" value="1.0" integer="yes"/>
 
   </event>
 
-  <event name="Grant desc update" id_arme="5e421777-0fb0-4df4-9c81-7c160ff3f7e5" parent_id_arme="78fa2f1b-700f-4a72-8254-4be22e7c74ac">
-    <if_variable name="GranetDescUpdate" comparator="EQUALS" value="1.0" />
+  <event name="Goblin desc update" id_arme="5e421777-0fb0-4df4-9c81-7c160ff3f7e5" parent_id_arme="78fa2f1b-700f-4a72-8254-4be22e7c74ac">
+    <if_variable name="GoblinDescUpdate" comparator="EQUALS" value="1.0" />
     <if_timer_finished name="FormationTimer"/>
-    <set_ship_text name="Grant"
-      desc="Auxillary supply ship for the TSN combat vessels. Flagship of Loyalist Fleet and Grant Battlegroup." 
+    <set_ship_text name="Goblin"
+      desc="Auxillary supply ship for the TSN combat vessels. Flagship of Loyalist Fleet and Goblin Battlegroup." 
       scan_desc="Commanded by Captain Li Feng. Max. Supplies: 20 Homing, 15 EMP, 8 Nuke, 10 Mine, 10 PShock, 10 Beacon, 10 Tag, 10 Probes" />
-    <set_variable name="GranetDescUpdate" value="2.0" integer="yes" />
+    <set_variable name="GoblinDescUpdate" value="2.0" integer="yes" />
   </event>
 
-  <event name="Grant Battlegroup update" id_arme="5e421777-0fb0-4df4-9c81-7c160ff3f7e4" parent_id_arme="78fa2f1b-700f-4a72-8254-4be22e7c74ac">
+  <event name="Goblin Battlegroup update" id_arme="5e421777-0fb0-4df4-9c81-7c160ff3f7e4" parent_id_arme="78fa2f1b-700f-4a72-8254-4be22e7c74ac">
     <if_timer_finished name="FormationTimer" />
-    <if_exists name="Grant" />
+    <if_exists name="Goblin" />
 
-    <get_object_property property="positionX" name="Grant" variable="posX" />
-    <get_object_property property="positionZ" name="Grant" variable="posZ" />
+    <get_object_property property="positionX" name="Goblin" variable="posX" />
+    <get_object_property property="positionZ" name="Goblin" variable="posZ" />
 
     <clear_ai name="Loyal 1" />
     <add_ai type="POINT_THROTTLE" value4="1.5" value1="posX - 1500" value3="posZ - 1500" name="Loyal 1" />
     <add_ai type="DEFEND" value1="2000" value2="1500" name="Loyal 1" />
-    <add_ai type="CHASE_AI_SHIP" value1="1500" value2="500" name="Loyal 1" />
+    <add_ai type="CHASE_AI_SHIP" value1="4000" value2="1500" name="Loyal 1" />
     <add_ai type="DEFEND" value1="3000" value2="1000" name="Loyal 1" />
+    <add_ai type="LAUNCH_FIGHTERS" value1="5000" name="Loyal 1" />
 
     <clear_ai name="Loyal 2" />
     <add_ai type="POINT_THROTTLE" value4="1.5" value1="posX + 0" value3="posZ - 1500" name="Loyal 2" />
     <add_ai type="DEFEND" value1="2000" value2="1500" name="Loyal 2" />
-    <add_ai type="CHASE_AI_SHIP" value1="1500" value2="500" name="Loyal 2" />
+    <add_ai type="CHASE_AI_SHIP" value1="4000" value2="1500" name="Loyal 2" />
     <add_ai type="DEFEND" value1="3000" value2="1000" name="Loyal 2" />
+    <add_ai type="LAUNCH_FIGHTERS" value1="5000" name="Loyal 2" />
 
     <clear_ai name="Loyal 3" />
     <add_ai type="POINT_THROTTLE" value4="1.5" value1="posX + 1500" value3="posZ - 1500" name="Loyal 3" />
     <add_ai type="DEFEND" value1="2000" value2="1500" name="Loyal 3" />
-    <add_ai type="CHASE_AI_SHIP" value1="1500" value2="500" name="Loyal 3" />
+    <add_ai type="CHASE_AI_SHIP" value1="4000" value2="1500" name="Loyal 3" />
     <add_ai type="DEFEND" value1="3000" value2="1000" name="Loyal 3" />
+    <add_ai type="LAUNCH_FIGHTERS" value1="5000" name="Loyal 3" />
 
 
     <clear_ai name="Loyal 4" />
     <add_ai type="POINT_THROTTLE" value4="1.5" value1="posX - 1500" value3="posZ + 1500" name="Loyal 4" />
     <add_ai type="DEFEND" value1="2000" value2="1500" name="Loyal 4" />
-    <add_ai type="CHASE_AI_SHIP" value1="1500" value2="500" name="Loyal 4" />
+    <add_ai type="CHASE_AI_SHIP" value1="4000" value2="1500" name="Loyal 4" />
     <add_ai type="DEFEND" value1="3000" value2="1000" name="Loyal 4" />
+    <add_ai type="LAUNCH_FIGHTERS" value1="5000" name="Loyal 4" />
 
     <clear_ai name="Loyal 5" />
     <add_ai type="POINT_THROTTLE" value4="1.5" value1="posX + 0" value3="posZ + 1500" name="Loyal 5" />
     <add_ai type="DEFEND" value1="2000" value2="1500" name="Loyal 5" />
-    <add_ai type="CHASE_AI_SHIP" value1="1500" value2="500" name="Loyal 5" />
+    <add_ai type="CHASE_AI_SHIP" value1="4000" value2="1500" name="Loyal 5" />
     <add_ai type="DEFEND" value1="3000" value2="1000" name="Loyal 5" />
+    <add_ai type="LAUNCH_FIGHTERS" value1="5000" name="Loyal 5" />
 
     <clear_ai name="Loyal 6" />
     <add_ai type="POINT_THROTTLE" value4="1.5" value1="posX + 1500" value3="posZ + 1500" name="Loyal 6" />
     <add_ai type="DEFEND" value1="2000" value2="1500" name="Loyal 6" />
-    <add_ai type="CHASE_AI_SHIP" value1="1500" value2="500" name="Loyal 6" />
+    <add_ai type="CHASE_AI_SHIP" value1="4000" value2="1500" name="Loyal 6" />
     <add_ai type="DEFEND" value1="3000" value2="1000" name="Loyal 6" />
+    <add_ai type="LAUNCH_FIGHTERS" value1="5000" name="Loyal 6" />
 
 
     <clear_ai name="Loyal 7" />
     <add_ai type="POINT_THROTTLE" value4="1.5" value1="posX + 1500" value3="posZ + 0" name="Loyal 7" />
     <add_ai type="DEFEND" value1="2000" value2="1500" name="Loyal 7" />
-    <add_ai type="CHASE_AI_SHIP" value1="1500" value2="500" name="Loyal 7" />
+    <add_ai type="CHASE_AI_SHIP" value1="4000" value2="1500" name="Loyal 7" />
     <add_ai type="DEFEND" value1="3000" value2="1000" name="Loyal 7" />
+    <add_ai type="LAUNCH_FIGHTERS" value1="5000" name="Loyal 7" />
 
     <clear_ai name="Loyal 8" />
     <add_ai type="POINT_THROTTLE" value4="1.5" value1="posX - 1500" value3="posZ + 0" name="Loyal 8" />
     <add_ai type="DEFEND" value1="2000" value2="1500" name="Loyal 8" />
-    <add_ai type="CHASE_AI_SHIP" value1="1500" value2="500" name="Loyal 8" />
+    <add_ai type="CHASE_AI_SHIP" value1="4000" value2="1500" name="Loyal 8" />
     <add_ai type="DEFEND" value1="3000" value2="1000" name="Loyal 8" />
+    <add_ai type="LAUNCH_FIGHTERS" value1="5000" name="Loyal 8" />
   
     <set_timer name="FormationTimer" seconds="1"/>
 

@@ -30,6 +30,7 @@
   <event name="Hazard Keys Menu" id_arme="e994d630-6ae0-46f0-a06d-514995ebd4cf" parent_id_arme="77d33364-111d-408c-87ea-b78e62ba418c">
     <!-- <if_timer_finished name="GM Menu" /> -->
     <if_variable name="GM Menu" comparator="EQUALS" value="8.0" />
+    <if_variable name="GMmenuSelect" comparator="EQUALS" value="0.0" />
 
     <set_gm_button text="Painter options" x="100" y="100" h="30" w="350"/>
 
@@ -63,6 +64,7 @@
     <set_gm_button text="ArcSpacing: |painterArcSpacing|" x="130" y="330" h="30" w="150" />
     <set_gm_button text="LineSpacing: |painterLineSpacing|" x="130" y="360" h="30" w="150" />
 
+    <set_gm_button text="Painter\Clear mines"/>
     <set_gm_button text="Painter\Mines (arc)"/>
     <set_gm_button text="Painter\Asteroid Field (arc)"/>
     <set_gm_button text="Painter\Mines (line START)"/>
@@ -97,6 +99,7 @@
     <clear_gm_button text="1 Lyr"/>
     <clear_gm_button text="3 Lyrs"/>
     <clear_gm_button text="5 Lyrs"/>
+    <clear_gm_button text="Painter\Clear mines"/>
     <clear_gm_button text="Painter\Mines (arc)"/>
     <clear_gm_button text="Painter\Forcefield (line START)"/>
     <clear_gm_button text="Painter\Forcefield (line FINISH)"/>
@@ -141,6 +144,7 @@
     <clear_gm_button text="1 Lyr"/>
     <clear_gm_button text="3 Lyrs"/>
     <clear_gm_button text="5 Lyrs"/>
+    <clear_gm_button text="Painter\Clear mines"/>
     <clear_gm_button text="Painter\Mines (arc)"/>
     <clear_gm_button text="Painter\Forcefield (line START)"/>
     <clear_gm_button text="Painter\Forcefield (line FINISH)"/>
@@ -222,9 +226,15 @@
 
   <!-- Actual mod logic -->
 
+
+  <event name="Destroy All Mines" id_arme="6042be2a-43cf-4f6e-af8f-1f13dede5784" parent_id_arme="77d33364-111d-408c-87ea-b78e62ba418c">
+    <if_gm_button text="Painter\Clear mines" />
+    <destroy_near type="mines" radius="200000" use_gm_position="" />
+  </event>
+
   <event name="Increase painterObjectCount" id_arme="333d092b-5572-4b68-8ff2-0dd5f319db26" parent_id_arme="77d33364-111d-408c-87ea-b78e62ba418c">
     <if_gm_button text="Count+5" />
-    <if_variable name="painterObjectCount" comparator="LESS" value="100.0" />
+    <if_variable name="painterObjectCount" comparator="LESS" value="400.0" />
 
     <clear_gm_button text="PerLayer: |painterObjectCount|" />
     <set_variable name="painterObjectCount" value="painterObjectCount+5" integer="yes" />
@@ -245,7 +255,7 @@
 
   <event name="Increase painterRadius" id_arme="08b33fbe-b884-417f-9ffc-b67f4a6b280c" parent_id_arme="77d33364-111d-408c-87ea-b78e62ba418c">
     <if_gm_button text="Radius+250" />
-    <if_variable name="painterRadius" comparator="LESS" value="10000.0" />
+    <if_variable name="painterRadius" comparator="LESS" value="40000.0" />
 
     <clear_gm_button text="Radius: |painterRadius|" />
     <set_variable name="painterRadius" value="painterRadius+250" integer="yes" />

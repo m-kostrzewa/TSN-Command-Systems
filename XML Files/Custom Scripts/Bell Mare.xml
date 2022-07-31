@@ -109,10 +109,8 @@
     <set_object_property property="shieldStateFront" value="10" name="Brd-D" />
     <set_object_property property="shieldStateBack" value="10" name="Brd-D" />
 
-    <set_object_property property="systemDamageBeam" value="1.0" name="Brd-D" />
-
     <set_ship_text name="Brd-D" race="" class="Torpedo" desc="Command-guided boarding torpedo. Lifesigns detected. Target: TSN Sabre."
-      scan_desc="Marines onboard. Prepare for intruders!" />
+      scan_desc="Marines on board. Prepare for intruders!" />
     
     <clear_ai name="Brd-D" />
     <add_ai type="TARGET_THROTTLE" value1="100.0" targetName="TSN Sabre" name="Brd-D" />
@@ -155,10 +153,8 @@
     <set_object_property property="shieldStateFront" value="10" name="Brd-D " />
     <set_object_property property="shieldStateBack" value="10" name="Brd-D " />
 
-    <set_object_property property="systemDamageBeam" value="1.0" name="Brd-D " />
-
     <set_ship_text name="Brd-D " race="" class="Torpedo" desc="Command-guided boarding torpedo. Lifesigns detected. Target: TSN Sabre."
-      scan_desc="Marines onboard. Prepare for intruders!" />
+      scan_desc="Marines on board. Prepare for intruders!" />
     
     <clear_ai name="Brd-D " />
     <add_ai type="TARGET_THROTTLE" value1="100.0" targetName="TSN Sabre" name="Brd-D " />
@@ -202,10 +198,8 @@
     <set_object_property property="shieldStateFront" value="10" name="Brd-D" />
     <set_object_property property="shieldStateBack" value="10" name="Brd-D" />
 
-    <set_object_property property="systemDamageBeam" value="1.0" name="Brd-D" />
-
     <set_ship_text name="Brd-D" race="" class="Torpedo" desc="Command-guided boarding torpedo. Lifesigns detected. Target: TSN Horizon."
-      scan_desc="Marines onboard. Prepare for intruders!" />
+      scan_desc="Marines on board. Prepare for intruders!" />
     
     <clear_ai name="Brd-D" />
     <add_ai type="TARGET_THROTTLE" value1="100.0" targetName="TSN Horizon" name="Brd-D" />
@@ -247,10 +241,8 @@
     <set_object_property property="shieldStateFront" value="10" name="Brd-D " />
     <set_object_property property="shieldStateBack" value="10" name="Brd-D " />
 
-    <set_object_property property="systemDamageBeam" value="1.0" name="Brd-D " />
-
     <set_ship_text name="Brd-D " race="" class="Torpedo" desc="Command-guided boarding torpedo. Lifesigns detected. Target: TSN Horizon."
-      scan_desc="Marines onboard. Prepare for intruders!" />
+      scan_desc="Marines on board. Prepare for intruders!" />
     
     <clear_ai name="Brd-D " />
     <add_ai type="TARGET_THROTTLE" value1="100.0" targetName="TSN Horizon" name="Brd-D " />
@@ -295,10 +287,8 @@
     <set_object_property property="shieldStateFront" value="10" name="Brd-D" />
     <set_object_property property="shieldStateBack" value="10" name="Brd-D" />
 
-    <set_object_property property="systemDamageBeam" value="1.0" name="Brd-D" />
-
     <set_ship_text name="Brd-D" race="" class="Torpedo" desc="Command-guided boarding torpedo. Lifesigns detected. Target: TSN Viper."
-      scan_desc="Marines onboard. Prepare for intruders!" />
+      scan_desc="Marines on board. Prepare for intruders!" />
     
     <clear_ai name="Brd-D" />
     <add_ai type="TARGET_THROTTLE" value1="100.0" targetName="TSN Viper" name="Brd-D" />
@@ -341,10 +331,8 @@
     <set_object_property property="shieldStateFront" value="10" name="Brd-D " />
     <set_object_property property="shieldStateBack" value="10" name="Brd-D " />
 
-    <set_object_property property="systemDamageBeam" value="1.0" name="Brd-D " />
-
     <set_ship_text name="Brd-D " race="" class="Torpedo" desc="Command-guided boarding torpedo. Lifesigns detected. Target: TSN Viper."
-      scan_desc="Marines onboard. Prepare for intruders!" />
+      scan_desc="Marines on board. Prepare for intruders!" />
     
     <clear_ai name="Brd-D " />
     <add_ai type="TARGET_THROTTLE" value1="100.0" targetName="TSN Viper" name="Brd-D " />
@@ -389,10 +377,8 @@
     <set_object_property property="shieldStateFront" value="10" name="Brd-D" />
     <set_object_property property="shieldStateBack" value="10" name="Brd-D" />
 
-    <set_object_property property="systemDamageBeam" value="1.0" name="Brd-D" />
-
     <set_ship_text name="Brd-D" race="" class="Torpedo" desc="Command-guided boarding torpedo. Lifesigns detected. Target: TSN Lancer."
-      scan_desc="Marines onboard. Prepare for intruders!" />
+      scan_desc="Marines on board. Prepare for intruders!" />
     
     <clear_ai name="Brd-D" />
     <add_ai type="TARGET_THROTTLE" value1="100.0" targetName="TSN Lancer" name="Brd-D" />
@@ -435,10 +421,8 @@
     <set_object_property property="shieldStateFront" value="10" name="Brd-D " />
     <set_object_property property="shieldStateBack" value="10" name="Brd-D " />
 
-    <set_object_property property="systemDamageBeam" value="1.0" name="Brd-D " />
-
     <set_ship_text name="Brd-D " race="" class="Torpedo" desc="Command-guided boarding torpedo. Lifesigns detected. Target: TSN Lancer."
-      scan_desc="Marines onboard. Prepare for intruders!" />
+      scan_desc="Marines on board. Prepare for intruders!" />
     
     <clear_ai name="Brd-D " />
     <add_ai type="TARGET_THROTTLE" value1="100.0" targetName="TSN Lancer" name="Brd-D " />
@@ -484,10 +468,8 @@
     <set_object_property property="shieldStateFront" value="10" name="Brd-D" />
     <set_object_property property="shieldStateBack" value="10" name="Brd-D" />
 
-    <set_object_property property="systemDamageBeam" value="1.0" name="Brd-D" />
-
     <set_ship_text name="Brd-D" race="" class="Torpedo" desc="Command-guided boarding torpedo. Lifesigns detected. Target: TSN Stalker."
-      scan_desc="Marines onboard. Prepare for intruders!" />
+      scan_desc="Marines on board. Prepare for intruders!" />
     
     <clear_ai name="Brd-D" />
     <add_ai type="TARGET_THROTTLE" value1="100.0" targetName="TSN Stalker" name="Brd-D" />
@@ -530,10 +512,8 @@
     <set_object_property property="shieldStateFront" value="10" name="Brd-D " />
     <set_object_property property="shieldStateBack" value="10" name="Brd-D " />
 
-    <set_object_property property="systemDamageBeam" value="1.0" name="Brd-D " />
-
     <set_ship_text name="Brd-D " race="" class="Torpedo" desc="Command-guided boarding torpedo. Lifesigns detected. Target: TSN Stalker."
-      scan_desc="Marines onboard. Prepare for intruders!" />
+      scan_desc="Marines on board. Prepare for intruders!" />
     
     <clear_ai name="Brd-D " />
     <add_ai type="TARGET_THROTTLE" value1="100.0" targetName="TSN Stalker" name="Brd-D " />
