@@ -1,0 +1,58 @@
+<mission_data version="1.0" background_id_arme="77d373f9-ed2e-4726-a2b2-74bd775ac998" playerShipNames_arme="Artemis\Intrepid\Aegis\Horatio\Excalibur\Hera\Ceres\Diana">
+  <start id_arme="77d373f9-ed2e-4726-a2b2-74bd775ac998">
+    <!---->
+  </start>
+  <folder_arme name="S16 custom ships" id_arme="78b82965-29e0-44a9-922a-6953969ca6d7" />
+
+  <!-- Monkey patch custom keys bar -->
+  <event name="Custom Keys Menu" id_arme="c8c7748f-01f8-4174-8bfd-f9cb6a2e91ca" parent_id_arme="78b82965-29e0-44a9-922a-6953969ca6d7">
+    <if_variable name="Ship Spawn Menu" comparator="EQUALS" value="10.0" />
+    <if_timer_finished name="Ship Spawn Menu" />
+    <set_gm_button text="Pirate Assets\Crooked Star" />
+  </event>
+  <event name="Clear" id_arme="eb638ac8-c4cf-4774-acb9-ef2594fc6996" parent_id_arme="78b82965-29e0-44a9-922a-6953969ca6d7">
+    <!-- FIXME: Race condition on variable CycleSpawnMenu, rarely works.  -->
+    <if_variable name="CycleSpawnMenu" comparator="EQUALS" value="1.0" /> 
+    <clear_gm_button text="Pirate Assets\Crooked Star" />
+  </event>
+
+  <event name="Crooked Star" id_arme="77f961db-c5d5-4e24-9c9b-03fbbadd9a85" parent_id_arme="78b82965-29e0-44a9-922a-6953969ca6d7">
+    <if_gm_button text="Pirate Assets\Crooked Star" />
+
+    <create type="enemy" use_gm_position="" angle="0" name="Crooked Star" hullID="7107" sideValue="SideValue" fleetnumber="-1" />
+
+    <clear_ai name="Crooked Star" />
+    <set_object_property property="surrenderChance" value="0" name="Crooked Star" />
+
+    <add_ai type="SPCL_AI" name="Crooked Star" />
+    <!-- <add_ai type="TRY_TO_BECOME_LEADER" name="Crooked Star" /> -->
+    <!-- <add_ai type="CHASE_PLAYER" name="Crooked Star" /> -->
+    <!-- <add_ai type="CHASE_STATION" value1="1000" name="Crooked Star" /> -->
+    <add_ai type="CHASE_AI_SHIP" value1="3000" value2="500" name="Crooked Star" />
+    <!-- <add_ai type="CHASE_PLAYER" value1="3000" value2="500" name="Crooked Star" /> -->
+    <add_ai type="CHASE_ANGER" name="Crooked Star" />
+    <!-- <add_ai type="LAUNCH_FIGHTERS" value1="8000" name="Crooked Star" /> -->
+    <!-- <add_ai type="LEADER_LEADS" name="Crooked Star" />
+    <add_ai type="FOLLOW_LEADER" name="Crooked Star" /> -->
+
+    <set_special name="Crooked Star" clear="yes" ability="Stealth" />
+    <set_special name="Crooked Star" clear="yes" ability="LowVis" />
+    <set_special name="Crooked Star" clear="yes" ability="Cloak" />
+    <set_special name="Crooked Star" ability="HET" />
+    <set_special name="Crooked Star" ability="Warp" />
+    <set_special name="Crooked Star" clear="yes" ability="Teleport" />
+    <set_special name="Crooked Star" ability="Tractor" />
+    <set_special name="Crooked Star" clear="yes" ability="AntiMine" />
+    <set_special name="Crooked Star" clear="yes" ability="AntiTorp" />
+    <set_special name="Crooked Star" ability="ShldDrain" />
+    <!-- <set_special name="Crooked Star" ability="Drones" /> -->
+    <set_special name="Crooked Star" clear="yes" ability="TeleBack" />
+    <set_special name="Crooked Star" ability="ShldReset" />
+
+    <set_special name="Crooked Star" ship="1" /> <!-- overpowered -->
+    <set_ship_text name="Crooked Star" race="Pirate" class="Griffzungenschwert Class"
+      desc="Displacement: 60Kt. Imperial super dreadnought."
+      scan_desc="Commanded by Pirate Lord Mezzomorto himself." />
+      
+  </event>
+</mission_data>
