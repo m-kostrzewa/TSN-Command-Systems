@@ -1,0 +1,90 @@
+<mission_data version="1.0" background_id_arme="77d373f9-ed2e-4726-a2b2-74bd775ac998" playerShipNames_arme="Artemis\Intrepid\Aegis\Horatio\Excalibur\Hera\Ceres\Diana">
+  <start id_arme="77d373f9-ed2e-4726-a2b2-74bd775ac998">
+    <!---->
+  </start>
+  <folder_arme name="S16 custom ships" id_arme="78b82965-29e0-44a9-922a-6953969ca6d7" />
+
+  <!-- Monkey patch custom keys bar -->
+  <event name="Custom Keys Menu" id_arme="593899ce-83e0-41bf-abac-82ed9b15e00a" parent_id_arme="78b82965-29e0-44a9-922a-6953969ca6d7">
+    <if_variable name="Ship Spawn Menu" comparator="EQUALS" value="7.0" />
+    <if_timer_finished name="Ship Spawn Menu" />
+    <set_gm_button text="Single Hegemony\Skaraan Blockade Runner" />
+    <set_gm_button text="Single Hegemony\Torgoth Deminer" />
+  </event>
+  <event name="Clear" id_arme="149305b0-c5c0-4e70-b4a1-e8c794ad56b2" parent_id_arme="78b82965-29e0-44a9-922a-6953969ca6d7">
+    <!-- FIXME: Race condition on variable CycleSpawnMenu, rarely works.  -->
+    <if_variable name="CycleSpawnMenu" comparator="EQUALS" value="1.0" />
+    <clear_gm_button text="Single Hegemony\Skaraan Blockade Runner" />
+    <clear_gm_button text="Single Hegemony\Torgoth Deminer" />
+  </event>
+
+  <event name="Skaraan Blockade Runner" id_arme="2a3fb12e-a77e-4aae-b1d1-f487a47d72e8" parent_id_arme="78b82965-29e0-44a9-922a-6953969ca6d7">
+    <if_gm_button text="Single Hegemony\Skaraan Blockade Runner" />
+
+    <create type="enemy" use_gm_position="" name="--" hullID="5000" sideValue="SideValue" fleetnumber="-1" />
+
+    <set_object_property property="triggersMines" value="0" name="--" />
+    <set_special name="--" ability="Warp" />
+
+    <set_ship_text name="--" race="Skaraan" class="Blockade runner" desc="Skaraan blockade runner with experimental anti-mine stealth technology. Doesn't trigger mines." />
+
+    <set_variable name="Fleet Settings" value="1.0" />
+    <set_variable name="Auto AI Type" value="1.0" />
+    <set_variable name="Random Direction" value="1.0" />
+    <set_variable name="Name Assign" value="1.0" integer="yes" />
+  </event>
+
+  <event name="Torgoth Deminer" id_arme="6c8f603a-125e-4eb2-a668-67b909996a9b" parent_id_arme="78b82965-29e0-44a9-922a-6953969ca6d7">
+    <if_gm_button text="Single Hegemony\Torgoth Deminer" />
+
+    <create type="enemy" use_gm_position="" name="NewDeminer" hullID="4101" sideValue="SideValue" fleetnumber="Fleetnumber" />
+    <!-- <set_object_property property="triggersMines" value="0" name="Deminer" /> -->
+
+    <set_ship_text name="NewDeminer" newname="Deminer" race="Torgoth" class="Deminer" desc="Torgoth Deminer support ship. Removes mines in vicinity." />
+
+    <add_ai type="SPCL_AI" name="property" />
+    <add_ai type="CHASE_PLAYER" name="property" />
+    <add_ai type="CHASE_STATION" value1="1000" name="property" />
+    <add_ai type="CHASE_AI_SHIP" value1="3000" value2="500" name="property" />
+    <add_ai type="CHASE_PLAYER" value1="3000" value2="500" name="property" />
+    <add_ai type="CHASE_ANGER" name="property" />
+    <add_ai type="LAUNCH_FIGHTERS" value1="5000" name="property" />
+
+    <destroy_near type="mines" radius="1000" use_gm_position="" />
+  
+    <set_timer name="MineSweepTimer" seconds="1" />
+    <set_variable name="MineSweepState" value="1.0" integer="yes" />
+  </event>
+
+  <event name="Sweep mines 1" id_arme="5df444e7-145e-411a-8668-4736fd310ad9" parent_id_arme="78b82965-29e0-44a9-922a-6953969ca6d7">
+    <if_timer_finished name="MineSweepTimer" />
+    <if_variable name="MineSweepState" comparator="EQUALS" value="1.0" />
+    <if_exists name="Deminer" />
+
+    <destroy_near type="mines" radius="1000" name="Deminer" />
+    <set_ship_text name="Deminer" newname=" Deminer " />
+  </event>
+
+  <event name="Sweep mines 2" id_arme="dab5b09f-3d53-4385-97cc-816bef19a8c9" parent_id_arme="78b82965-29e0-44a9-922a-6953969ca6d7">
+    <if_variable name="MineSweepState" comparator="EQUALS" value="1.0" />
+    <if_not_exists name="Deminer" />
+
+    <set_variable name="MineSweepState" value="2.0" integer="yes" />
+  </event>
+
+  <event name="Sweep mines 3" id_arme="eb775ab7-c8c7-4b75-a38f-7ca6b486f6ef" parent_id_arme="78b82965-29e0-44a9-922a-6953969ca6d7">
+    <if_variable name="MineSweepState" comparator="EQUALS" value="2.0" />
+    <if_exists name=" Deminer " />
+
+    <set_ship_text name=" Deminer " newname="Deminer" />
+  </event>
+
+  <event name="Sweep mines 4" id_arme="a6c08d6b-41e2-421d-b15c-a93fa5032420" parent_id_arme="78b82965-29e0-44a9-922a-6953969ca6d7">
+    <if_variable name="MineSweepState" comparator="EQUALS" value="2.0" />
+    <if_not_exists name=" Deminer " />
+
+    <set_timer name="MineSweepTimer" seconds="1" />
+    <set_variable name="MineSweepState" value="1.0" integer="yes" />
+  </event>
+
+</mission_data>
