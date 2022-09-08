@@ -1,0 +1,293 @@
+<mission_data version="1.0" background_id_arme="77d373f9-ed2e-4726-a2b2-74bd775ac998" playerShipNames_arme="TSN Sabre\Intrepid\Aegis\Horatio\Excalibur\Hera\Ceres\Diana">
+    <start id_arme="77d373f9-ed2e-4726-a2b2-74bd775ac998">
+      <!---->
+    </start>
+    <folder_arme name="Kosai's special sauce" id_arme="a8d2c98a-ec76-462f-b829-1c1998ad8997" />
+  
+    <!-- Monkey patch custom submenu -->
+    <event name="Adv AI init" id_arme="a1be69ef-9795-48fe-9218-e68eb8bb5662" parent_id_arme="a8d2c98a-ec76-462f-b829-1c1998ad8997">
+        <if_variable name="AI Menu" comparator="EQUALS" value="2.0" />
+
+        <set_variable name="AdvAiCached" value="" />
+        
+        <set_gm_button text="Adv. AI (hotkeys only):"    x="40" y="800" h="28" w="150" />
+        <set_gm_button text="Sel [M]ove to gm cur"       x="40" y="830" h="28" w="150" />
+        <set_gm_button text="Sel [A]ttack to gm cur"     x="40" y="860" h="28" w="150" />
+        <set_gm_button text="Sel [D]efault AI"           x="40" y="890" h="28" w="150" />
+    </event>
+    <event name="Adv AI clear" id_arme="e10f2064-805d-4aef-9e0c-7672805fe14e" parent_id_arme="a8d2c98a-ec76-462f-b829-1c1998ad8997">
+        <if_variable name="AI Menu" comparator="EQUALS" value="0.0" />
+    </event>
+
+    <event name="Set Button" id_arme="d97b16c1-5401-4808-9010-93928fff31eb" parent_id_arme="a8d2c98a-ec76-462f-b829-1c1998ad8997">
+        <if_variable name="AI Commands Menu" comparator="EQUALS" value="1.0" />
+        <set_gm_button text="Assign Specials\[C]opy specials from sel" />
+        <set_gm_button text="Assign Specials\[P]aste specials to sel" />
+      </event>
+      <event name="Clear Button" id_arme="c994c49d-6ae6-4d94-abb9-25cd8b262b27" parent_id_arme="a8d2c98a-ec76-462f-b829-1c1998ad8997">
+        <if_variable name="AI Commands Menu" comparator="EQUALS" value="0.0" />
+        <clear_gm_button text="Assign Specials\[C]opy specials from sel" />
+        <clear_gm_button text="Assign Specials\[P]aste specials to sel" />
+      </event>
+
+
+    <event name="Dumb move" id_arme="fcfc2079-f0d5-4d55-9689-0d62eb23663b" parent_id_arme="a8d2c98a-ec76-462f-b829-1c1998ad8997">
+        <if_gm_key keyText="M" />
+
+        <create type="genericMesh" use_gm_position="" name="CurrGm" meshFileName="dat\mine.dsx" textureFileName="dat\cargo_vessel_glow.png" colorRed="0.4" colorGreen="0.4" colorBlue="0.4"  />
+        <get_object_property property="positionX" name="CurrGm" variable="CurrGmX" />
+        <get_object_property property="positionZ" name="CurrGm" variable="CurrGmZ" />
+        <destroy name="CurrGm" />
+
+        <clear_ai use_gm_selection="" />
+        <add_ai type="POINT_THROTTLE" use_gm_selection="" value1="CurrGmX" value2="0.0" value3="CurrGmZ" value4="1.0" />
+        <add_ai type="SPCL_AI" use_gm_selection="" />
+        <add_ai type="LAUNCH_FIGHTERS" value1="8000" use_gm_selection="" />
+    </event>
+    <event name="Attack move" id_arme="ea0bf1f8-6844-4ddd-b62d-b0f33ea5952f" parent_id_arme="a8d2c98a-ec76-462f-b829-1c1998ad8997">
+        <if_gm_key keyText="A" />
+  
+        <create type="genericMesh" use_gm_position="" name="CurrGm" meshFileName="dat\mine.dsx" textureFileName="dat\cargo_vessel_glow.png" colorRed="0.4" colorGreen="0.4" colorBlue="0.4"  />
+        <get_object_property property="positionX" name="CurrGm" variable="CurrGmX" />
+        <get_object_property property="positionZ" name="CurrGm" variable="CurrGmZ" />
+        <destroy name="CurrGm" />
+  
+        <clear_ai use_gm_selection="" />
+        <add_ai type="POINT_THROTTLE" use_gm_selection="" value1="CurrGmX" value2="0.0" value3="CurrGmZ" value4="1.0" />
+        <add_ai type="SPCL_AI" use_gm_selection="" />
+        <!-- NOTE: fleet behaviour disabled on purpose, it breaks stuff. -->
+        <!-- <add_ai type="TRY_TO_BECOME_LEADER" use_gm_selection="" /> -->
+        <add_ai type="CHASE_PLAYER" use_gm_selection="" />
+        <add_ai type="CHASE_STATION" value1="1000" use_gm_selection="" />
+        <add_ai type="CHASE_AI_SHIP" value1="3000" value2="500" use_gm_selection="" />
+        <add_ai type="CHASE_PLAYER" value1="3000" value2="500" use_gm_selection="" />
+        <add_ai type="CHASE_ANGER" use_gm_selection="" />
+        <!-- <add_ai type="LEADER_LEADS" use_gm_selection="" /> -->
+        <!-- <add_ai type="FOLLOW_LEADER" use_gm_selection="" /> -->
+        <add_ai type="LAUNCH_FIGHTERS" value1="8000" use_gm_selection="" />
+    </event>
+
+    <event name="Set Default AI " id_arme="0bfe13f9-5d1c-41ef-a3f7-3718dea0a9d4" parent_id_arme="a8d2c98a-ec76-462f-b829-1c1998ad8997">
+        <if_gm_key keyText="D" />
+
+        <clear_ai use_gm_selection="" />
+        <add_ai type="TRY_TO_BECOME_LEADER" use_gm_selection="" />
+        <add_ai type="CHASE_PLAYER" use_gm_selection="" />
+        <add_ai type="CHASE_STATION" value1="1000" use_gm_selection="" />
+        <add_ai type="CHASE_AI_SHIP" value1="3000" value2="500" use_gm_selection="" />
+        <add_ai type="CHASE_PLAYER" value1="3000" value2="500" use_gm_selection="" />
+        <add_ai type="CHASE_ANGER" use_gm_selection="" />
+        <add_ai type="LEADER_LEADS" use_gm_selection="" />
+        <add_ai type="FOLLOW_LEADER" use_gm_selection="" />
+        <add_ai type="LAUNCH_FIGHTERS" value1="8000" use_gm_selection="" />
+    </event>
+
+
+
+
+
+    <event name="Copy specials" id_arme="f5cc8e3b-782d-4b6d-9807-690d360092a9" parent_id_arme="a8d2c98a-ec76-462f-b829-1c1998ad8997">
+        <if_gm_key keyText="C" />
+        <get_object_property use_gm_selection="" property="specialAbilityBits" variable="SpecialAbililtyBitsCache" />
+    </event>
+    <event name="Copy specials - btn" id_arme="e2d885ce-224c-4644-9161-0cfd3b768d5b" parent_id_arme="a8d2c98a-ec76-462f-b829-1c1998ad8997">
+        <if_gm_button text="Assign Specials\[C]opy specials from sel" />
+
+        <get_object_property use_gm_selection="" property="specialAbilityBits" variable="SpecialAbililtyBitsCache" />
+    </event>
+
+    <event name="Paste specials" id_arme="8c6b2811-bf7c-4b3e-8824-f5b9cbdede83" parent_id_arme="a8d2c98a-ec76-462f-b829-1c1998ad8997">
+        <if_gm_key keyText="P" />
+
+        <set_variable name="SpAbVar" value="SpecialAbililtyBitsCache" integer="yes" />
+        <set_variable name="SpAbStep" value="1.0" integer="yes" />
+    </event>
+    <event name="Paste specials - btn" id_arme="d8bd224e-714f-44b9-9526-253e0b23aaa7" parent_id_arme="a8d2c98a-ec76-462f-b829-1c1998ad8997">
+        <if_gm_button text="Assign Specials\[P]aste specials to sel" />
+
+        <set_variable name="SpAbVar" value="SpecialAbililtyBitsCache" integer="yes" />
+        <set_variable name="SpAbStep" value="1.0" integer="yes" />
+    </event>
+
+    <event name="Check for ShldReset true" id_arme="d1868b77-b75d-4fef-b387-c299d21cc734" parent_id_arme="a8d2c98a-ec76-462f-b829-1c1998ad8997">
+        <if_variable name="SpAbStep" comparator="EQUALS" value="1.0" />
+        <if_variable name="SpAbVar" comparator="GREATER_EQUAL" value="8192.0" />
+        <set_special use_gm_selection="" ability="ShldReset" />
+        <set_variable name="SpAbVar" value="SpAbVar-8192.0" integer="yes" />
+        <set_variable name="SpAbStep" value="SpAbStep+1.0" integer="yes" />
+    </event>
+    <event name="Check for ShldReset false" id_arme="b1f9a0b0-05ac-49d9-994f-c484a9878a1d" parent_id_arme="a8d2c98a-ec76-462f-b829-1c1998ad8997">
+        <if_variable name="SpAbStep" comparator="EQUALS" value="1.0" />
+        <if_variable name="SpAbVar" comparator="LESS" value="8192.0" />
+        <set_variable name="SpAbStep" value="SpAbStep+1.0" integer="yes" />
+    </event>
+
+    <event name="Check for TeleBack true" id_arme="43cd729c-131f-4373-afa6-f802ad8177c2" parent_id_arme="a8d2c98a-ec76-462f-b829-1c1998ad8997">
+        <if_variable name="SpAbStep" comparator="EQUALS" value="2.0" />
+        <if_variable name="SpAbVar" comparator="GREATER_EQUAL" value="4096.0" />
+        <set_special use_gm_selection="" ability="TeleBack" />
+        <set_variable name="SpAbVar" value="SpAbVar-4096.0" integer="yes" />
+        <set_variable name="SpAbStep" value="SpAbStep+1.0" integer="yes" />
+    </event>
+    <event name="Check for TeleBack false" id_arme="0869c0e9-e4b1-4267-8a12-6f5e9334d366" parent_id_arme="a8d2c98a-ec76-462f-b829-1c1998ad8997">
+        <if_variable name="SpAbStep" comparator="EQUALS" value="2.0" />
+        <if_variable name="SpAbVar" comparator="LESS" value="4096.0" />
+        <set_variable name="SpAbStep" value="SpAbStep+1.0" integer="yes" />
+    </event>
+
+    <event name="Check for ShldVamp true" id_arme="bca1cb33-b861-4860-b8a4-7ede292849fe" parent_id_arme="a8d2c98a-ec76-462f-b829-1c1998ad8997">
+        <if_variable name="SpAbStep" comparator="EQUALS" value="3.0" />
+        <if_variable name="SpAbVar" comparator="GREATER_EQUAL" value="2048.0" />
+        <set_special use_gm_selection="" ability="ShldVamp" />
+        <set_variable name="SpAbVar" value="SpAbVar-2048.0" integer="yes" />
+        <set_variable name="SpAbStep" value="SpAbStep+1.0" integer="yes" />
+    </event>
+    <event name="Check for ShldVamp false" id_arme="2cdfd87c-2f4b-49c4-96ec-88f33a87fcd1" parent_id_arme="a8d2c98a-ec76-462f-b829-1c1998ad8997">
+        <if_variable name="SpAbStep" comparator="EQUALS" value="3.0" />
+        <if_variable name="SpAbVar" comparator="LESS" value="2048.0" />
+        <set_variable name="SpAbStep" value="SpAbStep+1.0" integer="yes" />
+    </event>
+
+    <event name="Check for ShldDrain true" id_arme="ef2f2ca5-63d6-43ac-856b-d87e44f030ee" parent_id_arme="a8d2c98a-ec76-462f-b829-1c1998ad8997">
+        <if_variable name="SpAbStep" comparator="EQUALS" value="4.0" />
+        <if_variable name="SpAbVar" comparator="GREATER_EQUAL" value="1024.0" />
+        <set_special use_gm_selection="" ability="ShldDrain" />
+        <set_variable name="SpAbVar" value="SpAbVar-1024.0" integer="yes" />
+        <set_variable name="SpAbStep" value="SpAbStep+1.0" integer="yes" />
+    </event>
+    <event name="Check for ShldDrain false" id_arme="f300df66-2a13-46f2-9c38-ced5f1c27c16" parent_id_arme="a8d2c98a-ec76-462f-b829-1c1998ad8997">
+        <if_variable name="SpAbStep" comparator="EQUALS" value="4.0" />
+        <if_variable name="SpAbVar" comparator="LESS" value="1024.0" />
+        <set_variable name="SpAbStep" value="SpAbStep+1.0" integer="yes" />
+    </event>
+
+    <event name="Check for AntiTorp true" id_arme="4123af77-de13-4289-81f1-9f775cd85d23" parent_id_arme="a8d2c98a-ec76-462f-b829-1c1998ad8997">
+        <if_variable name="SpAbStep" comparator="EQUALS" value="5.0" />
+        <if_variable name="SpAbVar" comparator="GREATER_EQUAL" value="512.0" />
+        <set_special use_gm_selection="" ability="AntiTorp" />
+        <set_variable name="SpAbVar" value="SpAbVar-512.0" integer="yes" />
+        <set_variable name="SpAbStep" value="SpAbStep+1.0" integer="yes" />
+    </event>
+    <event name="Check for AntiTorp false" id_arme="2cbc970c-ba2e-4211-92be-03bc668d05bc" parent_id_arme="a8d2c98a-ec76-462f-b829-1c1998ad8997">
+        <if_variable name="SpAbStep" comparator="EQUALS" value="5.0" />
+        <if_variable name="SpAbVar" comparator="LESS" value="512.0" />
+        <set_variable name="SpAbStep" value="SpAbStep+1.0" integer="yes" />
+    </event>
+
+    <event name="Check for AntiMine true" id_arme="b9cc73f8-86d3-42ff-bde3-17b7e092541d" parent_id_arme="a8d2c98a-ec76-462f-b829-1c1998ad8997">
+        <if_variable name="SpAbStep" comparator="EQUALS" value="6.0" />
+        <if_variable name="SpAbVar" comparator="GREATER_EQUAL" value="256.0" />
+        <set_special use_gm_selection="" ability="AntiMine" />
+        <set_variable name="SpAbVar" value="SpAbVar-256.0" integer="yes" />
+        <set_variable name="SpAbStep" value="SpAbStep+1.0" integer="yes" />
+    </event>
+    <event name="Check for AntiMine false" id_arme="4a23954c-e731-4758-b0cb-7490876eaa4d" parent_id_arme="a8d2c98a-ec76-462f-b829-1c1998ad8997">
+        <if_variable name="SpAbStep" comparator="EQUALS" value="6.0" />
+        <if_variable name="SpAbVar" comparator="LESS" value="256.0" />
+        <set_variable name="SpAbStep" value="SpAbStep+1.0" integer="yes" />
+    </event>
+
+    <event name="Check for Drones true" id_arme="cc82a3a9-db38-42cc-b8bd-b6fea0dbadd7" parent_id_arme="a8d2c98a-ec76-462f-b829-1c1998ad8997">
+        <if_variable name="SpAbStep" comparator="EQUALS" value="7.0" />
+        <if_variable name="SpAbVar" comparator="GREATER_EQUAL" value="128.0" />
+        <set_special use_gm_selection="" ability="Drones" />
+        <set_variable name="SpAbVar" value="SpAbVar-128.0" integer="yes" />
+        <set_variable name="SpAbStep" value="SpAbStep+1.0" integer="yes" />
+    </event>
+    <event name="Check for Drones false" id_arme="be880bbe-ae56-4e4c-8424-02d6ea8365b1" parent_id_arme="a8d2c98a-ec76-462f-b829-1c1998ad8997">
+        <if_variable name="SpAbStep" comparator="EQUALS" value="7.0" />
+        <if_variable name="SpAbVar" comparator="LESS" value="128.0" />
+        <set_variable name="SpAbStep" value="SpAbStep+1.0" integer="yes" />
+    </event>
+
+    <event name="Check for Tractor true" id_arme="6951f096-ae01-40c4-b2c1-953f1c00063c" parent_id_arme="a8d2c98a-ec76-462f-b829-1c1998ad8997">
+        <if_variable name="SpAbStep" comparator="EQUALS" value="8.0" />
+        <if_variable name="SpAbVar" comparator="GREATER_EQUAL" value="64.0" />
+        <set_special use_gm_selection="" ability="Tractor" />
+        <set_variable name="SpAbVar" value="SpAbVar-64.0" integer="yes" />
+        <set_variable name="SpAbStep" value="SpAbStep+1.0" integer="yes" />
+    </event>
+    <event name="Check for Tractor false" id_arme="9e706004-90de-4505-8a27-6fb4caf1f61b" parent_id_arme="a8d2c98a-ec76-462f-b829-1c1998ad8997">
+        <if_variable name="SpAbStep" comparator="EQUALS" value="8.0" />
+        <if_variable name="SpAbVar" comparator="LESS" value="64.0" />
+        <set_variable name="SpAbStep" value="SpAbStep+1.0" integer="yes" />
+    </event>
+
+    <event name="Check for Teleport true" id_arme="fc7d702b-e440-4adc-811b-d28a5426bdfb" parent_id_arme="a8d2c98a-ec76-462f-b829-1c1998ad8997">
+        <if_variable name="SpAbStep" comparator="EQUALS" value="9.0" />
+        <if_variable name="SpAbVar" comparator="GREATER_EQUAL" value="32.0" />
+        <set_special use_gm_selection="" ability="Teleport" />
+        <set_variable name="SpAbVar" value="SpAbVar-32.0" integer="yes" />
+        <set_variable name="SpAbStep" value="SpAbStep+1.0" integer="yes" />
+    </event>
+    <event name="Check for Teleport false" id_arme="e339ae8b-ebb2-42d8-98b0-4513b7082a5f" parent_id_arme="a8d2c98a-ec76-462f-b829-1c1998ad8997">
+        <if_variable name="SpAbStep" comparator="EQUALS" value="9.0" />
+        <if_variable name="SpAbVar" comparator="LESS" value="32.0" />
+        <set_variable name="SpAbStep" value="SpAbStep+1.0" integer="yes" />
+    </event>
+
+    <event name="Check for Warp true" id_arme="9852a15a-e456-4779-81b7-cc95efcdd77b" parent_id_arme="a8d2c98a-ec76-462f-b829-1c1998ad8997">
+        <if_variable name="SpAbStep" comparator="EQUALS" value="10.0" />
+        <if_variable name="SpAbVar" comparator="GREATER_EQUAL" value="16.0" />
+        <set_special use_gm_selection="" ability="Warp" />
+        <set_variable name="SpAbVar" value="SpAbVar-16.0" integer="yes" />
+        <set_variable name="SpAbStep" value="SpAbStep+1.0" integer="yes" />
+    </event>
+    <event name="Check for Warp false" id_arme="3c3719c8-3ebf-4582-8db6-34b53f63af59" parent_id_arme="a8d2c98a-ec76-462f-b829-1c1998ad8997">
+        <if_variable name="SpAbStep" comparator="EQUALS" value="10.0" />
+        <if_variable name="SpAbVar" comparator="LESS" value="16.0" />
+        <set_variable name="SpAbStep" value="SpAbStep+1.0" integer="yes" />
+    </event>
+
+    <event name="Check for HET true" id_arme="93f9401a-4957-413e-b78a-eb1f4775708f" parent_id_arme="a8d2c98a-ec76-462f-b829-1c1998ad8997">
+        <if_variable name="SpAbStep" comparator="EQUALS" value="11.0" />
+        <if_variable name="SpAbVar" comparator="GREATER_EQUAL" value="8.0" />
+        <set_special use_gm_selection="" ability="HET" />
+        <set_variable name="SpAbVar" value="SpAbVar-8.0" integer="yes" />
+        <set_variable name="SpAbStep" value="SpAbStep+1.0" integer="yes" />
+    </event>
+    <event name="Check for HET false" id_arme="5cc04f42-c708-4b57-8c8d-3c67c3fdbde9" parent_id_arme="a8d2c98a-ec76-462f-b829-1c1998ad8997">
+        <if_variable name="SpAbStep" comparator="EQUALS" value="11.0" />
+        <if_variable name="SpAbVar" comparator="LESS" value="8.0" />
+        <set_variable name="SpAbStep" value="SpAbStep+1.0" integer="yes" />
+    </event>
+
+    <event name="Check for Cloak true" id_arme="2b8850e1-828a-4975-b18e-9d496da0365c" parent_id_arme="a8d2c98a-ec76-462f-b829-1c1998ad8997">
+        <if_variable name="SpAbStep" comparator="EQUALS" value="12.0" />
+        <if_variable name="SpAbVar" comparator="GREATER_EQUAL" value="4.0" />
+        <set_special use_gm_selection="" ability="Cloak" />
+        <set_variable name="SpAbVar" value="SpAbVar-4.0" integer="yes" />
+        <set_variable name="SpAbStep" value="SpAbStep+1.0" integer="yes" />
+    </event>
+    <event name="Check for Cloak false" id_arme="30406d21-6392-4364-8a5d-016879fd5866" parent_id_arme="a8d2c98a-ec76-462f-b829-1c1998ad8997">
+        <if_variable name="SpAbStep" comparator="EQUALS" value="12.0" />
+        <if_variable name="SpAbVar" comparator="LESS" value="4.0" />
+        <set_variable name="SpAbStep" value="SpAbStep+1.0" integer="yes" />
+    </event>
+
+    <event name="Check for LowVis true" id_arme="a7fd3555-41e3-475b-93af-5a4804b64c11" parent_id_arme="a8d2c98a-ec76-462f-b829-1c1998ad8997">
+        <if_variable name="SpAbStep" comparator="EQUALS" value="13.0" />
+        <if_variable name="SpAbVar" comparator="GREATER_EQUAL" value="2.0" />
+        <set_special use_gm_selection="" ability="LowVis" />
+        <set_variable name="SpAbVar" value="SpAbVar-2.0" integer="yes" />
+        <set_variable name="SpAbStep" value="SpAbStep+1.0" integer="yes" />
+    </event>
+    <event name="Check for LowVis false" id_arme="f3ee0c81-2630-4c40-88e6-14b6b37d657b" parent_id_arme="a8d2c98a-ec76-462f-b829-1c1998ad8997">
+        <if_variable name="SpAbStep" comparator="EQUALS" value="13.0" />
+        <if_variable name="SpAbVar" comparator="LESS" value="2.0" />
+        <set_variable name="SpAbStep" value="SpAbStep+1.0" integer="yes" />
+    </event>
+
+    <event name="Check for Stealth true" id_arme="edb8951d-960f-4585-9108-02ad6f4fd3e6" parent_id_arme="a8d2c98a-ec76-462f-b829-1c1998ad8997">
+        <if_variable name="SpAbStep" comparator="EQUALS" value="14.0" />
+        <if_variable name="SpAbVar" comparator="GREATER_EQUAL" value="1.0" />
+        <set_special use_gm_selection="" ability="Stealth" />
+        <set_variable name="SpAbVar" value="SpAbVar-1.0" integer="yes" />
+        <set_variable name="SpAbStep" value="SpAbStep+1.0" integer="yes" />
+    </event>
+    <event name="Check for Stealth false" id_arme="d33b0c82-d644-447f-b7b0-c9286cc03599" parent_id_arme="a8d2c98a-ec76-462f-b829-1c1998ad8997">
+        <if_variable name="SpAbStep" comparator="EQUALS" value="14.0" />
+        <if_variable name="SpAbVar" comparator="LESS" value="1.0" />
+        <set_variable name="SpAbStep" value="SpAbStep+1.0" integer="yes" />
+    </event>
+  </mission_data>
