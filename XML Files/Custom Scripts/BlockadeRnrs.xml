@@ -2,7 +2,7 @@
   <start id_arme="77d373f9-ed2e-4726-a2b2-74bd775ac998">
     <!---->
   </start>
-  <folder_arme name="S16 custom ships" id_arme="78b82965-29e0-44a9-922a-6953969ca6d7" />
+  <folder_arme name="Blockade runners" id_arme="78b82965-29e0-44a9-922a-6953969ca6d7" />
 
   <!-- Monkey patch custom keys bar -->
   <event name="Custom Keys Menu" id_arme="593899ce-83e0-41bf-abac-82ed9b15e00a" parent_id_arme="78b82965-29e0-44a9-922a-6953969ca6d7">
@@ -38,17 +38,21 @@
     <if_gm_button text="Single Hegemony\Torgoth Deminer" />
 
     <create type="enemy" use_gm_position="" name="NewDeminer" hullID="4101" sideValue="SideValue" fleetnumber="Fleetnumber" />
+    <!-- Ironically, make them trigger mines (and they're not anti torp), so players can use mines against them if they're lucky -->
     <!-- <set_object_property property="triggersMines" value="0" name="Deminer" /> -->
 
-    <set_ship_text name="NewDeminer" newname="Deminer" race="Torgoth" class="Deminer" desc="Torgoth Deminer support ship. Removes mines in vicinity." />
+    <!-- Make them slower, so that it's easier to target them down, as they're high value targets -->
+    <addto_object_property name="NewDeminer" property="topSpeed" value="0-0.6" />
 
-    <add_ai type="SPCL_AI" name="property" />
-    <add_ai type="CHASE_PLAYER" name="property" />
-    <add_ai type="CHASE_STATION" value1="1000" name="property" />
-    <add_ai type="CHASE_AI_SHIP" value1="3000" value2="500" name="property" />
-    <add_ai type="CHASE_PLAYER" value1="3000" value2="500" name="property" />
-    <add_ai type="CHASE_ANGER" name="property" />
-    <add_ai type="LAUNCH_FIGHTERS" value1="5000" name="property" />
+    <add_ai type="SPCL_AI" name="NewDeminer" />
+    <add_ai type="CHASE_PLAYER" name="NewDeminer" />
+    <add_ai type="CHASE_STATION" value1="1000" name="NewDeminer" />
+    <add_ai type="CHASE_AI_SHIP" value1="3000" value2="500" name="NewDeminer" />
+    <add_ai type="CHASE_PLAYER" value1="3000" value2="500" name="NewDeminer" />
+    <add_ai type="CHASE_ANGER" name="NewDeminer" />
+    <add_ai type="LAUNCH_FIGHTERS" value1="5000" name="NewDeminer" />
+
+    <set_ship_text name="NewDeminer" newname="Deminer" race="Torgoth" class="Deminer" desc="Torgoth Deminer support ship. Removes mines in vicinity." />
 
     <destroy_near type="mines" radius="1000" use_gm_position="" />
   

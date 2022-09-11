@@ -10,10 +10,10 @@
 
         <set_variable name="AdvAiCached" value="" />
         
-        <set_gm_button text="Adv. AI (hotkeys only):"    x="40" y="800" h="28" w="150" />
-        <set_gm_button text="Sel [M]ove to gm cur"       x="40" y="830" h="28" w="150" />
-        <set_gm_button text="Sel [A]ttack to gm cur"     x="40" y="860" h="28" w="150" />
-        <set_gm_button text="Sel [D]efault AI"           x="40" y="890" h="28" w="150" />
+        <set_gm_button text="Adv. AI (hotkeys only):"    x="40" y="700" h="28" w="150" />
+        <set_gm_button text="Sel [M]ove to gm cur"       x="40" y="730" h="28" w="150" />
+        <set_gm_button text="Sel [A]ttack to gm cur"     x="40" y="760" h="28" w="150" />
+        <set_gm_button text="Sel [D]efault AI"           x="40" y="790" h="28" w="150" />
     </event>
     <event name="Adv AI clear" id_arme="e10f2064-805d-4aef-9e0c-7672805fe14e" parent_id_arme="a8d2c98a-ec76-462f-b829-1c1998ad8997">
         <if_variable name="AI Menu" comparator="EQUALS" value="0.0" />
@@ -42,6 +42,7 @@
         <clear_ai use_gm_selection="" />
         <add_ai type="POINT_THROTTLE" use_gm_selection="" value1="CurrGmX" value2="0.0" value3="CurrGmZ" value4="1.0" />
         <add_ai type="SPCL_AI" use_gm_selection="" />
+        <add_ai type="CHASE_ANGER" use_gm_selection="" />
         <add_ai type="LAUNCH_FIGHTERS" value1="8000" use_gm_selection="" />
     </event>
     <event name="Attack move" id_arme="ea0bf1f8-6844-4ddd-b62d-b0f33ea5952f" parent_id_arme="a8d2c98a-ec76-462f-b829-1c1998ad8997">
