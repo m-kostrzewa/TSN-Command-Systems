@@ -1,0 +1,52 @@
+<mission_data version="1.0" background_id_arme="77d373f9-ed2e-4726-a2b2-74bd775ac998" playerShipNames_arme="TSN Sabre\Intrepid\Aegis\Horatio\Excalibur\Hera\Ceres\Diana">
+    <start id_arme="77d373f9-ed2e-4726-a2b2-74bd775ac998">
+      <!---->
+    </start>
+    <folder_arme name="S17 persistence mod" id_arme="43e3a1bf-d7ab-4f5a-bb32-9becb0ed71f2" />
+
+    <event name="Sierra 8 custom for S17" id_arme="df6f3d43-467e-467f-99f1-517747811ee7" parent_id_arme="43e3a1bf-d7ab-4f5a-bb32-9becb0ed71f2">
+        <if_variable name="Sierra System" comparator="EQUALS" value="2.0" />
+        <if_variable name="Sector" comparator="EQUALS" value="8.0" />
+        <if_variable name="Sector Entities" comparator="EQUALS" value="3.0" />
+
+        <get_object_property property="positionX" name="Volantis Gate" variable="volantisGateX" />
+        <get_object_property property="positionZ" name="Volantis Gate" variable="volantisGateZ" />
+
+        <create type="neutral" x="volantisGateX"       y="0.0" z="volantisGateZ+15000" angle="0" name="WP-s01" hullID="1052" sideValue="2" />
+        <create type="neutral" x="volantisGateX+12990" y="0.0" z="volantisGateZ+7500"  angle="0" name="WP-s02" hullID="1052" sideValue="2" />
+        <create type="neutral" x="volantisGateX+12990" y="0.0" z="volantisGateZ-7500"  angle="0" name="WP-s03" hullID="1052" sideValue="2" />
+        <create type="neutral" x="volantisGateX"       y="0.0" z="volantisGateZ-15000" angle="0" name="WP-s04" hullID="1052" sideValue="2" />
+        <create type="neutral" x="volantisGateX-12990" y="0.0" z="volantisGateZ-7500"  angle="0" name="WP-s05" hullID="1052" sideValue="2" />
+        <create type="neutral" x="volantisGateX-12990" y="0.0" z="volantisGateZ+7500"  angle="0" name="WP-s06" hullID="1052" sideValue="2" />
+
+        <create count="10" type="mines" startAngle="5"  endAngle="50"  startX="volantisGateX" startY="0.0" startZ="volantisGateZ" radius="15000" />
+        <!-- "Full minefied" - commented out until constructed -->
+        <!-- <create count="10" type="mines" startAngle="65"  endAngle="110" startX="volantisGateX" startY="0.0" startZ="volantisGateZ" radius="15000" />
+        <create count="10" type="mines" startAngle="125" endAngle="170" startX="volantisGateX" startY="0.0" startZ="volantisGateZ" radius="15000" />
+        <create count="10" type="mines" startAngle="185" endAngle="230" startX="volantisGateX" startY="0.0" startZ="volantisGateZ" radius="15000" />
+        <create count="10" type="mines" startAngle="245" endAngle="290" startX="volantisGateX" startY="0.0" startZ="volantisGateZ" radius="15000" />
+        <create count="10" type="mines" startAngle="305" endAngle="350" startX="volantisGateX" startY="0.0" startZ="volantisGateZ" radius="15000" /> -->
+        <!-- Minefield still under construction -->
+        <create count="2" type="mines" startAngle="125" endAngle="135" startX="volantisGateX" startY="0.0" startZ="volantisGateZ" radius="15000" />
+        <create count="5" type="mines" startAngle="327" endAngle="350" startX="volantisGateX" startY="0.0" startZ="volantisGateZ" radius="15000" />
+
+        <!-- Destroy the singular stray mine right next to the gate (in the default Sierra configuration) -->
+        <destroy_near type="mines" radius="10000" centerX="volantisGateX" centerY="0" centerZ="volantisGateZ" />
+
+        <set_variable name="Sector Entities" value="4.0" integer="yes" />
+    </event>
+
+    <event name="Destroy all custom GLOBAL" id_arme="971e5972-66e9-4b68-80ba-d156c408735b" parent_id_arme="43e3a1bf-d7ab-4f5a-bb32-9becb0ed71f2">
+        <!-- We have some time (0.5sec) to clean up before we transition to new sector (when timer Transition finishes)
+            However, there is no way to know WHICH system/sector is being deleted. So be careful. 
+            Entity names must be unique to not impact other system/sectors -->
+        <if_variable name="Sector Entities" comparator="EQUALS" value="0.0" />
+
+        <destroy name="WP-s01" />
+        <destroy name="WP-s02" />
+        <destroy name="WP-s03" />
+        <destroy name="WP-s04" />
+        <destroy name="WP-s05" />
+        <destroy name="WP-s06" />
+    </event>
+  </mission_data>
