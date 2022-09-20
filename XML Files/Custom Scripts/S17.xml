@@ -11,30 +11,61 @@
 
         <get_object_property property="positionX" name="Volantis Gate" variable="volantisGateX" />
         <get_object_property property="positionZ" name="Volantis Gate" variable="volantisGateZ" />
+        <set_variable name="volantisGateZ" value="volantisGateZ+2500" />
 
         <create type="neutral" x="volantisGateX"       y="0.0" z="volantisGateZ+15000" angle="0" name="WP-s01" hullID="1052" sideValue="2" />
         <create type="neutral" x="volantisGateX+12990" y="0.0" z="volantisGateZ+7500"  angle="0" name="WP-s02" hullID="1052" sideValue="2" />
-        <create type="neutral" x="volantisGateX+12990" y="0.0" z="volantisGateZ-7500"  angle="0" name="WP-s03" hullID="1052" sideValue="2" />
+        <!-- This WP was destroyed during M2, 17 Sept -->
+        <!-- <create type="neutral" x="volantisGateX+12990" y="0.0" z="volantisGateZ-7500"  angle="0" name="WP-s03" hullID="1052" sideValue="2" /> -->
         <create type="neutral" x="volantisGateX"       y="0.0" z="volantisGateZ-15000" angle="0" name="WP-s04" hullID="1052" sideValue="2" />
         <create type="neutral" x="volantisGateX-12990" y="0.0" z="volantisGateZ-7500"  angle="0" name="WP-s05" hullID="1052" sideValue="2" />
         <create type="neutral" x="volantisGateX-12990" y="0.0" z="volantisGateZ+7500"  angle="0" name="WP-s06" hullID="1052" sideValue="2" />
 
         <create count="10" type="mines" startAngle="5"  endAngle="50"  startX="volantisGateX" startY="0.0" startZ="volantisGateZ" radius="15000" />
-        <!-- "Full minefied" - commented out until constructed -->
-        <!-- <create count="10" type="mines" startAngle="65"  endAngle="110" startX="volantisGateX" startY="0.0" startZ="volantisGateZ" radius="15000" />
+        <create count="10" type="mines" startAngle="65"  endAngle="110" startX="volantisGateX" startY="0.0" startZ="volantisGateZ" radius="15000" />
         <create count="10" type="mines" startAngle="125" endAngle="170" startX="volantisGateX" startY="0.0" startZ="volantisGateZ" radius="15000" />
         <create count="10" type="mines" startAngle="185" endAngle="230" startX="volantisGateX" startY="0.0" startZ="volantisGateZ" radius="15000" />
         <create count="10" type="mines" startAngle="245" endAngle="290" startX="volantisGateX" startY="0.0" startZ="volantisGateZ" radius="15000" />
-        <create count="10" type="mines" startAngle="305" endAngle="350" startX="volantisGateX" startY="0.0" startZ="volantisGateZ" radius="15000" /> -->
+        <create count="10" type="mines" startAngle="305" endAngle="350" startX="volantisGateX" startY="0.0" startZ="volantisGateZ" radius="15000" />
         <!-- Minefield still under construction -->
-        <create count="2" type="mines" startAngle="125" endAngle="135" startX="volantisGateX" startY="0.0" startZ="volantisGateZ" radius="15000" />
-        <create count="5" type="mines" startAngle="327" endAngle="350" startX="volantisGateX" startY="0.0" startZ="volantisGateZ" radius="15000" />
+        <!-- <create count="2" type="mines" startAngle="125" endAngle="135" startX="volantisGateX" startY="0.0" startZ="volantisGateZ" radius="15000" />
+        <create count="5" type="mines" startAngle="327" endAngle="350" startX="volantisGateX" startY="0.0" startZ="volantisGateZ" radius="15000" /> -->
+
+        <create type="neutral" x="volantisGateX"       y="0.0" z="volantisGateZ+5000" angle="0" name="Sierra-FOB" hullID="1002" sideValue="2" />
+        <set_ship_text name="Sierra-FOB" class="FOB" race="TSN"
+            desc="Forward Operating Base established by 4LD. Provides only basic facilities."
+            scan_desc="Power plant: ONLINE (transfer energy). Mine module: ONLINE (maintain the mine ring and transfer mines). Ordnance module: OFFLINE (rebuild weapon platforms and transfer ordnance)." 
+            hailtext="Energy tether is online. Mines are available, but no other ordnance." />
+
+        <!-- Name of the tether is spaces so nobody every uses it. Wow this is such a hack. -->
+        <create type="station" x="volantisGateX"    y="0.0" z="volantisGateZ+5300" angle="0" name="    " hullID="1058" sideValue="2" />
+        <set_object_property property="canBuild" value="0" name="    " />
+        <set_object_property property="missileStoresHoming" value="0" name="    " />
+        <set_object_property property="missileStoresNuke" value="0" name="    " />
+        <set_object_property property="missileStoresMine" value="50" name="    " />
+        <set_object_property property="missileStoresEMP" value="0" name="    " />
+        <set_object_property property="missileStoresPShock" value="0" name="    " />
+        <set_object_property property="missileStoresTag" value="0" name="    " />
+        <set_object_property property="missileStoresBeacon" value="0" name="    " />
+        <set_object_property property="missileStoresProbe" value="0" name="    " />
+
+        <set_timer name="Sierra 8 custom for S17 config" value="1" />
 
         <!-- Destroy the singular stray mine right next to the gate (in the default Sierra configuration) -->
         <destroy_near type="mines" radius="10000" centerX="volantisGateX" centerY="0" centerZ="volantisGateZ" />
 
         <set_variable name="Sector Entities" value="4.0" integer="yes" />
     </event>
+
+    <event name="Destroy all custom GLOBAL" id_arme="21208191-2602-40b0-9693-49b658d64778" parent_id_arme="43e3a1bf-d7ab-4f5a-bb32-9becb0ed71f2">
+        <if_timer name="Sierra 8 custom for S17 config" />
+        <set_ship_text name="Sierra-FOB" class="FOB" race="TSN"
+            desc="Forward Operating Base established by 4LD. Provides only basic facilities."
+            scan_desc="Power plant: ONLINE (transfer energy). Mine module: ONLINE (maintain the mine ring and transfer mines). Ordnance module: OFFLINE (rebuild weapon platforms and transfer ordnance)." 
+            hailtext="Energy tether is online. Mines are available, but no other ordnance." />
+
+    </event>
+
 
     <event name="Destroy all custom GLOBAL" id_arme="971e5972-66e9-4b68-80ba-d156c408735b" parent_id_arme="43e3a1bf-d7ab-4f5a-bb32-9becb0ed71f2">
         <!-- We have some time (0.5sec) to clean up before we transition to new sector (when timer Transition finishes)
@@ -48,5 +79,7 @@
         <destroy name="WP-s04" />
         <destroy name="WP-s05" />
         <destroy name="WP-s06" />
+        <destroy name="Sierra-FOB" />
+        <destroy name="    " />
     </event>
   </mission_data>
