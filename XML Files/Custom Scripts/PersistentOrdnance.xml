@@ -1,0 +1,138 @@
+<mission_data version="1.0" background_id_arme="77d373f9-ed2e-4726-a2b2-74bd775ac998" playerShipNames_arme="Artemis\Intrepid\Aegis\Horatio\Excalibur\Hera\Ceres\Diana">
+    <start id_arme="77d373f9-ed2e-4726-a2b2-74bd775ac998">
+      <!---->
+    </start>
+    <folder_arme name="PersistentOrdnance" id_arme="a92dc142-f961-4459-810f-34d484ae107b" />
+
+    <event name="PersistentOrdnance init" id_arme="aaf8d0c4-5d09-4bc0-ab1f-474fe2c60e21" parent_id_arme="a92dc142-f961-4459-810f-34d484ae107b">
+        <if_variable name="Sandbox Activation" comparator="EQUALS" value="2.0" />
+        <if_variable name="logOrdnanceNewMission" comparator="EQUALS" integer="0.0"/>
+
+        <set_variable name="logOrdnanceHeartbeatTime" value="10" integer="yes"/>
+        <set_variable name="logOrdnanceTotalTime" value="0" integer="yes"/>
+        <set_variable name="logOrdnanceNewMission" value="1" integer="yes"/>
+        <set_variable name="logOrdnanceProgramSpawned" value="0" integer="yes"/>
+
+        <set_timer name="logOrdnance" seconds="logOrdnanceHeartbeatTime" />
+    </event>
+
+    <event name="PersistentOrdnance initial log" id_arme="8fe83e08-83c5-417e-860e-6a1d608b03b8" parent_id_arme="a92dc142-f961-4459-810f-34d484ae107b">
+        <if_variable name="logOrdnanceNewMission" comparator="EQUALS" value="1.0" />
+
+        <log text="****** NEW MISSION STARTED ******" />
+
+        <set_variable name="logOrdnanceNewMission" value="2" integer="yes"/>
+    </event>
+
+    <event name="PersistentOrdnance heartbeat" id_arme="8b487efe-f392-48be-8317-9c2e9e22bd42" parent_id_arme="a92dc142-f961-4459-810f-34d484ae107b">
+        <if_timer_finished name="logOrdnance" />
+
+        <set_variable name="logOrdnanceTotalTime" value="logOrdnanceTotalTime+logOrdnanceHeartbeatTime" integer="yes"/>
+
+        <set_variable name="logOrdnanceIter" value="0" integer="yes"/>
+        <log text="*** mission time: |logOrdnanceTotalTime| sec ***" />
+
+        <get_object_property property="countHoming" player_slot="logOrdnanceIter" variable="nHoming" />
+        <get_object_property property="countNuke" player_slot="logOrdnanceIter" variable="nNuke" />
+        <get_object_property property="countMine" player_slot="logOrdnanceIter" variable="nMine" />
+        <get_object_property property="countEMP" player_slot="logOrdnanceIter" variable="nEMP" />
+        <get_object_property property="countShk" player_slot="logOrdnanceIter" variable="nShk" />
+        <get_object_property property="countBea" player_slot="logOrdnanceIter" variable="nBea" />
+        <get_object_property property="countPro" player_slot="logOrdnanceIter" variable="nPro" />
+        <get_object_property property="countTag" player_slot="logOrdnanceIter" variable="nTag" />
+        <log text="ship |logOrdnanceIter|: |nHoming|, |nNuke|, |nMine|, |nEMP|, |nShk|, |nBea|, |nPro|, |nTag|" />
+
+        <set_variable name="logOrdnanceIter" value="logOrdnanceIter+1" integer="yes" />
+        <get_object_property property="countHoming" player_slot="logOrdnanceIter" variable="nHoming" />
+        <get_object_property property="countNuke" player_slot="logOrdnanceIter" variable="nNuke" />
+        <get_object_property property="countMine" player_slot="logOrdnanceIter" variable="nMine" />
+        <get_object_property property="countEMP" player_slot="logOrdnanceIter" variable="nEMP" />
+        <get_object_property property="countShk" player_slot="logOrdnanceIter" variable="nShk" />
+        <get_object_property property="countBea" player_slot="logOrdnanceIter" variable="nBea" />
+        <get_object_property property="countPro" player_slot="logOrdnanceIter" variable="nPro" />
+        <get_object_property property="countTag" player_slot="logOrdnanceIter" variable="nTag" />
+        <log text="ship |logOrdnanceIter|: |nHoming|, |nNuke|, |nMine|, |nEMP|, |nShk|, |nBea|, |nPro|, |nTag|" />
+
+        <set_variable name="logOrdnanceIter" value="logOrdnanceIter+1" integer="yes" />
+        <get_object_property property="countHoming" player_slot="logOrdnanceIter" variable="nHoming" />
+        <get_object_property property="countNuke" player_slot="logOrdnanceIter" variable="nNuke" />
+        <get_object_property property="countMine" player_slot="logOrdnanceIter" variable="nMine" />
+        <get_object_property property="countEMP" player_slot="logOrdnanceIter" variable="nEMP" />
+        <get_object_property property="countShk" player_slot="logOrdnanceIter" variable="nShk" />
+        <get_object_property property="countBea" player_slot="logOrdnanceIter" variable="nBea" />
+        <get_object_property property="countPro" player_slot="logOrdnanceIter" variable="nPro" />
+        <get_object_property property="countTag" player_slot="logOrdnanceIter" variable="nTag" />
+        <log text="ship |logOrdnanceIter|: |nHoming|, |nNuke|, |nMine|, |nEMP|, |nShk|, |nBea|, |nPro|, |nTag|" />
+
+        <set_variable name="logOrdnanceIter" value="logOrdnanceIter+1" integer="yes" />
+        <get_object_property property="countHoming" player_slot="logOrdnanceIter" variable="nHoming" />
+        <get_object_property property="countNuke" player_slot="logOrdnanceIter" variable="nNuke" />
+        <get_object_property property="countMine" player_slot="logOrdnanceIter" variable="nMine" />
+        <get_object_property property="countEMP" player_slot="logOrdnanceIter" variable="nEMP" />
+        <get_object_property property="countShk" player_slot="logOrdnanceIter" variable="nShk" />
+        <get_object_property property="countBea" player_slot="logOrdnanceIter" variable="nBea" />
+        <get_object_property property="countPro" player_slot="logOrdnanceIter" variable="nPro" />
+        <get_object_property property="countTag" player_slot="logOrdnanceIter" variable="nTag" />
+        <log text="ship |logOrdnanceIter|: |nHoming|, |nNuke|, |nMine|, |nEMP|, |nShk|, |nBea|, |nPro|, |nTag|" />
+
+        <set_variable name="logOrdnanceIter" value="logOrdnanceIter+1" integer="yes" />
+        <get_object_property property="countHoming" player_slot="logOrdnanceIter" variable="nHoming" />
+        <get_object_property property="countNuke" player_slot="logOrdnanceIter" variable="nNuke" />
+        <get_object_property property="countMine" player_slot="logOrdnanceIter" variable="nMine" />
+        <get_object_property property="countEMP" player_slot="logOrdnanceIter" variable="nEMP" />
+        <get_object_property property="countShk" player_slot="logOrdnanceIter" variable="nShk" />
+        <get_object_property property="countBea" player_slot="logOrdnanceIter" variable="nBea" />
+        <get_object_property property="countPro" player_slot="logOrdnanceIter" variable="nPro" />
+        <get_object_property property="countTag" player_slot="logOrdnanceIter" variable="nTag" />
+        <log text="ship |logOrdnanceIter|: |nHoming|, |nNuke|, |nMine|, |nEMP|, |nShk|, |nBea|, |nPro|, |nTag|" />
+
+        <set_variable name="logOrdnanceIter" value="logOrdnanceIter+1" integer="yes" />
+        <get_object_property property="countHoming" player_slot="logOrdnanceIter" variable="nHoming" />
+        <get_object_property property="countNuke" player_slot="logOrdnanceIter" variable="nNuke" />
+        <get_object_property property="countMine" player_slot="logOrdnanceIter" variable="nMine" />
+        <get_object_property property="countEMP" player_slot="logOrdnanceIter" variable="nEMP" />
+        <get_object_property property="countShk" player_slot="logOrdnanceIter" variable="nShk" />
+        <get_object_property property="countBea" player_slot="logOrdnanceIter" variable="nBea" />
+        <get_object_property property="countPro" player_slot="logOrdnanceIter" variable="nPro" />
+        <get_object_property property="countTag" player_slot="logOrdnanceIter" variable="nTag" />
+        <log text="ship |logOrdnanceIter|: |nHoming|, |nNuke|, |nMine|, |nEMP|, |nShk|, |nBea|, |nPro|, |nTag|" />
+
+        <set_variable name="logOrdnanceIter" value="logOrdnanceIter+1" integer="yes" />
+        <get_object_property property="countHoming" player_slot="logOrdnanceIter" variable="nHoming" />
+        <get_object_property property="countNuke" player_slot="logOrdnanceIter" variable="nNuke" />
+        <get_object_property property="countMine" player_slot="logOrdnanceIter" variable="nMine" />
+        <get_object_property property="countEMP" player_slot="logOrdnanceIter" variable="nEMP" />
+        <get_object_property property="countShk" player_slot="logOrdnanceIter" variable="nShk" />
+        <get_object_property property="countBea" player_slot="logOrdnanceIter" variable="nBea" />
+        <get_object_property property="countPro" player_slot="logOrdnanceIter" variable="nPro" />
+        <get_object_property property="countTag" player_slot="logOrdnanceIter" variable="nTag" />
+        <log text="ship |logOrdnanceIter|: |nHoming|, |nNuke|, |nMine|, |nEMP|, |nShk|, |nBea|, |nPro|, |nTag|" />
+
+        <set_variable name="logOrdnanceIter" value="logOrdnanceIter+1" integer="yes" />
+        <get_object_property property="countHoming" player_slot="logOrdnanceIter" variable="nHoming" />
+        <get_object_property property="countNuke" player_slot="logOrdnanceIter" variable="nNuke" />
+        <get_object_property property="countMine" player_slot="logOrdnanceIter" variable="nMine" />
+        <get_object_property property="countEMP" player_slot="logOrdnanceIter" variable="nEMP" />
+        <get_object_property property="countShk" player_slot="logOrdnanceIter" variable="nShk" />
+        <get_object_property property="countBea" player_slot="logOrdnanceIter" variable="nBea" />
+        <get_object_property property="countPro" player_slot="logOrdnanceIter" variable="nPro" />
+        <get_object_property property="countTag" player_slot="logOrdnanceIter" variable="nTag" />
+        <log text="ship |logOrdnanceIter|: |nHoming|, |nNuke|, |nMine|, |nEMP|, |nShk|, |nBea|, |nPro|, |nTag|" />
+
+        <!-- Update ship configuration -->
+        <spawn_external_program id="someIdWhatever" name="dat/Missions/MISS_TSN-Command/persistOrdnance.exe" arguments="persistOrdnance.exe" />
+
+        <set_timer name="logOrdnance" seconds="logOrdnanceHeartbeatTime" />
+    </event>
+
+    <event name="PersistentOrdnance mission end" id_arme="7c30cc3a-aaf1-4dbf-808a-23f0a6c7e834" parent_id_arme="a92dc142-f961-4459-810f-34d484ae107b">
+        <if_variable name="Mission End" comparator="EQUALS" value="1.0" />
+        <if_variable name="logOrdnanceProgramSpawned" comparator="EQUALS" value="0.0" />
+
+        <log text="****** MISSION ENDED ******" />
+
+        <set_variable name="logOrdnanceProgramSpawned" value="1" integer="yes"/>
+    </event>
+
+
+  </mission_data>
