@@ -10,12 +10,14 @@
     <if_timer_finished name="Ship Spawn Menu" />
     <set_gm_button text="Single Hegemony\Skaraan Blockade Runner" />
     <set_gm_button text="Single Hegemony\Torgoth Deminer" />
+    <set_gm_button text="Single Hegemony\Torgoth WarpDisruptor" />
   </event>
   <event name="Clear" id_arme="149305b0-c5c0-4e70-b4a1-e8c794ad56b2" parent_id_arme="78b82965-29e0-44a9-922a-6953969ca6d7">
     <!-- FIXME: Race condition on variable CycleSpawnMenu, rarely works.  -->
     <if_variable name="CycleSpawnMenu" comparator="EQUALS" value="1.0" />
     <clear_gm_button text="Single Hegemony\Skaraan Blockade Runner" />
     <clear_gm_button text="Single Hegemony\Torgoth Deminer" />
+    <clear_gm_button text="Single Hegemony\Torgoth WarpDisruptor" />
   </event>
 
   <event name="Skaraan Blockade Runner" id_arme="2a3fb12e-a77e-4aae-b1d1-f487a47d72e8" parent_id_arme="78b82965-29e0-44a9-922a-6953969ca6d7">
@@ -90,5 +92,108 @@
     <set_timer name="MineSweepTimer" seconds="1" />
     <set_variable name="MineSweepState" value="1.0" integer="yes" />
   </event>
+
+
+
+
+  <event name="Torgoth WarpDisruptor" id_arme="cf1752e7-2cca-4fa0-9421-608e4b3b91d3" parent_id_arme="78b82965-29e0-44a9-922a-6953969ca6d7">
+    <if_gm_button text="Single Hegemony\Torgoth WarpDisruptor" />
+
+    <create type="enemy" use_gm_position="" name="NewWarpDisruptor" hullID="4101" sideValue="SideValue" fleetnumber="Fleetnumber" />
+    <addto_object_property name="NewWarpDisruptor" property="topSpeed" value="0-0.6" />
+
+    <add_ai type="SPCL_AI" name="NewWarpDisruptor" />
+    <add_ai type="CHASE_PLAYER" name="NewWarpDisruptor" />
+    <add_ai type="CHASE_STATION" value1="1000" name="NewWarpDisruptor" />
+    <add_ai type="CHASE_AI_SHIP" value1="3000" value2="500" name="NewWarpDisruptor" />
+    <add_ai type="CHASE_PLAYER" value1="3000" value2="500" name="NewWarpDisruptor" />
+    <add_ai type="CHASE_ANGER" name="NewWarpDisruptor" />
+    <add_ai type="LAUNCH_FIGHTERS" value1="5000" name="NewWarpDisruptor" />
+
+    <set_ship_text name="NewWarpDisruptor" newname="WarpDisruptor" race="Torgoth" class="WarpDisruptor" desc="Torgoth WarpDisruptor support ship. Removes mines in vicinity." />
+  
+    <set_timer name="WarpDisruptorTimer" seconds="1" />
+
+    <!-- TODO: a timer for each player -->
+    <set_timer name="WarpDisruptorCheckTimerPlayer0" seconds="1" />
+  </event>
+
+  <event name="Stabilize Spacetime - new loop" id_arme="c1e4da7e-186a-4504-add8-a7480493c3f5" parent_id_arme="78b82965-29e0-44a9-922a-6953969ca6d7">
+    <if_timer_finished name="WarpDisruptorTimer" />
+
+    <if_not_exists name=" WarpDisruptor " />
+    <if_not_exists name="  WarpDisruptor  " />
+    <set_ship_text name="WarpDisruptor" newname=" WarpDisruptor " />
+
+    <set_timer name="WarpDisruptorTimer" seconds="1" />
+
+    <set_variable name="WarpDisruptorCounterInternal" value="0.0" integer="yes" />
+
+  </event>
+
+  <event name="Stabilize Spacetime - promote single" id_arme="932cbbd0-0d46-45ed-9599-7148cab44fe1" parent_id_arme="78b82965-29e0-44a9-922a-6953969ca6d7">
+    <if_timer_finished name="WarpDisruptorTimer" />
+    <if_exists name=" WarpDisruptor " />
+
+    <get_object_property property="positionX" name=" WarpDisruptor " variable="stabX" />
+    <get_object_property property="positionZ" name=" WarpDisruptor " variable="stabZ" />
+
+    <set_ship_text name=" WarpDisruptor " newname="  WarpDisruptor  " />
+    <set_ship_text name="WarpDisruptor" newname=" WarpDisruptor " />
+
+    <set_variable name="WarpDisruptorCounterInternal" value="WarpDisruptorCounterInternal+1" integer="yes'" />
+
+    <set_timer name="WarpDisruptorTimer" seconds="1" />
+  </event>
+
+  <event name="Stabilize Spacetime - multiple reset" id_arme="13fd184d-663e-4e84-b22b-903067cdecbf" parent_id_arme="78b82965-29e0-44a9-922a-6953969ca6d7">
+    <if_timer_finished name="WarpDisruptorTimer" />
+    <if_not_exists name="WarpDisruptor" />
+    <if_not_exists name=" WarpDisruptor " />
+    <if_exists name="  WarpDisruptor  " />
+
+    <set_ship_text name="  WarpDisruptor  " newname="WarpDisruptor" />
+    <set_ship_text name="  WarpDisruptor  " newname="WarpDisruptor" />
+    <set_ship_text name="  WarpDisruptor  " newname="WarpDisruptor" />
+    <set_ship_text name="  WarpDisruptor  " newname="WarpDisruptor" />
+    <set_ship_text name="  WarpDisruptor  " newname="WarpDisruptor" />
+    <set_ship_text name="  WarpDisruptor  " newname="WarpDisruptor" />
+    <set_ship_text name="  WarpDisruptor  " newname="WarpDisruptor" />
+    <set_ship_text name="  WarpDisruptor  " newname="WarpDisruptor" />
+    <set_ship_text name="  WarpDisruptor  " newname="WarpDisruptor" />
+    <set_ship_text name="  WarpDisruptor  " newname="WarpDisruptor" />
+    <set_ship_text name="  WarpDisruptor  " newname="WarpDisruptor" />
+    <set_ship_text name="  WarpDisruptor  " newname="WarpDisruptor" />
+    <set_ship_text name="  WarpDisruptor  " newname="WarpDisruptor" />
+    <set_ship_text name="  WarpDisruptor  " newname="WarpDisruptor" />
+    <set_ship_text name="  WarpDisruptor  " newname="WarpDisruptor" />
+    <set_ship_text name="  WarpDisruptor  " newname="WarpDisruptor" />
+
+    <set_variable name="WarpDisruptorCounterActual" value="WarpDisruptorCounterInternal" integer="yes" />
+
+    <set_timer name="WarpDisruptorTimer" seconds="1" />
+  </event>
+
+  <!-- TODO: such event for each player -->
+  <event name="Stabilize Spacetime - Sabre" id_arme="05958847-8f1b-4bc0-b4c2-56798651f091" parent_id_arme="78b82965-29e0-44a9-922a-6953969ca6d7">
+    <if_variable name="WarpDisruptorCounterActual" comparator="GREATER" value="0.0" />
+    <if_timer_finished name="WarpDisruptorCheckTimerPlayer0" />
+    <if_inside_sphere name="Artemis" centerX="stabX" centerY="0" centerZ="stabZ" radius="5000" />
+
+    <set_variable name="randomWarpState" randomIntLow="0.0" randomIntHigh="4.0" />
+    <set_object_property property="warpState" value="randomWarpState" name="Artemis" />
+
+    <set_variable name="randomWarpEnergy" randomFloatLow="0.0" randomFloatHigh="1.0" />
+    <set_object_property property="systemCurEnergyWarp" value="randomWarpEnergy" name="Artemis" />
+
+    <!-- we multiply damage by number of disruptors to account for the fact that more disruptors = more "processing" time -->
+    <addto_object_property value="WarpDisruptorCounterActual*0.05" property="systemCurHeatWarp" name="Artemis" />
+
+    <!-- too spammy -->
+    <!-- <warning_popup_message message="Warp drive flux field disrupted" consoles="MHWESCO" name="Artemis" /> -->
+
+    <set_timer name="WarpDisruptorCheckTimerPlayer0" seconds="1" />
+  </event>
+
 
 </mission_data>

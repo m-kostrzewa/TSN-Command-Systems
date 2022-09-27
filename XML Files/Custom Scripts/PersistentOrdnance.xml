@@ -8,7 +8,7 @@
         <if_variable name="Sandbox Activation" comparator="EQUALS" value="2.0" />
         <if_variable name="logOrdnanceNewMission" comparator="EQUALS" integer="0.0"/>
 
-        <set_variable name="logOrdnanceHeartbeatTime" value="10" integer="yes"/>
+        <set_variable name="logOrdnanceHeartbeatTime" value="60" integer="yes"/>
         <set_variable name="logOrdnanceTotalTime" value="0" integer="yes"/>
         <set_variable name="logOrdnanceNewMission" value="1" integer="yes"/>
         <set_variable name="logOrdnanceProgramSpawned" value="0" integer="yes"/>
