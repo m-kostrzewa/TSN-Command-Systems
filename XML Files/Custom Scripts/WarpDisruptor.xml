@@ -1,0 +1,280 @@
+<mission_data version="1.0" background_id_arme="77d373f9-ed2e-4726-a2b2-74bd775ac998" playerShipNames_arme="Artemis\Intrepid\Aegis\Horatio\Excalibur\Hera\Ceres\Diana">
+  <start id_arme="77d373f9-ed2e-4726-a2b2-74bd775ac998">
+    <!---->
+  </start>
+  <folder_arme name="Warp disruptor" id_arme="ffcee071-4886-4503-ab58-aeb5501c8873" />
+
+  <!-- Monkey patch custom keys bar -->
+  <event name="Custom Keys Menu - Heg" id_arme="adfd9ec4-417d-428e-8cb4-39420c3168e7" parent_id_arme="ffcee071-4886-4503-ab58-aeb5501c8873">
+    <if_variable name="Ship Spawn Menu" comparator="EQUALS" value="7.0" />
+    <if_timer_finished name="Ship Spawn Menu" />
+    <set_gm_button text="Single Hegemony\Kralien WarpDisruptor" />
+  </event>
+  <event name="Custom Keys Menu - Neutral" id_arme="ba696ec2-245a-45fa-8ba2-379db6132b82" parent_id_arme="ffcee071-4886-4503-ab58-aeb5501c8873">
+    <if_variable name="Ship Spawn Menu" comparator="EQUALS" value="25.0" />
+    <if_timer_finished name="Ship Spawn Menu" />
+    <set_gm_button text="Other\WarpDisruptor bouy" />
+  </event>
+  <event name="Clear" id_arme="5ede81c1-1602-4d8b-af08-030a88ea3f0c" parent_id_arme="ffcee071-4886-4503-ab58-aeb5501c8873">
+    <!-- FIXME: Race condition on variable CycleSpawnMenu, rarely works.  -->
+    <if_variable name="CycleSpawnMenu" comparator="EQUALS" value="1.0" />
+    <clear_gm_button text="Single Hegemony\Kralien WarpDisruptor" />
+    <clear_gm_button text="Other\WarpDisruptor bouy" />
+  </event>
+
+
+<!-- Handle buttons.  -->
+
+  <event name="Neutral WarpDisruptor" id_arme="a04abe9f-db44-4ac3-8baa-95e6fae74b12" parent_id_arme="ffcee071-4886-4503-ab58-aeb5501c8873">
+    <if_gm_button text="Other\WarpDisruptor bouy" />
+
+    <create type="neutral" use_gm_position="" name="NewWarpDisruptor" hullID="1054" />
+
+    <set_object_property property="surrenderChance" value="0" name="NewWarpDisruptor" />
+    <clear_ai name="NewWarpDisruptor" />
+    <set_object_property property="pitch" value="0.2" name="NewWarpDisruptor" />
+    <set_object_property property="angleDelta" value="0.1" name="NewWarpDisruptor" />
+    <addto_object_property value="3.0" property="positionY" name="NewWarpDisruptor" />
+
+    <set_ship_text name="NewWarpDisruptor" newname="WarpDisruptor" race="-" class="QWAR" desc="QWAR (Quantum Warfare) bouy with a Warp Disruptor module."
+        scan_desc="Will cause warp drive malfunctions. Range: 5k." hailtext="Warp flux field disruption status: online." />
+
+    <set_timer name="WarpDisruptorTimer" seconds="1" />
+    <set_timer name="WarpDisruptorCheckTimerPlayer0" seconds="1" />
+    <set_timer name="WarpDisruptorCheckTimerPlayer1" seconds="1" />
+    <set_timer name="WarpDisruptorCheckTimerPlayer2" seconds="1" />
+    <set_timer name="WarpDisruptorCheckTimerPlayer3" seconds="1" />
+    <set_timer name="WarpDisruptorCheckTimerPlayer4" seconds="1" />
+    <set_timer name="WarpDisruptorCheckTimerPlayer5" seconds="1" />
+    <set_timer name="WarpDisruptorCheckTimerPlayer6" seconds="1" />
+    <set_timer name="WarpDisruptorCheckTimerPlayer7" seconds="1" />
+  </event>
+
+  <event name="Kralien WarpDisruptor" id_arme="93f0a778-2b9b-48f9-9692-488049152b33" parent_id_arme="ffcee071-4886-4503-ab58-aeb5501c8873">
+    <if_gm_button text="Single Hegemony\Kralien WarpDisruptor" />
+
+    <!-- hull id of a transport ship -->
+    <create type="enemy" use_gm_position="" name="NewWarpDisruptor" hullID="2101" sideValue="SideValue" fleetnumber="-1" />
+
+    <add_ai type="SPCL_AI" name="NewWarpDisruptor" />
+    <add_ai type="CHASE_PLAYER" name="NewWarpDisruptor" />
+    <add_ai type="CHASE_STATION" value1="1000" name="NewWarpDisruptor" />
+    <add_ai type="CHASE_AI_SHIP" value1="3000" value2="500" name="NewWarpDisruptor" />
+    <add_ai type="CHASE_PLAYER" value1="3000" value2="500" name="NewWarpDisruptor" />
+    <add_ai type="CHASE_ANGER" name="NewWarpDisruptor" />
+    <add_ai type="LAUNCH_FIGHTERS" value1="5000" name="NewWarpDisruptor" />
+
+    <set_ship_text name="NewWarpDisruptor" newname="WarpDisruptor" class="QWAR"
+        desc="Kralien QWAR (Quantum Warfare) support ship with a Warp Disruptor module. Will cause warp drive malfunctions. Range: 5k." />
+
+    <set_timer name="WarpDisruptorTimer" seconds="1" />
+    <set_timer name="WarpDisruptorCheckTimerPlayer0" seconds="1" />
+    <set_timer name="WarpDisruptorCheckTimerPlayer1" seconds="1" />
+    <set_timer name="WarpDisruptorCheckTimerPlayer2" seconds="1" />
+    <set_timer name="WarpDisruptorCheckTimerPlayer3" seconds="1" />
+    <set_timer name="WarpDisruptorCheckTimerPlayer4" seconds="1" />
+    <set_timer name="WarpDisruptorCheckTimerPlayer5" seconds="1" />
+    <set_timer name="WarpDisruptorCheckTimerPlayer6" seconds="1" />
+    <set_timer name="WarpDisruptorCheckTimerPlayer7" seconds="1" />
+  </event>
+
+
+  <!-- Actual logic -->
+
+  <event name="Warp disruptor - new loop" id_arme="ac5735ed-f4ef-43ce-a674-b155bb307d34" parent_id_arme="ffcee071-4886-4503-ab58-aeb5501c8873">
+    <if_timer_finished name="WarpDisruptorTimer" />
+
+    <if_not_exists name=" WarpDisruptor " />
+    <if_not_exists name="  WarpDisruptor  " />
+    <set_ship_text name="WarpDisruptor" newname=" WarpDisruptor " />
+
+    <set_timer name="WarpDisruptorTimer" seconds="1" />
+
+    <set_variable name="WarpDisruptorCounterInternal" value="0.0" integer="yes" />
+
+  </event>
+
+  <event name="Warp disruptor - promote single" id_arme="fce6dcf7-345f-4461-a96f-1662e8f218c2" parent_id_arme="ffcee071-4886-4503-ab58-aeb5501c8873">
+    <if_timer_finished name="WarpDisruptorTimer" />
+    <if_exists name=" WarpDisruptor " />
+
+    <get_object_property property="positionX" name=" WarpDisruptor " variable="stabX" />
+    <get_object_property property="positionZ" name=" WarpDisruptor " variable="stabZ" />
+
+    <set_ship_text name=" WarpDisruptor " newname="  WarpDisruptor  " />
+    <set_ship_text name="WarpDisruptor" newname=" WarpDisruptor " />
+
+    <set_variable name="WarpDisruptorCounterInternal" value="WarpDisruptorCounterInternal+1" integer="yes'" />
+
+    <set_timer name="WarpDisruptorTimer" seconds="1" />
+  </event>
+
+  <event name="Warp disruptor - multiple reset" id_arme="23398e43-af9b-44d3-a0e1-e960335cac44" parent_id_arme="ffcee071-4886-4503-ab58-aeb5501c8873">
+    <if_timer_finished name="WarpDisruptorTimer" />
+    <if_not_exists name="WarpDisruptor" />
+    <if_not_exists name=" WarpDisruptor " />
+    <if_exists name="  WarpDisruptor  " />
+
+    <set_ship_text name="  WarpDisruptor  " newname="WarpDisruptor" />
+    <set_ship_text name="  WarpDisruptor  " newname="WarpDisruptor" />
+    <set_ship_text name="  WarpDisruptor  " newname="WarpDisruptor" />
+    <set_ship_text name="  WarpDisruptor  " newname="WarpDisruptor" />
+    <set_ship_text name="  WarpDisruptor  " newname="WarpDisruptor" />
+    <set_ship_text name="  WarpDisruptor  " newname="WarpDisruptor" />
+    <set_ship_text name="  WarpDisruptor  " newname="WarpDisruptor" />
+    <set_ship_text name="  WarpDisruptor  " newname="WarpDisruptor" />
+    <set_ship_text name="  WarpDisruptor  " newname="WarpDisruptor" />
+    <set_ship_text name="  WarpDisruptor  " newname="WarpDisruptor" />
+    <set_ship_text name="  WarpDisruptor  " newname="WarpDisruptor" />
+    <set_ship_text name="  WarpDisruptor  " newname="WarpDisruptor" />
+    <set_ship_text name="  WarpDisruptor  " newname="WarpDisruptor" />
+    <set_ship_text name="  WarpDisruptor  " newname="WarpDisruptor" />
+    <set_ship_text name="  WarpDisruptor  " newname="WarpDisruptor" />
+    <set_ship_text name="  WarpDisruptor  " newname="WarpDisruptor" />
+
+    <set_variable name="WarpDisruptorCounterActual" value="WarpDisruptorCounterInternal" integer="yes" />
+
+    <set_timer name="WarpDisruptorTimer" seconds="1" />
+  </event>
+
+
+
+  <!-- Copy pasta handlers for each player slot -->
+
+  <event name="Warp disruptor - player 0" id_arme="c51851bb-dde4-443b-b6a8-81e413546230" parent_id_arme="ffcee071-4886-4503-ab58-aeb5501c8873">
+    <if_variable name="WarpDisruptorCounterActual" comparator="GREATER" value="0.0" />
+    <if_timer_finished name="WarpDisruptorCheckTimerPlayer0" />
+    <if_inside_sphere player_slot="0" centerX="stabX" centerY="0" centerZ="stabZ" radius="5000" />
+
+    <set_variable name="randomWarpState" randomIntLow="0.0" randomIntHigh="4.0" />
+    <set_object_property property="warpState" value="randomWarpState" player_slot="0" />
+
+    <set_variable name="randomWarpEnergy" randomFloatLow="0.0" randomFloatHigh="1.0" />
+    <set_object_property property="systemCurEnergyWarp" value="randomWarpEnergy" player_slot="0" />
+
+    <!-- we multiply damage by number of disruptors to account for the fact that more disruptors = more "processing" time -->
+    <addto_object_property value="WarpDisruptorCounterActual*0.05" property="systemCurHeatWarp" player_slot="0" />
+
+    <set_timer name="WarpDisruptorCheckTimerPlayer0" seconds="1" />
+  </event>
+
+  <event name="Warp disruptor - player 1" id_arme="a5722ff7-0419-4bd4-bb87-e553efe16306" parent_id_arme="ffcee071-4886-4503-ab58-aeb5501c8873">
+    <if_variable name="WarpDisruptorCounterActual" comparator="GREATER" value="0.0" />
+    <if_timer_finished name="WarpDisruptorCheckTimerPlayer1" />
+    <if_inside_sphere player_slot="1" centerX="stabX" centerY="0" centerZ="stabZ" radius="5000" />
+
+    <set_variable name="randomWarpState" randomIntLow="0.0" randomIntHigh="4.0" />
+    <set_object_property property="warpState" value="randomWarpState" player_slot="1" />
+
+    <set_variable name="randomWarpEnergy" randomFloatLow="0.0" randomFloatHigh="1.0" />
+    <set_object_property property="systemCurEnergyWarp" value="randomWarpEnergy" player_slot="1" />
+
+    <!-- we multiply damage by number of disruptors to account for the fact that more disruptors = more "processing" time -->
+    <addto_object_property value="WarpDisruptorCounterActual*0.05" property="systemCurHeatWarp" player_slot="1" />
+
+    <set_timer name="WarpDisruptorCheckTimerPlayer1" seconds="1" />
+  </event>
+
+  <event name="Warp disruptor - player 2" id_arme="1eb77f9f-6a72-4a14-b5f7-9e6c958d9ab6" parent_id_arme="ffcee071-4886-4503-ab58-aeb5501c8873">
+    <if_variable name="WarpDisruptorCounterActual" comparator="GREATER" value="0.0" />
+    <if_timer_finished name="WarpDisruptorCheckTimerPlayer2" />
+    <if_inside_sphere player_slot="2" centerX="stabX" centerY="0" centerZ="stabZ" radius="5000" />
+
+    <set_variable name="randomWarpState" randomIntLow="0.0" randomIntHigh="4.0" />
+    <set_object_property property="warpState" value="randomWarpState" player_slot="2" />
+
+    <set_variable name="randomWarpEnergy" randomFloatLow="0.0" randomFloatHigh="1.0" />
+    <set_object_property property="systemCurEnergyWarp" value="randomWarpEnergy" player_slot="2" />
+
+    <!-- we multiply damage by number of disruptors to account for the fact that more disruptors = more "processing" time -->
+    <addto_object_property value="WarpDisruptorCounterActual*0.05" property="systemCurHeatWarp" player_slot="2" />
+
+    <set_timer name="WarpDisruptorCheckTimerPlayer2" seconds="1" />
+  </event>
+
+  <event name="Warp disruptor - player 3" id_arme="5b4f523b-0107-4225-a553-c0060e223a44" parent_id_arme="ffcee071-4886-4503-ab58-aeb5501c8873">
+    <if_variable name="WarpDisruptorCounterActual" comparator="GREATER" value="0.0" />
+    <if_timer_finished name="WarpDisruptorCheckTimerPlayer3" />
+    <if_inside_sphere player_slot="3" centerX="stabX" centerY="0" centerZ="stabZ" radius="5000" />
+
+    <set_variable name="randomWarpState" randomIntLow="0.0" randomIntHigh="4.0" />
+    <set_object_property property="warpState" value="randomWarpState" player_slot="3" />
+
+    <set_variable name="randomWarpEnergy" randomFloatLow="0.0" randomFloatHigh="1.0" />
+    <set_object_property property="systemCurEnergyWarp" value="randomWarpEnergy" player_slot="3" />
+
+    <!-- we multiply damage by number of disruptors to account for the fact that more disruptors = more "processing" time -->
+    <addto_object_property value="WarpDisruptorCounterActual*0.05" property="systemCurHeatWarp" player_slot="3" />
+
+    <set_timer name="WarpDisruptorCheckTimerPlayer3" seconds="1" />
+  </event>
+
+  <event name="Warp disruptor - player 4" id_arme="2a456237-7b25-4f49-910d-d41c62397101" parent_id_arme="ffcee071-4886-4503-ab58-aeb5501c8873">
+    <if_variable name="WarpDisruptorCounterActual" comparator="GREATER" value="0.0" />
+    <if_timer_finished name="WarpDisruptorCheckTimerPlayer4" />
+    <if_inside_sphere player_slot="4" centerX="stabX" centerY="0" centerZ="stabZ" radius="5000" />
+
+    <set_variable name="randomWarpState" randomIntLow="0.0" randomIntHigh="4.0" />
+    <set_object_property property="warpState" value="randomWarpState" player_slot="4" />
+
+    <set_variable name="randomWarpEnergy" randomFloatLow="0.0" randomFloatHigh="1.0" />
+    <set_object_property property="systemCurEnergyWarp" value="randomWarpEnergy" player_slot="4" />
+
+    <!-- we multiply damage by number of disruptors to account for the fact that more disruptors = more "processing" time -->
+    <addto_object_property value="WarpDisruptorCounterActual*0.05" property="systemCurHeatWarp" player_slot="4" />
+
+    <set_timer name="WarpDisruptorCheckTimerPlayer4" seconds="1" />
+  </event>
+
+  <event name="Warp disruptor - player 5" id_arme="2c61ab52-9950-419d-93ea-be7715a0acb2" parent_id_arme="ffcee071-4886-4503-ab58-aeb5501c8873">
+    <if_variable name="WarpDisruptorCounterActual" comparator="GREATER" value="0.0" />
+    <if_timer_finished name="WarpDisruptorCheckTimerPlayer5" />
+    <if_inside_sphere player_slot="5" centerX="stabX" centerY="0" centerZ="stabZ" radius="5000" />
+
+    <set_variable name="randomWarpState" randomIntLow="0.0" randomIntHigh="4.0" />
+    <set_object_property property="warpState" value="randomWarpState" player_slot="5" />
+
+    <set_variable name="randomWarpEnergy" randomFloatLow="0.0" randomFloatHigh="1.0" />
+    <set_object_property property="systemCurEnergyWarp" value="randomWarpEnergy" player_slot="5" />
+
+    <!-- we multiply damage by number of disruptors to account for the fact that more disruptors = more "processing" time -->
+    <addto_object_property value="WarpDisruptorCounterActual*0.05" property="systemCurHeatWarp" player_slot="5" />
+
+    <set_timer name="WarpDisruptorCheckTimerPlayer5" seconds="1" />
+  </event>
+
+  <event name="Warp disruptor - player 6" id_arme="ab04e3cd-98fc-467a-967e-bdc99ea43b0a" parent_id_arme="ffcee071-4886-4503-ab58-aeb5501c8873">
+    <if_variable name="WarpDisruptorCounterActual" comparator="GREATER" value="0.0" />
+    <if_timer_finished name="WarpDisruptorCheckTimerPlayer6" />
+    <if_inside_sphere player_slot="6" centerX="stabX" centerY="0" centerZ="stabZ" radius="5000" />
+
+    <set_variable name="randomWarpState" randomIntLow="0.0" randomIntHigh="4.0" />
+    <set_object_property property="warpState" value="randomWarpState" player_slot="6" />
+
+    <set_variable name="randomWarpEnergy" randomFloatLow="0.0" randomFloatHigh="1.0" />
+    <set_object_property property="systemCurEnergyWarp" value="randomWarpEnergy" player_slot="6" />
+
+    <!-- we multiply damage by number of disruptors to account for the fact that more disruptors = more "processing" time -->
+    <addto_object_property value="WarpDisruptorCounterActual*0.05" property="systemCurHeatWarp" player_slot="6" />
+
+    <set_timer name="WarpDisruptorCheckTimerPlayer6" seconds="1" />
+  </event>
+
+  <event name="Warp disruptor - player 7" id_arme="0ddbf080-8f8d-40ea-9f45-02fb45406285" parent_id_arme="ffcee071-4886-4503-ab58-aeb5501c8873">
+    <if_variable name="WarpDisruptorCounterActual" comparator="GREATER" value="0.0" />
+    <if_timer_finished name="WarpDisruptorCheckTimerPlayer7" />
+    <if_inside_sphere player_slot="7" centerX="stabX" centerY="0" centerZ="stabZ" radius="5000" />
+
+    <set_variable name="randomWarpState" randomIntLow="0.0" randomIntHigh="4.0" />
+    <set_object_property property="warpState" value="randomWarpState" player_slot="7" />
+
+    <set_variable name="randomWarpEnergy" randomFloatLow="0.0" randomFloatHigh="1.0" />
+    <set_object_property property="systemCurEnergyWarp" value="randomWarpEnergy" player_slot="7" />
+
+    <!-- we multiply damage by number of disruptors to account for the fact that more disruptors = more "processing" time -->
+    <addto_object_property value="WarpDisruptorCounterActual*0.05" property="systemCurHeatWarp" player_slot="7" />
+
+    <set_timer name="WarpDisruptorCheckTimerPlayer7" seconds="1" />
+  </event>
+
+</mission_data>
