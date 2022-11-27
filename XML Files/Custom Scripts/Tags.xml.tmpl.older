@@ -1,0 +1,112 @@
+<mission_data version="1.0" background_id_arme="77d373f9-ed2e-4726-a2b2-74bd775ac998" playerShipNames_arme="Artemis\Intrepid\Aegis\Horatio\Excalibur\Hera\Ceres\Diana">
+    <start id_arme="77d373f9-ed2e-4726-a2b2-74bd775ac998">
+      <!---->
+    </start>
+
+    {% set letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ" %}
+
+
+    <event name="Init tag scanner" >
+        <log text="Init tag scanner" />
+
+        <if_variable name="Sandbox Activation" comparator="EQUALS" value="2.0" />
+        <if_variable name="Tag scanner initted" comparator="NOT" value="1.0" />
+        
+        <set_timer name="Rescan tags" seconds="1" />
+
+        <set_variable name="Tag scanner initted" value="1.0" />
+
+
+
+    </event>
+
+    <event name="Reset tag scanner" >
+      <log text="Reset tag scanner" />
+
+      <if_timer_finished name="Rescan tags" />
+      <set_timer name="Rescan tags" seconds="1" />
+
+      {% for letter in letters %}
+      <set_variable name="countTagged{{letter}}State" value="0.0" integer="yes" />
+      <set_variable name="countTaggedFirstDigit{{letter}}" value="0.0" integer="yes" />
+      {% endfor %}
+    </event>
+
+
+    <event name="Global scan " >
+      <log text="Global scan" />
+
+    </event>
+
+
+    {% for letter in letters %}
+
+    <event name="Full scan {{letter}}" >
+        <log text="Full scan {{letter}}" />
+
+        <if_variable name="countTagged{{letter}}State" comparator="EQUALS" value="0.0" />
+
+        <set_variable name="countTagged{{letter}}Total" value="0.0" />
+
+        <set_variable name="countTagged{{letter}}This" value="0.0" />
+        {% for i in range(100) -%}
+        <get_object_property name="{{letter}}{{'%02d' % (i-1)}}" property="isTagged" variable="countTagged{{letter}}This" />
+        <set_variable name="countTagged{{letter}}Total" value="countTagged{{letter}}Total + countTagged{{letter}}This" />
+        {% endfor %}
+
+        {% for j in range(10) %}
+        <set_variable name="countTagged{{letter}}Bucket{{j}}Total" value="0.0" integer="yes" />
+        <set_variable name="countTagged{{letter}}Bucket{{j}}State" value="0.0" integer="yes" />
+        {%- endfor -%}
+
+        {% for j in range(10) %}
+        <set_variable name="countTagged{{letter}}Bucket{{j}}State" value="0.0" integer="yes" />
+        {%- endfor %}
+
+        <set_variable name="countTagged{{letter}}State" value="1.0" />
+    </event>
+
+        {% for j in range(10) %}
+    <event name="Bucket scan {{letter}} {{j}}" >
+        <log text="Bucket scan {{letter}} {{j}}" />
+
+        <if_variable name="countTagged{{letter}}Total" comparator="GREATER" value="0.0" />
+        <if_variable name="countTagged{{letter}}Bucket{{j}}Total" comparator="EQUALS" value="0.0" />
+        <if_variable name="countTagged{{letter}}Bucket{{j}}State" comparator="EQUALS" value="0.0" />
+
+        <set_variable name="countTagged{{letter}}Bucket{{j}}This" value="0.0" />
+
+            {% for i in range(j*10, (j+1)*10) %}
+        <get_object_property name="{{letter}}{{'%02d' % i}}" property="isTagged" variable="countTagged{{letter}}Bucket{{j}}This" />
+        <set_variable name="countTagged{{letter}}Bucket{{j}}Total" value="countTagged{{letter}}Bucket{{j}}Total + countTagged{{letter}}Bucket{{j}}This" />
+            {% endfor %}
+
+        <set_variable name="countTagged{{letter}}Bucket{{j}}State" value="1.0" integer="yes" />
+    </event>
+
+    <event name="Bucket scan handler {{letter}} {{j}}" >
+        <log text="Bucket scan handler {{letter}} {{j}}" />
+
+        <if_variable name="countTagged{{letter}}Bucket{{j}}Total" comparator="GREATER" value="0.0" />
+        <set_variable name="countTaggedFirstDigit{{letter}}" value="{{j}}" integer="yes" />
+
+        <set_variable name="countTagged{{letter}}Bucket{{j}}Total" value="0.0" integer="yes" />
+    </event>
+        {% endfor %}
+
+        {% for digitRight in range(10) %}
+    <event name="Check {{letter}}-{{digitRight}}" >
+        <log text="Check {{letter}}-{{digitRight}}" />
+
+        <if_exists name="{{letter}}|countTaggedFirstDigit{{letter}}|{{digitRight}}" />
+        <if_object_property name="{{letter}}|countTaggedFirstDigit{{letter}}|{{digitRight}}" property="isTagged" comparator="EQUALS" value="1.0" />
+
+        <log text="{{letter}}|countTaggedFirstDigit{{letter}}|{{digitRight}} is tagged, untagging!" />
+
+        <set_named_object_tag_state name="{{letter}}|countTaggedFirstDigit{{letter}}|{{digitRight}}" tagged="0" />
+    </event>
+        {% endfor %}
+    {% endfor %}
+
+
+</mission_data>

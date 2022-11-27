@@ -1,0 +1,106 @@
+<mission_data version="1.0" background_id_arme="77d373f9-ed2e-4726-a2b2-74bd775ac998" playerShipNames_arme="Artemis\Intrepid\Aegis\Horatio\Excalibur\Hera\Ceres\Diana">
+    <start id_arme="77d373f9-ed2e-4726-a2b2-74bd775ac998">
+      <!---->
+      <set_variable name="tagShipNumber" value="0" integer="yes" />
+
+    </start>
+
+    {% set letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ" %}
+
+    <start>
+      <set_variable name="tagShipNumber" value="0" integer="yes" />
+    </start>
+    <event name="Init tag scanner" >
+        <log text="Init tag scanner" />
+
+        <if_variable name="Sandbox Activation" comparator="EQUALS" value="2.0" />
+        <if_variable name="Tag scanner initted" comparator="NOT" value="1.0" />
+        <set_variable name="tagShipNumber" value="0" integer="yes" />
+
+        <set_timer name="Rescan tags" seconds="1" />
+
+        <set_variable name="Tag scanner initted" value="1.0" />
+    </event>
+
+    
+    <!-- <event name="Coarse scan ">
+      <log text="Coarse scan" />
+
+      <if_timer_finished name="Rescan tags" />
+
+      <set_variable name="isThisTagged" value="0.0" integer="no"/>
+      <set_variable name="tagCounterCoarse" value="0" integer="yes" />
+
+      {% for letter in letters %}
+        {% for i in range(0,100) %}
+            <get_object_property name="{{letter}}{{'%02d' % (i)}}" property="isTagged" variable="isThisTagged" />
+            <set_variable name="tagCounterCoarse" value="tagCounterCoarse + isThisTagged" integer="yes" />
+        {% endfor %}
+      {% endfor %}
+
+      <set_timer name="Rescan tags" seconds="1" />
+    </event> -->
+
+    <event name="Global scan " >
+      <log text="Global scan" />
+
+      <if_timer_finished name="Rescan tags" />
+
+      <!-- <if_variable name="tagCounterCoarse" comparator="GREATER" value="1.0" /> -->
+
+      <set_variable name="isThisTagged" value="0.0" integer="no"/>
+      <set_variable name="tagCounter" value="0" integer="yes" />
+      <set_variable name="tagShipNumber" value="0" integer="yes" />
+      <!-- <set_variable name="tagShipNumberF" value="0.0" /> -->
+
+      <!-- We use a quadratic formula to filter out only the first tagged ship ID.
+        Formula: x = {1.0 if tagCounter == 1.0 else 0.0<x<1.0} (works for x<100, which is a safe assumption given fleet size limits)
+        Then we "floor" the result using cast to integer and finally we get: 
+        isTagCounterEqualOne = {1 if tagCounter==1 else 0} -->
+
+      {% for letter in letters %}
+        {% for i in range(0,100) %}
+            <get_object_property name="{{letter}}{{'%02d' % (i)}}" property="isTagged" variable="isThisTagged" />
+            <set_variable name="tagCounter" value="tagCounter + isThisTagged" integer="yes" />
+            <set_variable name="isTagCounterEqualOne" value="-0.0001020304 * (tagCounter-1) * (tagCounter-1) + 1" integer="yes" />
+            <set_variable name="tagShipNumber" value="tagShipNumber + isTagCounterEqualOne * {{i}} * isThisTagged" integer="yes" />
+            <!-- <log text="isThisTagged = |isThisTagged|; tagCounter = |tagCounter|; isTagCounterEqualOne = |isTagCounterEqualOne|; tagShipNumber = |tagShipNumber|" /> -->
+        {% endfor %}
+      {% endfor %}
+
+      <!-- <log text="tagShipNumber = |tagShipNumber|" />
+      <incoming_comms_text from="CHANNEL 1" sideValue="playerSide" type="STATUS">tagShipNumber = |tagShipNumber|"</incoming_comms_text>
+      <warning_popup_message message="tagShipNumber = |tagShipNumber|" consoles="MHWESCO" player_slot="0" /> -->
+
+      <set_timer name="Rescan tags" seconds="1" />
+
+    </event>
+
+
+    {% for letter in letters %}
+    <event name="Check {{letter}}-0tagShipNumber" >
+        <log text="Check {{letter}}-0tagShipNumber" />
+
+        <if_variable name="tagShipNumber" comparator="LESS" value="10.0" />
+
+        <if_exists name="{{letter}}0|tagShipNumber|" />
+        <if_object_property name="{{letter}}0|tagShipNumber|" property="isTagged" comparator="EQUALS" value="1.0" />
+
+        <log text="{{letter}}0|tagShipNumber| is tagged, untagging!" />
+        <set_named_object_tag_state name="{{letter}}0|tagShipNumber|" tagged="0" />
+    </event>
+
+    <event name="Check {{letter}}-tagShipNumber" >
+        <log text="Check {{letter}}-tagShipNumber" />
+
+        <if_variable name="tagShipNumber" comparator="GREATER" value="9.0" />
+
+        <if_exists name="{{letter}}|tagShipNumber|" />
+        <if_object_property name="{{letter}}|tagShipNumber|" property="isTagged" comparator="EQUALS" value="1.0" />
+
+        <log text="{{letter}}|tagShipNumber| is tagged, untagging!" />
+        <set_named_object_tag_state name="{{letter}}|tagShipNumber|" tagged="0" />
+    </event>
+    {% endfor %}
+
+</mission_data>

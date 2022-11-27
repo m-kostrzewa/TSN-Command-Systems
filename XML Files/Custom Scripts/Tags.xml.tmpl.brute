@@ -1,0 +1,57 @@
+<mission_data version="1.0" background_id_arme="77d373f9-ed2e-4726-a2b2-74bd775ac998" playerShipNames_arme="Artemis\Intrepid\Aegis\Horatio\Excalibur\Hera\Ceres\Diana">
+    <start id_arme="77d373f9-ed2e-4726-a2b2-74bd775ac998">
+      <!---->
+      <set_variable name="tagShipNumber" value="0" integer="yes" />
+
+    </start>
+
+    {% set letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ" %}
+
+    <start>
+      <set_variable name="tagShipNumber" value="0" integer="yes" />
+    </start>
+    <event name="Init tag scanner" >
+        <log text="Init tag scanner" />
+
+        <if_variable name="Sandbox Activation" comparator="EQUALS" value="2.0" />
+        <if_variable name="Tag scanner initted" comparator="NOT" value="1.0" />
+        <set_variable name="tagShipNumber" value="0" integer="yes" />
+
+        <set_timer name="Rescan tags" seconds="1" />
+        <set_timer name="Rescan tags" seconds="1" />
+
+        <set_variable name="Tag scanner initted" value="1.0" />
+    </event>
+
+    <event name="Global scan " >
+      <log text="Global scan" />
+
+      <if_timer_finished name="Rescan tags" />
+      <set_timer name="Rescan tags reset" seconds="1" />
+    </event>
+
+    <event name="Global scan reset " >
+      <log text="Global scan reset" />
+
+      <if_timer_finished name="Rescan tags reset" />
+      <set_timer name="Rescan tags" seconds="1" />
+    </event>
+
+
+    {% for letter in letters %}
+    {% for i in range(0,100) %}
+    <event name="Check {{letter}}{{'%02d' % i}}" >
+      <log text="Check {{letter}}{{'%02d' % i}}" />
+
+      <if_timer_finished name="Rescan tags" />
+      <if_exists name="{{letter}}{{'%02d' % i}}" />
+      <if_object_property name="{{letter}}{{'%02d' % i}}" property="isTagged" comparator="EQUALS" value="1.0" />
+
+      <log text="{{letter}}{{'%02d' % i}} is tagged, untagging!" />
+      <set_named_object_tag_state name="{{letter}}{{'%02d' % i}}" tagged="0" />
+  </event>
+  {% endfor %}
+  {% endfor %}
+
+
+</mission_data>
