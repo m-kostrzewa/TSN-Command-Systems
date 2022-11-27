@@ -1,0 +1,196 @@
+<mission_data version="1.0" background_id_arme="77d373f9-ed2e-4726-a2b2-74bd775ac998" playerShipNames_arme="Artemis\Intrepid\Aegis\Horatio\Excalibur\Hera\Ceres\Diana">
+  <start id_arme="77d373f9-ed2e-4726-a2b2-74bd775ac998">
+    <!---->
+  </start>
+
+  {% set dist = 4000 %}
+  {% set btnPrefixes=["-", "*", "**", "--", "*-", "-*", "_", "__"] %}
+
+  <event name="Init Shield sharing" >
+    <log text="Init Shield sharing" />
+
+    <if_variable name="Sandbox Activation" comparator="EQUALS" value="3.0" />
+    <if_variable name="Shield sharing initted" comparator="NOT" value="1.0" />
+
+    {% for p in range(0,8) %}
+    <get_object_property player_slot="{{p}}" property="shieldMaxStateFront" variable="player{{p}}OriginalShieldMaxStateFront" />
+    <get_object_property player_slot="{{p}}" property="shieldMaxStateBack" variable="player{{p}}OriginalShieldMaxStateBack" />
+    <log text="player{{p}}OriginalShieldMaxStateFront=|player{{p}}OriginalShieldMaxStateFront| player{{p}}OriginalShieldMaxStateBack=|player{{p}}OriginalShieldMaxStateBack|" />
+    
+    <set_variable name="player{{p}}ShieldSharingEnabled" value="0.0" />
+
+    <set_timer name="player{{p}}ShieldSharingDockCooldownTimer" seconds="1" />
+
+    {% endfor %}
+
+    <set_variable name="Shield sharing initted" value="1.0" />
+  </event>
+
+
+  {% for p1 in range(0,8) %}
+
+  <event name="{{p1}} comms menu clear" >
+    <!-- <log text="{{p1}} comms menu clear" /> -->
+
+    <if_variable name="Ship{{p1+1}}Modules" comparator="NOT" value="2.0" />
+    <if_variable name="Ship{{p1+1}}CommsMenu" comparator="EQUALS" value="1.0" />
+
+    <clear_comms_button text="{{btnPrefixes[p1]}}Arm Joint Shield Matrix Prototype MkII" player_slot="{{p1}}"/>
+    <clear_comms_button text="{{btnPrefixes[p1]}}Disarm Joint Shield Matrix Prototype MkII" player_slot="{{p1}}"/>
+  </event>
+
+  <event name="{{p1}} handle Modules button press if no other modules are loaded" >
+    <log text="{{p1}} handle Modules button press if no other modules are loaded" />
+
+    <if_comms_button text="{{btnPrefixes[p1]}}Modules" />
+    <if_variable name="Ship{{p1+1}}ModuleType" comparator="EQUALS" value="0.0" />
+
+    <clear_comms_button text="{{btnPrefixes[p1]}}Modules" player_slot="{{p1}}" />
+    <clear_comms_button text="{{btnPrefixes[p1]}}Cargo &amp; Personnel" player_slot="{{p1}}" />
+    <clear_comms_button text="{{btnPrefixes[p1]}}Shuttle Operations" player_slot="{{p1}}" />
+    <clear_comms_button text="{{btnPrefixes[p1]}}Resupply Operations" player_slot="{{p1}}" />
+
+    <set_comms_button text="{{btnPrefixes[p1]}}Main Menu" player_slot="{{p1}}" />
+
+    <set_variable name="Ship{{p1+1}}Modules" value="2.0" integer="yes" />
+  </event>
+
+  
+  <event name="{{p1}} comms menu show Enable button" >
+    <log text="{{p1}} comms menu show Enable button" />
+
+    <if_variable name="Ship{{p1+1}}Modules" comparator="EQUALS" value="2.0" />
+    <if_variable name="player{{p1}}ShieldSharingEnabled" comparator="NOT" value="1.0" />
+    <set_comms_button text="{{btnPrefixes[p1]}}Arm Joint Shield Matrix Prototype MkII" player_slot="{{p1}}" />
+  </event>
+
+  <event name="{{p1}} comms menu show Disable button" >
+    <log text="{{p1}} comms menu show Disable button" />
+
+    <if_variable name="Ship{{p1+1}}Modules" comparator="EQUALS" value="2.0" />
+    <if_variable name="player{{p1}}ShieldSharingEnabled" comparator="NOT" value="0.0" />
+    <set_comms_button text="{{btnPrefixes[p1]}}Disarm Joint Shield Matrix Prototype MkII" player_slot="{{p1}}" />
+  </event>
+
+  <event name="{{p1}} comms menu on Enable" >
+    <log text="{{p1}} comms menu on Enable" />
+
+    <if_comms_button text="{{btnPrefixes[p1]}}Arm Joint Shield Matrix Prototype MkII" player_slot="{{p1}}"/>
+    <set_variable name="player{{p1}}ShieldSharingEnabled" value="1.0" />
+    <set_variable name="Ship{{p1+1}}Modules" value="0.0" />
+    <set_variable name="Ship{{p1+1}}CommsMenu" value="0.0" />
+    <clear_comms_button text="{{btnPrefixes[p1]}}Arm Joint Shield Matrix Prototype MkII" player_slot="{{p1}}"/>
+
+    <incoming_comms_text from="CHANNEL {{p1+1}}" sideValue="playerSide" type="STATUS">Joint Shield Matrix Prototype MkII ARMED</incoming_comms_text>
+  </event>
+
+  <event name="{{p1}} comms menu on Disable" >
+    <log text="{{p1}} comms menu on Disable" />
+
+    <if_comms_button text="{{btnPrefixes[p1]}}Disarm Joint Shield Matrix Prototype MkII" player_slot="{{p1}}" />
+    <set_variable name="player{{p1}}ShieldSharingEnabled" value="0.0" />
+    <set_variable name="Ship{{p1+1}}Modules" value="0.0" />
+    <set_variable name="Ship{{p1+1}}CommsMenu" value="0.0" />
+    <clear_comms_button text="{{btnPrefixes[p1]}}Disarm Joint Shield Matrix Prototype MkII" player_slot="{{p1}}"/>
+
+    <incoming_comms_text from="CHANNEL {{p1+1}}" sideValue="playerSide" type="STATUS">Joint Shield Matrix Prototype MkII DISARMED</incoming_comms_text>
+  </event>
+
+
+  <event name="{{p1}} decrease front max if over original value" >
+    <log text="{{p1}} decrease front max if over original value" />
+
+    <if_variable name="Shield sharing initted" comparator="NOT" value="0.0" />
+    <if_object_property player_slot="{{p1}}" property="shieldMaxStateFront" comparator="GREATER" value="player{{p1}}OriginalShieldMaxStateFront" />
+    <addto_object_property player_slot="{{p1}}" property="shieldMaxStateFront" value="-0.5" />
+  </event>
+
+  <event name="{{p1}} decrease back max if over original value" >
+    <log text="{{p1}} decrease back max if over original value" />
+
+    <if_variable name="Shield sharing initted" comparator="NOT" value="0.0" />
+    <if_object_property player_slot="{{p1}}" property="shieldMaxStateBack" comparator="GREATER" value="player{{p1}}OriginalShieldMaxStateBack" />
+    <addto_object_property player_slot="{{p1}}" property="shieldMaxStateBack" value="-0.5" />
+  </event>
+
+  <event name="{{p1}} prevent shield sharing when docked and right after dock to prevent toggling exploit" >
+    <log text="{{p1}} prevent shield sharing when docked and right after dock to prevent toggling exploit" />
+
+    <if_docked player_slot="{{p1}}" />
+
+    <set_timer name="player{{p1}}ShieldSharingDockCooldownTimer" seconds="15" />
+  </event>
+
+  {% for p2 in range(0,8) %}
+  {% if p1 != p2 %}
+  <event name="{{p1}} shares shields with {{p2}}" >
+    <log text="{{p1}} shares shields with {{p2}}" />
+
+    <if_variable name="Shield sharing initted" comparator="NOT" value="0.0" />
+
+    <if_distance player_slot1="{{p1}}" player_slot2="{{p2}}" comparator="LESS" value="{{dist}}" />
+
+    <if_object_property player_slot="{{p1}}" property="shieldsOn" comparator="EQUALS" value="1.0" />
+    <if_object_property player_slot="{{p2}}" property="shieldsOn" comparator="EQUALS" value="1.0" />
+
+    <if_variable name="player{{p1}}ShieldSharingEnabled" comparator="NOT" value="0.0" />
+    <if_variable name="player{{p2}}ShieldSharingEnabled" comparator="NOT" value="0.0" />
+
+    <if_timer_finished name="player{{p1}}ShieldSharingDockCooldownTimer" />
+    <if_timer_finished name="player{{p2}}ShieldSharingDockCooldownTimer" />
+
+
+    <set_variable name="pAShieldStateFront" value="0.0" />
+    <set_variable name="pAShieldStateBack" value="0.0" />
+    <set_variable name="pBShieldStateFront" value="0.0" />
+    <set_variable name="pBShieldStateBack" value="0.0" />
+
+    <get_object_property player_slot="{{p1}}" property="shieldStateFront" variable="pAShieldStateFront" />
+    <get_object_property player_slot="{{p1}}" property="shieldStateBack" variable="pAShieldStateBack" />
+    <get_object_property player_slot="{{p2}}" property="shieldStateFront" variable="pBShieldStateFront" />
+    <get_object_property player_slot="{{p2}}" property="shieldStateBack" variable="pBShieldStateBack" />
+
+    <get_object_property player_slot="{{p1}}" property="shieldMaxStateFront" variable="pAShieldMaxStateFront" />
+    <get_object_property player_slot="{{p1}}" property="shieldMaxStateBack" variable="pAShieldMaxStateBack" />
+    <get_object_property player_slot="{{p2}}" property="shieldMaxStateFront" variable="pBShieldMaxStateFront" />
+    <get_object_property player_slot="{{p2}}" property="shieldMaxStateBack" variable="pBShieldMaxStateBack" />
+
+
+    <!-- Average actual current values -->
+    <set_variable name="avgStateFront" value="(pAShieldStateFront+pBShieldStateFront) / 2.0" integer="no"/>
+    <set_variable name="avgStateBack" value="(pAShieldStateBack+pBShieldStateBack) / 2.0" integer="no"/>
+
+    <!-- Determine new max state front and back, to do this choose the higher value for two player ships.
+    We rely on cast to integer to "floor"  -->
+    <set_variable name="avgMaxStateFront" value="(pAShieldMaxStateFront+pBShieldMaxStateFront)/2.0" integer="no" />
+    <set_variable name="pBIsGreaterFront" value="(pBShieldMaxStateFront-0.1)/avgMaxStateFront" integer="yes" />
+    <set_variable name="pAIsGreaterFront" value="pAShieldMaxStateFront/avgMaxStateFront" integer="yes"/>
+    <set_variable name="maxStateFront" value="pBIsGreaterFront * pBShieldMaxStateFront + pAIsGreaterFront * pAShieldMaxStateFront" integer="yes"/>
+
+    <set_variable name="avgMaxStateBack" value="(pAShieldMaxStateBack+pBShieldMaxStateBack)/2.0" integer="no" />
+    <set_variable name="pBIsGreaterBack" value="(pBShieldMaxStateBack-0.1)/avgMaxStateBack" integer="yes" />
+    <set_variable name="pAIsGreaterBack" value="pAShieldMaxStateBack/avgMaxStateBack" integer="yes"/>
+    <set_variable name="maxStateBack" value="pBIsGreaterBack * pBShieldMaxStateBack + pAIsGreaterBack * pAShieldMaxStateBack" integer="yes"/>
+
+
+    <set_object_property player_slot="{{p1}}" property="shieldMaxStateFront" value="maxStateFront" />
+    <set_object_property player_slot="{{p1}}" property="shieldMaxStateBack" value="maxStateBack" />
+    <set_object_property player_slot="{{p2}}" property="shieldMaxStateFront" value="maxStateFront" />
+    <set_object_property player_slot="{{p2}}" property="shieldMaxStateBack" value="maxStateBack" />
+
+    <set_object_property player_slot="{{p1}}" property="shieldStateFront" value="avgStateFront" />
+    <set_object_property player_slot="{{p1}}" property="shieldStateBack" value="avgStateBack" />
+    <set_object_property player_slot="{{p2}}" property="shieldStateFront" value="avgStateFront" />
+    <set_object_property player_slot="{{p2}}" property="shieldStateBack" value="avgStateBack" />
+
+
+    <addto_object_property player_slot="{{p1}}" value="0.002" property="systemCurHeatFrontShield" />
+    <addto_object_property player_slot="{{p1}}" value="0.002" property="systemCurHeatBackShield" />
+
+    <set_variable name="p{{p1}}IsShieldSharing" value="1.0" integer="yes"/>
+  </event>
+  {% endif %}
+  {% endfor %}
+  {% endfor %}
+
+</mission_data>
