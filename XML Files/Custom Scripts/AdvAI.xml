@@ -17,6 +17,11 @@
     </event>
     <event name="Adv AI clear" id_arme="e10f2064-805d-4aef-9e0c-7672805fe14e" parent_id_arme="a8d2c98a-ec76-462f-b829-1c1998ad8997">
         <if_variable name="AI Menu" comparator="EQUALS" value="0.0" />
+
+        <clear_gm_button text="Adv. AI (hotkeys only):" />
+        <clear_gm_button text="Sel [M]ove to gm cur" />
+        <clear_gm_button text="Sel [A]ttack to gm cur" />
+        <clear_gm_button text="Sel [D]efault AI" />
     </event>
 
     <event name="Set Button" id_arme="d97b16c1-5401-4808-9010-93928fff31eb" parent_id_arme="a8d2c98a-ec76-462f-b829-1c1998ad8997">
