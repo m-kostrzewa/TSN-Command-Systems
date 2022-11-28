@@ -20,6 +20,7 @@
     <set_variable name="player0ShieldSharingEnabled" value="0.0" />
 
     <set_timer name="player0ShieldSharingDockCooldownTimer" seconds="1" />
+    <set_variable name="playerShieldSharingDockCooldownTimerIsActive" value="1.0" integer="yes"/>
 
     
     <get_object_property player_slot="1" property="shieldMaxStateFront" variable="player1OriginalShieldMaxStateFront" />
@@ -29,6 +30,7 @@
     <set_variable name="player1ShieldSharingEnabled" value="0.0" />
 
     <set_timer name="player1ShieldSharingDockCooldownTimer" seconds="1" />
+    <set_variable name="playerShieldSharingDockCooldownTimerIsActive" value="1.0" integer="yes"/>
 
     
     <get_object_property player_slot="2" property="shieldMaxStateFront" variable="player2OriginalShieldMaxStateFront" />
@@ -38,6 +40,7 @@
     <set_variable name="player2ShieldSharingEnabled" value="0.0" />
 
     <set_timer name="player2ShieldSharingDockCooldownTimer" seconds="1" />
+    <set_variable name="playerShieldSharingDockCooldownTimerIsActive" value="1.0" integer="yes"/>
 
     
     <get_object_property player_slot="3" property="shieldMaxStateFront" variable="player3OriginalShieldMaxStateFront" />
@@ -47,6 +50,7 @@
     <set_variable name="player3ShieldSharingEnabled" value="0.0" />
 
     <set_timer name="player3ShieldSharingDockCooldownTimer" seconds="1" />
+    <set_variable name="playerShieldSharingDockCooldownTimerIsActive" value="1.0" integer="yes"/>
 
     
     <get_object_property player_slot="4" property="shieldMaxStateFront" variable="player4OriginalShieldMaxStateFront" />
@@ -56,6 +60,7 @@
     <set_variable name="player4ShieldSharingEnabled" value="0.0" />
 
     <set_timer name="player4ShieldSharingDockCooldownTimer" seconds="1" />
+    <set_variable name="playerShieldSharingDockCooldownTimerIsActive" value="1.0" integer="yes"/>
 
     
     <get_object_property player_slot="5" property="shieldMaxStateFront" variable="player5OriginalShieldMaxStateFront" />
@@ -65,6 +70,7 @@
     <set_variable name="player5ShieldSharingEnabled" value="0.0" />
 
     <set_timer name="player5ShieldSharingDockCooldownTimer" seconds="1" />
+    <set_variable name="playerShieldSharingDockCooldownTimerIsActive" value="1.0" integer="yes"/>
 
     
     <get_object_property player_slot="6" property="shieldMaxStateFront" variable="player6OriginalShieldMaxStateFront" />
@@ -74,6 +80,7 @@
     <set_variable name="player6ShieldSharingEnabled" value="0.0" />
 
     <set_timer name="player6ShieldSharingDockCooldownTimer" seconds="1" />
+    <set_variable name="playerShieldSharingDockCooldownTimerIsActive" value="1.0" integer="yes"/>
 
     
     <get_object_property player_slot="7" property="shieldMaxStateFront" variable="player7OriginalShieldMaxStateFront" />
@@ -83,6 +90,7 @@
     <set_variable name="player7ShieldSharingEnabled" value="0.0" />
 
     <set_timer name="player7ShieldSharingDockCooldownTimer" seconds="1" />
+    <set_variable name="playerShieldSharingDockCooldownTimerIsActive" value="1.0" integer="yes"/>
 
     
 
@@ -98,8 +106,8 @@
     <if_variable name="Ship1Modules" comparator="NOT" value="2.0" />
     <if_variable name="Ship1CommsMenu" comparator="EQUALS" value="1.0" />
 
-    <clear_comms_button text="-Arm Joint Shield Matrix Prototype MkI" player_slot="0"/>
-    <clear_comms_button text="-Disarm Joint Shield Matrix Prototype MkI" player_slot="0"/>
+    <clear_comms_button text="-Arm Joint Shield Matrix Prototype MkII" player_slot="0"/>
+    <clear_comms_button text="-Disarm Joint Shield Matrix Prototype MkII" player_slot="0"/>
   </event>
 
   <event name="0 handle Modules button press if no other modules are loaded" >
@@ -124,7 +132,7 @@
 
     <if_variable name="Ship1Modules" comparator="EQUALS" value="2.0" />
     <if_variable name="player0ShieldSharingEnabled" comparator="NOT" value="1.0" />
-    <set_comms_button text="-Arm Joint Shield Matrix Prototype MkI" player_slot="0" />
+    <set_comms_button text="-Arm Joint Shield Matrix Prototype MkII" player_slot="0" />
   </event>
 
   <event name="0 comms menu show Disable button" >
@@ -132,31 +140,36 @@
 
     <if_variable name="Ship1Modules" comparator="EQUALS" value="2.0" />
     <if_variable name="player0ShieldSharingEnabled" comparator="NOT" value="0.0" />
-    <set_comms_button text="-Disarm Joint Shield Matrix Prototype MkI" player_slot="0" />
+    <set_comms_button text="-Disarm Joint Shield Matrix Prototype MkII" player_slot="0" />
   </event>
 
   <event name="0 comms menu on Enable" >
     <log text="0 comms menu on Enable" />
 
-    <if_comms_button text="-Arm Joint Shield Matrix Prototype MkI" player_slot="0"/>
+    <if_comms_button text="-Arm Joint Shield Matrix Prototype MkII" player_slot="0"/>
     <set_variable name="player0ShieldSharingEnabled" value="1.0" />
     <set_variable name="Ship1Modules" value="0.0" />
     <set_variable name="Ship1CommsMenu" value="0.0" />
-    <clear_comms_button text="-Arm Joint Shield Matrix Prototype MkI" player_slot="0"/>
+    <clear_comms_button text="-Arm Joint Shield Matrix Prototype MkII" player_slot="0"/>
 
-    <incoming_comms_text from="CHANNEL 1" sideValue="playerSide" type="STATUS">Joint Shield Matrix Prototype MkI ARMED</incoming_comms_text>
+    <incoming_comms_text from="CHANNEL 1" sideValue="playerSide" type="STATUS">Joint Shield Matrix Prototype MkII ARMED</incoming_comms_text>
   </event>
 
   <event name="0 comms menu on Disable" >
     <log text="0 comms menu on Disable" />
 
-    <if_comms_button text="-Disarm Joint Shield Matrix Prototype MkI" player_slot="0" />
+    <if_comms_button text="-Disarm Joint Shield Matrix Prototype MkII" player_slot="0" />
     <set_variable name="player0ShieldSharingEnabled" value="0.0" />
     <set_variable name="Ship1Modules" value="0.0" />
     <set_variable name="Ship1CommsMenu" value="0.0" />
-    <clear_comms_button text="-Disarm Joint Shield Matrix Prototype MkI" player_slot="0"/>
+    <clear_comms_button text="-Disarm Joint Shield Matrix Prototype MkII" player_slot="0"/>
 
-    <incoming_comms_text from="CHANNEL 1" sideValue="playerSide" type="STATUS">Joint Shield Matrix Prototype MkI DISARMED</incoming_comms_text>
+
+    <incoming_comms_text from="CHANNEL 1" sideValue="playerSide" type="STATUS">Joint Shield Matrix Prototype MkII DISARMED</incoming_comms_text>
+
+    <incoming_comms_text from="CHANNEL 1" sideValue="playerSide" type="STATUS">Joint Shield Matrix Prototype MkII RECALIBRATING:15sec (reason:disarmed)</incoming_comms_text>
+    <set_variable name="player0ShieldSharingDockCooldownTimerIsActive" value="1.0" integer="yes"/>
+    <set_timer name="player0ShieldSharingDockCooldownTimer" seconds="15" />
   </event>
 
 
@@ -176,13 +189,86 @@
     <addto_object_property player_slot="0" property="shieldMaxStateBack" value="-0.5" />
   </event>
 
+
   <event name="0 prevent shield sharing when docked and right after dock to prevent toggling exploit" >
     <log text="0 prevent shield sharing when docked and right after dock to prevent toggling exploit" />
 
+    <if_exists player_slot="0" />
     <if_docked player_slot="0" />
 
+    <set_variable name="player0ShieldSharingDockCooldownTimerIsActive" value="1.0" integer="yes"/>
     <set_timer name="player0ShieldSharingDockCooldownTimer" seconds="15" />
   </event>
+  <event name="0 shield sharing - on undock msg" >
+    <log text="0 shield sharing - on undock msg" />
+
+    <if_variable name="player0PrevDockState" comparator="EQUALS" value="1.0" />
+    <if_exists player_slot="0" />
+    <if_docked not="yes" player_slot="0" />
+
+    <incoming_comms_text from="CHANNEL 1" sideValue="playerSide" type="STATUS">Joint Shield Matrix Prototype MkII RECALIBRATING:15sec (reason:undocked)</incoming_comms_text>
+  </event>
+  <event name="0 shield sharing- on dock msg" >
+    <log text="0 shield sharing- on dock msg" />
+
+    <if_variable name="player0PrevDockState" comparator="EQUALS" value="0.0" />
+    <if_exists player_slot="0" />
+    <if_docked player_slot="0" />
+
+    <incoming_comms_text from="CHANNEL 1" sideValue="playerSide" type="STATUS">Joint Shield Matrix Prototype MkII DISABLED (reason:docked)</incoming_comms_text>
+  </event>
+  <event name="0 shield sharing- on still docked msg" >
+    <log text="0 shield sharing- on still docked msg" />
+    <if_timer_finished name="player0ShieldSharingDockCooldownTimer" />
+
+    <if_variable name="player0PrevDockState" comparator="EQUALS" value="1.0" />
+    <if_exists player_slot="0" />
+    <if_docked player_slot="0" />
+
+    <incoming_comms_text from="CHANNEL 1" sideValue="playerSide" type="STATUS">Joint Shield Matrix Prototype MkII DISABLED (reason:stillDocked)</incoming_comms_text>
+  </event>
+
+
+  <event name="0 prevent shield sharing right after shields off to prevent toggling exploit" >
+    <log text="0 prevent shield sharing right after shields off to prevent toggling exploit" />
+
+    <if_variable name="player0PrevShieldState" comparator="EQUALS" value="1.0" />
+    <if_object_property player_slot="0" property="shieldsOn" comparator="EQUALS" value="0.0" />
+
+    <incoming_comms_text from="CHANNEL 1" sideValue="playerSide" type="STATUS">Joint Shield Matrix Prototype MkII RECALIBRATING:15sec (reason:shieldsDown)</incoming_comms_text>
+
+    <set_variable name="player0ShieldSharingDockCooldownTimerIsActive" value="1.0" integer="yes"/>
+    <set_timer name="player0ShieldSharingDockCooldownTimer" seconds="15" />
+  </event>
+
+
+
+  <event name="0 on cooldown finished" >
+    <log text="0 on cooldown finished" />
+
+    <if_timer_finished name="player0ShieldSharingDockCooldownTimer" />
+    <if_variable name="player0ShieldSharingDockCooldownTimerIsActive" comparator="EQUALS" value="1.0" />
+
+    <incoming_comms_text from="CHANNEL 1" sideValue="playerSide" type="STATUS">Joint Shield Matrix Prototype MkII READY</incoming_comms_text>
+
+    <set_variable name="player0ShieldSharingDockCooldownTimerIsActive" value="0.0" integer="yes"/>
+  </event>
+
+  <event name="0 track undocked" >
+    <if_exists player_slot="0" />
+    <if_docked not="yes" player_slot="0" />
+    <set_variable name="player0PrevDockState" value="0.0" integer="yes"/>
+  </event>
+  <event name="0 track docked" >
+    <if_exists player_slot="0" />
+    <if_docked player_slot="0" />
+    <set_variable name="player0PrevDockState" value="1.0" integer="yes"/>
+  </event>
+
+  <event name="0 track shieldsOn" >
+    <get_object_property player_slot="0" property="shieldsOn" variable="player0PrevShieldState" />
+  </event>
+
 
   
   
@@ -248,11 +334,8 @@
     <set_object_property player_slot="1" property="shieldStateFront" value="avgStateFront" />
     <set_object_property player_slot="1" property="shieldStateBack" value="avgStateBack" />
 
-
     <addto_object_property player_slot="0" value="0.002" property="systemCurHeatFrontShield" />
     <addto_object_property player_slot="0" value="0.002" property="systemCurHeatBackShield" />
-
-    <set_variable name="p0IsShieldSharing" value="1.0" integer="yes"/>
   </event>
   
   
@@ -317,11 +400,8 @@
     <set_object_property player_slot="2" property="shieldStateFront" value="avgStateFront" />
     <set_object_property player_slot="2" property="shieldStateBack" value="avgStateBack" />
 
-
     <addto_object_property player_slot="0" value="0.002" property="systemCurHeatFrontShield" />
     <addto_object_property player_slot="0" value="0.002" property="systemCurHeatBackShield" />
-
-    <set_variable name="p0IsShieldSharing" value="1.0" integer="yes"/>
   </event>
   
   
@@ -386,11 +466,8 @@
     <set_object_property player_slot="3" property="shieldStateFront" value="avgStateFront" />
     <set_object_property player_slot="3" property="shieldStateBack" value="avgStateBack" />
 
-
     <addto_object_property player_slot="0" value="0.002" property="systemCurHeatFrontShield" />
     <addto_object_property player_slot="0" value="0.002" property="systemCurHeatBackShield" />
-
-    <set_variable name="p0IsShieldSharing" value="1.0" integer="yes"/>
   </event>
   
   
@@ -455,11 +532,8 @@
     <set_object_property player_slot="4" property="shieldStateFront" value="avgStateFront" />
     <set_object_property player_slot="4" property="shieldStateBack" value="avgStateBack" />
 
-
     <addto_object_property player_slot="0" value="0.002" property="systemCurHeatFrontShield" />
     <addto_object_property player_slot="0" value="0.002" property="systemCurHeatBackShield" />
-
-    <set_variable name="p0IsShieldSharing" value="1.0" integer="yes"/>
   </event>
   
   
@@ -524,11 +598,8 @@
     <set_object_property player_slot="5" property="shieldStateFront" value="avgStateFront" />
     <set_object_property player_slot="5" property="shieldStateBack" value="avgStateBack" />
 
-
     <addto_object_property player_slot="0" value="0.002" property="systemCurHeatFrontShield" />
     <addto_object_property player_slot="0" value="0.002" property="systemCurHeatBackShield" />
-
-    <set_variable name="p0IsShieldSharing" value="1.0" integer="yes"/>
   </event>
   
   
@@ -593,11 +664,8 @@
     <set_object_property player_slot="6" property="shieldStateFront" value="avgStateFront" />
     <set_object_property player_slot="6" property="shieldStateBack" value="avgStateBack" />
 
-
     <addto_object_property player_slot="0" value="0.002" property="systemCurHeatFrontShield" />
     <addto_object_property player_slot="0" value="0.002" property="systemCurHeatBackShield" />
-
-    <set_variable name="p0IsShieldSharing" value="1.0" integer="yes"/>
   </event>
   
   
@@ -662,11 +730,8 @@
     <set_object_property player_slot="7" property="shieldStateFront" value="avgStateFront" />
     <set_object_property player_slot="7" property="shieldStateBack" value="avgStateBack" />
 
-
     <addto_object_property player_slot="0" value="0.002" property="systemCurHeatFrontShield" />
     <addto_object_property player_slot="0" value="0.002" property="systemCurHeatBackShield" />
-
-    <set_variable name="p0IsShieldSharing" value="1.0" integer="yes"/>
   </event>
   
   
@@ -678,8 +743,8 @@
     <if_variable name="Ship2Modules" comparator="NOT" value="2.0" />
     <if_variable name="Ship2CommsMenu" comparator="EQUALS" value="1.0" />
 
-    <clear_comms_button text="*Arm Joint Shield Matrix Prototype MkI" player_slot="1"/>
-    <clear_comms_button text="*Disarm Joint Shield Matrix Prototype MkI" player_slot="1"/>
+    <clear_comms_button text="*Arm Joint Shield Matrix Prototype MkII" player_slot="1"/>
+    <clear_comms_button text="*Disarm Joint Shield Matrix Prototype MkII" player_slot="1"/>
   </event>
 
   <event name="1 handle Modules button press if no other modules are loaded" >
@@ -704,7 +769,7 @@
 
     <if_variable name="Ship2Modules" comparator="EQUALS" value="2.0" />
     <if_variable name="player1ShieldSharingEnabled" comparator="NOT" value="1.0" />
-    <set_comms_button text="*Arm Joint Shield Matrix Prototype MkI" player_slot="1" />
+    <set_comms_button text="*Arm Joint Shield Matrix Prototype MkII" player_slot="1" />
   </event>
 
   <event name="1 comms menu show Disable button" >
@@ -712,31 +777,36 @@
 
     <if_variable name="Ship2Modules" comparator="EQUALS" value="2.0" />
     <if_variable name="player1ShieldSharingEnabled" comparator="NOT" value="0.0" />
-    <set_comms_button text="*Disarm Joint Shield Matrix Prototype MkI" player_slot="1" />
+    <set_comms_button text="*Disarm Joint Shield Matrix Prototype MkII" player_slot="1" />
   </event>
 
   <event name="1 comms menu on Enable" >
     <log text="1 comms menu on Enable" />
 
-    <if_comms_button text="*Arm Joint Shield Matrix Prototype MkI" player_slot="1"/>
+    <if_comms_button text="*Arm Joint Shield Matrix Prototype MkII" player_slot="1"/>
     <set_variable name="player1ShieldSharingEnabled" value="1.0" />
     <set_variable name="Ship2Modules" value="0.0" />
     <set_variable name="Ship2CommsMenu" value="0.0" />
-    <clear_comms_button text="*Arm Joint Shield Matrix Prototype MkI" player_slot="1"/>
+    <clear_comms_button text="*Arm Joint Shield Matrix Prototype MkII" player_slot="1"/>
 
-    <incoming_comms_text from="CHANNEL 2" sideValue="playerSide" type="STATUS">Joint Shield Matrix Prototype MkI ARMED</incoming_comms_text>
+    <incoming_comms_text from="CHANNEL 2" sideValue="playerSide" type="STATUS">Joint Shield Matrix Prototype MkII ARMED</incoming_comms_text>
   </event>
 
   <event name="1 comms menu on Disable" >
     <log text="1 comms menu on Disable" />
 
-    <if_comms_button text="*Disarm Joint Shield Matrix Prototype MkI" player_slot="1" />
+    <if_comms_button text="*Disarm Joint Shield Matrix Prototype MkII" player_slot="1" />
     <set_variable name="player1ShieldSharingEnabled" value="0.0" />
     <set_variable name="Ship2Modules" value="0.0" />
     <set_variable name="Ship2CommsMenu" value="0.0" />
-    <clear_comms_button text="*Disarm Joint Shield Matrix Prototype MkI" player_slot="1"/>
+    <clear_comms_button text="*Disarm Joint Shield Matrix Prototype MkII" player_slot="1"/>
 
-    <incoming_comms_text from="CHANNEL 2" sideValue="playerSide" type="STATUS">Joint Shield Matrix Prototype MkI DISARMED</incoming_comms_text>
+
+    <incoming_comms_text from="CHANNEL 2" sideValue="playerSide" type="STATUS">Joint Shield Matrix Prototype MkII DISARMED</incoming_comms_text>
+
+    <incoming_comms_text from="CHANNEL 2" sideValue="playerSide" type="STATUS">Joint Shield Matrix Prototype MkII RECALIBRATING:15sec (reason:disarmed)</incoming_comms_text>
+    <set_variable name="player1ShieldSharingDockCooldownTimerIsActive" value="1.0" integer="yes"/>
+    <set_timer name="player1ShieldSharingDockCooldownTimer" seconds="15" />
   </event>
 
 
@@ -756,13 +826,86 @@
     <addto_object_property player_slot="1" property="shieldMaxStateBack" value="-0.5" />
   </event>
 
+
   <event name="1 prevent shield sharing when docked and right after dock to prevent toggling exploit" >
     <log text="1 prevent shield sharing when docked and right after dock to prevent toggling exploit" />
 
+    <if_exists player_slot="1" />
     <if_docked player_slot="1" />
 
+    <set_variable name="player1ShieldSharingDockCooldownTimerIsActive" value="1.0" integer="yes"/>
     <set_timer name="player1ShieldSharingDockCooldownTimer" seconds="15" />
   </event>
+  <event name="1 shield sharing - on undock msg" >
+    <log text="1 shield sharing - on undock msg" />
+
+    <if_variable name="player1PrevDockState" comparator="EQUALS" value="1.0" />
+    <if_exists player_slot="1" />
+    <if_docked not="yes" player_slot="1" />
+
+    <incoming_comms_text from="CHANNEL 2" sideValue="playerSide" type="STATUS">Joint Shield Matrix Prototype MkII RECALIBRATING:15sec (reason:undocked)</incoming_comms_text>
+  </event>
+  <event name="1 shield sharing- on dock msg" >
+    <log text="1 shield sharing- on dock msg" />
+
+    <if_variable name="player1PrevDockState" comparator="EQUALS" value="0.0" />
+    <if_exists player_slot="1" />
+    <if_docked player_slot="1" />
+
+    <incoming_comms_text from="CHANNEL 2" sideValue="playerSide" type="STATUS">Joint Shield Matrix Prototype MkII DISABLED (reason:docked)</incoming_comms_text>
+  </event>
+  <event name="1 shield sharing- on still docked msg" >
+    <log text="1 shield sharing- on still docked msg" />
+    <if_timer_finished name="player1ShieldSharingDockCooldownTimer" />
+
+    <if_variable name="player1PrevDockState" comparator="EQUALS" value="1.0" />
+    <if_exists player_slot="1" />
+    <if_docked player_slot="1" />
+
+    <incoming_comms_text from="CHANNEL 2" sideValue="playerSide" type="STATUS">Joint Shield Matrix Prototype MkII DISABLED (reason:stillDocked)</incoming_comms_text>
+  </event>
+
+
+  <event name="1 prevent shield sharing right after shields off to prevent toggling exploit" >
+    <log text="1 prevent shield sharing right after shields off to prevent toggling exploit" />
+
+    <if_variable name="player1PrevShieldState" comparator="EQUALS" value="1.0" />
+    <if_object_property player_slot="1" property="shieldsOn" comparator="EQUALS" value="0.0" />
+
+    <incoming_comms_text from="CHANNEL 2" sideValue="playerSide" type="STATUS">Joint Shield Matrix Prototype MkII RECALIBRATING:15sec (reason:shieldsDown)</incoming_comms_text>
+
+    <set_variable name="player1ShieldSharingDockCooldownTimerIsActive" value="1.0" integer="yes"/>
+    <set_timer name="player1ShieldSharingDockCooldownTimer" seconds="15" />
+  </event>
+
+
+
+  <event name="1 on cooldown finished" >
+    <log text="1 on cooldown finished" />
+
+    <if_timer_finished name="player1ShieldSharingDockCooldownTimer" />
+    <if_variable name="player1ShieldSharingDockCooldownTimerIsActive" comparator="EQUALS" value="1.0" />
+
+    <incoming_comms_text from="CHANNEL 2" sideValue="playerSide" type="STATUS">Joint Shield Matrix Prototype MkII READY</incoming_comms_text>
+
+    <set_variable name="player1ShieldSharingDockCooldownTimerIsActive" value="0.0" integer="yes"/>
+  </event>
+
+  <event name="1 track undocked" >
+    <if_exists player_slot="1" />
+    <if_docked not="yes" player_slot="1" />
+    <set_variable name="player1PrevDockState" value="0.0" integer="yes"/>
+  </event>
+  <event name="1 track docked" >
+    <if_exists player_slot="1" />
+    <if_docked player_slot="1" />
+    <set_variable name="player1PrevDockState" value="1.0" integer="yes"/>
+  </event>
+
+  <event name="1 track shieldsOn" >
+    <get_object_property player_slot="1" property="shieldsOn" variable="player1PrevShieldState" />
+  </event>
+
 
   
   
@@ -826,11 +969,8 @@
     <set_object_property player_slot="0" property="shieldStateFront" value="avgStateFront" />
     <set_object_property player_slot="0" property="shieldStateBack" value="avgStateBack" />
 
-
     <addto_object_property player_slot="1" value="0.002" property="systemCurHeatFrontShield" />
     <addto_object_property player_slot="1" value="0.002" property="systemCurHeatBackShield" />
-
-    <set_variable name="p1IsShieldSharing" value="1.0" integer="yes"/>
   </event>
   
   
@@ -897,11 +1037,8 @@
     <set_object_property player_slot="2" property="shieldStateFront" value="avgStateFront" />
     <set_object_property player_slot="2" property="shieldStateBack" value="avgStateBack" />
 
-
     <addto_object_property player_slot="1" value="0.002" property="systemCurHeatFrontShield" />
     <addto_object_property player_slot="1" value="0.002" property="systemCurHeatBackShield" />
-
-    <set_variable name="p1IsShieldSharing" value="1.0" integer="yes"/>
   </event>
   
   
@@ -966,11 +1103,8 @@
     <set_object_property player_slot="3" property="shieldStateFront" value="avgStateFront" />
     <set_object_property player_slot="3" property="shieldStateBack" value="avgStateBack" />
 
-
     <addto_object_property player_slot="1" value="0.002" property="systemCurHeatFrontShield" />
     <addto_object_property player_slot="1" value="0.002" property="systemCurHeatBackShield" />
-
-    <set_variable name="p1IsShieldSharing" value="1.0" integer="yes"/>
   </event>
   
   
@@ -1035,11 +1169,8 @@
     <set_object_property player_slot="4" property="shieldStateFront" value="avgStateFront" />
     <set_object_property player_slot="4" property="shieldStateBack" value="avgStateBack" />
 
-
     <addto_object_property player_slot="1" value="0.002" property="systemCurHeatFrontShield" />
     <addto_object_property player_slot="1" value="0.002" property="systemCurHeatBackShield" />
-
-    <set_variable name="p1IsShieldSharing" value="1.0" integer="yes"/>
   </event>
   
   
@@ -1104,11 +1235,8 @@
     <set_object_property player_slot="5" property="shieldStateFront" value="avgStateFront" />
     <set_object_property player_slot="5" property="shieldStateBack" value="avgStateBack" />
 
-
     <addto_object_property player_slot="1" value="0.002" property="systemCurHeatFrontShield" />
     <addto_object_property player_slot="1" value="0.002" property="systemCurHeatBackShield" />
-
-    <set_variable name="p1IsShieldSharing" value="1.0" integer="yes"/>
   </event>
   
   
@@ -1173,11 +1301,8 @@
     <set_object_property player_slot="6" property="shieldStateFront" value="avgStateFront" />
     <set_object_property player_slot="6" property="shieldStateBack" value="avgStateBack" />
 
-
     <addto_object_property player_slot="1" value="0.002" property="systemCurHeatFrontShield" />
     <addto_object_property player_slot="1" value="0.002" property="systemCurHeatBackShield" />
-
-    <set_variable name="p1IsShieldSharing" value="1.0" integer="yes"/>
   </event>
   
   
@@ -1242,11 +1367,8 @@
     <set_object_property player_slot="7" property="shieldStateFront" value="avgStateFront" />
     <set_object_property player_slot="7" property="shieldStateBack" value="avgStateBack" />
 
-
     <addto_object_property player_slot="1" value="0.002" property="systemCurHeatFrontShield" />
     <addto_object_property player_slot="1" value="0.002" property="systemCurHeatBackShield" />
-
-    <set_variable name="p1IsShieldSharing" value="1.0" integer="yes"/>
   </event>
   
   
@@ -1258,8 +1380,8 @@
     <if_variable name="Ship3Modules" comparator="NOT" value="2.0" />
     <if_variable name="Ship3CommsMenu" comparator="EQUALS" value="1.0" />
 
-    <clear_comms_button text="**Arm Joint Shield Matrix Prototype MkI" player_slot="2"/>
-    <clear_comms_button text="**Disarm Joint Shield Matrix Prototype MkI" player_slot="2"/>
+    <clear_comms_button text="**Arm Joint Shield Matrix Prototype MkII" player_slot="2"/>
+    <clear_comms_button text="**Disarm Joint Shield Matrix Prototype MkII" player_slot="2"/>
   </event>
 
   <event name="2 handle Modules button press if no other modules are loaded" >
@@ -1284,7 +1406,7 @@
 
     <if_variable name="Ship3Modules" comparator="EQUALS" value="2.0" />
     <if_variable name="player2ShieldSharingEnabled" comparator="NOT" value="1.0" />
-    <set_comms_button text="**Arm Joint Shield Matrix Prototype MkI" player_slot="2" />
+    <set_comms_button text="**Arm Joint Shield Matrix Prototype MkII" player_slot="2" />
   </event>
 
   <event name="2 comms menu show Disable button" >
@@ -1292,31 +1414,36 @@
 
     <if_variable name="Ship3Modules" comparator="EQUALS" value="2.0" />
     <if_variable name="player2ShieldSharingEnabled" comparator="NOT" value="0.0" />
-    <set_comms_button text="**Disarm Joint Shield Matrix Prototype MkI" player_slot="2" />
+    <set_comms_button text="**Disarm Joint Shield Matrix Prototype MkII" player_slot="2" />
   </event>
 
   <event name="2 comms menu on Enable" >
     <log text="2 comms menu on Enable" />
 
-    <if_comms_button text="**Arm Joint Shield Matrix Prototype MkI" player_slot="2"/>
+    <if_comms_button text="**Arm Joint Shield Matrix Prototype MkII" player_slot="2"/>
     <set_variable name="player2ShieldSharingEnabled" value="1.0" />
     <set_variable name="Ship3Modules" value="0.0" />
     <set_variable name="Ship3CommsMenu" value="0.0" />
-    <clear_comms_button text="**Arm Joint Shield Matrix Prototype MkI" player_slot="2"/>
+    <clear_comms_button text="**Arm Joint Shield Matrix Prototype MkII" player_slot="2"/>
 
-    <incoming_comms_text from="CHANNEL 3" sideValue="playerSide" type="STATUS">Joint Shield Matrix Prototype MkI ARMED</incoming_comms_text>
+    <incoming_comms_text from="CHANNEL 3" sideValue="playerSide" type="STATUS">Joint Shield Matrix Prototype MkII ARMED</incoming_comms_text>
   </event>
 
   <event name="2 comms menu on Disable" >
     <log text="2 comms menu on Disable" />
 
-    <if_comms_button text="**Disarm Joint Shield Matrix Prototype MkI" player_slot="2" />
+    <if_comms_button text="**Disarm Joint Shield Matrix Prototype MkII" player_slot="2" />
     <set_variable name="player2ShieldSharingEnabled" value="0.0" />
     <set_variable name="Ship3Modules" value="0.0" />
     <set_variable name="Ship3CommsMenu" value="0.0" />
-    <clear_comms_button text="**Disarm Joint Shield Matrix Prototype MkI" player_slot="2"/>
+    <clear_comms_button text="**Disarm Joint Shield Matrix Prototype MkII" player_slot="2"/>
 
-    <incoming_comms_text from="CHANNEL 3" sideValue="playerSide" type="STATUS">Joint Shield Matrix Prototype MkI DISARMED</incoming_comms_text>
+
+    <incoming_comms_text from="CHANNEL 3" sideValue="playerSide" type="STATUS">Joint Shield Matrix Prototype MkII DISARMED</incoming_comms_text>
+
+    <incoming_comms_text from="CHANNEL 3" sideValue="playerSide" type="STATUS">Joint Shield Matrix Prototype MkII RECALIBRATING:15sec (reason:disarmed)</incoming_comms_text>
+    <set_variable name="player2ShieldSharingDockCooldownTimerIsActive" value="1.0" integer="yes"/>
+    <set_timer name="player2ShieldSharingDockCooldownTimer" seconds="15" />
   </event>
 
 
@@ -1336,13 +1463,86 @@
     <addto_object_property player_slot="2" property="shieldMaxStateBack" value="-0.5" />
   </event>
 
+
   <event name="2 prevent shield sharing when docked and right after dock to prevent toggling exploit" >
     <log text="2 prevent shield sharing when docked and right after dock to prevent toggling exploit" />
 
+    <if_exists player_slot="2" />
     <if_docked player_slot="2" />
 
+    <set_variable name="player2ShieldSharingDockCooldownTimerIsActive" value="1.0" integer="yes"/>
     <set_timer name="player2ShieldSharingDockCooldownTimer" seconds="15" />
   </event>
+  <event name="2 shield sharing - on undock msg" >
+    <log text="2 shield sharing - on undock msg" />
+
+    <if_variable name="player2PrevDockState" comparator="EQUALS" value="1.0" />
+    <if_exists player_slot="2" />
+    <if_docked not="yes" player_slot="2" />
+
+    <incoming_comms_text from="CHANNEL 3" sideValue="playerSide" type="STATUS">Joint Shield Matrix Prototype MkII RECALIBRATING:15sec (reason:undocked)</incoming_comms_text>
+  </event>
+  <event name="2 shield sharing- on dock msg" >
+    <log text="2 shield sharing- on dock msg" />
+
+    <if_variable name="player2PrevDockState" comparator="EQUALS" value="0.0" />
+    <if_exists player_slot="2" />
+    <if_docked player_slot="2" />
+
+    <incoming_comms_text from="CHANNEL 3" sideValue="playerSide" type="STATUS">Joint Shield Matrix Prototype MkII DISABLED (reason:docked)</incoming_comms_text>
+  </event>
+  <event name="2 shield sharing- on still docked msg" >
+    <log text="2 shield sharing- on still docked msg" />
+    <if_timer_finished name="player2ShieldSharingDockCooldownTimer" />
+
+    <if_variable name="player2PrevDockState" comparator="EQUALS" value="1.0" />
+    <if_exists player_slot="2" />
+    <if_docked player_slot="2" />
+
+    <incoming_comms_text from="CHANNEL 3" sideValue="playerSide" type="STATUS">Joint Shield Matrix Prototype MkII DISABLED (reason:stillDocked)</incoming_comms_text>
+  </event>
+
+
+  <event name="2 prevent shield sharing right after shields off to prevent toggling exploit" >
+    <log text="2 prevent shield sharing right after shields off to prevent toggling exploit" />
+
+    <if_variable name="player2PrevShieldState" comparator="EQUALS" value="1.0" />
+    <if_object_property player_slot="2" property="shieldsOn" comparator="EQUALS" value="0.0" />
+
+    <incoming_comms_text from="CHANNEL 3" sideValue="playerSide" type="STATUS">Joint Shield Matrix Prototype MkII RECALIBRATING:15sec (reason:shieldsDown)</incoming_comms_text>
+
+    <set_variable name="player2ShieldSharingDockCooldownTimerIsActive" value="1.0" integer="yes"/>
+    <set_timer name="player2ShieldSharingDockCooldownTimer" seconds="15" />
+  </event>
+
+
+
+  <event name="2 on cooldown finished" >
+    <log text="2 on cooldown finished" />
+
+    <if_timer_finished name="player2ShieldSharingDockCooldownTimer" />
+    <if_variable name="player2ShieldSharingDockCooldownTimerIsActive" comparator="EQUALS" value="1.0" />
+
+    <incoming_comms_text from="CHANNEL 3" sideValue="playerSide" type="STATUS">Joint Shield Matrix Prototype MkII READY</incoming_comms_text>
+
+    <set_variable name="player2ShieldSharingDockCooldownTimerIsActive" value="0.0" integer="yes"/>
+  </event>
+
+  <event name="2 track undocked" >
+    <if_exists player_slot="2" />
+    <if_docked not="yes" player_slot="2" />
+    <set_variable name="player2PrevDockState" value="0.0" integer="yes"/>
+  </event>
+  <event name="2 track docked" >
+    <if_exists player_slot="2" />
+    <if_docked player_slot="2" />
+    <set_variable name="player2PrevDockState" value="1.0" integer="yes"/>
+  </event>
+
+  <event name="2 track shieldsOn" >
+    <get_object_property player_slot="2" property="shieldsOn" variable="player2PrevShieldState" />
+  </event>
+
 
   
   
@@ -1406,11 +1606,8 @@
     <set_object_property player_slot="0" property="shieldStateFront" value="avgStateFront" />
     <set_object_property player_slot="0" property="shieldStateBack" value="avgStateBack" />
 
-
     <addto_object_property player_slot="2" value="0.002" property="systemCurHeatFrontShield" />
     <addto_object_property player_slot="2" value="0.002" property="systemCurHeatBackShield" />
-
-    <set_variable name="p2IsShieldSharing" value="1.0" integer="yes"/>
   </event>
   
   
@@ -1475,11 +1672,8 @@
     <set_object_property player_slot="1" property="shieldStateFront" value="avgStateFront" />
     <set_object_property player_slot="1" property="shieldStateBack" value="avgStateBack" />
 
-
     <addto_object_property player_slot="2" value="0.002" property="systemCurHeatFrontShield" />
     <addto_object_property player_slot="2" value="0.002" property="systemCurHeatBackShield" />
-
-    <set_variable name="p2IsShieldSharing" value="1.0" integer="yes"/>
   </event>
   
   
@@ -1546,11 +1740,8 @@
     <set_object_property player_slot="3" property="shieldStateFront" value="avgStateFront" />
     <set_object_property player_slot="3" property="shieldStateBack" value="avgStateBack" />
 
-
     <addto_object_property player_slot="2" value="0.002" property="systemCurHeatFrontShield" />
     <addto_object_property player_slot="2" value="0.002" property="systemCurHeatBackShield" />
-
-    <set_variable name="p2IsShieldSharing" value="1.0" integer="yes"/>
   </event>
   
   
@@ -1615,11 +1806,8 @@
     <set_object_property player_slot="4" property="shieldStateFront" value="avgStateFront" />
     <set_object_property player_slot="4" property="shieldStateBack" value="avgStateBack" />
 
-
     <addto_object_property player_slot="2" value="0.002" property="systemCurHeatFrontShield" />
     <addto_object_property player_slot="2" value="0.002" property="systemCurHeatBackShield" />
-
-    <set_variable name="p2IsShieldSharing" value="1.0" integer="yes"/>
   </event>
   
   
@@ -1684,11 +1872,8 @@
     <set_object_property player_slot="5" property="shieldStateFront" value="avgStateFront" />
     <set_object_property player_slot="5" property="shieldStateBack" value="avgStateBack" />
 
-
     <addto_object_property player_slot="2" value="0.002" property="systemCurHeatFrontShield" />
     <addto_object_property player_slot="2" value="0.002" property="systemCurHeatBackShield" />
-
-    <set_variable name="p2IsShieldSharing" value="1.0" integer="yes"/>
   </event>
   
   
@@ -1753,11 +1938,8 @@
     <set_object_property player_slot="6" property="shieldStateFront" value="avgStateFront" />
     <set_object_property player_slot="6" property="shieldStateBack" value="avgStateBack" />
 
-
     <addto_object_property player_slot="2" value="0.002" property="systemCurHeatFrontShield" />
     <addto_object_property player_slot="2" value="0.002" property="systemCurHeatBackShield" />
-
-    <set_variable name="p2IsShieldSharing" value="1.0" integer="yes"/>
   </event>
   
   
@@ -1822,11 +2004,8 @@
     <set_object_property player_slot="7" property="shieldStateFront" value="avgStateFront" />
     <set_object_property player_slot="7" property="shieldStateBack" value="avgStateBack" />
 
-
     <addto_object_property player_slot="2" value="0.002" property="systemCurHeatFrontShield" />
     <addto_object_property player_slot="2" value="0.002" property="systemCurHeatBackShield" />
-
-    <set_variable name="p2IsShieldSharing" value="1.0" integer="yes"/>
   </event>
   
   
@@ -1838,8 +2017,8 @@
     <if_variable name="Ship4Modules" comparator="NOT" value="2.0" />
     <if_variable name="Ship4CommsMenu" comparator="EQUALS" value="1.0" />
 
-    <clear_comms_button text="--Arm Joint Shield Matrix Prototype MkI" player_slot="3"/>
-    <clear_comms_button text="--Disarm Joint Shield Matrix Prototype MkI" player_slot="3"/>
+    <clear_comms_button text="--Arm Joint Shield Matrix Prototype MkII" player_slot="3"/>
+    <clear_comms_button text="--Disarm Joint Shield Matrix Prototype MkII" player_slot="3"/>
   </event>
 
   <event name="3 handle Modules button press if no other modules are loaded" >
@@ -1864,7 +2043,7 @@
 
     <if_variable name="Ship4Modules" comparator="EQUALS" value="2.0" />
     <if_variable name="player3ShieldSharingEnabled" comparator="NOT" value="1.0" />
-    <set_comms_button text="--Arm Joint Shield Matrix Prototype MkI" player_slot="3" />
+    <set_comms_button text="--Arm Joint Shield Matrix Prototype MkII" player_slot="3" />
   </event>
 
   <event name="3 comms menu show Disable button" >
@@ -1872,31 +2051,36 @@
 
     <if_variable name="Ship4Modules" comparator="EQUALS" value="2.0" />
     <if_variable name="player3ShieldSharingEnabled" comparator="NOT" value="0.0" />
-    <set_comms_button text="--Disarm Joint Shield Matrix Prototype MkI" player_slot="3" />
+    <set_comms_button text="--Disarm Joint Shield Matrix Prototype MkII" player_slot="3" />
   </event>
 
   <event name="3 comms menu on Enable" >
     <log text="3 comms menu on Enable" />
 
-    <if_comms_button text="--Arm Joint Shield Matrix Prototype MkI" player_slot="3"/>
+    <if_comms_button text="--Arm Joint Shield Matrix Prototype MkII" player_slot="3"/>
     <set_variable name="player3ShieldSharingEnabled" value="1.0" />
     <set_variable name="Ship4Modules" value="0.0" />
     <set_variable name="Ship4CommsMenu" value="0.0" />
-    <clear_comms_button text="--Arm Joint Shield Matrix Prototype MkI" player_slot="3"/>
+    <clear_comms_button text="--Arm Joint Shield Matrix Prototype MkII" player_slot="3"/>
 
-    <incoming_comms_text from="CHANNEL 4" sideValue="playerSide" type="STATUS">Joint Shield Matrix Prototype MkI ARMED</incoming_comms_text>
+    <incoming_comms_text from="CHANNEL 4" sideValue="playerSide" type="STATUS">Joint Shield Matrix Prototype MkII ARMED</incoming_comms_text>
   </event>
 
   <event name="3 comms menu on Disable" >
     <log text="3 comms menu on Disable" />
 
-    <if_comms_button text="--Disarm Joint Shield Matrix Prototype MkI" player_slot="3" />
+    <if_comms_button text="--Disarm Joint Shield Matrix Prototype MkII" player_slot="3" />
     <set_variable name="player3ShieldSharingEnabled" value="0.0" />
     <set_variable name="Ship4Modules" value="0.0" />
     <set_variable name="Ship4CommsMenu" value="0.0" />
-    <clear_comms_button text="--Disarm Joint Shield Matrix Prototype MkI" player_slot="3"/>
+    <clear_comms_button text="--Disarm Joint Shield Matrix Prototype MkII" player_slot="3"/>
 
-    <incoming_comms_text from="CHANNEL 4" sideValue="playerSide" type="STATUS">Joint Shield Matrix Prototype MkI DISARMED</incoming_comms_text>
+
+    <incoming_comms_text from="CHANNEL 4" sideValue="playerSide" type="STATUS">Joint Shield Matrix Prototype MkII DISARMED</incoming_comms_text>
+
+    <incoming_comms_text from="CHANNEL 4" sideValue="playerSide" type="STATUS">Joint Shield Matrix Prototype MkII RECALIBRATING:15sec (reason:disarmed)</incoming_comms_text>
+    <set_variable name="player3ShieldSharingDockCooldownTimerIsActive" value="1.0" integer="yes"/>
+    <set_timer name="player3ShieldSharingDockCooldownTimer" seconds="15" />
   </event>
 
 
@@ -1916,13 +2100,86 @@
     <addto_object_property player_slot="3" property="shieldMaxStateBack" value="-0.5" />
   </event>
 
+
   <event name="3 prevent shield sharing when docked and right after dock to prevent toggling exploit" >
     <log text="3 prevent shield sharing when docked and right after dock to prevent toggling exploit" />
 
+    <if_exists player_slot="3" />
     <if_docked player_slot="3" />
 
+    <set_variable name="player3ShieldSharingDockCooldownTimerIsActive" value="1.0" integer="yes"/>
     <set_timer name="player3ShieldSharingDockCooldownTimer" seconds="15" />
   </event>
+  <event name="3 shield sharing - on undock msg" >
+    <log text="3 shield sharing - on undock msg" />
+
+    <if_variable name="player3PrevDockState" comparator="EQUALS" value="1.0" />
+    <if_exists player_slot="3" />
+    <if_docked not="yes" player_slot="3" />
+
+    <incoming_comms_text from="CHANNEL 4" sideValue="playerSide" type="STATUS">Joint Shield Matrix Prototype MkII RECALIBRATING:15sec (reason:undocked)</incoming_comms_text>
+  </event>
+  <event name="3 shield sharing- on dock msg" >
+    <log text="3 shield sharing- on dock msg" />
+
+    <if_variable name="player3PrevDockState" comparator="EQUALS" value="0.0" />
+    <if_exists player_slot="3" />
+    <if_docked player_slot="3" />
+
+    <incoming_comms_text from="CHANNEL 4" sideValue="playerSide" type="STATUS">Joint Shield Matrix Prototype MkII DISABLED (reason:docked)</incoming_comms_text>
+  </event>
+  <event name="3 shield sharing- on still docked msg" >
+    <log text="3 shield sharing- on still docked msg" />
+    <if_timer_finished name="player3ShieldSharingDockCooldownTimer" />
+
+    <if_variable name="player3PrevDockState" comparator="EQUALS" value="1.0" />
+    <if_exists player_slot="3" />
+    <if_docked player_slot="3" />
+
+    <incoming_comms_text from="CHANNEL 4" sideValue="playerSide" type="STATUS">Joint Shield Matrix Prototype MkII DISABLED (reason:stillDocked)</incoming_comms_text>
+  </event>
+
+
+  <event name="3 prevent shield sharing right after shields off to prevent toggling exploit" >
+    <log text="3 prevent shield sharing right after shields off to prevent toggling exploit" />
+
+    <if_variable name="player3PrevShieldState" comparator="EQUALS" value="1.0" />
+    <if_object_property player_slot="3" property="shieldsOn" comparator="EQUALS" value="0.0" />
+
+    <incoming_comms_text from="CHANNEL 4" sideValue="playerSide" type="STATUS">Joint Shield Matrix Prototype MkII RECALIBRATING:15sec (reason:shieldsDown)</incoming_comms_text>
+
+    <set_variable name="player3ShieldSharingDockCooldownTimerIsActive" value="1.0" integer="yes"/>
+    <set_timer name="player3ShieldSharingDockCooldownTimer" seconds="15" />
+  </event>
+
+
+
+  <event name="3 on cooldown finished" >
+    <log text="3 on cooldown finished" />
+
+    <if_timer_finished name="player3ShieldSharingDockCooldownTimer" />
+    <if_variable name="player3ShieldSharingDockCooldownTimerIsActive" comparator="EQUALS" value="1.0" />
+
+    <incoming_comms_text from="CHANNEL 4" sideValue="playerSide" type="STATUS">Joint Shield Matrix Prototype MkII READY</incoming_comms_text>
+
+    <set_variable name="player3ShieldSharingDockCooldownTimerIsActive" value="0.0" integer="yes"/>
+  </event>
+
+  <event name="3 track undocked" >
+    <if_exists player_slot="3" />
+    <if_docked not="yes" player_slot="3" />
+    <set_variable name="player3PrevDockState" value="0.0" integer="yes"/>
+  </event>
+  <event name="3 track docked" >
+    <if_exists player_slot="3" />
+    <if_docked player_slot="3" />
+    <set_variable name="player3PrevDockState" value="1.0" integer="yes"/>
+  </event>
+
+  <event name="3 track shieldsOn" >
+    <get_object_property player_slot="3" property="shieldsOn" variable="player3PrevShieldState" />
+  </event>
+
 
   
   
@@ -1986,11 +2243,8 @@
     <set_object_property player_slot="0" property="shieldStateFront" value="avgStateFront" />
     <set_object_property player_slot="0" property="shieldStateBack" value="avgStateBack" />
 
-
     <addto_object_property player_slot="3" value="0.002" property="systemCurHeatFrontShield" />
     <addto_object_property player_slot="3" value="0.002" property="systemCurHeatBackShield" />
-
-    <set_variable name="p3IsShieldSharing" value="1.0" integer="yes"/>
   </event>
   
   
@@ -2055,11 +2309,8 @@
     <set_object_property player_slot="1" property="shieldStateFront" value="avgStateFront" />
     <set_object_property player_slot="1" property="shieldStateBack" value="avgStateBack" />
 
-
     <addto_object_property player_slot="3" value="0.002" property="systemCurHeatFrontShield" />
     <addto_object_property player_slot="3" value="0.002" property="systemCurHeatBackShield" />
-
-    <set_variable name="p3IsShieldSharing" value="1.0" integer="yes"/>
   </event>
   
   
@@ -2124,11 +2375,8 @@
     <set_object_property player_slot="2" property="shieldStateFront" value="avgStateFront" />
     <set_object_property player_slot="2" property="shieldStateBack" value="avgStateBack" />
 
-
     <addto_object_property player_slot="3" value="0.002" property="systemCurHeatFrontShield" />
     <addto_object_property player_slot="3" value="0.002" property="systemCurHeatBackShield" />
-
-    <set_variable name="p3IsShieldSharing" value="1.0" integer="yes"/>
   </event>
   
   
@@ -2195,11 +2443,8 @@
     <set_object_property player_slot="4" property="shieldStateFront" value="avgStateFront" />
     <set_object_property player_slot="4" property="shieldStateBack" value="avgStateBack" />
 
-
     <addto_object_property player_slot="3" value="0.002" property="systemCurHeatFrontShield" />
     <addto_object_property player_slot="3" value="0.002" property="systemCurHeatBackShield" />
-
-    <set_variable name="p3IsShieldSharing" value="1.0" integer="yes"/>
   </event>
   
   
@@ -2264,11 +2509,8 @@
     <set_object_property player_slot="5" property="shieldStateFront" value="avgStateFront" />
     <set_object_property player_slot="5" property="shieldStateBack" value="avgStateBack" />
 
-
     <addto_object_property player_slot="3" value="0.002" property="systemCurHeatFrontShield" />
     <addto_object_property player_slot="3" value="0.002" property="systemCurHeatBackShield" />
-
-    <set_variable name="p3IsShieldSharing" value="1.0" integer="yes"/>
   </event>
   
   
@@ -2333,11 +2575,8 @@
     <set_object_property player_slot="6" property="shieldStateFront" value="avgStateFront" />
     <set_object_property player_slot="6" property="shieldStateBack" value="avgStateBack" />
 
-
     <addto_object_property player_slot="3" value="0.002" property="systemCurHeatFrontShield" />
     <addto_object_property player_slot="3" value="0.002" property="systemCurHeatBackShield" />
-
-    <set_variable name="p3IsShieldSharing" value="1.0" integer="yes"/>
   </event>
   
   
@@ -2402,11 +2641,8 @@
     <set_object_property player_slot="7" property="shieldStateFront" value="avgStateFront" />
     <set_object_property player_slot="7" property="shieldStateBack" value="avgStateBack" />
 
-
     <addto_object_property player_slot="3" value="0.002" property="systemCurHeatFrontShield" />
     <addto_object_property player_slot="3" value="0.002" property="systemCurHeatBackShield" />
-
-    <set_variable name="p3IsShieldSharing" value="1.0" integer="yes"/>
   </event>
   
   
@@ -2418,8 +2654,8 @@
     <if_variable name="Ship5Modules" comparator="NOT" value="2.0" />
     <if_variable name="Ship5CommsMenu" comparator="EQUALS" value="1.0" />
 
-    <clear_comms_button text="*-Arm Joint Shield Matrix Prototype MkI" player_slot="4"/>
-    <clear_comms_button text="*-Disarm Joint Shield Matrix Prototype MkI" player_slot="4"/>
+    <clear_comms_button text="*-Arm Joint Shield Matrix Prototype MkII" player_slot="4"/>
+    <clear_comms_button text="*-Disarm Joint Shield Matrix Prototype MkII" player_slot="4"/>
   </event>
 
   <event name="4 handle Modules button press if no other modules are loaded" >
@@ -2444,7 +2680,7 @@
 
     <if_variable name="Ship5Modules" comparator="EQUALS" value="2.0" />
     <if_variable name="player4ShieldSharingEnabled" comparator="NOT" value="1.0" />
-    <set_comms_button text="*-Arm Joint Shield Matrix Prototype MkI" player_slot="4" />
+    <set_comms_button text="*-Arm Joint Shield Matrix Prototype MkII" player_slot="4" />
   </event>
 
   <event name="4 comms menu show Disable button" >
@@ -2452,31 +2688,36 @@
 
     <if_variable name="Ship5Modules" comparator="EQUALS" value="2.0" />
     <if_variable name="player4ShieldSharingEnabled" comparator="NOT" value="0.0" />
-    <set_comms_button text="*-Disarm Joint Shield Matrix Prototype MkI" player_slot="4" />
+    <set_comms_button text="*-Disarm Joint Shield Matrix Prototype MkII" player_slot="4" />
   </event>
 
   <event name="4 comms menu on Enable" >
     <log text="4 comms menu on Enable" />
 
-    <if_comms_button text="*-Arm Joint Shield Matrix Prototype MkI" player_slot="4"/>
+    <if_comms_button text="*-Arm Joint Shield Matrix Prototype MkII" player_slot="4"/>
     <set_variable name="player4ShieldSharingEnabled" value="1.0" />
     <set_variable name="Ship5Modules" value="0.0" />
     <set_variable name="Ship5CommsMenu" value="0.0" />
-    <clear_comms_button text="*-Arm Joint Shield Matrix Prototype MkI" player_slot="4"/>
+    <clear_comms_button text="*-Arm Joint Shield Matrix Prototype MkII" player_slot="4"/>
 
-    <incoming_comms_text from="CHANNEL 5" sideValue="playerSide" type="STATUS">Joint Shield Matrix Prototype MkI ARMED</incoming_comms_text>
+    <incoming_comms_text from="CHANNEL 5" sideValue="playerSide" type="STATUS">Joint Shield Matrix Prototype MkII ARMED</incoming_comms_text>
   </event>
 
   <event name="4 comms menu on Disable" >
     <log text="4 comms menu on Disable" />
 
-    <if_comms_button text="*-Disarm Joint Shield Matrix Prototype MkI" player_slot="4" />
+    <if_comms_button text="*-Disarm Joint Shield Matrix Prototype MkII" player_slot="4" />
     <set_variable name="player4ShieldSharingEnabled" value="0.0" />
     <set_variable name="Ship5Modules" value="0.0" />
     <set_variable name="Ship5CommsMenu" value="0.0" />
-    <clear_comms_button text="*-Disarm Joint Shield Matrix Prototype MkI" player_slot="4"/>
+    <clear_comms_button text="*-Disarm Joint Shield Matrix Prototype MkII" player_slot="4"/>
 
-    <incoming_comms_text from="CHANNEL 5" sideValue="playerSide" type="STATUS">Joint Shield Matrix Prototype MkI DISARMED</incoming_comms_text>
+
+    <incoming_comms_text from="CHANNEL 5" sideValue="playerSide" type="STATUS">Joint Shield Matrix Prototype MkII DISARMED</incoming_comms_text>
+
+    <incoming_comms_text from="CHANNEL 5" sideValue="playerSide" type="STATUS">Joint Shield Matrix Prototype MkII RECALIBRATING:15sec (reason:disarmed)</incoming_comms_text>
+    <set_variable name="player4ShieldSharingDockCooldownTimerIsActive" value="1.0" integer="yes"/>
+    <set_timer name="player4ShieldSharingDockCooldownTimer" seconds="15" />
   </event>
 
 
@@ -2496,13 +2737,86 @@
     <addto_object_property player_slot="4" property="shieldMaxStateBack" value="-0.5" />
   </event>
 
+
   <event name="4 prevent shield sharing when docked and right after dock to prevent toggling exploit" >
     <log text="4 prevent shield sharing when docked and right after dock to prevent toggling exploit" />
 
+    <if_exists player_slot="4" />
     <if_docked player_slot="4" />
 
+    <set_variable name="player4ShieldSharingDockCooldownTimerIsActive" value="1.0" integer="yes"/>
     <set_timer name="player4ShieldSharingDockCooldownTimer" seconds="15" />
   </event>
+  <event name="4 shield sharing - on undock msg" >
+    <log text="4 shield sharing - on undock msg" />
+
+    <if_variable name="player4PrevDockState" comparator="EQUALS" value="1.0" />
+    <if_exists player_slot="4" />
+    <if_docked not="yes" player_slot="4" />
+
+    <incoming_comms_text from="CHANNEL 5" sideValue="playerSide" type="STATUS">Joint Shield Matrix Prototype MkII RECALIBRATING:15sec (reason:undocked)</incoming_comms_text>
+  </event>
+  <event name="4 shield sharing- on dock msg" >
+    <log text="4 shield sharing- on dock msg" />
+
+    <if_variable name="player4PrevDockState" comparator="EQUALS" value="0.0" />
+    <if_exists player_slot="4" />
+    <if_docked player_slot="4" />
+
+    <incoming_comms_text from="CHANNEL 5" sideValue="playerSide" type="STATUS">Joint Shield Matrix Prototype MkII DISABLED (reason:docked)</incoming_comms_text>
+  </event>
+  <event name="4 shield sharing- on still docked msg" >
+    <log text="4 shield sharing- on still docked msg" />
+    <if_timer_finished name="player4ShieldSharingDockCooldownTimer" />
+
+    <if_variable name="player4PrevDockState" comparator="EQUALS" value="1.0" />
+    <if_exists player_slot="4" />
+    <if_docked player_slot="4" />
+
+    <incoming_comms_text from="CHANNEL 5" sideValue="playerSide" type="STATUS">Joint Shield Matrix Prototype MkII DISABLED (reason:stillDocked)</incoming_comms_text>
+  </event>
+
+
+  <event name="4 prevent shield sharing right after shields off to prevent toggling exploit" >
+    <log text="4 prevent shield sharing right after shields off to prevent toggling exploit" />
+
+    <if_variable name="player4PrevShieldState" comparator="EQUALS" value="1.0" />
+    <if_object_property player_slot="4" property="shieldsOn" comparator="EQUALS" value="0.0" />
+
+    <incoming_comms_text from="CHANNEL 5" sideValue="playerSide" type="STATUS">Joint Shield Matrix Prototype MkII RECALIBRATING:15sec (reason:shieldsDown)</incoming_comms_text>
+
+    <set_variable name="player4ShieldSharingDockCooldownTimerIsActive" value="1.0" integer="yes"/>
+    <set_timer name="player4ShieldSharingDockCooldownTimer" seconds="15" />
+  </event>
+
+
+
+  <event name="4 on cooldown finished" >
+    <log text="4 on cooldown finished" />
+
+    <if_timer_finished name="player4ShieldSharingDockCooldownTimer" />
+    <if_variable name="player4ShieldSharingDockCooldownTimerIsActive" comparator="EQUALS" value="1.0" />
+
+    <incoming_comms_text from="CHANNEL 5" sideValue="playerSide" type="STATUS">Joint Shield Matrix Prototype MkII READY</incoming_comms_text>
+
+    <set_variable name="player4ShieldSharingDockCooldownTimerIsActive" value="0.0" integer="yes"/>
+  </event>
+
+  <event name="4 track undocked" >
+    <if_exists player_slot="4" />
+    <if_docked not="yes" player_slot="4" />
+    <set_variable name="player4PrevDockState" value="0.0" integer="yes"/>
+  </event>
+  <event name="4 track docked" >
+    <if_exists player_slot="4" />
+    <if_docked player_slot="4" />
+    <set_variable name="player4PrevDockState" value="1.0" integer="yes"/>
+  </event>
+
+  <event name="4 track shieldsOn" >
+    <get_object_property player_slot="4" property="shieldsOn" variable="player4PrevShieldState" />
+  </event>
+
 
   
   
@@ -2566,11 +2880,8 @@
     <set_object_property player_slot="0" property="shieldStateFront" value="avgStateFront" />
     <set_object_property player_slot="0" property="shieldStateBack" value="avgStateBack" />
 
-
     <addto_object_property player_slot="4" value="0.002" property="systemCurHeatFrontShield" />
     <addto_object_property player_slot="4" value="0.002" property="systemCurHeatBackShield" />
-
-    <set_variable name="p4IsShieldSharing" value="1.0" integer="yes"/>
   </event>
   
   
@@ -2635,11 +2946,8 @@
     <set_object_property player_slot="1" property="shieldStateFront" value="avgStateFront" />
     <set_object_property player_slot="1" property="shieldStateBack" value="avgStateBack" />
 
-
     <addto_object_property player_slot="4" value="0.002" property="systemCurHeatFrontShield" />
     <addto_object_property player_slot="4" value="0.002" property="systemCurHeatBackShield" />
-
-    <set_variable name="p4IsShieldSharing" value="1.0" integer="yes"/>
   </event>
   
   
@@ -2704,11 +3012,8 @@
     <set_object_property player_slot="2" property="shieldStateFront" value="avgStateFront" />
     <set_object_property player_slot="2" property="shieldStateBack" value="avgStateBack" />
 
-
     <addto_object_property player_slot="4" value="0.002" property="systemCurHeatFrontShield" />
     <addto_object_property player_slot="4" value="0.002" property="systemCurHeatBackShield" />
-
-    <set_variable name="p4IsShieldSharing" value="1.0" integer="yes"/>
   </event>
   
   
@@ -2773,11 +3078,8 @@
     <set_object_property player_slot="3" property="shieldStateFront" value="avgStateFront" />
     <set_object_property player_slot="3" property="shieldStateBack" value="avgStateBack" />
 
-
     <addto_object_property player_slot="4" value="0.002" property="systemCurHeatFrontShield" />
     <addto_object_property player_slot="4" value="0.002" property="systemCurHeatBackShield" />
-
-    <set_variable name="p4IsShieldSharing" value="1.0" integer="yes"/>
   </event>
   
   
@@ -2844,11 +3146,8 @@
     <set_object_property player_slot="5" property="shieldStateFront" value="avgStateFront" />
     <set_object_property player_slot="5" property="shieldStateBack" value="avgStateBack" />
 
-
     <addto_object_property player_slot="4" value="0.002" property="systemCurHeatFrontShield" />
     <addto_object_property player_slot="4" value="0.002" property="systemCurHeatBackShield" />
-
-    <set_variable name="p4IsShieldSharing" value="1.0" integer="yes"/>
   </event>
   
   
@@ -2913,11 +3212,8 @@
     <set_object_property player_slot="6" property="shieldStateFront" value="avgStateFront" />
     <set_object_property player_slot="6" property="shieldStateBack" value="avgStateBack" />
 
-
     <addto_object_property player_slot="4" value="0.002" property="systemCurHeatFrontShield" />
     <addto_object_property player_slot="4" value="0.002" property="systemCurHeatBackShield" />
-
-    <set_variable name="p4IsShieldSharing" value="1.0" integer="yes"/>
   </event>
   
   
@@ -2982,11 +3278,8 @@
     <set_object_property player_slot="7" property="shieldStateFront" value="avgStateFront" />
     <set_object_property player_slot="7" property="shieldStateBack" value="avgStateBack" />
 
-
     <addto_object_property player_slot="4" value="0.002" property="systemCurHeatFrontShield" />
     <addto_object_property player_slot="4" value="0.002" property="systemCurHeatBackShield" />
-
-    <set_variable name="p4IsShieldSharing" value="1.0" integer="yes"/>
   </event>
   
   
@@ -2998,8 +3291,8 @@
     <if_variable name="Ship6Modules" comparator="NOT" value="2.0" />
     <if_variable name="Ship6CommsMenu" comparator="EQUALS" value="1.0" />
 
-    <clear_comms_button text="-*Arm Joint Shield Matrix Prototype MkI" player_slot="5"/>
-    <clear_comms_button text="-*Disarm Joint Shield Matrix Prototype MkI" player_slot="5"/>
+    <clear_comms_button text="-*Arm Joint Shield Matrix Prototype MkII" player_slot="5"/>
+    <clear_comms_button text="-*Disarm Joint Shield Matrix Prototype MkII" player_slot="5"/>
   </event>
 
   <event name="5 handle Modules button press if no other modules are loaded" >
@@ -3024,7 +3317,7 @@
 
     <if_variable name="Ship6Modules" comparator="EQUALS" value="2.0" />
     <if_variable name="player5ShieldSharingEnabled" comparator="NOT" value="1.0" />
-    <set_comms_button text="-*Arm Joint Shield Matrix Prototype MkI" player_slot="5" />
+    <set_comms_button text="-*Arm Joint Shield Matrix Prototype MkII" player_slot="5" />
   </event>
 
   <event name="5 comms menu show Disable button" >
@@ -3032,31 +3325,36 @@
 
     <if_variable name="Ship6Modules" comparator="EQUALS" value="2.0" />
     <if_variable name="player5ShieldSharingEnabled" comparator="NOT" value="0.0" />
-    <set_comms_button text="-*Disarm Joint Shield Matrix Prototype MkI" player_slot="5" />
+    <set_comms_button text="-*Disarm Joint Shield Matrix Prototype MkII" player_slot="5" />
   </event>
 
   <event name="5 comms menu on Enable" >
     <log text="5 comms menu on Enable" />
 
-    <if_comms_button text="-*Arm Joint Shield Matrix Prototype MkI" player_slot="5"/>
+    <if_comms_button text="-*Arm Joint Shield Matrix Prototype MkII" player_slot="5"/>
     <set_variable name="player5ShieldSharingEnabled" value="1.0" />
     <set_variable name="Ship6Modules" value="0.0" />
     <set_variable name="Ship6CommsMenu" value="0.0" />
-    <clear_comms_button text="-*Arm Joint Shield Matrix Prototype MkI" player_slot="5"/>
+    <clear_comms_button text="-*Arm Joint Shield Matrix Prototype MkII" player_slot="5"/>
 
-    <incoming_comms_text from="CHANNEL 6" sideValue="playerSide" type="STATUS">Joint Shield Matrix Prototype MkI ARMED</incoming_comms_text>
+    <incoming_comms_text from="CHANNEL 6" sideValue="playerSide" type="STATUS">Joint Shield Matrix Prototype MkII ARMED</incoming_comms_text>
   </event>
 
   <event name="5 comms menu on Disable" >
     <log text="5 comms menu on Disable" />
 
-    <if_comms_button text="-*Disarm Joint Shield Matrix Prototype MkI" player_slot="5" />
+    <if_comms_button text="-*Disarm Joint Shield Matrix Prototype MkII" player_slot="5" />
     <set_variable name="player5ShieldSharingEnabled" value="0.0" />
     <set_variable name="Ship6Modules" value="0.0" />
     <set_variable name="Ship6CommsMenu" value="0.0" />
-    <clear_comms_button text="-*Disarm Joint Shield Matrix Prototype MkI" player_slot="5"/>
+    <clear_comms_button text="-*Disarm Joint Shield Matrix Prototype MkII" player_slot="5"/>
 
-    <incoming_comms_text from="CHANNEL 6" sideValue="playerSide" type="STATUS">Joint Shield Matrix Prototype MkI DISARMED</incoming_comms_text>
+
+    <incoming_comms_text from="CHANNEL 6" sideValue="playerSide" type="STATUS">Joint Shield Matrix Prototype MkII DISARMED</incoming_comms_text>
+
+    <incoming_comms_text from="CHANNEL 6" sideValue="playerSide" type="STATUS">Joint Shield Matrix Prototype MkII RECALIBRATING:15sec (reason:disarmed)</incoming_comms_text>
+    <set_variable name="player5ShieldSharingDockCooldownTimerIsActive" value="1.0" integer="yes"/>
+    <set_timer name="player5ShieldSharingDockCooldownTimer" seconds="15" />
   </event>
 
 
@@ -3076,13 +3374,86 @@
     <addto_object_property player_slot="5" property="shieldMaxStateBack" value="-0.5" />
   </event>
 
+
   <event name="5 prevent shield sharing when docked and right after dock to prevent toggling exploit" >
     <log text="5 prevent shield sharing when docked and right after dock to prevent toggling exploit" />
 
+    <if_exists player_slot="5" />
     <if_docked player_slot="5" />
 
+    <set_variable name="player5ShieldSharingDockCooldownTimerIsActive" value="1.0" integer="yes"/>
     <set_timer name="player5ShieldSharingDockCooldownTimer" seconds="15" />
   </event>
+  <event name="5 shield sharing - on undock msg" >
+    <log text="5 shield sharing - on undock msg" />
+
+    <if_variable name="player5PrevDockState" comparator="EQUALS" value="1.0" />
+    <if_exists player_slot="5" />
+    <if_docked not="yes" player_slot="5" />
+
+    <incoming_comms_text from="CHANNEL 6" sideValue="playerSide" type="STATUS">Joint Shield Matrix Prototype MkII RECALIBRATING:15sec (reason:undocked)</incoming_comms_text>
+  </event>
+  <event name="5 shield sharing- on dock msg" >
+    <log text="5 shield sharing- on dock msg" />
+
+    <if_variable name="player5PrevDockState" comparator="EQUALS" value="0.0" />
+    <if_exists player_slot="5" />
+    <if_docked player_slot="5" />
+
+    <incoming_comms_text from="CHANNEL 6" sideValue="playerSide" type="STATUS">Joint Shield Matrix Prototype MkII DISABLED (reason:docked)</incoming_comms_text>
+  </event>
+  <event name="5 shield sharing- on still docked msg" >
+    <log text="5 shield sharing- on still docked msg" />
+    <if_timer_finished name="player5ShieldSharingDockCooldownTimer" />
+
+    <if_variable name="player5PrevDockState" comparator="EQUALS" value="1.0" />
+    <if_exists player_slot="5" />
+    <if_docked player_slot="5" />
+
+    <incoming_comms_text from="CHANNEL 6" sideValue="playerSide" type="STATUS">Joint Shield Matrix Prototype MkII DISABLED (reason:stillDocked)</incoming_comms_text>
+  </event>
+
+
+  <event name="5 prevent shield sharing right after shields off to prevent toggling exploit" >
+    <log text="5 prevent shield sharing right after shields off to prevent toggling exploit" />
+
+    <if_variable name="player5PrevShieldState" comparator="EQUALS" value="1.0" />
+    <if_object_property player_slot="5" property="shieldsOn" comparator="EQUALS" value="0.0" />
+
+    <incoming_comms_text from="CHANNEL 6" sideValue="playerSide" type="STATUS">Joint Shield Matrix Prototype MkII RECALIBRATING:15sec (reason:shieldsDown)</incoming_comms_text>
+
+    <set_variable name="player5ShieldSharingDockCooldownTimerIsActive" value="1.0" integer="yes"/>
+    <set_timer name="player5ShieldSharingDockCooldownTimer" seconds="15" />
+  </event>
+
+
+
+  <event name="5 on cooldown finished" >
+    <log text="5 on cooldown finished" />
+
+    <if_timer_finished name="player5ShieldSharingDockCooldownTimer" />
+    <if_variable name="player5ShieldSharingDockCooldownTimerIsActive" comparator="EQUALS" value="1.0" />
+
+    <incoming_comms_text from="CHANNEL 6" sideValue="playerSide" type="STATUS">Joint Shield Matrix Prototype MkII READY</incoming_comms_text>
+
+    <set_variable name="player5ShieldSharingDockCooldownTimerIsActive" value="0.0" integer="yes"/>
+  </event>
+
+  <event name="5 track undocked" >
+    <if_exists player_slot="5" />
+    <if_docked not="yes" player_slot="5" />
+    <set_variable name="player5PrevDockState" value="0.0" integer="yes"/>
+  </event>
+  <event name="5 track docked" >
+    <if_exists player_slot="5" />
+    <if_docked player_slot="5" />
+    <set_variable name="player5PrevDockState" value="1.0" integer="yes"/>
+  </event>
+
+  <event name="5 track shieldsOn" >
+    <get_object_property player_slot="5" property="shieldsOn" variable="player5PrevShieldState" />
+  </event>
+
 
   
   
@@ -3146,11 +3517,8 @@
     <set_object_property player_slot="0" property="shieldStateFront" value="avgStateFront" />
     <set_object_property player_slot="0" property="shieldStateBack" value="avgStateBack" />
 
-
     <addto_object_property player_slot="5" value="0.002" property="systemCurHeatFrontShield" />
     <addto_object_property player_slot="5" value="0.002" property="systemCurHeatBackShield" />
-
-    <set_variable name="p5IsShieldSharing" value="1.0" integer="yes"/>
   </event>
   
   
@@ -3215,11 +3583,8 @@
     <set_object_property player_slot="1" property="shieldStateFront" value="avgStateFront" />
     <set_object_property player_slot="1" property="shieldStateBack" value="avgStateBack" />
 
-
     <addto_object_property player_slot="5" value="0.002" property="systemCurHeatFrontShield" />
     <addto_object_property player_slot="5" value="0.002" property="systemCurHeatBackShield" />
-
-    <set_variable name="p5IsShieldSharing" value="1.0" integer="yes"/>
   </event>
   
   
@@ -3284,11 +3649,8 @@
     <set_object_property player_slot="2" property="shieldStateFront" value="avgStateFront" />
     <set_object_property player_slot="2" property="shieldStateBack" value="avgStateBack" />
 
-
     <addto_object_property player_slot="5" value="0.002" property="systemCurHeatFrontShield" />
     <addto_object_property player_slot="5" value="0.002" property="systemCurHeatBackShield" />
-
-    <set_variable name="p5IsShieldSharing" value="1.0" integer="yes"/>
   </event>
   
   
@@ -3353,11 +3715,8 @@
     <set_object_property player_slot="3" property="shieldStateFront" value="avgStateFront" />
     <set_object_property player_slot="3" property="shieldStateBack" value="avgStateBack" />
 
-
     <addto_object_property player_slot="5" value="0.002" property="systemCurHeatFrontShield" />
     <addto_object_property player_slot="5" value="0.002" property="systemCurHeatBackShield" />
-
-    <set_variable name="p5IsShieldSharing" value="1.0" integer="yes"/>
   </event>
   
   
@@ -3422,11 +3781,8 @@
     <set_object_property player_slot="4" property="shieldStateFront" value="avgStateFront" />
     <set_object_property player_slot="4" property="shieldStateBack" value="avgStateBack" />
 
-
     <addto_object_property player_slot="5" value="0.002" property="systemCurHeatFrontShield" />
     <addto_object_property player_slot="5" value="0.002" property="systemCurHeatBackShield" />
-
-    <set_variable name="p5IsShieldSharing" value="1.0" integer="yes"/>
   </event>
   
   
@@ -3493,11 +3849,8 @@
     <set_object_property player_slot="6" property="shieldStateFront" value="avgStateFront" />
     <set_object_property player_slot="6" property="shieldStateBack" value="avgStateBack" />
 
-
     <addto_object_property player_slot="5" value="0.002" property="systemCurHeatFrontShield" />
     <addto_object_property player_slot="5" value="0.002" property="systemCurHeatBackShield" />
-
-    <set_variable name="p5IsShieldSharing" value="1.0" integer="yes"/>
   </event>
   
   
@@ -3562,11 +3915,8 @@
     <set_object_property player_slot="7" property="shieldStateFront" value="avgStateFront" />
     <set_object_property player_slot="7" property="shieldStateBack" value="avgStateBack" />
 
-
     <addto_object_property player_slot="5" value="0.002" property="systemCurHeatFrontShield" />
     <addto_object_property player_slot="5" value="0.002" property="systemCurHeatBackShield" />
-
-    <set_variable name="p5IsShieldSharing" value="1.0" integer="yes"/>
   </event>
   
   
@@ -3578,8 +3928,8 @@
     <if_variable name="Ship7Modules" comparator="NOT" value="2.0" />
     <if_variable name="Ship7CommsMenu" comparator="EQUALS" value="1.0" />
 
-    <clear_comms_button text="_Arm Joint Shield Matrix Prototype MkI" player_slot="6"/>
-    <clear_comms_button text="_Disarm Joint Shield Matrix Prototype MkI" player_slot="6"/>
+    <clear_comms_button text="_Arm Joint Shield Matrix Prototype MkII" player_slot="6"/>
+    <clear_comms_button text="_Disarm Joint Shield Matrix Prototype MkII" player_slot="6"/>
   </event>
 
   <event name="6 handle Modules button press if no other modules are loaded" >
@@ -3604,7 +3954,7 @@
 
     <if_variable name="Ship7Modules" comparator="EQUALS" value="2.0" />
     <if_variable name="player6ShieldSharingEnabled" comparator="NOT" value="1.0" />
-    <set_comms_button text="_Arm Joint Shield Matrix Prototype MkI" player_slot="6" />
+    <set_comms_button text="_Arm Joint Shield Matrix Prototype MkII" player_slot="6" />
   </event>
 
   <event name="6 comms menu show Disable button" >
@@ -3612,31 +3962,36 @@
 
     <if_variable name="Ship7Modules" comparator="EQUALS" value="2.0" />
     <if_variable name="player6ShieldSharingEnabled" comparator="NOT" value="0.0" />
-    <set_comms_button text="_Disarm Joint Shield Matrix Prototype MkI" player_slot="6" />
+    <set_comms_button text="_Disarm Joint Shield Matrix Prototype MkII" player_slot="6" />
   </event>
 
   <event name="6 comms menu on Enable" >
     <log text="6 comms menu on Enable" />
 
-    <if_comms_button text="_Arm Joint Shield Matrix Prototype MkI" player_slot="6"/>
+    <if_comms_button text="_Arm Joint Shield Matrix Prototype MkII" player_slot="6"/>
     <set_variable name="player6ShieldSharingEnabled" value="1.0" />
     <set_variable name="Ship7Modules" value="0.0" />
     <set_variable name="Ship7CommsMenu" value="0.0" />
-    <clear_comms_button text="_Arm Joint Shield Matrix Prototype MkI" player_slot="6"/>
+    <clear_comms_button text="_Arm Joint Shield Matrix Prototype MkII" player_slot="6"/>
 
-    <incoming_comms_text from="CHANNEL 7" sideValue="playerSide" type="STATUS">Joint Shield Matrix Prototype MkI ARMED</incoming_comms_text>
+    <incoming_comms_text from="CHANNEL 7" sideValue="playerSide" type="STATUS">Joint Shield Matrix Prototype MkII ARMED</incoming_comms_text>
   </event>
 
   <event name="6 comms menu on Disable" >
     <log text="6 comms menu on Disable" />
 
-    <if_comms_button text="_Disarm Joint Shield Matrix Prototype MkI" player_slot="6" />
+    <if_comms_button text="_Disarm Joint Shield Matrix Prototype MkII" player_slot="6" />
     <set_variable name="player6ShieldSharingEnabled" value="0.0" />
     <set_variable name="Ship7Modules" value="0.0" />
     <set_variable name="Ship7CommsMenu" value="0.0" />
-    <clear_comms_button text="_Disarm Joint Shield Matrix Prototype MkI" player_slot="6"/>
+    <clear_comms_button text="_Disarm Joint Shield Matrix Prototype MkII" player_slot="6"/>
 
-    <incoming_comms_text from="CHANNEL 7" sideValue="playerSide" type="STATUS">Joint Shield Matrix Prototype MkI DISARMED</incoming_comms_text>
+
+    <incoming_comms_text from="CHANNEL 7" sideValue="playerSide" type="STATUS">Joint Shield Matrix Prototype MkII DISARMED</incoming_comms_text>
+
+    <incoming_comms_text from="CHANNEL 7" sideValue="playerSide" type="STATUS">Joint Shield Matrix Prototype MkII RECALIBRATING:15sec (reason:disarmed)</incoming_comms_text>
+    <set_variable name="player6ShieldSharingDockCooldownTimerIsActive" value="1.0" integer="yes"/>
+    <set_timer name="player6ShieldSharingDockCooldownTimer" seconds="15" />
   </event>
 
 
@@ -3656,13 +4011,86 @@
     <addto_object_property player_slot="6" property="shieldMaxStateBack" value="-0.5" />
   </event>
 
+
   <event name="6 prevent shield sharing when docked and right after dock to prevent toggling exploit" >
     <log text="6 prevent shield sharing when docked and right after dock to prevent toggling exploit" />
 
+    <if_exists player_slot="6" />
     <if_docked player_slot="6" />
 
+    <set_variable name="player6ShieldSharingDockCooldownTimerIsActive" value="1.0" integer="yes"/>
     <set_timer name="player6ShieldSharingDockCooldownTimer" seconds="15" />
   </event>
+  <event name="6 shield sharing - on undock msg" >
+    <log text="6 shield sharing - on undock msg" />
+
+    <if_variable name="player6PrevDockState" comparator="EQUALS" value="1.0" />
+    <if_exists player_slot="6" />
+    <if_docked not="yes" player_slot="6" />
+
+    <incoming_comms_text from="CHANNEL 7" sideValue="playerSide" type="STATUS">Joint Shield Matrix Prototype MkII RECALIBRATING:15sec (reason:undocked)</incoming_comms_text>
+  </event>
+  <event name="6 shield sharing- on dock msg" >
+    <log text="6 shield sharing- on dock msg" />
+
+    <if_variable name="player6PrevDockState" comparator="EQUALS" value="0.0" />
+    <if_exists player_slot="6" />
+    <if_docked player_slot="6" />
+
+    <incoming_comms_text from="CHANNEL 7" sideValue="playerSide" type="STATUS">Joint Shield Matrix Prototype MkII DISABLED (reason:docked)</incoming_comms_text>
+  </event>
+  <event name="6 shield sharing- on still docked msg" >
+    <log text="6 shield sharing- on still docked msg" />
+    <if_timer_finished name="player6ShieldSharingDockCooldownTimer" />
+
+    <if_variable name="player6PrevDockState" comparator="EQUALS" value="1.0" />
+    <if_exists player_slot="6" />
+    <if_docked player_slot="6" />
+
+    <incoming_comms_text from="CHANNEL 7" sideValue="playerSide" type="STATUS">Joint Shield Matrix Prototype MkII DISABLED (reason:stillDocked)</incoming_comms_text>
+  </event>
+
+
+  <event name="6 prevent shield sharing right after shields off to prevent toggling exploit" >
+    <log text="6 prevent shield sharing right after shields off to prevent toggling exploit" />
+
+    <if_variable name="player6PrevShieldState" comparator="EQUALS" value="1.0" />
+    <if_object_property player_slot="6" property="shieldsOn" comparator="EQUALS" value="0.0" />
+
+    <incoming_comms_text from="CHANNEL 7" sideValue="playerSide" type="STATUS">Joint Shield Matrix Prototype MkII RECALIBRATING:15sec (reason:shieldsDown)</incoming_comms_text>
+
+    <set_variable name="player6ShieldSharingDockCooldownTimerIsActive" value="1.0" integer="yes"/>
+    <set_timer name="player6ShieldSharingDockCooldownTimer" seconds="15" />
+  </event>
+
+
+
+  <event name="6 on cooldown finished" >
+    <log text="6 on cooldown finished" />
+
+    <if_timer_finished name="player6ShieldSharingDockCooldownTimer" />
+    <if_variable name="player6ShieldSharingDockCooldownTimerIsActive" comparator="EQUALS" value="1.0" />
+
+    <incoming_comms_text from="CHANNEL 7" sideValue="playerSide" type="STATUS">Joint Shield Matrix Prototype MkII READY</incoming_comms_text>
+
+    <set_variable name="player6ShieldSharingDockCooldownTimerIsActive" value="0.0" integer="yes"/>
+  </event>
+
+  <event name="6 track undocked" >
+    <if_exists player_slot="6" />
+    <if_docked not="yes" player_slot="6" />
+    <set_variable name="player6PrevDockState" value="0.0" integer="yes"/>
+  </event>
+  <event name="6 track docked" >
+    <if_exists player_slot="6" />
+    <if_docked player_slot="6" />
+    <set_variable name="player6PrevDockState" value="1.0" integer="yes"/>
+  </event>
+
+  <event name="6 track shieldsOn" >
+    <get_object_property player_slot="6" property="shieldsOn" variable="player6PrevShieldState" />
+  </event>
+
 
   
   
@@ -3726,11 +4154,8 @@
     <set_object_property player_slot="0" property="shieldStateFront" value="avgStateFront" />
     <set_object_property player_slot="0" property="shieldStateBack" value="avgStateBack" />
 
-
     <addto_object_property player_slot="6" value="0.002" property="systemCurHeatFrontShield" />
     <addto_object_property player_slot="6" value="0.002" property="systemCurHeatBackShield" />
-
-    <set_variable name="p6IsShieldSharing" value="1.0" integer="yes"/>
   </event>
   
   
@@ -3795,11 +4220,8 @@
     <set_object_property player_slot="1" property="shieldStateFront" value="avgStateFront" />
     <set_object_property player_slot="1" property="shieldStateBack" value="avgStateBack" />
 
-
     <addto_object_property player_slot="6" value="0.002" property="systemCurHeatFrontShield" />
     <addto_object_property player_slot="6" value="0.002" property="systemCurHeatBackShield" />
-
-    <set_variable name="p6IsShieldSharing" value="1.0" integer="yes"/>
   </event>
   
   
@@ -3864,11 +4286,8 @@
     <set_object_property player_slot="2" property="shieldStateFront" value="avgStateFront" />
     <set_object_property player_slot="2" property="shieldStateBack" value="avgStateBack" />
 
-
     <addto_object_property player_slot="6" value="0.002" property="systemCurHeatFrontShield" />
     <addto_object_property player_slot="6" value="0.002" property="systemCurHeatBackShield" />
-
-    <set_variable name="p6IsShieldSharing" value="1.0" integer="yes"/>
   </event>
   
   
@@ -3933,11 +4352,8 @@
     <set_object_property player_slot="3" property="shieldStateFront" value="avgStateFront" />
     <set_object_property player_slot="3" property="shieldStateBack" value="avgStateBack" />
 
-
     <addto_object_property player_slot="6" value="0.002" property="systemCurHeatFrontShield" />
     <addto_object_property player_slot="6" value="0.002" property="systemCurHeatBackShield" />
-
-    <set_variable name="p6IsShieldSharing" value="1.0" integer="yes"/>
   </event>
   
   
@@ -4002,11 +4418,8 @@
     <set_object_property player_slot="4" property="shieldStateFront" value="avgStateFront" />
     <set_object_property player_slot="4" property="shieldStateBack" value="avgStateBack" />
 
-
     <addto_object_property player_slot="6" value="0.002" property="systemCurHeatFrontShield" />
     <addto_object_property player_slot="6" value="0.002" property="systemCurHeatBackShield" />
-
-    <set_variable name="p6IsShieldSharing" value="1.0" integer="yes"/>
   </event>
   
   
@@ -4071,11 +4484,8 @@
     <set_object_property player_slot="5" property="shieldStateFront" value="avgStateFront" />
     <set_object_property player_slot="5" property="shieldStateBack" value="avgStateBack" />
 
-
     <addto_object_property player_slot="6" value="0.002" property="systemCurHeatFrontShield" />
     <addto_object_property player_slot="6" value="0.002" property="systemCurHeatBackShield" />
-
-    <set_variable name="p6IsShieldSharing" value="1.0" integer="yes"/>
   </event>
   
   
@@ -4142,11 +4552,8 @@
     <set_object_property player_slot="7" property="shieldStateFront" value="avgStateFront" />
     <set_object_property player_slot="7" property="shieldStateBack" value="avgStateBack" />
 
-
     <addto_object_property player_slot="6" value="0.002" property="systemCurHeatFrontShield" />
     <addto_object_property player_slot="6" value="0.002" property="systemCurHeatBackShield" />
-
-    <set_variable name="p6IsShieldSharing" value="1.0" integer="yes"/>
   </event>
   
   
@@ -4158,8 +4565,8 @@
     <if_variable name="Ship8Modules" comparator="NOT" value="2.0" />
     <if_variable name="Ship8CommsMenu" comparator="EQUALS" value="1.0" />
 
-    <clear_comms_button text="__Arm Joint Shield Matrix Prototype MkI" player_slot="7"/>
-    <clear_comms_button text="__Disarm Joint Shield Matrix Prototype MkI" player_slot="7"/>
+    <clear_comms_button text="__Arm Joint Shield Matrix Prototype MkII" player_slot="7"/>
+    <clear_comms_button text="__Disarm Joint Shield Matrix Prototype MkII" player_slot="7"/>
   </event>
 
   <event name="7 handle Modules button press if no other modules are loaded" >
@@ -4184,7 +4591,7 @@
 
     <if_variable name="Ship8Modules" comparator="EQUALS" value="2.0" />
     <if_variable name="player7ShieldSharingEnabled" comparator="NOT" value="1.0" />
-    <set_comms_button text="__Arm Joint Shield Matrix Prototype MkI" player_slot="7" />
+    <set_comms_button text="__Arm Joint Shield Matrix Prototype MkII" player_slot="7" />
   </event>
 
   <event name="7 comms menu show Disable button" >
@@ -4192,31 +4599,36 @@
 
     <if_variable name="Ship8Modules" comparator="EQUALS" value="2.0" />
     <if_variable name="player7ShieldSharingEnabled" comparator="NOT" value="0.0" />
-    <set_comms_button text="__Disarm Joint Shield Matrix Prototype MkI" player_slot="7" />
+    <set_comms_button text="__Disarm Joint Shield Matrix Prototype MkII" player_slot="7" />
   </event>
 
   <event name="7 comms menu on Enable" >
     <log text="7 comms menu on Enable" />
 
-    <if_comms_button text="__Arm Joint Shield Matrix Prototype MkI" player_slot="7"/>
+    <if_comms_button text="__Arm Joint Shield Matrix Prototype MkII" player_slot="7"/>
     <set_variable name="player7ShieldSharingEnabled" value="1.0" />
     <set_variable name="Ship8Modules" value="0.0" />
     <set_variable name="Ship8CommsMenu" value="0.0" />
-    <clear_comms_button text="__Arm Joint Shield Matrix Prototype MkI" player_slot="7"/>
+    <clear_comms_button text="__Arm Joint Shield Matrix Prototype MkII" player_slot="7"/>
 
-    <incoming_comms_text from="CHANNEL 8" sideValue="playerSide" type="STATUS">Joint Shield Matrix Prototype MkI ARMED</incoming_comms_text>
+    <incoming_comms_text from="CHANNEL 8" sideValue="playerSide" type="STATUS">Joint Shield Matrix Prototype MkII ARMED</incoming_comms_text>
   </event>
 
   <event name="7 comms menu on Disable" >
     <log text="7 comms menu on Disable" />
 
-    <if_comms_button text="__Disarm Joint Shield Matrix Prototype MkI" player_slot="7" />
+    <if_comms_button text="__Disarm Joint Shield Matrix Prototype MkII" player_slot="7" />
     <set_variable name="player7ShieldSharingEnabled" value="0.0" />
     <set_variable name="Ship8Modules" value="0.0" />
     <set_variable name="Ship8CommsMenu" value="0.0" />
-    <clear_comms_button text="__Disarm Joint Shield Matrix Prototype MkI" player_slot="7"/>
+    <clear_comms_button text="__Disarm Joint Shield Matrix Prototype MkII" player_slot="7"/>
 
-    <incoming_comms_text from="CHANNEL 8" sideValue="playerSide" type="STATUS">Joint Shield Matrix Prototype MkI DISARMED</incoming_comms_text>
+
+    <incoming_comms_text from="CHANNEL 8" sideValue="playerSide" type="STATUS">Joint Shield Matrix Prototype MkII DISARMED</incoming_comms_text>
+
+    <incoming_comms_text from="CHANNEL 8" sideValue="playerSide" type="STATUS">Joint Shield Matrix Prototype MkII RECALIBRATING:15sec (reason:disarmed)</incoming_comms_text>
+    <set_variable name="player7ShieldSharingDockCooldownTimerIsActive" value="1.0" integer="yes"/>
+    <set_timer name="player7ShieldSharingDockCooldownTimer" seconds="15" />
   </event>
 
 
@@ -4236,13 +4648,86 @@
     <addto_object_property player_slot="7" property="shieldMaxStateBack" value="-0.5" />
   </event>
 
+
   <event name="7 prevent shield sharing when docked and right after dock to prevent toggling exploit" >
     <log text="7 prevent shield sharing when docked and right after dock to prevent toggling exploit" />
 
+    <if_exists player_slot="7" />
     <if_docked player_slot="7" />
 
+    <set_variable name="player7ShieldSharingDockCooldownTimerIsActive" value="1.0" integer="yes"/>
     <set_timer name="player7ShieldSharingDockCooldownTimer" seconds="15" />
   </event>
+  <event name="7 shield sharing - on undock msg" >
+    <log text="7 shield sharing - on undock msg" />
+
+    <if_variable name="player7PrevDockState" comparator="EQUALS" value="1.0" />
+    <if_exists player_slot="7" />
+    <if_docked not="yes" player_slot="7" />
+
+    <incoming_comms_text from="CHANNEL 8" sideValue="playerSide" type="STATUS">Joint Shield Matrix Prototype MkII RECALIBRATING:15sec (reason:undocked)</incoming_comms_text>
+  </event>
+  <event name="7 shield sharing- on dock msg" >
+    <log text="7 shield sharing- on dock msg" />
+
+    <if_variable name="player7PrevDockState" comparator="EQUALS" value="0.0" />
+    <if_exists player_slot="7" />
+    <if_docked player_slot="7" />
+
+    <incoming_comms_text from="CHANNEL 8" sideValue="playerSide" type="STATUS">Joint Shield Matrix Prototype MkII DISABLED (reason:docked)</incoming_comms_text>
+  </event>
+  <event name="7 shield sharing- on still docked msg" >
+    <log text="7 shield sharing- on still docked msg" />
+    <if_timer_finished name="player7ShieldSharingDockCooldownTimer" />
+
+    <if_variable name="player7PrevDockState" comparator="EQUALS" value="1.0" />
+    <if_exists player_slot="7" />
+    <if_docked player_slot="7" />
+
+    <incoming_comms_text from="CHANNEL 8" sideValue="playerSide" type="STATUS">Joint Shield Matrix Prototype MkII DISABLED (reason:stillDocked)</incoming_comms_text>
+  </event>
+
+
+  <event name="7 prevent shield sharing right after shields off to prevent toggling exploit" >
+    <log text="7 prevent shield sharing right after shields off to prevent toggling exploit" />
+
+    <if_variable name="player7PrevShieldState" comparator="EQUALS" value="1.0" />
+    <if_object_property player_slot="7" property="shieldsOn" comparator="EQUALS" value="0.0" />
+
+    <incoming_comms_text from="CHANNEL 8" sideValue="playerSide" type="STATUS">Joint Shield Matrix Prototype MkII RECALIBRATING:15sec (reason:shieldsDown)</incoming_comms_text>
+
+    <set_variable name="player7ShieldSharingDockCooldownTimerIsActive" value="1.0" integer="yes"/>
+    <set_timer name="player7ShieldSharingDockCooldownTimer" seconds="15" />
+  </event>
+
+
+
+  <event name="7 on cooldown finished" >
+    <log text="7 on cooldown finished" />
+
+    <if_timer_finished name="player7ShieldSharingDockCooldownTimer" />
+    <if_variable name="player7ShieldSharingDockCooldownTimerIsActive" comparator="EQUALS" value="1.0" />
+
+    <incoming_comms_text from="CHANNEL 8" sideValue="playerSide" type="STATUS">Joint Shield Matrix Prototype MkII READY</incoming_comms_text>
+
+    <set_variable name="player7ShieldSharingDockCooldownTimerIsActive" value="0.0" integer="yes"/>
+  </event>
+
+  <event name="7 track undocked" >
+    <if_exists player_slot="7" />
+    <if_docked not="yes" player_slot="7" />
+    <set_variable name="player7PrevDockState" value="0.0" integer="yes"/>
+  </event>
+  <event name="7 track docked" >
+    <if_exists player_slot="7" />
+    <if_docked player_slot="7" />
+    <set_variable name="player7PrevDockState" value="1.0" integer="yes"/>
+  </event>
+
+  <event name="7 track shieldsOn" >
+    <get_object_property player_slot="7" property="shieldsOn" variable="player7PrevShieldState" />
+  </event>
+
 
   
   
@@ -4306,11 +4791,8 @@
     <set_object_property player_slot="0" property="shieldStateFront" value="avgStateFront" />
     <set_object_property player_slot="0" property="shieldStateBack" value="avgStateBack" />
 
-
     <addto_object_property player_slot="7" value="0.002" property="systemCurHeatFrontShield" />
     <addto_object_property player_slot="7" value="0.002" property="systemCurHeatBackShield" />
-
-    <set_variable name="p7IsShieldSharing" value="1.0" integer="yes"/>
   </event>
   
   
@@ -4375,11 +4857,8 @@
     <set_object_property player_slot="1" property="shieldStateFront" value="avgStateFront" />
     <set_object_property player_slot="1" property="shieldStateBack" value="avgStateBack" />
 
-
     <addto_object_property player_slot="7" value="0.002" property="systemCurHeatFrontShield" />
     <addto_object_property player_slot="7" value="0.002" property="systemCurHeatBackShield" />
-
-    <set_variable name="p7IsShieldSharing" value="1.0" integer="yes"/>
   </event>
   
   
@@ -4444,11 +4923,8 @@
     <set_object_property player_slot="2" property="shieldStateFront" value="avgStateFront" />
     <set_object_property player_slot="2" property="shieldStateBack" value="avgStateBack" />
 
-
     <addto_object_property player_slot="7" value="0.002" property="systemCurHeatFrontShield" />
     <addto_object_property player_slot="7" value="0.002" property="systemCurHeatBackShield" />
-
-    <set_variable name="p7IsShieldSharing" value="1.0" integer="yes"/>
   </event>
   
   
@@ -4513,11 +4989,8 @@
     <set_object_property player_slot="3" property="shieldStateFront" value="avgStateFront" />
     <set_object_property player_slot="3" property="shieldStateBack" value="avgStateBack" />
 
-
     <addto_object_property player_slot="7" value="0.002" property="systemCurHeatFrontShield" />
     <addto_object_property player_slot="7" value="0.002" property="systemCurHeatBackShield" />
-
-    <set_variable name="p7IsShieldSharing" value="1.0" integer="yes"/>
   </event>
   
   
@@ -4582,11 +5055,8 @@
     <set_object_property player_slot="4" property="shieldStateFront" value="avgStateFront" />
     <set_object_property player_slot="4" property="shieldStateBack" value="avgStateBack" />
 
-
     <addto_object_property player_slot="7" value="0.002" property="systemCurHeatFrontShield" />
     <addto_object_property player_slot="7" value="0.002" property="systemCurHeatBackShield" />
-
-    <set_variable name="p7IsShieldSharing" value="1.0" integer="yes"/>
   </event>
   
   
@@ -4651,11 +5121,8 @@
     <set_object_property player_slot="5" property="shieldStateFront" value="avgStateFront" />
     <set_object_property player_slot="5" property="shieldStateBack" value="avgStateBack" />
 
-
     <addto_object_property player_slot="7" value="0.002" property="systemCurHeatFrontShield" />
     <addto_object_property player_slot="7" value="0.002" property="systemCurHeatBackShield" />
-
-    <set_variable name="p7IsShieldSharing" value="1.0" integer="yes"/>
   </event>
   
   
@@ -4720,11 +5187,8 @@
     <set_object_property player_slot="6" property="shieldStateFront" value="avgStateFront" />
     <set_object_property player_slot="6" property="shieldStateBack" value="avgStateBack" />
 
-
     <addto_object_property player_slot="7" value="0.002" property="systemCurHeatFrontShield" />
     <addto_object_property player_slot="7" value="0.002" property="systemCurHeatBackShield" />
-
-    <set_variable name="p7IsShieldSharing" value="1.0" integer="yes"/>
   </event>
   
   

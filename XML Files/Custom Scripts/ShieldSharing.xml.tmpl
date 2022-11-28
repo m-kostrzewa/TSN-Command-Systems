@@ -20,6 +20,7 @@
     <set_variable name="player{{p}}ShieldSharingEnabled" value="0.0" />
 
     <set_timer name="player{{p}}ShieldSharingDockCooldownTimer" seconds="1" />
+    <set_variable name="player{{p1}}ShieldSharingDockCooldownTimerIsActive" value="1.0" integer="yes"/>
 
     {% endfor %}
 
@@ -93,7 +94,12 @@
     <set_variable name="Ship{{p1+1}}CommsMenu" value="0.0" />
     <clear_comms_button text="{{btnPrefixes[p1]}}Disarm Joint Shield Matrix Prototype MkII" player_slot="{{p1}}"/>
 
+
     <incoming_comms_text from="CHANNEL {{p1+1}}" sideValue="playerSide" type="STATUS">Joint Shield Matrix Prototype MkII DISARMED</incoming_comms_text>
+
+    <incoming_comms_text from="CHANNEL {{p1+1}}" sideValue="playerSide" type="STATUS">Joint Shield Matrix Prototype MkII RECALIBRATING:15sec (reason:disarmed)</incoming_comms_text>
+    <set_variable name="player{{p1}}ShieldSharingDockCooldownTimerIsActive" value="1.0" integer="yes"/>
+    <set_timer name="player{{p1}}ShieldSharingDockCooldownTimer" seconds="15" />
   </event>
 
 
@@ -113,13 +119,75 @@
     <addto_object_property player_slot="{{p1}}" property="shieldMaxStateBack" value="-0.5" />
   </event>
 
+
   <event name="{{p1}} prevent shield sharing when docked and right after dock to prevent toggling exploit" >
     <log text="{{p1}} prevent shield sharing when docked and right after dock to prevent toggling exploit" />
 
+    <if_exists player_slot="{{p1}}" />
     <if_docked player_slot="{{p1}}" />
 
+    <set_variable name="player{{p1}}ShieldSharingDockCooldownTimerIsActive" value="1.0" integer="yes"/>
     <set_timer name="player{{p1}}ShieldSharingDockCooldownTimer" seconds="15" />
   </event>
+  <event name="{{p1}} shield sharing - on undock msg" >
+    <log text="{{p1}} shield sharing - on undock msg" />
+
+    <if_variable name="player{{p1}}PrevDockState" comparator="EQUALS" value="1.0" />
+    <if_exists player_slot="{{p1}}" />
+    <if_docked not="yes" player_slot="{{p1}}" />
+
+    <incoming_comms_text from="CHANNEL {{p1+1}}" sideValue="playerSide" type="STATUS">Joint Shield Matrix Prototype MkII RECALIBRATING:15sec (reason:undocked)</incoming_comms_text>
+  </event>
+  <event name="{{p1}} shield sharing- on dock msg" >
+    <log text="{{p1}} shield sharing- on dock msg" />
+
+    <if_variable name="player{{p1}}PrevDockState" comparator="EQUALS" value="0.0" />
+    <if_exists player_slot="{{p1}}" />
+    <if_docked player_slot="{{p1}}" />
+
+    <incoming_comms_text from="CHANNEL {{p1+1}}" sideValue="playerSide" type="STATUS">Joint Shield Matrix Prototype MkII DISABLED (reason:docked)</incoming_comms_text>
+  </event>
+
+  <event name="{{p1}} prevent shield sharing right after shields off to prevent toggling exploit" >
+    <log text="{{p1}} prevent shield sharing right after shields off to prevent toggling exploit" />
+
+    <if_variable name="player{{p1}}PrevShieldState" comparator="EQUALS" value="1.0" />
+    <if_object_property player_slot="{{p1}}" property="shieldsOn" comparator="EQUALS" value="0.0" />
+
+    <incoming_comms_text from="CHANNEL {{p1+1}}" sideValue="playerSide" type="STATUS">Joint Shield Matrix Prototype MkII RECALIBRATING:15sec (reason:shieldsDown)</incoming_comms_text>
+
+    <set_variable name="player{{p1}}ShieldSharingDockCooldownTimerIsActive" value="1.0" integer="yes"/>
+    <set_timer name="player{{p1}}ShieldSharingDockCooldownTimer" seconds="15" />
+  </event>
+
+
+
+  <event name="{{p1}} on cooldown finished" >
+    <log text="{{p1}} on cooldown finished" />
+
+    <if_timer_finished name="player{{p1}}ShieldSharingDockCooldownTimer" />
+    <if_variable name="player{{p1}}ShieldSharingDockCooldownTimerIsActive" comparator="EQUALS" value="1.0" />
+
+    <incoming_comms_text from="CHANNEL {{p1+1}}" sideValue="playerSide" type="STATUS">Joint Shield Matrix Prototype MkII READY</incoming_comms_text>
+
+    <set_variable name="player{{p1}}ShieldSharingDockCooldownTimerIsActive" value="0.0" integer="yes"/>
+  </event>
+
+  <event name="{{p1}} track undocked" >
+    <if_exists player_slot="{{p1}}" />
+    <if_docked not="yes" player_slot="{{p1}}" />
+    <set_variable name="player{{p1}}PrevDockState" value="0.0" integer="yes"/>
+  </event>
+  <event name="{{p1}} track docked" >
+    <if_exists player_slot="{{p1}}" />
+    <if_docked player_slot="{{p1}}" />
+    <set_variable name="player{{p1}}PrevDockState" value="1.0" integer="yes"/>
+  </event>
+
+  <event name="{{p1}} track shieldsOn" >
+    <get_object_property player_slot="{{p1}}" property="shieldsOn" variable="player{{p1}}PrevShieldState" />
+  </event>
+
 
   {% for p2 in range(0,8) %}
   {% if p1 != p2 %}
@@ -183,11 +251,8 @@
     <set_object_property player_slot="{{p2}}" property="shieldStateFront" value="avgStateFront" />
     <set_object_property player_slot="{{p2}}" property="shieldStateBack" value="avgStateBack" />
 
-
     <addto_object_property player_slot="{{p1}}" value="0.002" property="systemCurHeatFrontShield" />
     <addto_object_property player_slot="{{p1}}" value="0.002" property="systemCurHeatBackShield" />
-
-    <set_variable name="p{{p1}}IsShieldSharing" value="1.0" integer="yes"/>
   </event>
   {% endif %}
   {% endfor %}
