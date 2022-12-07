@@ -1,0 +1,262 @@
+<mission_data version="1.0" background_id_arme="77d373f9-ed2e-4726-a2b2-74bd775ac998" playerShipNames_arme="Artemis\Intrepid\Aegis\Horatio\Excalibur\Hera\Ceres\Diana">
+    <start id_arme="77d373f9-ed2e-4726-a2b2-74bd775ac998">
+      <!---->
+      <set_variable name="tagShipNumber" value="0" integer="yes" />
+
+    </start>
+
+    {% set btnPrefixes=["-", "*", "**", "--", "*-", "-*", "_", "__"] %}
+    <!-- Note: "Tactical" system is not present here so that players can't just destroy an enemy ship by hacking every module. They still need to land some shots. -->
+    {% set systemNames = ["Beam","Torpedo","Tactical","Turning","Impulse","Warp","FrontShield","BackShield"] %}
+
+    <event name="Init Hacking" >
+      <log text="Init Hacking" />
+  
+      <if_variable name="Sandbox Activation" comparator="EQUALS" value="3.0" />
+      <if_variable name="Hacking initted" comparator="NOT" value="1.0" />
+  
+      <set_variable name="BeamHackEneCost" value="25.0" />
+      <set_variable name="TorpedoHackEneCost" value="25.0" />
+      <set_variable name="TacticalHackEneCost" value="10.0" />
+      <set_variable name="TurningHackEneCost" value="10.0" />
+      <set_variable name="ImpulseHackEneCost" value="10.0" />
+      <set_variable name="WarpHackEneCost" value="10.0" />
+      <set_variable name="FrontShieldHackEneCost" value="50.0" />
+      <set_variable name="BackShieldHackEneCost" value="50.0" />
+
+      {% for p in range(0,8) %}
+      <!-- Reset hack settings for the player -->
+      {% for systemName in systemNames %}
+      <set_variable name="player{{p}}HackSystem{{systemName}}" value="0.0" />
+      {% endfor %}
+      <set_variable name="player{{p}}HackArmed" value="0.0" />
+  
+  
+      {% endfor %}
+  
+      <set_variable name="Hacking initted" value="1.0" />
+    </event>
+
+
+
+    penetrating warhead network disruptor
+
+    {% for p in range(0,8) %}
+
+    <event name="{{p}} comms menu PWND clear" >
+      <!-- <log text="{{p}} comms menu PWND clear" /> -->
+  
+      <if_variable name="Ship{{p+1}}Modules" comparator="NOT" value="2.0" />
+      <if_variable name="Ship{{p+1}}CommsMenu" comparator="EQUALS" value="1.0" />
+  
+      <!-- <if_variable name="player{{p}}HackArmed" comparator="NOT" value="0.0" /> -->
+
+      <clear_comms_button text="{{btnPrefixes[p]}}Arm Penetrating Warhead Network Disruptor Prototype MkI" player_slot="{{p}}"/>
+      <clear_comms_button text="{{btnPrefixes[p]}}Disarm Penetrating Warhead Network Disruptor Prototype MkI" player_slot="{{p}}"/>
+
+      {% for systemName in systemNames %}
+      <clear_comms_button text="{{btnPrefixes[p]}}Disrupt {{systemName}} (|{{systemName}}HackEneCost| energy): 0.0" player_slot="{{p}}" />
+      <clear_comms_button text="{{btnPrefixes[p]}}Disrupt {{systemName}} (|{{systemName}}HackEneCost| energy): 1.0" player_slot="{{p}}" />
+      {% endfor %}
+
+    </event>
+
+    <event name="{{p}} comms menu PWND show prep" >
+      <!-- <log text="{{p}} comms menu PWND show prep" /> -->
+  
+      <if_variable name="Ship{{p+1}}Modules" comparator="EQUALS" value="2.0" />
+      <if_variable name="player{{p}}HackArmed" comparator="NOT" value="1.0" />
+
+      <set_comms_button text="{{btnPrefixes[p]}}Arm Penetrating Warhead Network Disruptor Prototype MkI" player_slot="{{p}}" />
+      <clear_comms_button text="{{btnPrefixes[p]}}Disarm Penetrating Warhead Network Disruptor Prototype MkI" player_slot="{{p}}"/>
+
+      {% for systemName in systemNames %}
+      <set_comms_button text="{{btnPrefixes[p]}}Disrupt {{systemName}} (|{{systemName}}HackEneCost| energy): |player{{p}}HackSystem{{systemName}}|" player_slot="{{p}}" />
+      {% endfor %}
+
+    </event>
+
+    <event name="{{p}} comms menu PWND show tx" >
+      <log text="{{p}} comms menu PWND show tx" />
+
+      <if_variable name="Ship{{p+1}}Modules" comparator="EQUALS" value="2.0" />
+      <if_variable name="player{{p}}HackArmed" comparator="NOT" value="0.0" />
+
+      <set_comms_button text="{{btnPrefixes[p]}}Disarm Penetrating Warhead Network Disruptor Prototype MkI" player_slot="{{p}}" />
+      <clear_comms_button text="{{btnPrefixes[p]}}Arm Penetrating Warhead Network Disruptor Prototype MkI" player_slot="{{p}}"/>
+
+      {% for systemName in systemNames %}
+      <clear_comms_button text="{{btnPrefixes[p]}}Disrupt {{systemName}} (|{{systemName}}HackEneCost| energy): 0.0" player_slot="{{p}}" />
+      <clear_comms_button text="{{btnPrefixes[p]}}Disrupt {{systemName}} (|{{systemName}}HackEneCost| energy): 1.0" player_slot="{{p}}" />
+      {% endfor %}
+
+    </event>
+
+    <event name="{{p}} comms menu PWND ARM" >
+      <log text="{{p}} comms menu PWND ARM" />
+  
+      <if_comms_button text="{{btnPrefixes[p]}}Arm Penetrating Warhead Network Disruptor Prototype MkI" player_slot="{{p}}"/>
+      <set_variable name="player{{p}}HackArmed" value="1.0" />
+      <set_timer name="player{{p}}HackArmedHeatTimer" seconds="1.0" />
+
+      <clear_comms_button text="{{btnPrefixes[p]}}Arm Penetrating Warhead Network Disruptor Prototype MkI" player_slot="{{p}}"/>
+  
+      <incoming_comms_text from="CHANNEL {{p+1}}" sideValue="playerSide" type="STATUS">Penetrating Warhead Network Disruptor Prototype MkI ARMED</incoming_comms_text>
+    </event>
+
+    <event name="{{p}} comms menu PWND DISARM" >
+      <log text="{{p}} comms menu PWND DISARM" />
+  
+      <if_comms_button text="{{btnPrefixes[p]}}Disarm Penetrating Warhead Network Disruptor Prototype MkI" player_slot="{{p}}"/>
+      <set_variable name="player{{p}}HackArmed" value="0.0" />
+
+      <clear_comms_button text="{{btnPrefixes[p]}}Disarm Penetrating Warhead Network Disruptor Prototype MkI" player_slot="{{p}}"/>
+
+      <incoming_comms_text from="CHANNEL {{p+1}}" sideValue="playerSide" type="STATUS">Penetrating Warhead Network Disruptor Prototype MkI DISARMED</incoming_comms_text>
+    </event>
+
+
+    <event name="{{p}} add sensor heat because hack armed" >
+      <log text="{{p}} add sensor heat because hack armed" />
+
+      <if_timer_finished name="player{{p}}HackArmedHeatTimer" />
+      <if_variable name="player{{p}}HackArmed" comparator="EQUALS" value="1.0" />
+
+      <addto_object_property player_slot="{{p}}" value="0.05" property="systemCurHeatTactical" />
+
+      <set_timer name="player{{p}}HackArmedHeatTimer" seconds="1.0" />
+    </event>
+
+
+    {% for systemName in systemNames %}
+    <event name="{{p}} comms menu PWND {{systemName}} turn off" >
+      <if_comms_button text="{{btnPrefixes[p]}}Disrupt {{systemName}} (|{{systemName}}HackEneCost| energy): 1.0" player_slot="{{p}}"/>
+
+      <!-- Redraw all buttons to preserve order -->
+      {% for systemName in systemNames %}
+      <clear_comms_button text="{{btnPrefixes[p]}}Disrupt {{systemName}} (|{{systemName}}HackEneCost| energy): 0.0" player_slot="{{p}}" />
+      <clear_comms_button text="{{btnPrefixes[p]}}Disrupt {{systemName}} (|{{systemName}}HackEneCost| energy): 1.0" player_slot="{{p}}" />
+      {% endfor %}
+
+      <set_variable name="player{{p}}HackSystem{{systemName}}" value="0.0" />
+
+      {% for systemName in systemNames %}
+      <set_comms_button text="{{btnPrefixes[p]}}Disrupt {{systemName}} (|{{systemName}}HackEneCost| energy): |player{{p}}HackSystem{{systemName}}|" player_slot="{{p}}" />
+      {% endfor %}
+    </event>
+    <event name="{{p}} comms menu PWND {{systemName}} turn on" >
+      <if_comms_button text="{{btnPrefixes[p]}}Disrupt {{systemName}} (|{{systemName}}HackEneCost| energy): 0.0" player_slot="{{p}}"/>
+
+      <!-- Redraw all buttons to preserve order -->
+      {% for systemName in systemNames %}
+      <clear_comms_button text="{{btnPrefixes[p]}}Disrupt {{systemName}} (|{{systemName}}HackEneCost| energy): 0.0" player_slot="{{p}}" />
+      <clear_comms_button text="{{btnPrefixes[p]}}Disrupt {{systemName}} (|{{systemName}}HackEneCost| energy): 1.0" player_slot="{{p}}" />
+      {% endfor %}
+
+      <set_variable name="player{{p}}HackSystem{{systemName}}" value="1.0" />
+
+      {% for systemName in systemNames %}
+      <set_comms_button text="{{btnPrefixes[p]}}Disrupt {{systemName}} (|{{systemName}}HackEneCost| energy): |player{{p}}HackSystem{{systemName}}|" player_slot="{{p}}" />
+      {% endfor %}
+    </event>
+    {% endfor %}
+
+    {% endfor %}
+
+
+
+
+
+    {% set letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ" %}
+
+    <event name="Init tag scanner" >
+        <log text="Init tag scanner" />
+
+        <if_variable name="Sandbox Activation" comparator="EQUALS" value="2.0" />
+        <if_variable name="Tag scanner initted" comparator="NOT" value="1.0" />
+        <set_variable name="tagShipNumber" value="0" integer="yes" />
+
+        <set_timer name="Rescan tags" seconds="1" />
+
+        <set_variable name="Tag scanner initted" value="1.0" />
+    </event>
+
+    <event name="Global scan " >
+      <log text="Global scan" />
+
+      <if_timer_finished name="Rescan tags" />
+
+      <set_variable name="isThisTagged" value="0.0" integer="no"/>
+      <set_variable name="tagCounter" value="0" integer="yes" />
+      <set_variable name="tagShipNumber" value="0" integer="yes" />
+
+      <!-- We use a quadratic formula to filter out only the first tagged ship ID.
+        Formula: x = {1.0 if tagCounter == 1.0 else 0.0<x<1.0} (works for x<100, which is a safe assumption given fleet size limits)
+        Then we "floor" the result using cast to integer and finally we get: 
+        isTagCounterEqualOne = {1 if tagCounter==1 else 0} -->
+
+      {% for letter in letters %}
+        {% for i in range(0,100) %}
+            <get_object_property name="{{letter}}{{'%02d' % (i)}}" property="isTagged" variable="isThisTagged" />
+            <set_variable name="tagCounter" value="tagCounter + isThisTagged" integer="yes" />
+            <set_variable name="isTagCounterEqualOne" value="-0.0001020304 * (tagCounter-1) * (tagCounter-1) + 1" integer="yes" />
+            <set_variable name="tagShipNumber" value="tagShipNumber + isTagCounterEqualOne * {{i}} * isThisTagged" integer="yes" />
+        {% endfor %}
+      {% endfor %}
+
+      <set_timer name="Rescan tags" seconds="1" />
+
+    </event>
+
+
+    {% for p in range(0,8) %}
+    {% for letter in letters %}
+    <event name="Check {{letter}}-0tagShipNumber" >
+        <log text="Check {{letter}}-0tagShipNumber" />
+
+        <if_variable name="tagShipNumber" comparator="LESS" value="10.0" />
+
+        <if_exists name="{{letter}}0|tagShipNumber|" />
+        <if_object_property name="{{letter}}0|tagShipNumber|" property="isTagged" comparator="EQUALS" value="1.0" />
+
+        <!-- Wizzo must be targetting at the right time -->
+        <if_player_is_targeting player_slot="{{p}}" name="{{letter}}0|tagShipNumber|" />
+        <!-- Hacking must be armed by comms -->
+        <if_variable name="player{{p}}HackArmed" comparator="EQUALS" value="1.0" />
+
+        {% for systemName in systemNames %}
+        <set_object_property name="{{letter}}0|tagShipNumber|" property="systemDamage{{systemName}}" value="100.0 * player{{p}}HackSystem{{systemName}}" />
+        <addto_object_property value="-player{{p}}HackSystem{{systemName}} * {{systemName}}HackEneCost" property="energy" player_slot="{{p}}" />
+        {% endfor %}
+
+        <log text="{{letter}}0|tagShipNumber| is tagged, untagging!" />
+        <set_named_object_tag_state name="{{letter}}0|tagShipNumber|" tagged="0" />
+    </event>
+
+    <event name="Check {{letter}}-tagShipNumber" >
+        <log text="Check {{letter}}-tagShipNumber" />
+
+        <if_variable name="tagShipNumber" comparator="GREATER" value="9.0" />
+
+        <if_exists name="{{letter}}|tagShipNumber|" />
+        <if_object_property name="{{letter}}|tagShipNumber|" property="isTagged" comparator="EQUALS" value="1.0" />
+
+        <!-- Wizzo must be targetting at the right time -->
+        <if_player_is_targeting player_slot="{{p}}" name="{{letter}}|tagShipNumber|" />
+        <!-- Hacking must be armed by comms -->
+        <if_variable name="player{{p}}HackArmed" comparator="EQUALS" value="1.0" />
+
+        {% for systemName in systemNames %}
+        <set_object_property name="{{letter}}|tagShipNumber|" property="systemDamage{{systemName}}" value="100.0 * player{{p}}HackSystem{{systemName}}" />
+        <addto_object_property value="-player{{p}}HackSystem{{systemName}} * {{systemName}}HackEneCost" property="energy" player_slot="{{p}}" />
+        {% endfor %}
+
+        <!-- IDEA: "Yank" special ability can be implemented by adding some dx,dy based on player position here -->
+
+        <log text="{{letter}}|tagShipNumber| is tagged, untagging!" />
+        <set_named_object_tag_state name="{{letter}}|tagShipNumber|" tagged="0" />
+    </event>
+    {% endfor %}
+    {% endfor %}
+
+</mission_data>
