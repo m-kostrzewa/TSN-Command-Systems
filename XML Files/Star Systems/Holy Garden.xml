@@ -657,7 +657,7 @@
     <set_variable name="HolyGarden System" value="System" integer="yes" />
     <set_variable name="Sector Entities" value="0.0" />
   </event>
-  <folder_arme name="Eulis Sector V" id_arme="67aa2fa9-ec9c-41e2-aa30-0a0d1c1dea8a" parent_id_arme="bc33602e-ec48-4b64-8156-3f1c9ac0f8a0" expanded_arme="" />
+  <folder_arme name="Eulis Sector V" id_arme="67aa2fa9-ec9c-41e2-aa30-0a0d1c1dea8a" parent_id_arme="bc33602e-ec48-4b64-8156-3f1c9ac0f8a0" />
   <event name="Create Eulis Sector V" id_arme="dda799dc-aeee-4dbc-8f8e-1c329710304d" parent_id_arme="67aa2fa9-ec9c-41e2-aa30-0a0d1c1dea8a">
     <if_timer_finished name="Transition" />
     <if_variable name="HolyGarden System" comparator="EQUALS" value="1.0" />
@@ -938,17 +938,12 @@
     <if_variable name="Sector Entities" comparator="EQUALS" value="1.0" />
     <create type="enemy" x="41488.0" y="0.0" z="31314.0" angle="0" name="Akheton Industries" hullID="1407" sideValue="sectorSide" />
     <set_ship_text name="Akheton Industries" race="Budron" class="Manufacturing" desc="Main Budron weapons manufacturer." scan_desc="The factory is heavily shielded from scanning." hailtext="Enter password." />
-    
     <create type="enemy" x="59135.0" y="0.0" z="79688.0" angle="0" name="Kayser Gas Co." hullID="1356" sideValue="sectorSide" />
     <set_ship_text name="Kayser Gas Co." race="Budron" class="Gas refinery" desc="They take gas and produce better gas." scan_desc="Days since last workplace accident: 1" hailtext="We're busy here, speak." />
-
-
     <!-- <create type="genericMesh" x="100000.0" y="0.0" z="0.0" name="Eulis V" meshFileName="dat\TSN\USFP\marker.dxs" textureFileName="dat\TSN\USFP\marker.png" colorRed="1.0" colorGreen="1.0" colorBlue="1.0" /> -->
     <create type="genericMesh" x="50000.0" y="0.0" z="50000.0" name="Budron Prime" meshFileName="dat\TSN\USFP\marker.dxs" textureFileName="dat\TSN\USFP\marker.png" colorRed="0.5" colorGreen="0.64" colorBlue="0.35" />
     <set_ship_text name="Budron Prime" desc="Budron homeworld. Currently uninhabitable due to millenia of heavy industrialization." scan_desc="Population: 0." />
     <set_object_property property="pushRadius" value="0.0" name="Budron Prime" />
-
-    
     <create type="genericMesh" x="100.0" y="0.0" z="100.0" angle="0" name="PA" meshFileName="dat\TSN\Planets\planet8.dxs" textureFileName="dat\TSN\Planets\planetTex7.png" fakeShieldsFront="1" fakeShieldsRear="1" hasFakeShldFreq="1" colorRed="0.0" colorGreen="0.2" colorBlue="0.7" />
     <set_object_property property="pushRadius" value="1.0" name="PA" />
     <set_object_property property="artScale" value="8.0" name="PA" />
@@ -1213,41 +1208,32 @@
     <set_object_property property="roll" value="1.57" name="r" />
     <set_object_property property="artScale" value="1.0" name="r" />
     <set_ship_text name="r" newname=" " race="Budron" class="Megastructure" desc="Planetary ring segment." scan_desc="Population: 5 billion." hailtext="Budron Prime planetary ring status green." />
-    
     <!-- <create type="genericMesh" x="50000.0" y="0.0" z="50000.0" name="r" meshFileName="dat\TSN\USFP\marker.dxs" textureFileName="dat\icon-blackhole.png" colorRed="1.0" colorGreen="0.58" colorBlue="0.31"  /> -->
     <!-- <create type="genericMesh" x="50000.0" y="0.0" z="50000.0" name="r" meshFileName="dat\TSN\USFP\marker.dxs" textureFileName="dat\black-hole-edge.png" colorRed="1.0" colorGreen="0.58" colorBlue="0.31"  /> -->
-
     <!-- <create type="genericMesh" x="50000.0" y="0.0" z="50000.0" name="r" meshFileName="dat\TSN\USFP\marker.dxs" textureFileName="dat\icon-nebula.png" colorRed="1.0" colorGreen="0.58" colorBlue="0.31"  />
     <set_object_property property="artScale" value="22.0" name="r" />
     <set_object_property property="pushRadius" value="0" name="r" />
     <set_object_property property="angleDelta" value="0.02" name="r" /> -->
-
     <create type="genericMesh" x="50000.0" y="0.0" z="50000.0" name="r" meshFileName="dat\TSN\USFP\marker.dxs" textureFileName="dat\player_station_color_04.png" colorRed="0.5" colorGreen="0.64" colorBlue="0.35" />
     <set_object_property property="artScale" value="21.0" name="r" />
     <set_object_property property="pushRadius" value="0" name="r" />
     <set_object_property property="angleDelta" value="0.04" name="r" />
     <set_object_property property="angle" value="0" name="r" />
     <set_ship_text name="r" newname="Budron Prime" desc="Budron homeworld. Currently uninhabitable due to millenia of heavy industrialization." scan_desc="Population: 0." />
-
-    <create type="genericMesh" x="50000.0" y="0.0" z="50000.0" name="r" angle="45" meshFileName="dat\TSN\USFP\marker.dxs" textureFileName="dat\player_station_color_02.png" colorRed="0.5" colorGreen="0.64" colorBlue="0.35" />
+    <create type="genericMesh" x="50000.0" y="0.0" z="50000.0" angle="45" name="r" meshFileName="dat\TSN\USFP\marker.dxs" textureFileName="dat\player_station_color_02.png" colorRed="0.5" colorGreen="0.64" colorBlue="0.35" />
     <set_object_property property="artScale" value="22.0" name="r" />
     <set_object_property property="pushRadius" value="0" name="r" />
     <set_object_property property="angleDelta" value="0.01" name="r" />
     <set_object_property property="angle" value="3.1415" name="r" />
     <set_object_property property="pitch" value="3.1415" name="r" />
     <set_ship_text name="r" newname="Budron Prime" desc="Budron homeworld. Currently uninhabitable due to millenia of heavy industrialization." scan_desc="Population: 0." />
-
-
-    
     <create type="enemy" x="53500" y="0.0" z="50000" angle="3.1415 + 3.1415/2" name="PD1" hullID="7714" sideValue="sectorSide" fleetnumber="-1" />
     <create type="enemy" x="50000" y="0.0" z="53500" angle="3.1415" name="PD2" hullID="7714" sideValue="sectorSide" fleetnumber="-1" />
-    <create type="enemy" x="46500" y="0.0" z="50000" angle="3.1415/2"  name="PD3" hullID="7714" sideValue="sectorSide" fleetnumber="-1" />
-    <create type="enemy" x="50000" y="0.0" z="46500" angle="0"   name="PD4" hullID="7714" sideValue="sectorSide" fleetnumber="-1" />
-    
+    <create type="enemy" x="46500" y="0.0" z="50000" angle="3.1415/2" name="PD3" hullID="7714" sideValue="sectorSide" fleetnumber="-1" />
+    <create type="enemy" x="50000" y="0.0" z="46500" angle="0" name="PD4" hullID="7714" sideValue="sectorSide" fleetnumber="-1" />
     <create type="enemy" x="41488" y="500.0" z="31314" angle="30" name="AD1" hullID="7714" sideValue="sectorSide" fleetnumber="-1" />
-    <set_relative_position name1="Akheton Industries" distance="1500" angle="30" name2="AD1" />
+    <set_relative_position name2="AD1" distance="1500" angle="30" name1="Akheton Industries" />
     <set_object_property property="positionY" value="800" name="AD1" />
-
     <!-- Fix platform description: race from "Bohraam" to "Budron" -->
     <set_ship_text name="PD1" race="Budron" />
     <set_ship_text name="PD2" race="Budron" />
@@ -1321,7 +1307,6 @@
     <destroy name="Budron Prime" />
     <destroy name="Budron Prime" />
     <destroy name="Budron Prime" />
-
     <set_variable name="HolyGarden System" value="System" integer="yes" />
     <set_variable name="Sector Entities" value="0.0" />
   </event>
@@ -1348,7 +1333,7 @@
     <set_object_property property="angle" value="3.141592654" player_slot="7" />
     <set_variable name="Sumri to Eulis" value="0.0" />
   </event>
-  <folder_arme name="Eulis Sector VI" id_arme="f6955b8a-1359-477b-a609-883b0be7ea23" parent_id_arme="bc33602e-ec48-4b64-8156-3f1c9ac0f8a0" expanded_arme="" />
+  <folder_arme name="Eulis Sector VI" id_arme="f6955b8a-1359-477b-a609-883b0be7ea23" parent_id_arme="bc33602e-ec48-4b64-8156-3f1c9ac0f8a0" />
   <event name="Create Eulis Sector VI" id_arme="3975c298-c01b-4a1d-ba6b-641c8329e792" parent_id_arme="f6955b8a-1359-477b-a609-883b0be7ea23">
     <if_timer_finished name="Transition" />
     <if_variable name="HolyGarden System" comparator="EQUALS" value="1.0" />
@@ -1483,48 +1468,42 @@
     <if_variable name="Sector" comparator="EQUALS" value="6.0" />
     <if_variable name="Sector Entities" comparator="EQUALS" value="1.0" />
     <create type="genericMesh" x="100000.0" y="0.0" z="0.0" name="Eulis VI" meshFileName="dat\TSN\USFP\marker.dxs" textureFileName="dat\TSN\USFP\marker.png" colorRed="1.0" colorGreen="1.0" colorBlue="1.0" />
-    
     <create type="genericMesh" x="83738.0" y="-650.0" z="30069.0" name="r" meshFileName="dat\asteroid6.dxs" textureFileName="dat\Asteroid_6_Albedo.png" colorRed="1.0" colorGreen="0.58" colorBlue="0.31" />
     <set_object_property property="artScale" value="1.4" name="r" />
     <set_object_property property="pushRadius" value="700" name="r" />
     <set_object_property property="rollDelta" value="0.01" name="r" />
     <set_ship_text name="r" newname=" " race=" " class="Planetoid" desc="A large amalgamation of regolith, held together by gravity." scan_desc="Contains rare-earth minerals." />
-    <create type="genericMesh" x="83218.0" y="-800.0" z="25709.0" name="r" meshFileName="dat\asteroid.dxs" textureFileName="dat\monsterTexture.png" colorRed="1.0" colorGreen="0.58" colorBlue="0.31"  />
+    <create type="genericMesh" x="83218.0" y="-800.0" z="25709.0" name="r" meshFileName="dat\asteroid.dxs" textureFileName="dat\monsterTexture.png" colorRed="1.0" colorGreen="0.58" colorBlue="0.31" />
     <set_object_property property="artScale" value="2.0" name="r" />
     <set_object_property property="pushRadius" value="1000" name="r" />
     <set_object_property property="pitchDelta" value="0.02" name="r" />
     <set_ship_text name="r" newname=" " race=" " class="Planetoid" desc="A large amalgamation of regolith, held together by gravity." scan_desc="Contains rare-earth minerals." />
-    <create type="genericMesh" x="83011.0" y="0.0" z="66712.0" name="r" meshFileName="dat\asteroid11.dxs" textureFileName="dat\asteroidTexture.png" colorRed="1.0" colorGreen="0.58" colorBlue="0.31"  />
+    <create type="genericMesh" x="83011.0" y="0.0" z="66712.0" name="r" meshFileName="dat\asteroid11.dxs" textureFileName="dat\asteroidTexture.png" colorRed="1.0" colorGreen="0.58" colorBlue="0.31" />
     <set_object_property property="artScale" value="1.2" name="r" />
     <set_object_property property="pushRadius" value="600" name="r" />
     <set_object_property property="rollDelta" value="0.03" name="r" />
     <set_ship_text name="r" newname=" " race=" " class="Planetoid" desc="A large amalgamation of regolith, held together by gravity." scan_desc="Contains rare-earth minerals." />
-    <create type="genericMesh" x="79897.0" y="-100.0" z="61522.0" name="r" meshFileName="dat\asteroid10.dxs" textureFileName="dat\Asteroid_10_Albedo.png" colorRed="1.0" colorGreen="0.58" colorBlue="0.31"  />
+    <create type="genericMesh" x="79897.0" y="-100.0" z="61522.0" name="r" meshFileName="dat\asteroid10.dxs" textureFileName="dat\Asteroid_10_Albedo.png" colorRed="1.0" colorGreen="0.58" colorBlue="0.31" />
     <set_object_property property="artScale" value="2.0" name="r" />
     <set_object_property property="pushRadius" value="1000" name="r" />
     <set_object_property property="pitchDelta" value="0.02" name="r" />
     <set_ship_text name="r" newname=" " race=" " class="Planetoid" desc="A large amalgamation of regolith, held together by gravity." scan_desc="Contains rare-earth minerals." />
-    <create type="genericMesh" x="81039.0" y="-800.0" z="68062.0" name="r" meshFileName="dat\asteroid.dxs" textureFileName="dat\monsterTexture.png" colorRed="1.0" colorGreen="0.58" colorBlue="0.31"  />
+    <create type="genericMesh" x="81039.0" y="-800.0" z="68062.0" name="r" meshFileName="dat\asteroid.dxs" textureFileName="dat\monsterTexture.png" colorRed="1.0" colorGreen="0.58" colorBlue="0.31" />
     <set_object_property property="artScale" value="1.4" name="r" />
     <set_object_property property="pushRadius" value="700" name="r" />
     <set_object_property property="rollDelta" value="0.01" name="r" />
     <set_ship_text name="r" newname=" " race=" " class="Planetoid" desc="A large amalgamation of regolith, held together by gravity." scan_desc="Contains rare-earth minerals." />
-
-    <create type="enemy" x="81039.0" y="0.0" z="68062.0" angle="0" name="Sapphire" hullID="1406" sideValue="sectorSide"  />
-    <set_ship_text name="Sapphire" race="Budron" class="Ore miner" desc="Extracts valuable ore using powerful plasma drills." scan_desc="The ore mined here is actually not very valuable." hailtext="Our lovely station welcomes you." />    
-    
+    <create type="enemy" x="81039.0" y="0.0" z="68062.0" angle="0" name="Sapphire" hullID="1406" sideValue="sectorSide" />
+    <set_ship_text name="Sapphire" race="Budron" class="Ore miner" desc="Extracts valuable ore using powerful plasma drills." scan_desc="The ore mined here is actually not very valuable." hailtext="Our lovely station welcomes you." />
     <create type="enemy" x="83738.0" y="0.0" z="30069.0" angle="0" name="The Boring Company" hullID="7714" sideValue="sectorSide" />
-    <set_ship_text name="The Boring Company" race="Budron" class="Ore miner" desc="They bore inside the surrounding planetoids, extracting ores which were deposited before the outer layers formed." scan_desc="One of the most profitable ventures in the system." hailtext="*DRR* *DRR* Could you speak up?" />    
-    
+    <set_ship_text name="The Boring Company" race="Budron" class="Ore miner" desc="They bore inside the surrounding planetoids, extracting ores which were deposited before the outer layers formed." scan_desc="One of the most profitable ventures in the system." hailtext="*DRR* *DRR* Could you speak up?" />
     <create type="enemy" x="53530.0" y="0.0" z="25294.0" angle="0" name="Gustavus And Sons" hullID="1356" sideValue="sectorSide" />
     <set_ship_text name="Gustavus And Sons" race="Budron" class="Manufacturing" desc="A small family owned business, responsible for 40 percent of hydrogen chloride pollution found in this system." scan_desc="Rumors say that the sons left long ago." hailtext="What'dya want?" />
     <set_object_property property="angle" value="0" name="Gustavus And Sons" />
     <set_object_property property="pitch" value="1.5707" name="Gustavus And Sons" />
-    
     <create type="enemy" x="18443.0" y="0.0" z="52934.0" angle="0" name="Syntex" hullID="1003" sideValue="sectorSide" />
     <set_ship_text name="Syntex" race="Budron" class="Manufacturing" desc="Complex manufacturing processes used in this factory cause a lot of pollution as a side-effect." scan_desc="They produce toys." hailtext="Yes, Terran?" />
     <set_object_property property="pitch" value="3.1415" name="Syntex" />
-
     <set_variable name="ExitorRetreat" value="0.0" />
     <set_variable name="Sector Entities" value="2.0" />
     <set_variable name="MissionCode" value="1.0" />
@@ -1549,7 +1528,7 @@
     <set_variable name="HolyGarden System" value="System" integer="yes" />
     <set_variable name="Sector Entities" value="0.0" />
   </event>
-  <folder_arme name="Eulis Sector VII" id_arme="9b4b1045-538e-448f-acac-4bb7196bbb2a" parent_id_arme="bc33602e-ec48-4b64-8156-3f1c9ac0f8a0" />
+  <folder_arme name="Eulis Sector VII" id_arme="9b4b1045-538e-448f-acac-4bb7196bbb2a" parent_id_arme="bc33602e-ec48-4b64-8156-3f1c9ac0f8a0" expanded_arme="" />
   <event name="Create Eulis Sector VII" id_arme="3df31816-9303-4006-9986-d8a3c676a2f4" parent_id_arme="9b4b1045-538e-448f-acac-4bb7196bbb2a">
     <if_timer_finished name="Transition" />
     <if_variable name="HolyGarden System" comparator="EQUALS" value="1.0" />
@@ -1565,15 +1544,107 @@
     <set_variable name="Corner A5 Transition Enabled" value="1.0" />
     <set_variable name="Corner E1 Transition Enabled" value="1.0" />
     <set_variable name="Corner E5 Transition Enabled" value="1.0" />
-    <create count="40" type="asteroids" startX="97164.0" startY="0.0" startZ="35550.0" endX="97678.0" endY="0.0" endZ="58948.0" randomRange="2176" />
-    <create count="75" type="asteroids" startX="95771.0" startY="0.0" startZ="37530.0" endX="25282.0" endY="0.0" endZ="25134.0" randomRange="3096" />
-    <create count="75" type="asteroids" startX="93937.0" startY="0.0" startZ="54987.0" endX="42592.0" endY="0.0" endZ="35036.0" randomRange="5031" />
-    <create count="10" type="asteroids" startX="93203.0" startY="0.0" startZ="44205.0" endX="75306.0" endY="0.0" endZ="38190.0" randomRange="3479" />
-    <create count="75" type="asteroids" startX="61883.0" startY="0.0" startZ="53960.0" endX="7971.0" endY="0.0" endZ="64523.0" randomRange="6465" />
-    <create count="10" type="asteroids" startX="81101.0" startY="0.0" startZ="57921.0" endX="66137.0" endY="0.0" endZ="54547.0" randomRange="2861" />
-    <create count="50" type="asteroids" startX="37678.0" startY="0.0" startZ="44425.0" endX="32470.0" endY="0.0" endZ="40464.0" randomRange="15140" />
-    <create count="40" type="asteroids" startX="88069.0" startY="0.0" startZ="30709.0" endX="33057.0" endY="0.0" endZ="22493.0" randomRange="3648" />
-    <create count="10" type="nebulas" startX="55337.0" startY="0.0" startZ="44256.0" endX="55337.0" endY="0.0" endZ="44256.0" randomRange="31376" />
+    <create count="200" type="nebulas" nebType="2" startAngle="60" endAngle="120" startX="130000.0" startY="0.0" startZ="50000.0" radius="100000" randomRange="5000" />
+    <create count="200" type="nebulas" nebType="2" startAngle="70" endAngle="150" startX="140000.0" startY="0.0" startZ="30000.0" radius="86993" randomRange="5000" />
+    <create count="200" type="nebulas" nebType="2" startAngle="60" endAngle="160" startX="130000.0" startY="0.0" startZ="40000.0" radius="90000" randomRange="5000" />
+    <create count="200" type="nebulas" nebType="2" startAngle="45" endAngle="120" startX="130000.0" startY="0.0" startZ="50000.0" radius="90000" randomRange="5000" />
+    <create count="10" type="nebulas" nebType="2" startX="58824.0" startY="0.0" startZ="23010.0" endX="64637.0" endY="0.0" endZ="34013.0" randomRange="2000" />
+    <create count="15" type="nebulas" nebType="2" startAngle="200" endAngle="270" startX="9620.0" startY="0.0" startZ="39411.0" radius="20000" randomRange="2000" />
+    <create count="10" type="nebulas" nebType="2" startX="20000.0" startY="0.0" startZ="66401.0" endX="9412.0" endY="0.0" endZ="76989.0" randomRange="3000" />
+    <create count="10" type="nebulas" nebType="2" startX="32872.0" startY="0.0" startZ="10553.0" endX="20208.0" endY="0.0" endZ="22595.0" randomRange="3000" />
+    <!---->
+    <!-- <create count="100" type="asteroids" startX="60796.0" startY="0.0" startZ="47820.0" radius="19739" /> -->
+    <!--<create type="asteroids" startX="61004.0" startY="0.0" startZ="48650.0" count="100" radius="40000" />-->
+    <!-- Pasture 1 -->
+    <create type="genericMesh" x="41488.0" y="0.0" z="43252.0" name="P1-TL" meshFileName="dat\mine.dxs" textureFileName="dat\arvonian_station_spec.png" colorRed="1.0" colorGreen="0.5" colorBlue="1.0" />
+    <create type="genericMesh" x="22596.0" y="0.0" z="37647.0" name="P1-TR" meshFileName="dat\mine.dxs" textureFileName="dat\arvonian_station_spec.png" colorRed="1.0" colorGreen="0.5" colorBlue="1.0" />
+    <create type="genericMesh" x="45848.0" y="0.0" z="60899.0" name="P1-BL" meshFileName="dat\mine.dxs" textureFileName="dat\arvonian_station_spec.png" colorRed="1.0" colorGreen="0.5" colorBlue="1.0" />
+    <create type="genericMesh" x="30485.0" y="0.0" z="74186.0" name="P1-BR" meshFileName="dat\mine.dxs" textureFileName="dat\arvonian_station_spec.png" colorRed="1.0" colorGreen="0.5" colorBlue="1.0" />
+    <create type="genericMesh" x="40866.0" y="0.0" z="48027.0" name=" " meshFileName="dat\mine.dxs" textureFileName="dat\arvonian_station_spec.png" colorRed="1.0" colorGreen="0.5" colorBlue="1.0" />
+    <create type="genericMesh" x="41696.0" y="0.0" z="53010.0" name=" " meshFileName="dat\mine.dxs" textureFileName="dat\arvonian_station_spec.png" colorRed="1.0" colorGreen="0.5" colorBlue="1.0" />
+    <create type="genericMesh" x="43149.0" y="0.0" z="57370.0" name=" " meshFileName="dat\mine.dxs" textureFileName="dat\arvonian_station_spec.png" colorRed="1.0" colorGreen="0.5" colorBlue="1.0" />
+    <create type="genericMesh" x="21142.0" y="0.0" z="43460.0" name=" " meshFileName="dat\mine.dxs" textureFileName="dat\arvonian_station_spec.png" colorRed="1.0" colorGreen="0.5" colorBlue="1.0" />
+    <create type="genericMesh" x="20935.0" y="0.0" z="49896.0" name=" " meshFileName="dat\mine.dxs" textureFileName="dat\arvonian_station_spec.png" colorRed="1.0" colorGreen="0.5" colorBlue="1.0" />
+    <create type="genericMesh" x="21558.0" y="0.0" z="56539.0" name=" " meshFileName="dat\mine.dxs" textureFileName="dat\arvonian_station_spec.png" colorRed="1.0" colorGreen="0.5" colorBlue="1.0" />
+    <create type="genericMesh" x="23841.0" y="0.0" z="62768.0" name=" " meshFileName="dat\mine.dxs" textureFileName="dat\arvonian_station_spec.png" colorRed="1.0" colorGreen="0.5" colorBlue="1.0" />
+    <create type="genericMesh" x="34014.0" y="0.0" z="70865.0" name=" " meshFileName="dat\mine.dxs" textureFileName="dat\arvonian_station_spec.png" colorRed="1.0" colorGreen="0.5" colorBlue="1.0" />
+    <create type="genericMesh" x="41696.0" y="0.0" z="64429.0" name=" " meshFileName="dat\mine.dxs" textureFileName="dat\arvonian_station_spec.png" colorRed="1.0" colorGreen="0.5" colorBlue="1.0" />
+    <create type="genericMesh" x="36506.0" y="0.0" z="41384.0" name=" " meshFileName="dat\mine.dxs" textureFileName="dat\arvonian_station_spec.png" colorRed="1.0" colorGreen="0.5" colorBlue="1.0" />
+    <create type="genericMesh" x="26956.0" y="0.0" z="38477.0" name=" " meshFileName="dat\mine.dxs" textureFileName="dat\arvonian_station_spec.png" colorRed="1.0" colorGreen="0.5" colorBlue="1.0" />
+    <!-- Pasture 2 -->
+    <create type="genericMesh" x="72215.0" y="0.0" z="64844.0" name="P2-TL" meshFileName="dat\mine.dxs" textureFileName="dat\arvonian_station_spec.png" colorRed="1.0" colorGreen="0.5" colorBlue="1.0" />
+    <create type="genericMesh" x="50000.0" y="0.0" z="64429.0" name="P2-TR" meshFileName="dat\mine.dxs" textureFileName="dat\arvonian_station_spec.png" colorRed="1.0" colorGreen="0.5" colorBlue="1.0" />
+    <create type="genericMesh" x="82180.0" y="0.0" z="82698.0" name="P2-BL" meshFileName="dat\mine.dxs" textureFileName="dat\arvonian_station_spec.png" colorRed="1.0" colorGreen="0.5" colorBlue="1.0" />
+    <create type="genericMesh" x="37544.0" y="0.0" z="81660.0" name="P2-BR" meshFileName="dat\mine.dxs" textureFileName="dat\arvonian_station_spec.png" colorRed="1.0" colorGreen="0.5" colorBlue="1.0" />
+    <create type="genericMesh" x="67025.0" y="0.0" z="67335.0" name=" " meshFileName="dat\mine.dxs" textureFileName="dat\arvonian_station_spec.png" colorRed="1.0" colorGreen="0.5" colorBlue="1.0" />
+    <create type="genericMesh" x="60796.0" y="0.0" z="67958.0" name=" " meshFileName="dat\mine.dxs" textureFileName="dat\arvonian_station_spec.png" colorRed="1.0" colorGreen="0.5" colorBlue="1.0" />
+    <create type="genericMesh" x="54776.0" y="0.0" z="67335.0" name=" " meshFileName="dat\mine.dxs" textureFileName="dat\arvonian_station_spec.png" colorRed="1.0" colorGreen="0.5" colorBlue="1.0" />
+    <create type="genericMesh" x="79066.0" y="0.0" z="77716.0" name=" " meshFileName="dat\mine.dxs" textureFileName="dat\arvonian_station_spec.png" colorRed="1.0" colorGreen="0.5" colorBlue="1.0" />
+    <create type="genericMesh" x="76575.0" y="0.0" z="73148.0" name=" " meshFileName="dat\mine.dxs" textureFileName="dat\arvonian_station_spec.png" colorRed="1.0" colorGreen="0.5" colorBlue="1.0" />
+    <create type="genericMesh" x="74291.0" y="0.0" z="69204.0" name=" " meshFileName="dat\mine.dxs" textureFileName="dat\arvonian_station_spec.png" colorRed="1.0" colorGreen="0.5" colorBlue="1.0" />
+    <create type="genericMesh" x="40450.0" y="0.0" z="77093.0" name=" " meshFileName="dat\mine.dxs" textureFileName="dat\arvonian_station_spec.png" colorRed="1.0" colorGreen="0.5" colorBlue="1.0" />
+    <create type="genericMesh" x="46679.0" y="0.0" z="68788.0" name=" " meshFileName="dat\mine.dxs" textureFileName="dat\arvonian_station_spec.png" colorRed="1.0" colorGreen="0.5" colorBlue="1.0" />
+    <create type="genericMesh" x="43772.0" y="0.0" z="72733.0" name=" " meshFileName="dat\mine.dxs" textureFileName="dat\arvonian_station_spec.png" colorRed="1.0" colorGreen="0.5" colorBlue="1.0" />
+    <create type="genericMesh" x="59966.0" y="0.0" z="89134.0" name=" " meshFileName="dat\mine.dxs" textureFileName="dat\arvonian_station_spec.png" colorRed="1.0" colorGreen="0.5" colorBlue="1.0" />
+    <create type="genericMesh" x="45018.0" y="0.0" z="85605.0" name=" " meshFileName="dat\mine.dxs" textureFileName="dat\arvonian_station_spec.png" colorRed="1.0" colorGreen="0.5" colorBlue="1.0" />
+    <create type="genericMesh" x="52492.0" y="0.0" z="87889.0" name=" " meshFileName="dat\mine.dxs" textureFileName="dat\arvonian_station_spec.png" colorRed="1.0" colorGreen="0.5" colorBlue="1.0" />
+    <create type="genericMesh" x="68893.0" y="0.0" z="88304.0" name=" " meshFileName="dat\mine.dxs" textureFileName="dat\arvonian_station_spec.png" colorRed="1.0" colorGreen="0.5" colorBlue="1.0" />
+    <create type="genericMesh" x="76575.0" y="0.0" z="86228.0" name=" " meshFileName="dat\mine.dxs" textureFileName="dat\arvonian_station_spec.png" colorRed="1.0" colorGreen="0.5" colorBlue="1.0" />
+    <create type="genericMesh" x="26540.0" y="0.0" z="68996.0" name=" " meshFileName="dat\mine.dxs" textureFileName="dat\arvonian_station_spec.png" colorRed="1.0" colorGreen="0.5" colorBlue="1.0" />
+    <create type="genericMesh" x="31731.0" y="0.0" z="39930.0" name=" " meshFileName="dat\mine.dxs" textureFileName="dat\arvonian_station_spec.png" colorRed="1.0" colorGreen="0.5" colorBlue="1.0" />
+    <create type="genericMesh" x="37959.0" y="0.0" z="67750.0" name=" " meshFileName="dat\mine.dxs" textureFileName="dat\arvonian_station_spec.png" colorRed="1.0" colorGreen="0.5" colorBlue="1.0" />
+    <!-- Pasture 3-->
+    <create type="genericMesh" x="75537.0" y="0.0" z="11903.0" name="P3-TL" meshFileName="dat\mine.dxs" textureFileName="dat\arvonian_station_spec.png" colorRed="1.0" colorGreen="0.5" colorBlue="1.0" />
+    <create type="genericMesh" x="30277.0" y="0.0" z="22698.0" name="P3-TR" meshFileName="dat\mine.dxs" textureFileName="dat\arvonian_station_spec.png" colorRed="1.0" colorGreen="0.5" colorBlue="1.0" />
+    <create type="genericMesh" x="68686.0" y="0.0" z="29134.0" name="P3-BL" meshFileName="dat\mine.dxs" textureFileName="dat\arvonian_station_spec.png" colorRed="1.0" colorGreen="0.5" colorBlue="1.0" />
+    <create type="genericMesh" x="44810.0" y="0.0" z="35570.0" name="P3-BR" meshFileName="dat\mine.dxs" textureFileName="dat\arvonian_station_spec.png" colorRed="1.0" colorGreen="0.5" colorBlue="1.0" />
+    <create type="genericMesh" x="57059.0" y="0.0" z="27681.0" name=" " meshFileName="dat\mine.dxs" textureFileName="dat\arvonian_station_spec.png" colorRed="1.0" colorGreen="0.5" colorBlue="1.0" />
+    <create type="genericMesh" x="47924.0" y="0.0" z="32249.0" name=" " meshFileName="dat\mine.dxs" textureFileName="dat\arvonian_station_spec.png" colorRed="1.0" colorGreen="0.5" colorBlue="1.0" />
+    <create type="genericMesh" x="62665.0" y="0.0" z="27474.0" name=" " meshFileName="dat\mine.dxs" textureFileName="dat\arvonian_station_spec.png" colorRed="1.0" colorGreen="0.5" colorBlue="1.0" />
+    <create type="genericMesh" x="48340.0" y="0.0" z="10034.0" name=" " meshFileName="dat\mine.dxs" textureFileName="dat\arvonian_station_spec.png" colorRed="1.0" colorGreen="0.5" colorBlue="1.0" />
+    <create type="genericMesh" x="69101.0" y="0.0" z="9619.0" name=" " meshFileName="dat\mine.dxs" textureFileName="dat\arvonian_station_spec.png" colorRed="1.0" colorGreen="0.5" colorBlue="1.0" />
+    <create type="genericMesh" x="52907.0" y="0.0" z="8581.0" name=" " meshFileName="dat\mine.dxs" textureFileName="dat\arvonian_station_spec.png" colorRed="1.0" colorGreen="0.5" colorBlue="1.0" />
+    <create type="genericMesh" x="38582.0" y="0.0" z="14602.0" name=" " meshFileName="dat\mine.dxs" textureFileName="dat\arvonian_station_spec.png" colorRed="1.0" colorGreen="0.5" colorBlue="1.0" />
+    <create type="genericMesh" x="34014.0" y="0.0" z="18546.0" name=" " meshFileName="dat\mine.dxs" textureFileName="dat\arvonian_station_spec.png" colorRed="1.0" colorGreen="0.5" colorBlue="1.0" />
+    <create type="genericMesh" x="36921.0" y="0.0" z="28927.0" name=" " meshFileName="dat\mine.dxs" textureFileName="dat\arvonian_station_spec.png" colorRed="1.0" colorGreen="0.5" colorBlue="1.0" />
+    <create type="genericMesh" x="33392.0" y="0.0" z="25813.0" name=" " meshFileName="dat\mine.dxs" textureFileName="dat\arvonian_station_spec.png" colorRed="1.0" colorGreen="0.5" colorBlue="1.0" />
+    <create type="genericMesh" x="40866.0" y="0.0" z="32041.0" name=" " meshFileName="dat\mine.dxs" textureFileName="dat\arvonian_station_spec.png" colorRed="1.0" colorGreen="0.5" colorBlue="1.0" />
+    <create type="genericMesh" x="72007.0" y="0.0" z="20830.0" name=" " meshFileName="dat\mine.dxs" textureFileName="dat\arvonian_station_spec.png" colorRed="1.0" colorGreen="0.5" colorBlue="1.0" />
+    <create type="genericMesh" x="73876.0" y="0.0" z="16678.0" name=" " meshFileName="dat\mine.dxs" textureFileName="dat\arvonian_station_spec.png" colorRed="1.0" colorGreen="0.5" colorBlue="1.0" />
+    <create type="genericMesh" x="70554.0" y="0.0" z="25190.0" name=" " meshFileName="dat\mine.dxs" textureFileName="dat\arvonian_station_spec.png" colorRed="1.0" colorGreen="0.5" colorBlue="1.0" />
+    <create type="genericMesh" x="51661.0" y="0.0" z="29342.0" name=" " meshFileName="dat\mine.dxs" textureFileName="dat\arvonian_station_spec.png" colorRed="1.0" colorGreen="0.5" colorBlue="1.0" />
+    <create type="genericMesh" x="43772.0" y="0.0" z="12110.0" name=" " meshFileName="dat\mine.dxs" textureFileName="dat\arvonian_station_spec.png" colorRed="1.0" colorGreen="0.5" colorBlue="1.0" />
+    <create type="genericMesh" x="63288.0" y="0.0" z="8373.0" name=" " meshFileName="dat\mine.dxs" textureFileName="dat\arvonian_station_spec.png" colorRed="1.0" colorGreen="0.5" colorBlue="1.0" />
+    <create type="genericMesh" x="58305.0" y="0.0" z="8373.0" name=" " meshFileName="dat\mine.dxs" textureFileName="dat\arvonian_station_spec.png" colorRed="1.0" colorGreen="0.5" colorBlue="1.0" />
+
+
+    <create type="genericMesh" x="61000.0" y="0.0" z="48500.0" name="r" meshFileName="dat\wreck1.dxs" textureFileName="dat\drone4_spec.png" colorRed="1.0" colorGreen="0.5" colorBlue="1.0" />
+    <set_object_property property="pushRadius" value="0" name="r" />
+    <set_object_property property="pitch" value="3.1415/2" name="r" />
+    <set_ship_text name="r" newname=" " race="Budron" class="Cargo" desc="Specialized cargo container." scan_desc="Contents: food products." hailtext="Freezer active" />
+
+    <create type="genericMesh" x="61000.0" y="0.0" z="48700.0" name="r" meshFileName="dat\wreck1.dxs" textureFileName="dat\drone4_spec.png" colorRed="1.0" colorGreen="0.5" colorBlue="1.0" />
+    <set_object_property property="pushRadius" value="0" name="r" />
+    <set_object_property property="pitch" value="3.1415/2" name="r" />
+    <set_ship_text name="r" newname=" " race="Budron" class="Cargo" desc="Specialized cargo container." scan_desc="Contents: food products." hailtext="Freezer active" />
+    
+    <create type="genericMesh" x="61000.0" y="0.0" z="48900.0" name="r" meshFileName="dat\wreck1.dxs" textureFileName="dat\drone4_spec.png" colorRed="1.0" colorGreen="0.5" colorBlue="1.0" />
+    <set_object_property property="pitch" value="3.1415/2" name="r" />
+    <set_object_property property="pushRadius" value="0" name="r" />
+    <set_ship_text name="r" newname=" " race="Budron" class="Cargo" desc="Specialized cargo container." scan_desc="Contents: food products." hailtext="Freezer active" />
+    
+    <create type="genericMesh" x="61500.0" y="0.0" z="48000.0" name="r" meshFileName="dat\TSN\USFP\USFP-shipyard.dxs" textureFileName="dat\ship4B_diffuse.png" colorRed="1.0" colorGreen="0.5" colorBlue="1.0"/>
+    <set_object_property property="pushRadius" value="0" name="r" />
+    <set_object_property property="pitch" value="3.1415" name="r" />
+    <set_object_property property="artScale" value="0.5" name="r" />
+    <set_object_property property="angle" value="3.1415 / 2" name="r" />
+    <set_ship_text name="r" newname=" " race="Budron" class="Butchering station" desc="A butchering station suitable for butchering giant space monsters while in space." scan_desc="Last disinfected 9042 days ago." hailtext="Aaargh, fresh meat!" />
+
+    <create type="enemy" x="61000.0" y="-100.0" z="48000.0" name="Le station" angle="0" hullID="1404" sideValue="sectorSide" />
+    <set_object_property property="angle" value="3.1415 / 4" name="Le station" />
+    <!-- <set_object_property property="roll" value="3.1415 / 2" name="Le station" /> -->
+    <set_object_property property="pitch" value="- 3.1415 / 2" name="Le station" />
+
   </event>
   <folder_arme name="Navigation" id_arme="cde08490-c6ba-4a56-9475-0ab2b213d471" parent_id_arme="9b4b1045-538e-448f-acac-4bb7196bbb2a" />
   <event name="Transition to Sector VIII" id_arme="bde44af2-93d9-4706-92c5-c6ab3f50aebf" parent_id_arme="cde08490-c6ba-4a56-9475-0ab2b213d471">
@@ -1669,18 +1740,6 @@
     <if_variable name="HolyGarden System" comparator="EQUALS" value="2.0" />
     <if_variable name="Sector" comparator="EQUALS" value="7" />
     <if_variable name="Sector Entities" comparator="EQUALS" value="1.0" />
-    <create type="neutral" x="74643.0" y="0.0" z="68080.0" name="Baratron Refineries" hullID="1003" sideValue="sectorSide" />
-    <create type="neutral" x="63259.0" y="0.0" z="77053.0" angle="0" name="SY-C1" hullID="1053" sideValue="sectorSide" />
-    <create type="neutral" x="68483.0" y="0.0" z="79598.0" angle="0" name="SY-C2" hullID="1053" sideValue="sectorSide" />
-    <create type="neutral" x="62858.0" y="0.0" z="66607.0" name="Campton Industries" hullID="1050" sideValue="sectorSide" />
-    <create type="neutral" x="67009.0" y="0.0" z="75312.0" name="Carilon Shipyards" hullID="1003" sideValue="sectorSide" />
-    <create type="neutral" x="84458.0" y="0.0" z="42369.0" name="RS-329" hullID="1004" sideValue="sectorSide" />
-    <create type="neutral" x="65908.0" y="0.0" z="53843.0" name="M-830" hullID="1003" sideValue="sectorSide" />
-    <create type="neutral" x="50268.0" y="0.0" z="26830.0" name="M-734" hullID="1003" sideValue="sectorSide" />
-    <create type="neutral" x="20201.0" y="0.0" z="59879.0" name="RS-703" hullID="1004" sideValue="sectorSide" />
-    <create type="neutral" x="24018.0" y="0.0" z="40625.0" angle="0" name="LCR-2" hullID="1055" sideValue="sectorSide" />
-    <create type="neutral" x="27367.0" y="0.0" z="17991.0" angle="0" name="LBY-2" hullID="1054" sideValue="sectorSide" />
-    <create type="genericMesh" x="100000.0" y="0.0" z="0.0" name="Eulis VII" meshFileName="dat\TSN\USFP\marker.dxs" textureFileName="dat\TSN\USFP\marker.png" colorRed="1.0" colorGreen="1.0" colorBlue="1.0" />
     <set_variable name="ExitorRetreat" value="0.0" />
     <set_variable name="Sector Entities" value="2.0" />
     <set_variable name="MissionCode" value="1.0" />
