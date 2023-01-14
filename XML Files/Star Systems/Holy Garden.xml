@@ -683,6 +683,7 @@
     <create count="40" type="nebulas" nebType="3" startAngle="220" endAngle="300" startX="50000.0" startY="0.0" startZ="45000.0" radius="30000" randomRange="2000" randomSeed="2" />
     <create count="40" type="nebulas" nebType="3" startAngle="250" endAngle="400" startX="45000.0" startY="0.0" startZ="45000.0" radius="30000" randomRange="3000" randomSeed="3" />
     <create count="40" type="nebulas" nebType="3" startAngle="240" endAngle="360" startX="53000.0" startY="0.0" startZ="55000.0" radius="23000" randomRange="3000" randomSeed="4" />
+    <create count="5" type="nebulas" nebType="3" startAngle="0" endAngle="0" startX="50000.0" startY="0.0" startZ="50000.0" radius="1" randomRange="0" randomSeed="4" />
     <create count="40" type="asteroids" startAngle="30" endAngle="60" startX="50000.0" startY="0.0" startZ="50000.0" radius="55000" randomRange="4000" />
     <create count="40" type="asteroids" startAngle="120.0" endAngle="150.0" startX="50000.0" startY="0.0" startZ="50000.0" radius="55000" randomRange="4000" />
     <create count="40" type="asteroids" startAngle="210.0" endAngle="240.0" startX="50000.0" startY="0.0" startZ="50000.0" radius="55000" randomRange="4000" />
@@ -935,15 +936,19 @@
     <if_variable name="HolyGarden System" comparator="EQUALS" value="2.0" />
     <if_variable name="Sector" comparator="EQUALS" value="5" />
     <if_variable name="Sector Entities" comparator="EQUALS" value="1.0" />
-    <create type="enemy" x="41488.0" y="0.0" z="31314.0" angle="0" name="Akheton Industries" hullID="1004" sideValue="sectorSide" />
+    <create type="enemy" x="41488.0" y="0.0" z="31314.0" angle="0" name="Akheton Industries" hullID="1407" sideValue="sectorSide" />
     <set_ship_text name="Akheton Industries" race="Budron" class="Manufacturing" desc="Main Budron weapons manufacturer." scan_desc="The factory is heavily shielded from scanning." hailtext="Enter password." />
     
     <create type="enemy" x="59135.0" y="0.0" z="79688.0" angle="0" name="Kayser Gas Co." hullID="1356" sideValue="sectorSide" />
     <set_ship_text name="Kayser Gas Co." race="Budron" class="Gas refinery" desc="They take gas and produce better gas." scan_desc="Days since last workplace accident: 1" hailtext="We're busy here, speak." />
-    
+
+
     <!-- <create type="genericMesh" x="100000.0" y="0.0" z="0.0" name="Eulis V" meshFileName="dat\TSN\USFP\marker.dxs" textureFileName="dat\TSN\USFP\marker.png" colorRed="1.0" colorGreen="1.0" colorBlue="1.0" /> -->
-    <create type="genericMesh" x="50000.0" y="0.0" z="50000.0" name="Budron Prime" meshFileName="dat\TSN\USFP\marker.dxs" textureFileName="dat\TSN\USFP\marker.png" colorRed="1.0" colorGreen="1.0" colorBlue="1.0" />
+    <create type="genericMesh" x="50000.0" y="0.0" z="50000.0" name="Budron Prime" meshFileName="dat\TSN\USFP\marker.dxs" textureFileName="dat\TSN\USFP\marker.png" colorRed="0.5" colorGreen="0.64" colorBlue="0.35" />
     <set_ship_text name="Budron Prime" desc="Budron homeworld. Currently uninhabitable due to millenia of heavy industrialization." scan_desc="Population: 0." />
+    <set_object_property property="pushRadius" value="0.0" name="Budron Prime" />
+
+    
     <create type="genericMesh" x="100.0" y="0.0" z="100.0" angle="0" name="PA" meshFileName="dat\TSN\Planets\planet8.dxs" textureFileName="dat\TSN\Planets\planetTex7.png" fakeShieldsFront="1" fakeShieldsRear="1" hasFakeShldFreq="1" colorRed="0.0" colorGreen="0.2" colorBlue="0.7" />
     <set_object_property property="pushRadius" value="1.0" name="PA" />
     <set_object_property property="artScale" value="8.0" name="PA" />
@@ -1208,15 +1213,47 @@
     <set_object_property property="roll" value="1.57" name="r" />
     <set_object_property property="artScale" value="1.0" name="r" />
     <set_ship_text name="r" newname=" " race="Budron" class="Megastructure" desc="Planetary ring segment." scan_desc="Population: 5 billion." hailtext="Budron Prime planetary ring status green." />
-    <create type="enemy" x="53500" y="0.0" z="50000" name="PD1" hullID="7714" sideValue="sectorSide" fleetnumber="-1" />
-    <create type="enemy" x="50000" y="0.0" z="53500" name="PD2" hullID="7714" sideValue="sectorSide" fleetnumber="-1" />
-    <create type="enemy" x="46500" y="0.0" z="50000" name="PD3" hullID="7714" sideValue="sectorSide" fleetnumber="-1" />
-    <create type="enemy" x="50000" y="0.0" z="46500" name="PD4" hullID="7714" sideValue="sectorSide" fleetnumber="-1" />
+    
+    <!-- <create type="genericMesh" x="50000.0" y="0.0" z="50000.0" name="r" meshFileName="dat\TSN\USFP\marker.dxs" textureFileName="dat\icon-blackhole.png" colorRed="1.0" colorGreen="0.58" colorBlue="0.31"  /> -->
+    <!-- <create type="genericMesh" x="50000.0" y="0.0" z="50000.0" name="r" meshFileName="dat\TSN\USFP\marker.dxs" textureFileName="dat\black-hole-edge.png" colorRed="1.0" colorGreen="0.58" colorBlue="0.31"  /> -->
+
+    <!-- <create type="genericMesh" x="50000.0" y="0.0" z="50000.0" name="r" meshFileName="dat\TSN\USFP\marker.dxs" textureFileName="dat\icon-nebula.png" colorRed="1.0" colorGreen="0.58" colorBlue="0.31"  />
+    <set_object_property property="artScale" value="22.0" name="r" />
+    <set_object_property property="pushRadius" value="0" name="r" />
+    <set_object_property property="angleDelta" value="0.02" name="r" /> -->
+
+    <create type="genericMesh" x="50000.0" y="0.0" z="50000.0" name="r" meshFileName="dat\TSN\USFP\marker.dxs" textureFileName="dat\player_station_color_04.png" colorRed="0.5" colorGreen="0.64" colorBlue="0.35" />
+    <set_object_property property="artScale" value="21.0" name="r" />
+    <set_object_property property="pushRadius" value="0" name="r" />
+    <set_object_property property="angleDelta" value="0.04" name="r" />
+    <set_object_property property="angle" value="0" name="r" />
+    <set_ship_text name="r" newname="Budron Prime" desc="Budron homeworld. Currently uninhabitable due to millenia of heavy industrialization." scan_desc="Population: 0." />
+
+    <create type="genericMesh" x="50000.0" y="0.0" z="50000.0" name="r" angle="45" meshFileName="dat\TSN\USFP\marker.dxs" textureFileName="dat\player_station_color_02.png" colorRed="0.5" colorGreen="0.64" colorBlue="0.35" />
+    <set_object_property property="artScale" value="22.0" name="r" />
+    <set_object_property property="pushRadius" value="0" name="r" />
+    <set_object_property property="angleDelta" value="0.01" name="r" />
+    <set_object_property property="angle" value="3.1415" name="r" />
+    <set_object_property property="pitch" value="3.1415" name="r" />
+    <set_ship_text name="r" newname="Budron Prime" desc="Budron homeworld. Currently uninhabitable due to millenia of heavy industrialization." scan_desc="Population: 0." />
+
+
+    
+    <create type="enemy" x="53500" y="0.0" z="50000" angle="3.1415 + 3.1415/2" name="PD1" hullID="7714" sideValue="sectorSide" fleetnumber="-1" />
+    <create type="enemy" x="50000" y="0.0" z="53500" angle="3.1415" name="PD2" hullID="7714" sideValue="sectorSide" fleetnumber="-1" />
+    <create type="enemy" x="46500" y="0.0" z="50000" angle="3.1415/2"  name="PD3" hullID="7714" sideValue="sectorSide" fleetnumber="-1" />
+    <create type="enemy" x="50000" y="0.0" z="46500" angle="0"   name="PD4" hullID="7714" sideValue="sectorSide" fleetnumber="-1" />
+    
+    <create type="enemy" x="41488" y="500.0" z="31314" angle="30" name="AD1" hullID="7714" sideValue="sectorSide" fleetnumber="-1" />
+    <set_relative_position name1="Akheton Industries" distance="1500" angle="30" name2="AD1" />
+    <set_object_property property="positionY" value="800" name="AD1" />
+
     <!-- Fix platform description: race from "Bohraam" to "Budron" -->
     <set_ship_text name="PD1" race="Budron" />
     <set_ship_text name="PD2" race="Budron" />
     <set_ship_text name="PD3" race="Budron" />
     <set_ship_text name="PD4" race="Budron" />
+    <set_ship_text name="AD1" race="Budron" />
     <!-- <set_variable name="ClassMPlanet" value="1.0" integer="yes" /> -->
     <set_variable name="ExitorRetreat" value="0.0" />
     <set_variable name="Sector Entities" value="2.0" />
@@ -1234,13 +1271,13 @@
   </event>
   <event name="Destroy Sector Entities" id_arme="fdf730e6-2619-4608-be64-fc87744319a9" parent_id_arme="4d97e4b0-2997-475d-bf08-03b585249dba">
     <if_variable name="HolyGarden System" comparator="EQUALS" value="3.0" />
-    <destroy name="Budron Prime" />
     <destroy name="Akheton Industries" />
     <destroy name="Kayser Gas Co." />
     <destroy name="PD1" />
     <destroy name="PD2" />
     <destroy name="PD3" />
     <destroy name="PD4" />
+    <destroy name="AD1" />
     <!-- Destroy the planetary ring -->
     <destroy name=" " />
     <destroy name=" " />
@@ -1280,6 +1317,11 @@
     <destroy name=" " />
     <!-- Destroy the planet-->
     <set_variable name="DestroyPlanet" value="1.0" integer="yes" />
+    <!-- Destroy planet and megastructure "scaffolds" (they have the same name to fix Y-fighting on science screen) -->
+    <destroy name="Budron Prime" />
+    <destroy name="Budron Prime" />
+    <destroy name="Budron Prime" />
+
     <set_variable name="HolyGarden System" value="System" integer="yes" />
     <set_variable name="Sector Entities" value="0.0" />
   </event>
@@ -1345,47 +1387,6 @@
     <create count="10" type="nebulas" nebType="3" startAngle="90" endAngle="120" startX="107405.0" startY="0.0" startZ="80726.0" radius="45000" randomRange="3000" />
     <create count="7" type="nebulas" nebType="2" startX="31419.0" startY="0.0" startZ="31937.0" endX="37232.0" endY="0.0" endZ="41695.0" randomRange="2000" />
     <create count="6" type="nebulas" nebType="2" startX="38893.0" startY="0.0" startZ="8685.0" endX="42630.0" endY="0.0" endZ="19688.0" randomRange="2000" />
-    <create type="genericMesh" x="83738.0" y="-650.0" z="30069.0" name="r" meshFileName="dat\asteroid.dxs" textureFileName="dat\asteroidTexture.png" colorRed="1.0" colorGreen="0.58" colorBlue="0.31" />
-    <set_object_property property="artScale" value="1.4" name="r" />
-    <set_object_property property="pushRadius" value="700" name="r" />
-    <set_object_property property="rollDelta" value="0.01" name="r" />
-    <set_ship_text name="r" newname=" " race=" " class="Planetoid" desc="A large amalgamation of regolith, held together by gravity." scan_desc="Contains rare-earth minerals." />
-    <create type="genericMesh" x="83218.0" y="-800.0" z="25709.0" name="r" meshFileName="dat\asteroid.dxs" textureFileName="dat\monsterTexture.png" colorRed="1.0" colorGreen="0.58" colorBlue="0.31"  />
-    <set_object_property property="artScale" value="2.0" name="r" />
-    <set_object_property property="pushRadius" value="1000" name="r" />
-    <set_object_property property="pitchDelta" value="0.02" name="r" />
-    <set_ship_text name="r" newname=" " race=" " class="Planetoid" desc="A large amalgamation of regolith, held together by gravity." scan_desc="Contains rare-earth minerals." />
-    <create type="genericMesh" x="83011.0" y="0.0" z="66712.0" name="r" meshFileName="dat\asteroid.dxs" textureFileName="dat\asteroidTexture.png" colorRed="1.0" colorGreen="0.58" colorBlue="0.31"  />
-    <set_object_property property="artScale" value="1.2" name="r" />
-    <set_object_property property="pushRadius" value="600" name="r" />
-    <set_object_property property="rollDelta" value="0.03" name="r" />
-    <set_ship_text name="r" newname=" " race=" " class="Planetoid" desc="A large amalgamation of regolith, held together by gravity." scan_desc="Contains rare-earth minerals." />
-    <create type="genericMesh" x="79897.0" y="-100.0" z="61522.0" name="r" meshFileName="dat\asteroid.dxs" textureFileName="dat\monsterTexture.png" colorRed="1.0" colorGreen="0.58" colorBlue="0.31"  />
-    <set_object_property property="artScale" value="2.0" name="r" />
-    <set_object_property property="pushRadius" value="1000" name="r" />
-    <set_object_property property="pitchDelta" value="0.02" name="r" />
-    <set_ship_text name="r" newname=" " race=" " class="Planetoid" desc="A large amalgamation of regolith, held together by gravity." scan_desc="Contains rare-earth minerals." />
-    <create type="genericMesh" x="81039.0" y="-800.0" z="68062.0" name="r" meshFileName="dat\asteroid.dxs" textureFileName="dat\monsterTexture.png" colorRed="1.0" colorGreen="0.58" colorBlue="0.31"  />
-    <set_object_property property="artScale" value="1.4" name="r" />
-    <set_object_property property="pushRadius" value="700" name="r" />
-    <set_object_property property="rollDelta" value="0.01" name="r" />
-    <set_ship_text name="r" newname=" " race=" " class="Planetoid" desc="A large amalgamation of regolith, held together by gravity." scan_desc="Contains rare-earth minerals." />
-    <!-- dat\TSN\USFP\marker.dxs -->
-
-    <create type="enemy" x="81039.0" y="0.0" z="68062.0" angle="0" name="Sapphire" hullID="1406" sideValue="sectorSide"  />
-    <set_ship_text name="Sapphire" race="Budron" class="Ore miner" desc="Extracts valuable ore using powerful plasma drills." scan_desc="The ore mined here is actually not very valuable." hailtext="Our lovely station welcomes you." />    
-    
-    <create type="enemy" x="83738.0" y="0.0" z="30069.0" angle="0" name="The Boring Company" hullID="7714" sideValue="sectorSide" />
-    <set_ship_text name="The Boring Company" race="Budron" class="Ore miner" desc="They bore inside the surrounding planetoids, extracting ores which were deposited before the outer layers formed." scan_desc="One of the most profitable ventures in this systeml." hailtext="*DRR* *DRR* Could you speak up?" />    
-    
-    <create type="enemy" x="53530.0" y="0.0" z="25294.0" angle="0" name="Gustavus And Sons" hullID="1356" sideValue="sectorSide" />
-    <set_ship_text name="Gustavus And Sons" race="Budron" class="Manufacturing" desc="A small family owned business, responsible for 40 percent of hydrogen chloride pollution found in this system." scan_desc="Rumors say that the sons left long ago." hailtext="What'dya want?" />
-    <set_object_property property="angle" value="0" name="Gustavus And Sons" />
-    <set_object_property property="pitch" value="1.5707" name="Gustavus And Sons" />
-    
-    <create type="enemy" x="18443.0" y="0.0" z="52934.0" angle="0" name="Syntex" hullID="1003" sideValue="sectorSide" />
-    <set_ship_text name="Syntex" race="Budron" class="Manufacturing" desc="Complex manufacturing processes used in this factory cause a lot of pollution as a side-effect." scan_desc="They produce toys." hailtext="Yes, Terran?" />
-    <set_object_property property="pitch" value="3.1415" name="Syntex" />
   </event>
   <folder_arme name="Navigation" id_arme="6be33c28-4bc3-42ba-9f40-a6394ac107cb" parent_id_arme="f6955b8a-1359-477b-a609-883b0be7ea23" />
   <event name="Transition to Sector VII" id_arme="ea3a27cb-e2ce-4eb7-9e47-6cc515d5d617" parent_id_arme="6be33c28-4bc3-42ba-9f40-a6394ac107cb">
@@ -1482,6 +1483,48 @@
     <if_variable name="Sector" comparator="EQUALS" value="6.0" />
     <if_variable name="Sector Entities" comparator="EQUALS" value="1.0" />
     <create type="genericMesh" x="100000.0" y="0.0" z="0.0" name="Eulis VI" meshFileName="dat\TSN\USFP\marker.dxs" textureFileName="dat\TSN\USFP\marker.png" colorRed="1.0" colorGreen="1.0" colorBlue="1.0" />
+    
+    <create type="genericMesh" x="83738.0" y="-650.0" z="30069.0" name="r" meshFileName="dat\asteroid6.dxs" textureFileName="dat\Asteroid_6_Albedo.png" colorRed="1.0" colorGreen="0.58" colorBlue="0.31" />
+    <set_object_property property="artScale" value="1.4" name="r" />
+    <set_object_property property="pushRadius" value="700" name="r" />
+    <set_object_property property="rollDelta" value="0.01" name="r" />
+    <set_ship_text name="r" newname=" " race=" " class="Planetoid" desc="A large amalgamation of regolith, held together by gravity." scan_desc="Contains rare-earth minerals." />
+    <create type="genericMesh" x="83218.0" y="-800.0" z="25709.0" name="r" meshFileName="dat\asteroid.dxs" textureFileName="dat\monsterTexture.png" colorRed="1.0" colorGreen="0.58" colorBlue="0.31"  />
+    <set_object_property property="artScale" value="2.0" name="r" />
+    <set_object_property property="pushRadius" value="1000" name="r" />
+    <set_object_property property="pitchDelta" value="0.02" name="r" />
+    <set_ship_text name="r" newname=" " race=" " class="Planetoid" desc="A large amalgamation of regolith, held together by gravity." scan_desc="Contains rare-earth minerals." />
+    <create type="genericMesh" x="83011.0" y="0.0" z="66712.0" name="r" meshFileName="dat\asteroid11.dxs" textureFileName="dat\asteroidTexture.png" colorRed="1.0" colorGreen="0.58" colorBlue="0.31"  />
+    <set_object_property property="artScale" value="1.2" name="r" />
+    <set_object_property property="pushRadius" value="600" name="r" />
+    <set_object_property property="rollDelta" value="0.03" name="r" />
+    <set_ship_text name="r" newname=" " race=" " class="Planetoid" desc="A large amalgamation of regolith, held together by gravity." scan_desc="Contains rare-earth minerals." />
+    <create type="genericMesh" x="79897.0" y="-100.0" z="61522.0" name="r" meshFileName="dat\asteroid10.dxs" textureFileName="dat\Asteroid_10_Albedo.png" colorRed="1.0" colorGreen="0.58" colorBlue="0.31"  />
+    <set_object_property property="artScale" value="2.0" name="r" />
+    <set_object_property property="pushRadius" value="1000" name="r" />
+    <set_object_property property="pitchDelta" value="0.02" name="r" />
+    <set_ship_text name="r" newname=" " race=" " class="Planetoid" desc="A large amalgamation of regolith, held together by gravity." scan_desc="Contains rare-earth minerals." />
+    <create type="genericMesh" x="81039.0" y="-800.0" z="68062.0" name="r" meshFileName="dat\asteroid.dxs" textureFileName="dat\monsterTexture.png" colorRed="1.0" colorGreen="0.58" colorBlue="0.31"  />
+    <set_object_property property="artScale" value="1.4" name="r" />
+    <set_object_property property="pushRadius" value="700" name="r" />
+    <set_object_property property="rollDelta" value="0.01" name="r" />
+    <set_ship_text name="r" newname=" " race=" " class="Planetoid" desc="A large amalgamation of regolith, held together by gravity." scan_desc="Contains rare-earth minerals." />
+
+    <create type="enemy" x="81039.0" y="0.0" z="68062.0" angle="0" name="Sapphire" hullID="1406" sideValue="sectorSide"  />
+    <set_ship_text name="Sapphire" race="Budron" class="Ore miner" desc="Extracts valuable ore using powerful plasma drills." scan_desc="The ore mined here is actually not very valuable." hailtext="Our lovely station welcomes you." />    
+    
+    <create type="enemy" x="83738.0" y="0.0" z="30069.0" angle="0" name="The Boring Company" hullID="7714" sideValue="sectorSide" />
+    <set_ship_text name="The Boring Company" race="Budron" class="Ore miner" desc="They bore inside the surrounding planetoids, extracting ores which were deposited before the outer layers formed." scan_desc="One of the most profitable ventures in the system." hailtext="*DRR* *DRR* Could you speak up?" />    
+    
+    <create type="enemy" x="53530.0" y="0.0" z="25294.0" angle="0" name="Gustavus And Sons" hullID="1356" sideValue="sectorSide" />
+    <set_ship_text name="Gustavus And Sons" race="Budron" class="Manufacturing" desc="A small family owned business, responsible for 40 percent of hydrogen chloride pollution found in this system." scan_desc="Rumors say that the sons left long ago." hailtext="What'dya want?" />
+    <set_object_property property="angle" value="0" name="Gustavus And Sons" />
+    <set_object_property property="pitch" value="1.5707" name="Gustavus And Sons" />
+    
+    <create type="enemy" x="18443.0" y="0.0" z="52934.0" angle="0" name="Syntex" hullID="1003" sideValue="sectorSide" />
+    <set_ship_text name="Syntex" race="Budron" class="Manufacturing" desc="Complex manufacturing processes used in this factory cause a lot of pollution as a side-effect." scan_desc="They produce toys." hailtext="Yes, Terran?" />
+    <set_object_property property="pitch" value="3.1415" name="Syntex" />
+
     <set_variable name="ExitorRetreat" value="0.0" />
     <set_variable name="Sector Entities" value="2.0" />
     <set_variable name="MissionCode" value="1.0" />
@@ -1494,12 +1537,15 @@
   </event>
   <event name="Destroy Sector Entities" id_arme="eae9a97b-ddee-45b3-832d-e3f5bb969a6a" parent_id_arme="2c6e32da-d9f0-4f94-b15b-f97d0ad83aed">
     <if_variable name="HolyGarden System" comparator="EQUALS" value="3.0" />
-    <destroy name="Makerat Tours" />
-    <destroy name="M-381" />
-    <destroy name="RS-703" />
-    <destroy name="Marge Security" />
-    <destroy name="LBY-1" />
-    <destroy name="Eulis VI" />
+    <destroy name="Sapphire" />
+    <destroy name="The Boring Company" />
+    <destroy name="Gustavus And Sons" />
+    <destroy name="Syntex" />
+    <destroy name=" " />
+    <destroy name=" " />
+    <destroy name=" " />
+    <destroy name=" " />
+    <destroy name=" " />
     <set_variable name="HolyGarden System" value="System" integer="yes" />
     <set_variable name="Sector Entities" value="0.0" />
   </event>
