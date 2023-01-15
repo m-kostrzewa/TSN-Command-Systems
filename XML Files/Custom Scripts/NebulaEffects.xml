@@ -42,7 +42,17 @@
     <set_variable name="Ship1DamageType" randomIntLow="0.0" randomIntHigh="7.0" integer="yes" />
     <set_variable name="Ship1NodeSelect" randomIntLow="0.0" randomIntHigh="4.0" integer="yes" />
 
-    <set_timer name="Player0GreenNebulaTimer" seconds="1.0" />
+    <set_timer name="Player0GreenNebulaTimer" seconds="2.0" />
+  </event>
+  <event name="Player0Green don't damage maneuver" >
+    <if_in_nebula player_slot="0" compare="3" />
+    <if_variable name="Ship1DamageType" comparator="EQUALS" value="5" />
+    <set_variable name="DamageShip1" value="0.0" integer="yes" />
+  </event>
+  <event name="Player0Green don't damage warp" >
+    <if_in_nebula player_slot="0" compare="3" />
+    <if_variable name="Ship1DamageType" comparator="EQUALS" value="7" />
+    <set_variable name="DamageShip1" value="0.0" integer="yes" />
   </event>
   <event name="Player0Blue nebula tick" >
     <if_timer_finished name="Player0BlueNebulaTimer" />
@@ -52,7 +62,7 @@
 
     <addto_object_property value="-BlueNebulaEnergyDrain" property="energy" player_slot="0" />
 
-    <set_timer name="Player0BlueNebulaTimer" seconds="1.0" />
+    <set_timer name="Player0BlueNebulaTimer" seconds="2.0" />
   </event>
 
   <event name="Player1Green nebula tick" >
@@ -64,7 +74,17 @@
     <set_variable name="Ship2DamageType" randomIntLow="0.0" randomIntHigh="7.0" integer="yes" />
     <set_variable name="Ship2NodeSelect" randomIntLow="0.0" randomIntHigh="4.0" integer="yes" />
 
-    <set_timer name="Player1GreenNebulaTimer" seconds="1.0" />
+    <set_timer name="Player1GreenNebulaTimer" seconds="2.0" />
+  </event>
+  <event name="Player1Green don't damage maneuver" >
+    <if_in_nebula player_slot="1" compare="3" />
+    <if_variable name="Ship2DamageType" comparator="EQUALS" value="5" />
+    <set_variable name="DamageShip2" value="0.0" integer="yes" />
+  </event>
+  <event name="Player1Green don't damage warp" >
+    <if_in_nebula player_slot="1" compare="3" />
+    <if_variable name="Ship2DamageType" comparator="EQUALS" value="7" />
+    <set_variable name="DamageShip2" value="0.0" integer="yes" />
   </event>
   <event name="Player1Blue nebula tick" >
     <if_timer_finished name="Player1BlueNebulaTimer" />
@@ -74,7 +94,7 @@
 
     <addto_object_property value="-BlueNebulaEnergyDrain" property="energy" player_slot="1" />
 
-    <set_timer name="Player1BlueNebulaTimer" seconds="1.0" />
+    <set_timer name="Player1BlueNebulaTimer" seconds="2.0" />
   </event>
 
   <event name="Player2Green nebula tick" >
@@ -86,7 +106,17 @@
     <set_variable name="Ship3DamageType" randomIntLow="0.0" randomIntHigh="7.0" integer="yes" />
     <set_variable name="Ship3NodeSelect" randomIntLow="0.0" randomIntHigh="4.0" integer="yes" />
 
-    <set_timer name="Player2GreenNebulaTimer" seconds="1.0" />
+    <set_timer name="Player2GreenNebulaTimer" seconds="2.0" />
+  </event>
+  <event name="Player2Green don't damage maneuver" >
+    <if_in_nebula player_slot="2" compare="3" />
+    <if_variable name="Ship3DamageType" comparator="EQUALS" value="5" />
+    <set_variable name="DamageShip3" value="0.0" integer="yes" />
+  </event>
+  <event name="Player2Green don't damage warp" >
+    <if_in_nebula player_slot="2" compare="3" />
+    <if_variable name="Ship3DamageType" comparator="EQUALS" value="7" />
+    <set_variable name="DamageShip3" value="0.0" integer="yes" />
   </event>
   <event name="Player2Blue nebula tick" >
     <if_timer_finished name="Player2BlueNebulaTimer" />
@@ -96,7 +126,7 @@
 
     <addto_object_property value="-BlueNebulaEnergyDrain" property="energy" player_slot="2" />
 
-    <set_timer name="Player2BlueNebulaTimer" seconds="1.0" />
+    <set_timer name="Player2BlueNebulaTimer" seconds="2.0" />
   </event>
 
   <event name="Player3Green nebula tick" >
@@ -108,7 +138,17 @@
     <set_variable name="Ship4DamageType" randomIntLow="0.0" randomIntHigh="7.0" integer="yes" />
     <set_variable name="Ship4NodeSelect" randomIntLow="0.0" randomIntHigh="4.0" integer="yes" />
 
-    <set_timer name="Player3GreenNebulaTimer" seconds="1.0" />
+    <set_timer name="Player3GreenNebulaTimer" seconds="2.0" />
+  </event>
+  <event name="Player3Green don't damage maneuver" >
+    <if_in_nebula player_slot="3" compare="3" />
+    <if_variable name="Ship4DamageType" comparator="EQUALS" value="5" />
+    <set_variable name="DamageShip4" value="0.0" integer="yes" />
+  </event>
+  <event name="Player3Green don't damage warp" >
+    <if_in_nebula player_slot="3" compare="3" />
+    <if_variable name="Ship4DamageType" comparator="EQUALS" value="7" />
+    <set_variable name="DamageShip4" value="0.0" integer="yes" />
   </event>
   <event name="Player3Blue nebula tick" >
     <if_timer_finished name="Player3BlueNebulaTimer" />
@@ -118,7 +158,7 @@
 
     <addto_object_property value="-BlueNebulaEnergyDrain" property="energy" player_slot="3" />
 
-    <set_timer name="Player3BlueNebulaTimer" seconds="1.0" />
+    <set_timer name="Player3BlueNebulaTimer" seconds="2.0" />
   </event>
 
   <event name="Player4Green nebula tick" >
@@ -130,7 +170,17 @@
     <set_variable name="Ship5DamageType" randomIntLow="0.0" randomIntHigh="7.0" integer="yes" />
     <set_variable name="Ship5NodeSelect" randomIntLow="0.0" randomIntHigh="4.0" integer="yes" />
 
-    <set_timer name="Player4GreenNebulaTimer" seconds="1.0" />
+    <set_timer name="Player4GreenNebulaTimer" seconds="2.0" />
+  </event>
+  <event name="Player4Green don't damage maneuver" >
+    <if_in_nebula player_slot="4" compare="3" />
+    <if_variable name="Ship5DamageType" comparator="EQUALS" value="5" />
+    <set_variable name="DamageShip5" value="0.0" integer="yes" />
+  </event>
+  <event name="Player4Green don't damage warp" >
+    <if_in_nebula player_slot="4" compare="3" />
+    <if_variable name="Ship5DamageType" comparator="EQUALS" value="7" />
+    <set_variable name="DamageShip5" value="0.0" integer="yes" />
   </event>
   <event name="Player4Blue nebula tick" >
     <if_timer_finished name="Player4BlueNebulaTimer" />
@@ -140,7 +190,7 @@
 
     <addto_object_property value="-BlueNebulaEnergyDrain" property="energy" player_slot="4" />
 
-    <set_timer name="Player4BlueNebulaTimer" seconds="1.0" />
+    <set_timer name="Player4BlueNebulaTimer" seconds="2.0" />
   </event>
 
   <event name="Player5Green nebula tick" >
@@ -152,7 +202,17 @@
     <set_variable name="Ship6DamageType" randomIntLow="0.0" randomIntHigh="7.0" integer="yes" />
     <set_variable name="Ship6NodeSelect" randomIntLow="0.0" randomIntHigh="4.0" integer="yes" />
 
-    <set_timer name="Player5GreenNebulaTimer" seconds="1.0" />
+    <set_timer name="Player5GreenNebulaTimer" seconds="2.0" />
+  </event>
+  <event name="Player5Green don't damage maneuver" >
+    <if_in_nebula player_slot="5" compare="3" />
+    <if_variable name="Ship6DamageType" comparator="EQUALS" value="5" />
+    <set_variable name="DamageShip6" value="0.0" integer="yes" />
+  </event>
+  <event name="Player5Green don't damage warp" >
+    <if_in_nebula player_slot="5" compare="3" />
+    <if_variable name="Ship6DamageType" comparator="EQUALS" value="7" />
+    <set_variable name="DamageShip6" value="0.0" integer="yes" />
   </event>
   <event name="Player5Blue nebula tick" >
     <if_timer_finished name="Player5BlueNebulaTimer" />
@@ -162,7 +222,7 @@
 
     <addto_object_property value="-BlueNebulaEnergyDrain" property="energy" player_slot="5" />
 
-    <set_timer name="Player5BlueNebulaTimer" seconds="1.0" />
+    <set_timer name="Player5BlueNebulaTimer" seconds="2.0" />
   </event>
 
   <event name="Player6Green nebula tick" >
@@ -174,7 +234,17 @@
     <set_variable name="Ship7DamageType" randomIntLow="0.0" randomIntHigh="7.0" integer="yes" />
     <set_variable name="Ship7NodeSelect" randomIntLow="0.0" randomIntHigh="4.0" integer="yes" />
 
-    <set_timer name="Player6GreenNebulaTimer" seconds="1.0" />
+    <set_timer name="Player6GreenNebulaTimer" seconds="2.0" />
+  </event>
+  <event name="Player6Green don't damage maneuver" >
+    <if_in_nebula player_slot="6" compare="3" />
+    <if_variable name="Ship7DamageType" comparator="EQUALS" value="5" />
+    <set_variable name="DamageShip7" value="0.0" integer="yes" />
+  </event>
+  <event name="Player6Green don't damage warp" >
+    <if_in_nebula player_slot="6" compare="3" />
+    <if_variable name="Ship7DamageType" comparator="EQUALS" value="7" />
+    <set_variable name="DamageShip7" value="0.0" integer="yes" />
   </event>
   <event name="Player6Blue nebula tick" >
     <if_timer_finished name="Player6BlueNebulaTimer" />
@@ -184,7 +254,7 @@
 
     <addto_object_property value="-BlueNebulaEnergyDrain" property="energy" player_slot="6" />
 
-    <set_timer name="Player6BlueNebulaTimer" seconds="1.0" />
+    <set_timer name="Player6BlueNebulaTimer" seconds="2.0" />
   </event>
 
   <event name="Player7Green nebula tick" >
@@ -196,7 +266,17 @@
     <set_variable name="Ship8DamageType" randomIntLow="0.0" randomIntHigh="7.0" integer="yes" />
     <set_variable name="Ship8NodeSelect" randomIntLow="0.0" randomIntHigh="4.0" integer="yes" />
 
-    <set_timer name="Player7GreenNebulaTimer" seconds="1.0" />
+    <set_timer name="Player7GreenNebulaTimer" seconds="2.0" />
+  </event>
+  <event name="Player7Green don't damage maneuver" >
+    <if_in_nebula player_slot="7" compare="3" />
+    <if_variable name="Ship8DamageType" comparator="EQUALS" value="5" />
+    <set_variable name="DamageShip8" value="0.0" integer="yes" />
+  </event>
+  <event name="Player7Green don't damage warp" >
+    <if_in_nebula player_slot="7" compare="3" />
+    <if_variable name="Ship8DamageType" comparator="EQUALS" value="7" />
+    <set_variable name="DamageShip8" value="0.0" integer="yes" />
   </event>
   <event name="Player7Blue nebula tick" >
     <if_timer_finished name="Player7BlueNebulaTimer" />
@@ -206,7 +286,7 @@
 
     <addto_object_property value="-BlueNebulaEnergyDrain" property="energy" player_slot="7" />
 
-    <set_timer name="Player7BlueNebulaTimer" seconds="1.0" />
+    <set_timer name="Player7BlueNebulaTimer" seconds="2.0" />
   </event>
 
 
