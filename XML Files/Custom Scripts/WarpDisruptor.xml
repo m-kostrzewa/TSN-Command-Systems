@@ -22,10 +22,11 @@
     <clear_gm_button text="Other\WarpDisruptor bouy" />
   </event>
 
+  <event name="Init WarpDisruptor" >
+    <log text="Init WarpDisruptor" />
 
-  <event name="Custom Keys Menu - Heg" id_arme="adfd9ec4-417d-428e-8cb4-39420c3168e7" parent_id_arme="ffcee071-4886-4503-ab58-aeb5501c8873">
-    <if_variable name="SetTopSpeeds" comparator="NOT" value="1.0" />
-    <if_timer_finished name="Ship Spawn Menu" />
+    <if_variable name="Sandbox Activation" comparator="EQUALS" value="3.0" />
+    <if_variable name="WarpDisruptor initted" comparator="NOT" value="1.0" />
 
     <get_object_property property="topSpeed" player_slot="0" variable="Player0TopSpeedOriginal" />
     <get_object_property property="topSpeed" player_slot="1" variable="Player1TopSpeedOriginal" />
@@ -36,9 +37,8 @@
     <get_object_property property="topSpeed" player_slot="6" variable="Player6TopSpeedOriginal" />
     <get_object_property property="topSpeed" player_slot="7" variable="Player7TopSpeedOriginal" />
 
-    <set_variable name="SetTopSpeeds" value="1.0" integer="yes" />
+    <set_variable name="WarpDisruptor initted" value="1.0" />
   </event>
-
 
 <!-- Handle buttons.  -->
 
@@ -154,6 +154,24 @@
     <set_timer name="WarpDisruptorTimer" seconds="1" />
   </event>
 
+  <event name="Warp disruptors gone" id_arme="c51851bb-dde4-443b-b6a8-81e413546231" parent_id_arme="ffcee071-4886-4503-ab58-aeb5501c8873">
+    <if_variable name="WarpDisruptor initted" comparator="NOT" value="0.0" />
+
+    <if_not_exists name="WarpDisruptor" />
+    <if_not_exists name=" WarpDisruptor " />
+    <if_not_exists name="  WarpDisruptor  " />
+
+    <set_variable name="WarpDisruptorCounterActual" value="0" integer="yes" />
+
+    <set_object_property property="topSpeed" value="Player0TopSpeedOriginal" player_slot="0" />
+    <set_object_property property="topSpeed" value="Player1TopSpeedOriginal" player_slot="1" />
+    <set_object_property property="topSpeed" value="Player2TopSpeedOriginal" player_slot="2" />
+    <set_object_property property="topSpeed" value="Player3TopSpeedOriginal" player_slot="3" />
+    <set_object_property property="topSpeed" value="Player4TopSpeedOriginal" player_slot="4" />
+    <set_object_property property="topSpeed" value="Player5TopSpeedOriginal" player_slot="5" />
+    <set_object_property property="topSpeed" value="Player6TopSpeedOriginal" player_slot="6" />
+    <set_object_property property="topSpeed" value="Player7TopSpeedOriginal" player_slot="7" />
+  </event>
 
 
   <!-- Copy pasta handlers for each player slot -->
