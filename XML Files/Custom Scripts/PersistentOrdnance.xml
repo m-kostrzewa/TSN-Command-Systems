@@ -5,10 +5,10 @@
     <folder_arme name="PersistentOrdnance" id_arme="a92dc142-f961-4459-810f-34d484ae107b" />
 
     <event name="PersistentOrdnance init" id_arme="aaf8d0c4-5d09-4bc0-ab1f-474fe2c60e21" parent_id_arme="a92dc142-f961-4459-810f-34d484ae107b">
-        <if_variable name="Sandbox Activation" comparator="EQUALS" value="2.0" />
+        <if_variable name="Sandbox Activation" comparator="EQUALS" value="0.0" />
         <if_variable name="logOrdnanceNewMission" comparator="EQUALS" integer="0.0"/>
 
-        <set_variable name="logOrdnanceHeartbeatTime" value="60" integer="yes"/>
+        <set_variable name="logOrdnanceHeartbeatTime" value="30" integer="yes"/>
         <set_variable name="logOrdnanceTotalTime" value="0" integer="yes"/>
         <set_variable name="logOrdnanceNewMission" value="1" integer="yes"/>
         <set_variable name="logOrdnanceProgramSpawned" value="0" integer="yes"/>
@@ -20,6 +20,9 @@
         <if_variable name="logOrdnanceNewMission" comparator="EQUALS" value="1.0" />
 
         <log text="****** NEW MISSION STARTED ******" />
+
+        <!-- This program runs in the background and parses the mission log every once in a while -->
+        <spawn_external_program id="persistOrdnanceId" name="dat/Missions/MISS_TSN-Command/persistOrdnance.exe" arguments="persistOrdnance.exe" />
 
         <set_variable name="logOrdnanceNewMission" value="2" integer="yes"/>
     </event>
@@ -119,19 +122,13 @@
         <get_object_property property="countTag" player_slot="logOrdnanceIter" variable="nTag" />
         <log text="ship |logOrdnanceIter|: |nHoming|, |nNuke|, |nMine|, |nEMP|, |nShk|, |nBea|, |nPro|, |nTag|" />
 
-        <!-- Update ship configuration -->
-        <spawn_external_program id="someIdWhatever" name="dat/Missions/MISS_TSN-Command/persistOrdnance.exe" arguments="persistOrdnance.exe" />
-
         <set_timer name="logOrdnance" seconds="logOrdnanceHeartbeatTime" />
     </event>
 
     <event name="PersistentOrdnance mission end" id_arme="7c30cc3a-aaf1-4dbf-808a-23f0a6c7e834" parent_id_arme="a92dc142-f961-4459-810f-34d484ae107b">
         <if_variable name="Mission End" comparator="EQUALS" value="1.0" />
-        <if_variable name="logOrdnanceProgramSpawned" comparator="EQUALS" value="0.0" />
 
         <log text="****** MISSION ENDED ******" />
-
-        <set_variable name="logOrdnanceProgramSpawned" value="1" integer="yes"/>
     </event>
 
 
