@@ -23,8 +23,8 @@
       <set_variable name="TurningHackEneCost" value="25.0" />
       <set_variable name="ImpulseHackEneCost" value="25.0" />
       <set_variable name="WarpHackEneCost" value="10.0" />
-      <set_variable name="FrontShieldHackEneCost" value="100.0" />
-      <set_variable name="BackShieldHackEneCost" value="100.0" />
+      <set_variable name="FrontShieldHackEneCost" value="200.0" />
+      <set_variable name="BackShieldHackEneCost" value="200.0" />
       <set_variable name="SpecialAbilitiesHackEneCost" value="100.0" />
 
       <set_variable name="BeamHackEmpCost" value="0.0" />
@@ -81,8 +81,8 @@
   
       <!-- <if_variable name="player{{p}}HackArmed" comparator="NOT" value="0.0" /> -->
 
-      <clear_comms_button text="{{btnPrefixes[p]}}Arm Penetrating Warhead Network Disruptor Prototype MkII" player_slot="{{p}}"/>
-      <clear_comms_button text="{{btnPrefixes[p]}}Disarm Penetrating Warhead Network Disruptor Prototype MkII" player_slot="{{p}}"/>
+      <clear_comms_button text="{{btnPrefixes[p]}}Arm Penetrating Warhead Network Disruptor Prototype MkIII" player_slot="{{p}}"/>
+      <clear_comms_button text="{{btnPrefixes[p]}}Disarm Penetrating Warhead Network Disruptor Prototype MkIII" player_slot="{{p}}"/>
 
       {% for systemName in systemNames %}
       <clear_comms_button text="{{btnPrefixes[p]}}Disrupt {{systemName}} (-|{{systemName}}HackEneCost| energy, -|{{systemName}}HackEmpCost| EMP): 0.0" player_slot="{{p}}" />
@@ -98,8 +98,8 @@
       <if_variable name="Ship{{p+1}}Modules" comparator="EQUALS" value="2.0" />
       <if_variable name="player{{p}}HackArmed" comparator="NOT" value="1.0" />
 
-      <set_comms_button text="{{btnPrefixes[p]}}Arm Penetrating Warhead Network Disruptor Prototype MkII" player_slot="{{p}}" />
-      <clear_comms_button text="{{btnPrefixes[p]}}Disarm Penetrating Warhead Network Disruptor Prototype MkII" player_slot="{{p}}"/>
+      <set_comms_button text="{{btnPrefixes[p]}}Arm Penetrating Warhead Network Disruptor Prototype MkIII" player_slot="{{p}}" />
+      <clear_comms_button text="{{btnPrefixes[p]}}Disarm Penetrating Warhead Network Disruptor Prototype MkIII" player_slot="{{p}}"/>
 
       {% for systemName in systemNames %}
       <set_comms_button text="{{btnPrefixes[p]}}Disrupt {{systemName}} (-|{{systemName}}HackEneCost| energy, -|{{systemName}}HackEmpCost| EMP): |player{{p}}HackSystem{{systemName}}|" player_slot="{{p}}" />
@@ -115,8 +115,8 @@
       <if_variable name="Ship{{p+1}}Modules" comparator="EQUALS" value="2.0" />
       <if_variable name="player{{p}}HackArmed" comparator="NOT" value="0.0" />
 
-      <set_comms_button text="{{btnPrefixes[p]}}Disarm Penetrating Warhead Network Disruptor Prototype MkII" player_slot="{{p}}" />
-      <clear_comms_button text="{{btnPrefixes[p]}}Arm Penetrating Warhead Network Disruptor Prototype MkII" player_slot="{{p}}"/>
+      <set_comms_button text="{{btnPrefixes[p]}}Disarm Penetrating Warhead Network Disruptor Prototype MkIII" player_slot="{{p}}" />
+      <clear_comms_button text="{{btnPrefixes[p]}}Arm Penetrating Warhead Network Disruptor Prototype MkIII" player_slot="{{p}}"/>
 
       {% for systemName in systemNames %}
       <clear_comms_button text="{{btnPrefixes[p]}}Disrupt {{systemName}} (-|{{systemName}}HackEneCost| energy, -|{{systemName}}HackEmpCost| EMP): 0.0" player_slot="{{p}}" />
@@ -130,13 +130,13 @@
 
       <if_variable name="Hacking initted" comparator="GREATER" value="0.0" />
   
-      <if_comms_button text="{{btnPrefixes[p]}}Arm Penetrating Warhead Network Disruptor Prototype MkII" player_slot="{{p}}"/>
+      <if_comms_button text="{{btnPrefixes[p]}}Arm Penetrating Warhead Network Disruptor Prototype MkIII" player_slot="{{p}}"/>
       <set_variable name="player{{p}}HackArmed" value="1.0" />
       <set_timer name="player{{p}}HackArmedHeatTimer" seconds="1.0" />
 
-      <clear_comms_button text="{{btnPrefixes[p]}}Arm Penetrating Warhead Network Disruptor Prototype MkII" player_slot="{{p}}"/>
+      <clear_comms_button text="{{btnPrefixes[p]}}Arm Penetrating Warhead Network Disruptor Prototype MkIII" player_slot="{{p}}"/>
   
-      <incoming_comms_text from="CHANNEL {{p+1}}" sideValue="playerSide" type="STATUS">Penetrating Warhead Network Disruptor Prototype MkII ARMED</incoming_comms_text>
+      <incoming_comms_text from="CHANNEL {{p+1}}" sideValue="playerSide" type="STATUS">Penetrating Warhead Network Disruptor Prototype MkIII ARMED</incoming_comms_text>
     </event>
 
     <event name="{{p}} comms menu PWND DISARM" >
@@ -144,12 +144,12 @@
   
       <if_variable name="Hacking initted" comparator="GREATER" value="0.0" />
 
-      <if_comms_button text="{{btnPrefixes[p]}}Disarm Penetrating Warhead Network Disruptor Prototype MkII" player_slot="{{p}}"/>
+      <if_comms_button text="{{btnPrefixes[p]}}Disarm Penetrating Warhead Network Disruptor Prototype MkIII" player_slot="{{p}}"/>
       <set_variable name="player{{p}}HackArmed" value="0.0" />
 
-      <clear_comms_button text="{{btnPrefixes[p]}}Disarm Penetrating Warhead Network Disruptor Prototype MkII" player_slot="{{p}}"/>
+      <clear_comms_button text="{{btnPrefixes[p]}}Disarm Penetrating Warhead Network Disruptor Prototype MkIII" player_slot="{{p}}"/>
 
-      <incoming_comms_text from="CHANNEL {{p+1}}" sideValue="playerSide" type="STATUS">Penetrating Warhead Network Disruptor Prototype MkII DISARMED</incoming_comms_text>
+      <incoming_comms_text from="CHANNEL {{p+1}}" sideValue="playerSide" type="STATUS">Penetrating Warhead Network Disruptor Prototype MkIII DISARMED</incoming_comms_text>
     </event>
 
 
@@ -254,6 +254,114 @@
 
     {% for p in range(0,8) %}
     {% for letter in letters %}
+    <event name="Check with clear special - {{letter}}-0tagShipNumber" >
+      <log text="Check with clear special - {{letter}}-0tagShipNumber" />
+
+      <if_variable name="tagShipNumber" comparator="LESS" value="10.0" />
+
+      <if_exists name="{{letter}}0|tagShipNumber|" />
+      <if_object_property name="{{letter}}0|tagShipNumber|" property="isTagged" comparator="EQUALS" value="1.0" />
+
+      <if_object_property property="energy" player_slot="{{p}}" comparator="GREATER" value="
+      {%- for systemName in systemNames -%}
+              player{{p}}HackSystem{{systemName}} * {{systemName}}HackEneCost + 
+      {%- endfor -%}" />
+
+      <if_object_property property="countEMP" player_slot="{{p}}" comparator="GREATER" value="
+      {%- for systemName in systemNames -%}
+              player{{p}}HackSystem{{systemName}} * {{systemName}}HackEmpCost + 
+      {%- endfor -%}" />
+
+      <if_variable name="player{{p}}HackSystemSpecialAbilities" comparator="GREATER" value="0.0" />
+
+      <!-- Wizzo must be targetting at the right time -->
+      <if_player_is_targeting player_slot="{{p}}" name="{{letter}}0|tagShipNumber|" />
+      <!-- Hacking must be armed by comms -->
+      <if_variable name="player{{p}}HackArmed" comparator="EQUALS" value="1.0" />
+
+      {% for systemName in systemNamesBase %}
+      <set_object_property name="{{letter}}0|tagShipNumber|" property="systemDamage{{systemName}}" value="100.0 * player{{p}}HackSystem{{systemName}}" />
+      {% endfor %}
+
+      {% for systemName in systemNames %}
+      <addto_object_property value="-player{{p}}HackSystem{{systemName}} * {{systemName}}HackEneCost" property="energy" player_slot="{{p}}" />
+      <addto_object_property value="-player{{p}}HackSystem{{systemName}} * {{systemName}}HackEmpCost" property="countEMP" player_slot="{{p}}" />
+      {% endfor %}
+
+      <set_special name="{{letter}}0|tagShipNumber|" clear="yes" ability="Stealth" />
+      <set_special name="{{letter}}0|tagShipNumber|" clear="yes" ability="LowVis" />
+      <set_special name="{{letter}}0|tagShipNumber|" clear="yes" ability="Cloak" />
+      <set_special name="{{letter}}0|tagShipNumber|" clear="yes" ability="HET" />
+      <set_special name="{{letter}}0|tagShipNumber|" clear="yes" ability="Warp" />
+      <set_special name="{{letter}}0|tagShipNumber|" clear="yes" ability="Teleport" />
+      <set_special name="{{letter}}0|tagShipNumber|" clear="yes" ability="Tractor" />
+      <set_special name="{{letter}}0|tagShipNumber|" clear="yes" ability="Drones" />
+      <set_special name="{{letter}}0|tagShipNumber|" clear="yes" ability="AntiMine" />
+      <set_special name="{{letter}}0|tagShipNumber|" clear="yes" ability="AntiTorp" />
+      <set_special name="{{letter}}0|tagShipNumber|" clear="yes" ability="ShldDrain" />
+      <set_special name="{{letter}}0|tagShipNumber|" clear="yes" ability="ShldVamp" />
+      <set_special name="{{letter}}0|tagShipNumber|" clear="yes" ability="TeleBack" />
+      <set_special name="{{letter}}0|tagShipNumber|" clear="yes" ability="ShldReset" />
+
+      <log text="{{letter}}0|tagShipNumber| is tagged, untagging!" />
+      <set_named_object_tag_state name="{{letter}}0|tagShipNumber|" tagged="0" />
+  </event>
+
+  <event name="Check with clear special - {{letter}}-tagShipNumber" >
+      <log text="Check with clear special - {{letter}}-tagShipNumber" />
+
+      <if_variable name="tagShipNumber" comparator="GREATER" value="9.0" />
+
+      <if_exists name="{{letter}}|tagShipNumber|" />
+      <if_object_property name="{{letter}}|tagShipNumber|" property="isTagged" comparator="EQUALS" value="1.0" />
+
+      <if_object_property property="energy" player_slot="{{p}}" comparator="GREATER" value="
+      {%- for systemName in systemNames -%}
+              player{{p}}HackSystem{{systemName}} * {{systemName}}HackEneCost + 
+      {%- endfor -%}" />
+
+      <if_object_property property="countEMP" player_slot="{{p}}" comparator="GREATER" value="
+      {%- for systemName in systemNames -%}
+              player{{p}}HackSystem{{systemName}} * {{systemName}}HackEmpCost + 
+      {%- endfor -%}" />
+
+      <if_variable name="player{{p}}HackSystemSpecialAbilities" comparator="GREATER" value="0.0" />
+
+      <!-- Wizzo must be targetting at the right time -->
+      <if_player_is_targeting player_slot="{{p}}" name="{{letter}}|tagShipNumber|" />
+      <!-- Hacking must be armed by comms -->
+      <if_variable name="player{{p}}HackArmed" comparator="EQUALS" value="1.0" />
+
+      {% for systemName in systemNamesBase %}
+      <set_object_property name="{{letter}}|tagShipNumber|" property="systemDamage{{systemName}}" value="100.0 * player{{p}}HackSystem{{systemName}}" />
+      {% endfor %}
+
+      {% for systemName in systemNames %}
+      <addto_object_property value="-player{{p}}HackSystem{{systemName}} * {{systemName}}HackEneCost" property="energy" player_slot="{{p}}" />
+      <addto_object_property value="-player{{p}}HackSystem{{systemName}} * {{systemName}}HackEmpCost" property="countEMP" player_slot="{{p}}" />
+      {% endfor %}
+
+      <set_special name="{{letter}}|tagShipNumber|" clear="yes" ability="Stealth" />
+      <set_special name="{{letter}}|tagShipNumber|" clear="yes" ability="LowVis" />
+      <set_special name="{{letter}}|tagShipNumber|" clear="yes" ability="Cloak" />
+      <set_special name="{{letter}}|tagShipNumber|" clear="yes" ability="HET" />
+      <set_special name="{{letter}}|tagShipNumber|" clear="yes" ability="Warp" />
+      <set_special name="{{letter}}|tagShipNumber|" clear="yes" ability="Teleport" />
+      <set_special name="{{letter}}|tagShipNumber|" clear="yes" ability="Tractor" />
+      <set_special name="{{letter}}|tagShipNumber|" clear="yes" ability="Drones" />
+      <set_special name="{{letter}}|tagShipNumber|" clear="yes" ability="AntiMine" />
+      <set_special name="{{letter}}|tagShipNumber|" clear="yes" ability="AntiTorp" />
+      <set_special name="{{letter}}|tagShipNumber|" clear="yes" ability="ShldDrain" />
+      <set_special name="{{letter}}|tagShipNumber|" clear="yes" ability="ShldVamp" />
+      <set_special name="{{letter}}|tagShipNumber|" clear="yes" ability="TeleBack" />
+      <set_special name="{{letter}}|tagShipNumber|" clear="yes" ability="ShldReset" />
+
+      <!-- IDEA: "Yank" special ability can be implemented by adding some dx,dy based on player position here -->
+
+      <log text="{{letter}}|tagShipNumber| is tagged, untagging!" />
+      <set_named_object_tag_state name="{{letter}}|tagShipNumber|" tagged="0" />
+  </event>
+
     <event name="Check without clear special - {{letter}}-0tagShipNumber" >
         <log text="Check without clear special - {{letter}}-0tagShipNumber" />
 
@@ -272,6 +380,8 @@
                 player{{p}}HackSystem{{systemName}} * {{systemName}}HackEmpCost + 
         {%- endfor -%}" />
 
+        <if_variable name="player{{p}}HackSystemSpecialAbilities" comparator="LESS" value="1.0" />
+
         <!-- Wizzo must be targetting at the right time -->
         <if_player_is_targeting player_slot="{{p}}" name="{{letter}}0|tagShipNumber|" />
         <!-- Hacking must be armed by comms -->
@@ -285,80 +395,11 @@
         <addto_object_property value="-player{{p}}HackSystem{{systemName}} * {{systemName}}HackEneCost" property="energy" player_slot="{{p}}" />
         <addto_object_property value="-player{{p}}HackSystem{{systemName}} * {{systemName}}HackEmpCost" property="countEMP" player_slot="{{p}}" />
         {% endfor %}
-        <addto_object_property value="-SpecialAbilitiesHackEneCost" property="energy" player_slot="{{p}}" />
-
-        <set_special name="{{letter}}0|tagShipNumber|" clear="yes" ability="Stealth" />
-        <set_special name="{{letter}}0|tagShipNumber|" clear="yes" ability="LowVis" />
-        <set_special name="{{letter}}0|tagShipNumber|" clear="yes" ability="Cloak" />
-        <set_special name="{{letter}}0|tagShipNumber|" clear="yes" ability="HET" />
-        <set_special name="{{letter}}0|tagShipNumber|" clear="yes" ability="Warp" />
-        <set_special name="{{letter}}0|tagShipNumber|" clear="yes" ability="Teleport" />
-        <set_special name="{{letter}}0|tagShipNumber|" clear="yes" ability="Tractor" />
-        <set_special name="{{letter}}0|tagShipNumber|" clear="yes" ability="Drones" />
-        <set_special name="{{letter}}0|tagShipNumber|" clear="yes" ability="AntiMine" />
-        <set_special name="{{letter}}0|tagShipNumber|" clear="yes" ability="AntiTorp" />
-        <set_special name="{{letter}}0|tagShipNumber|" clear="yes" ability="ShldDrain" />
-        <set_special name="{{letter}}0|tagShipNumber|" clear="yes" ability="ShldVamp" />
-        <set_special name="{{letter}}0|tagShipNumber|" clear="yes" ability="TeleBack" />
-        <set_special name="{{letter}}0|tagShipNumber|" clear="yes" ability="ShldReset" />
 
         <log text="{{letter}}0|tagShipNumber| is tagged, untagging!" />
         <set_named_object_tag_state name="{{letter}}0|tagShipNumber|" tagged="0" />
     </event>
 
-    <event name="Check without clear special - {{letter}}-tagShipNumber" >
-        <log text="Check without clear special - {{letter}}-tagShipNumber" />
-
-        <if_variable name="tagShipNumber" comparator="GREATER" value="9.0" />
-
-        <if_exists name="{{letter}}|tagShipNumber|" />
-        <if_object_property name="{{letter}}|tagShipNumber|" property="isTagged" comparator="EQUALS" value="1.0" />
-
-        <if_object_property property="energy" player_slot="{{p}}" comparator="GREATER" value="
-        {%- for systemName in systemNames -%}
-                player{{p}}HackSystem{{systemName}} * {{systemName}}HackEneCost + 
-        {%- endfor -%}" />
-
-        <if_object_property property="countEMP" player_slot="{{p}}" comparator="GREATER" value="
-        {%- for systemName in systemNames -%}
-                player{{p}}HackSystem{{systemName}} * {{systemName}}HackEmpCost + 
-        {%- endfor -%}" />
-
-        <!-- Wizzo must be targetting at the right time -->
-        <if_player_is_targeting player_slot="{{p}}" name="{{letter}}|tagShipNumber|" />
-        <!-- Hacking must be armed by comms -->
-        <if_variable name="player{{p}}HackArmed" comparator="EQUALS" value="1.0" />
-
-        {% for systemName in systemNamesBase %}
-        <set_object_property name="{{letter}}|tagShipNumber|" property="systemDamage{{systemName}}" value="100.0 * player{{p}}HackSystem{{systemName}}" />
-        {% endfor %}
-
-        {% for systemName in systemNames %}
-        <addto_object_property value="-player{{p}}HackSystem{{systemName}} * {{systemName}}HackEneCost" property="energy" player_slot="{{p}}" />
-        <addto_object_property value="-player{{p}}HackSystem{{systemName}} * {{systemName}}HackEmpCost" property="countEMP" player_slot="{{p}}" />
-        {% endfor %}
-        <addto_object_property value="-SpecialAbilitiesHackEneCost" property="energy" player_slot="{{p}}" />
-
-        <set_special name="{{letter}}|tagShipNumber|" clear="yes" ability="Stealth" />
-        <set_special name="{{letter}}|tagShipNumber|" clear="yes" ability="LowVis" />
-        <set_special name="{{letter}}|tagShipNumber|" clear="yes" ability="Cloak" />
-        <set_special name="{{letter}}|tagShipNumber|" clear="yes" ability="HET" />
-        <set_special name="{{letter}}|tagShipNumber|" clear="yes" ability="Warp" />
-        <set_special name="{{letter}}|tagShipNumber|" clear="yes" ability="Teleport" />
-        <set_special name="{{letter}}|tagShipNumber|" clear="yes" ability="Tractor" />
-        <set_special name="{{letter}}|tagShipNumber|" clear="yes" ability="Drones" />
-        <set_special name="{{letter}}|tagShipNumber|" clear="yes" ability="AntiMine" />
-        <set_special name="{{letter}}|tagShipNumber|" clear="yes" ability="AntiTorp" />
-        <set_special name="{{letter}}|tagShipNumber|" clear="yes" ability="ShldDrain" />
-        <set_special name="{{letter}}|tagShipNumber|" clear="yes" ability="ShldVamp" />
-        <set_special name="{{letter}}|tagShipNumber|" clear="yes" ability="TeleBack" />
-        <set_special name="{{letter}}|tagShipNumber|" clear="yes" ability="ShldReset" />
-
-        <!-- IDEA: "Yank" special ability can be implemented by adding some dx,dy based on player position here -->
-
-        <log text="{{letter}}|tagShipNumber| is tagged, untagging!" />
-        <set_named_object_tag_state name="{{letter}}|tagShipNumber|" tagged="0" />
-    </event>
     {% endfor %}
     {% endfor %}
 
