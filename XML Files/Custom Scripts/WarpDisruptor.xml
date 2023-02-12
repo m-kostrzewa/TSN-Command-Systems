@@ -28,17 +28,69 @@
     <if_variable name="Sandbox Activation" comparator="EQUALS" value="3.0" />
     <if_variable name="WarpDisruptor initted" comparator="NOT" value="1.0" />
 
+
+
     <get_object_property property="topSpeed" player_slot="0" variable="Player0TopSpeedOriginal" />
     <get_object_property property="topSpeed" player_slot="1" variable="Player1TopSpeedOriginal" />
     <get_object_property property="topSpeed" player_slot="2" variable="Player2TopSpeedOriginal" />
     <get_object_property property="topSpeed" player_slot="3" variable="Player3TopSpeedOriginal" />
+
+    <log text="Detected Player0TopSpeedOriginal |Player0TopSpeedOriginal|" />
+    <log text="Detected Player1TopSpeedOriginal |Player1TopSpeedOriginal|" />
+    <log text="Detected Player2TopSpeedOriginal |Player2TopSpeedOriginal|" />
+    <log text="Detected Player3TopSpeedOriginal |Player3TopSpeedOriginal|" />
+    <log text="Detected Player4TopSpeedOriginal |Player4TopSpeedOriginal|" />
+    <log text="Detected Player5TopSpeedOriginal |Player5TopSpeedOriginal|" />
+    <log text="Detected Player6TopSpeedOriginal |Player6TopSpeedOriginal|" />
+    <log text="Detected Player7TopSpeedOriginal |Player7TopSpeedOriginal|" />
+
     <get_object_property property="topSpeed" player_slot="4" variable="Player4TopSpeedOriginal" />
     <get_object_property property="topSpeed" player_slot="5" variable="Player5TopSpeedOriginal" />
     <get_object_property property="topSpeed" player_slot="6" variable="Player6TopSpeedOriginal" />
     <get_object_property property="topSpeed" player_slot="7" variable="Player7TopSpeedOriginal" />
 
+    <!-- Set as constant for 4 most used ships to avoid "Sandbox activation" timing issues -->
+    <set_variable name="Player0TopSpeedOriginal" value="2.0" integer="yes" />
+    <set_variable name="Player1TopSpeedOriginal" value="2.0" integer="yes" />
+    <set_variable name="Player2TopSpeedOriginal" value="2.0" integer="yes" />
+    <!-- Lancer is faster -->
+    <set_variable name="Player3TopSpeedOriginal" value="3.3333" integer="yes" />
+
+    <log text="Overwritten Player0TopSpeedOriginal to |Player0TopSpeedOriginal|" />
+    <log text="Overwritten Player1TopSpeedOriginal to |Player1TopSpeedOriginal|" />
+    <log text="Overwritten Player2TopSpeedOriginal to |Player2TopSpeedOriginal|" />
+    <log text="Overwritten Player3TopSpeedOriginal to |Player3TopSpeedOriginal|" />
+
     <set_variable name="WarpDisruptor initted" value="1.0" />
   </event>
+
+
+
+  <event name="Emergency buttons set">
+    <if_variable name="Interactions Menu" comparator="EQUALS" value="1.0" />
+    <set_gm_button text="WarpDisruptor/Reset speeds" />
+  </event>
+  <event name="Emergency buttons clear" id_arme="5ede81c1-1602-4d8b-af08-030a88ea3f0c" parent_id_arme="ffcee071-4886-4503-ab58-aeb5501c8873">
+    <if_gm_button text="Clear" />
+    <clear_gm_button text="WarpDisruptor/Reset speeds" />
+  </event>
+  <event name="Emergency button Reset speeds">
+    <if_gm_button text="WarpDisruptor/Reset speeds" />
+    <set_variable name="Player0TopSpeedOriginal" value="2.0" integer="yes" />
+    <set_variable name="Player1TopSpeedOriginal" value="2.0" integer="yes" />
+    <set_variable name="Player2TopSpeedOriginal" value="2.0" integer="yes" />
+    <!-- Lancer is faster -->
+    <set_variable name="Player3TopSpeedOriginal" value="3.3333" integer="yes" />
+    <set_object_property player_slot="0" property="topSpeed" value="Player0TopSpeedOriginal" />
+    <set_object_property player_slot="1" property="topSpeed" value="Player1TopSpeedOriginal" />
+    <set_object_property player_slot="2" property="topSpeed" value="Player2TopSpeedOriginal" />
+    <set_object_property player_slot="3" property="topSpeed" value="Player3TopSpeedOriginal" />
+    <set_object_property player_slot="4" property="topSpeed" value="Player4TopSpeedOriginal" />
+    <set_object_property player_slot="5" property="topSpeed" value="Player5TopSpeedOriginal" />
+    <set_object_property player_slot="6" property="topSpeed" value="Player6TopSpeedOriginal" />
+    <set_object_property player_slot="7" property="topSpeed" value="Player7TopSpeedOriginal" />
+  </event>
+
 
 <!-- Handle buttons.  -->
 
