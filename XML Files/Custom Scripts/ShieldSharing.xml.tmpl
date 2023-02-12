@@ -15,7 +15,7 @@
     {% for p in range(0,8) %}
     <get_object_property player_slot="{{p}}" property="shieldMaxStateFront" variable="player{{p}}OriginalShieldMaxStateFront" />
     <get_object_property player_slot="{{p}}" property="shieldMaxStateBack" variable="player{{p}}OriginalShieldMaxStateBack" />
-    <log text="player{{p}}OriginalShieldMaxStateFront=|player{{p}}OriginalShieldMaxStateFront| player{{p}}OriginalShieldMaxStateBack=|player{{p}}OriginalShieldMaxStateBack|" />
+    <log text="Detected player{{p}}OriginalShieldMaxStateFront=|player{{p}}OriginalShieldMaxStateFront| player{{p}}OriginalShieldMaxStateBack=|player{{p}}OriginalShieldMaxStateBack|" />
     
     <set_variable name="player{{p}}ShieldSharingEnabled" value="0.0" />
 
@@ -24,6 +24,66 @@
 
     {% endfor %}
 
+
+    <!-- Set as constant for 4 most used ships to avoid "Sandbox activation" timing issues -->
+    <!-- Sabre -->
+    <!-- <shields front="20" back="20" /> -->
+    <set_variable name="player0OriginalShieldMaxStateFront" value="20.0" />
+    <set_variable name="player0OriginalShieldMaxStateBack" value="20.0" />
+
+    <log text="Overwritten player0OriginalShieldMaxStateFront to |player0OriginalShieldMaxStateFront|" />
+    <log text="Overwritten player0OriginalShieldMaxStateBack to |player0OriginalShieldMaxStateBack|" />
+
+    <!-- Horizon -->
+    <!-- <shields front="18" back="18" /> -->
+    <set_variable name="player1OriginalShieldMaxStateFront" value="18.0" />
+    <set_variable name="player1OriginalShieldMaxStateBack" value="18.0" />
+
+    <log text="Overwritten player1OriginalShieldMaxStateFront to |player1OriginalShieldMaxStateFront|" />
+    <log text="Overwritten player1OriginalShieldMaxStateBack to |player1OriginalShieldMaxStateBack|" />
+
+    <!-- Viper -->
+    <!-- <shields front="33" back="18" /> -->
+    <set_variable name="player2OriginalShieldMaxStateFront" value="33.0" />
+    <set_variable name="player2OriginalShieldMaxStateBack" value="18.0" />
+
+    <log text="Overwritten player2OriginalShieldMaxStateFront to |player2OriginalShieldMaxStateFront|" />
+    <log text="Overwritten player2OriginalShieldMaxStateBack to |player2OriginalShieldMaxStateBack|" />
+
+    <!-- Lancer -->
+    <!-- <shields front="20" back="15" /> -->
+    <set_variable name="player3OriginalShieldMaxStateFront" value="20.0" />
+    <set_variable name="player3OriginalShieldMaxStateBack" value="15.0" />
+
+    <log text="Overwritten player3OriginalShieldMaxStateFront to |player3OriginalShieldMaxStateFront|" />
+    <log text="Overwritten player3OriginalShieldMaxStateBack to |player3OriginalShieldMaxStateBack|" />
+
+    <set_variable name="Shield sharing initted" value="1.0" />
+  </event>
+
+
+  <event name="Emergency buttons set">
+    <if_variable name="Interactions Menu" comparator="EQUALS" value="1.0" />
+    <set_gm_button text="ShieldSharing/Disable" />
+    <set_gm_button text="ShieldSharing/Restart" />
+  </event>
+  <event name="Emergency buttons clear" id_arme="5ede81c1-1602-4d8b-af08-030a88ea3f0c" parent_id_arme="ffcee071-4886-4503-ab58-aeb5501c8873">
+    <if_gm_button text="Clear" />
+    <clear_gm_button text="ShieldSharing/Disable" />
+    <clear_gm_button text="ShieldSharing/Restart" />
+  </event>
+  <event name="Emergency button disable">
+    <if_gm_button text="ShieldSharing/Disable" />
+    <set_variable name="Shield sharing initted" value="0.0" />
+  </event>
+  <event name="Emergency button restart">
+    <if_gm_button text="ShieldSharing/Restart" />
+    {% for p in range(0,8) %}
+    <set_object_property player_slot="{{p}}" property="shieldMaxStateFront" value="player{{p}}OriginalShieldMaxStateFront" />
+    <set_object_property player_slot="{{p}}" property="shieldMaxStateBack" value="player{{p}}OriginalShieldMaxStateBack" />
+    <set_object_property player_slot="{{p}}" property="shieldStateFront" value="player{{p}}OriginalShieldMaxStateFront" />
+    <set_object_property player_slot="{{p}}" property="shieldStateBack" value="player{{p}}OriginalShieldMaxStateBack" />
+    {% endfor %}
     <set_variable name="Shield sharing initted" value="1.0" />
   </event>
 

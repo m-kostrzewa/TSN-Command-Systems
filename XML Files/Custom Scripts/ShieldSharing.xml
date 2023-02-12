@@ -15,7 +15,7 @@
     
     <get_object_property player_slot="0" property="shieldMaxStateFront" variable="player0OriginalShieldMaxStateFront" />
     <get_object_property player_slot="0" property="shieldMaxStateBack" variable="player0OriginalShieldMaxStateBack" />
-    <log text="player0OriginalShieldMaxStateFront=|player0OriginalShieldMaxStateFront| player0OriginalShieldMaxStateBack=|player0OriginalShieldMaxStateBack|" />
+    <log text="Detected player0OriginalShieldMaxStateFront=|player0OriginalShieldMaxStateFront| player0OriginalShieldMaxStateBack=|player0OriginalShieldMaxStateBack|" />
     
     <set_variable name="player0ShieldSharingEnabled" value="0.0" />
 
@@ -25,7 +25,7 @@
     
     <get_object_property player_slot="1" property="shieldMaxStateFront" variable="player1OriginalShieldMaxStateFront" />
     <get_object_property player_slot="1" property="shieldMaxStateBack" variable="player1OriginalShieldMaxStateBack" />
-    <log text="player1OriginalShieldMaxStateFront=|player1OriginalShieldMaxStateFront| player1OriginalShieldMaxStateBack=|player1OriginalShieldMaxStateBack|" />
+    <log text="Detected player1OriginalShieldMaxStateFront=|player1OriginalShieldMaxStateFront| player1OriginalShieldMaxStateBack=|player1OriginalShieldMaxStateBack|" />
     
     <set_variable name="player1ShieldSharingEnabled" value="0.0" />
 
@@ -35,7 +35,7 @@
     
     <get_object_property player_slot="2" property="shieldMaxStateFront" variable="player2OriginalShieldMaxStateFront" />
     <get_object_property player_slot="2" property="shieldMaxStateBack" variable="player2OriginalShieldMaxStateBack" />
-    <log text="player2OriginalShieldMaxStateFront=|player2OriginalShieldMaxStateFront| player2OriginalShieldMaxStateBack=|player2OriginalShieldMaxStateBack|" />
+    <log text="Detected player2OriginalShieldMaxStateFront=|player2OriginalShieldMaxStateFront| player2OriginalShieldMaxStateBack=|player2OriginalShieldMaxStateBack|" />
     
     <set_variable name="player2ShieldSharingEnabled" value="0.0" />
 
@@ -45,7 +45,7 @@
     
     <get_object_property player_slot="3" property="shieldMaxStateFront" variable="player3OriginalShieldMaxStateFront" />
     <get_object_property player_slot="3" property="shieldMaxStateBack" variable="player3OriginalShieldMaxStateBack" />
-    <log text="player3OriginalShieldMaxStateFront=|player3OriginalShieldMaxStateFront| player3OriginalShieldMaxStateBack=|player3OriginalShieldMaxStateBack|" />
+    <log text="Detected player3OriginalShieldMaxStateFront=|player3OriginalShieldMaxStateFront| player3OriginalShieldMaxStateBack=|player3OriginalShieldMaxStateBack|" />
     
     <set_variable name="player3ShieldSharingEnabled" value="0.0" />
 
@@ -55,7 +55,7 @@
     
     <get_object_property player_slot="4" property="shieldMaxStateFront" variable="player4OriginalShieldMaxStateFront" />
     <get_object_property player_slot="4" property="shieldMaxStateBack" variable="player4OriginalShieldMaxStateBack" />
-    <log text="player4OriginalShieldMaxStateFront=|player4OriginalShieldMaxStateFront| player4OriginalShieldMaxStateBack=|player4OriginalShieldMaxStateBack|" />
+    <log text="Detected player4OriginalShieldMaxStateFront=|player4OriginalShieldMaxStateFront| player4OriginalShieldMaxStateBack=|player4OriginalShieldMaxStateBack|" />
     
     <set_variable name="player4ShieldSharingEnabled" value="0.0" />
 
@@ -65,7 +65,7 @@
     
     <get_object_property player_slot="5" property="shieldMaxStateFront" variable="player5OriginalShieldMaxStateFront" />
     <get_object_property player_slot="5" property="shieldMaxStateBack" variable="player5OriginalShieldMaxStateBack" />
-    <log text="player5OriginalShieldMaxStateFront=|player5OriginalShieldMaxStateFront| player5OriginalShieldMaxStateBack=|player5OriginalShieldMaxStateBack|" />
+    <log text="Detected player5OriginalShieldMaxStateFront=|player5OriginalShieldMaxStateFront| player5OriginalShieldMaxStateBack=|player5OriginalShieldMaxStateBack|" />
     
     <set_variable name="player5ShieldSharingEnabled" value="0.0" />
 
@@ -75,7 +75,7 @@
     
     <get_object_property player_slot="6" property="shieldMaxStateFront" variable="player6OriginalShieldMaxStateFront" />
     <get_object_property player_slot="6" property="shieldMaxStateBack" variable="player6OriginalShieldMaxStateBack" />
-    <log text="player6OriginalShieldMaxStateFront=|player6OriginalShieldMaxStateFront| player6OriginalShieldMaxStateBack=|player6OriginalShieldMaxStateBack|" />
+    <log text="Detected player6OriginalShieldMaxStateFront=|player6OriginalShieldMaxStateFront| player6OriginalShieldMaxStateBack=|player6OriginalShieldMaxStateBack|" />
     
     <set_variable name="player6ShieldSharingEnabled" value="0.0" />
 
@@ -85,7 +85,7 @@
     
     <get_object_property player_slot="7" property="shieldMaxStateFront" variable="player7OriginalShieldMaxStateFront" />
     <get_object_property player_slot="7" property="shieldMaxStateBack" variable="player7OriginalShieldMaxStateBack" />
-    <log text="player7OriginalShieldMaxStateFront=|player7OriginalShieldMaxStateFront| player7OriginalShieldMaxStateBack=|player7OriginalShieldMaxStateBack|" />
+    <log text="Detected player7OriginalShieldMaxStateFront=|player7OriginalShieldMaxStateFront| player7OriginalShieldMaxStateBack=|player7OriginalShieldMaxStateBack|" />
     
     <set_variable name="player7ShieldSharingEnabled" value="0.0" />
 
@@ -94,6 +94,101 @@
 
     
 
+
+    <!-- Set as constant for 4 most used ships to avoid "Sandbox activation" timing issues -->
+    <!-- Sabre -->
+    <!-- <shields front="20" back="20" /> -->
+    <set_variable name="player0OriginalShieldMaxStateFront" value="20.0" />
+    <set_variable name="player0OriginalShieldMaxStateBack" value="20.0" />
+
+    <log text="Overwritten player0OriginalShieldMaxStateFront to |player0OriginalShieldMaxStateFront|" />
+    <log text="Overwritten player0OriginalShieldMaxStateBack to |player0OriginalShieldMaxStateBack|" />
+
+    <!-- Horizon -->
+    <!-- <shields front="18" back="18" /> -->
+    <set_variable name="player1OriginalShieldMaxStateFront" value="18.0" />
+    <set_variable name="player1OriginalShieldMaxStateBack" value="18.0" />
+
+    <log text="Overwritten player1OriginalShieldMaxStateFront to |player1OriginalShieldMaxStateFront|" />
+    <log text="Overwritten player1OriginalShieldMaxStateBack to |player1OriginalShieldMaxStateBack|" />
+
+    <!-- Viper -->
+    <!-- <shields front="33" back="18" /> -->
+    <set_variable name="player2OriginalShieldMaxStateFront" value="33.0" />
+    <set_variable name="player2OriginalShieldMaxStateBack" value="18.0" />
+
+    <log text="Overwritten player2OriginalShieldMaxStateFront to |player2OriginalShieldMaxStateFront|" />
+    <log text="Overwritten player2OriginalShieldMaxStateBack to |player2OriginalShieldMaxStateBack|" />
+
+    <!-- Lancer -->
+    <!-- <shields front="20" back="15" /> -->
+    <set_variable name="player3OriginalShieldMaxStateFront" value="20.0" />
+    <set_variable name="player3OriginalShieldMaxStateBack" value="15.0" />
+
+    <log text="Overwritten player3OriginalShieldMaxStateFront to |player3OriginalShieldMaxStateFront|" />
+    <log text="Overwritten player3OriginalShieldMaxStateBack to |player3OriginalShieldMaxStateBack|" />
+
+    <set_variable name="Shield sharing initted" value="1.0" />
+  </event>
+
+
+  <event name="Emergency buttons set">
+    <if_variable name="Interactions Menu" comparator="EQUALS" value="1.0" />
+    <set_gm_button text="ShieldSharing/Disable" />
+    <set_gm_button text="ShieldSharing/Restart" />
+  </event>
+  <event name="Emergency buttons clear" id_arme="5ede81c1-1602-4d8b-af08-030a88ea3f0c" parent_id_arme="ffcee071-4886-4503-ab58-aeb5501c8873">
+    <if_gm_button text="Clear" />
+    <clear_gm_button text="ShieldSharing/Disable" />
+    <clear_gm_button text="ShieldSharing/Restart" />
+  </event>
+  <event name="Emergency button disable">
+    <if_gm_button text="ShieldSharing/Disable" />
+    <set_variable name="Shield sharing initted" value="0.0" />
+  </event>
+  <event name="Emergency button restart">
+    <if_gm_button text="ShieldSharing/Restart" />
+    
+    <set_object_property player_slot="0" property="shieldMaxStateFront" value="player0OriginalShieldMaxStateFront" />
+    <set_object_property player_slot="0" property="shieldMaxStateBack" value="player0OriginalShieldMaxStateBack" />
+    <set_object_property player_slot="0" property="shieldStateFront" value="player0OriginalShieldMaxStateFront" />
+    <set_object_property player_slot="0" property="shieldStateBack" value="player0OriginalShieldMaxStateBack" />
+    
+    <set_object_property player_slot="1" property="shieldMaxStateFront" value="player1OriginalShieldMaxStateFront" />
+    <set_object_property player_slot="1" property="shieldMaxStateBack" value="player1OriginalShieldMaxStateBack" />
+    <set_object_property player_slot="1" property="shieldStateFront" value="player1OriginalShieldMaxStateFront" />
+    <set_object_property player_slot="1" property="shieldStateBack" value="player1OriginalShieldMaxStateBack" />
+    
+    <set_object_property player_slot="2" property="shieldMaxStateFront" value="player2OriginalShieldMaxStateFront" />
+    <set_object_property player_slot="2" property="shieldMaxStateBack" value="player2OriginalShieldMaxStateBack" />
+    <set_object_property player_slot="2" property="shieldStateFront" value="player2OriginalShieldMaxStateFront" />
+    <set_object_property player_slot="2" property="shieldStateBack" value="player2OriginalShieldMaxStateBack" />
+    
+    <set_object_property player_slot="3" property="shieldMaxStateFront" value="player3OriginalShieldMaxStateFront" />
+    <set_object_property player_slot="3" property="shieldMaxStateBack" value="player3OriginalShieldMaxStateBack" />
+    <set_object_property player_slot="3" property="shieldStateFront" value="player3OriginalShieldMaxStateFront" />
+    <set_object_property player_slot="3" property="shieldStateBack" value="player3OriginalShieldMaxStateBack" />
+    
+    <set_object_property player_slot="4" property="shieldMaxStateFront" value="player4OriginalShieldMaxStateFront" />
+    <set_object_property player_slot="4" property="shieldMaxStateBack" value="player4OriginalShieldMaxStateBack" />
+    <set_object_property player_slot="4" property="shieldStateFront" value="player4OriginalShieldMaxStateFront" />
+    <set_object_property player_slot="4" property="shieldStateBack" value="player4OriginalShieldMaxStateBack" />
+    
+    <set_object_property player_slot="5" property="shieldMaxStateFront" value="player5OriginalShieldMaxStateFront" />
+    <set_object_property player_slot="5" property="shieldMaxStateBack" value="player5OriginalShieldMaxStateBack" />
+    <set_object_property player_slot="5" property="shieldStateFront" value="player5OriginalShieldMaxStateFront" />
+    <set_object_property player_slot="5" property="shieldStateBack" value="player5OriginalShieldMaxStateBack" />
+    
+    <set_object_property player_slot="6" property="shieldMaxStateFront" value="player6OriginalShieldMaxStateFront" />
+    <set_object_property player_slot="6" property="shieldMaxStateBack" value="player6OriginalShieldMaxStateBack" />
+    <set_object_property player_slot="6" property="shieldStateFront" value="player6OriginalShieldMaxStateFront" />
+    <set_object_property player_slot="6" property="shieldStateBack" value="player6OriginalShieldMaxStateBack" />
+    
+    <set_object_property player_slot="7" property="shieldMaxStateFront" value="player7OriginalShieldMaxStateFront" />
+    <set_object_property player_slot="7" property="shieldMaxStateBack" value="player7OriginalShieldMaxStateBack" />
+    <set_object_property player_slot="7" property="shieldStateFront" value="player7OriginalShieldMaxStateFront" />
+    <set_object_property player_slot="7" property="shieldStateBack" value="player7OriginalShieldMaxStateBack" />
+    
     <set_variable name="Shield sharing initted" value="1.0" />
   </event>
 
@@ -217,17 +312,6 @@
 
     <incoming_comms_text from="CHANNEL 1" sideValue="playerSide" type="STATUS">Joint Shield Matrix Prototype MkII DISABLED (reason:docked)</incoming_comms_text>
   </event>
-  <event name="0 shield sharing- on still docked msg" >
-    <log text="0 shield sharing- on still docked msg" />
-    <if_timer_finished name="player0ShieldSharingDockCooldownTimer" />
-
-    <if_variable name="player0PrevDockState" comparator="EQUALS" value="1.0" />
-    <if_exists player_slot="0" />
-    <if_docked player_slot="0" />
-
-    <incoming_comms_text from="CHANNEL 1" sideValue="playerSide" type="STATUS">Joint Shield Matrix Prototype MkII DISABLED (reason:stillDocked)</incoming_comms_text>
-  </event>
-
 
   <event name="0 prevent shield sharing right after shields off to prevent toggling exploit" >
     <log text="0 prevent shield sharing right after shields off to prevent toggling exploit" />
@@ -854,17 +938,6 @@
 
     <incoming_comms_text from="CHANNEL 2" sideValue="playerSide" type="STATUS">Joint Shield Matrix Prototype MkII DISABLED (reason:docked)</incoming_comms_text>
   </event>
-  <event name="1 shield sharing- on still docked msg" >
-    <log text="1 shield sharing- on still docked msg" />
-    <if_timer_finished name="player1ShieldSharingDockCooldownTimer" />
-
-    <if_variable name="player1PrevDockState" comparator="EQUALS" value="1.0" />
-    <if_exists player_slot="1" />
-    <if_docked player_slot="1" />
-
-    <incoming_comms_text from="CHANNEL 2" sideValue="playerSide" type="STATUS">Joint Shield Matrix Prototype MkII DISABLED (reason:stillDocked)</incoming_comms_text>
-  </event>
-
 
   <event name="1 prevent shield sharing right after shields off to prevent toggling exploit" >
     <log text="1 prevent shield sharing right after shields off to prevent toggling exploit" />
@@ -1491,17 +1564,6 @@
 
     <incoming_comms_text from="CHANNEL 3" sideValue="playerSide" type="STATUS">Joint Shield Matrix Prototype MkII DISABLED (reason:docked)</incoming_comms_text>
   </event>
-  <event name="2 shield sharing- on still docked msg" >
-    <log text="2 shield sharing- on still docked msg" />
-    <if_timer_finished name="player2ShieldSharingDockCooldownTimer" />
-
-    <if_variable name="player2PrevDockState" comparator="EQUALS" value="1.0" />
-    <if_exists player_slot="2" />
-    <if_docked player_slot="2" />
-
-    <incoming_comms_text from="CHANNEL 3" sideValue="playerSide" type="STATUS">Joint Shield Matrix Prototype MkII DISABLED (reason:stillDocked)</incoming_comms_text>
-  </event>
-
 
   <event name="2 prevent shield sharing right after shields off to prevent toggling exploit" >
     <log text="2 prevent shield sharing right after shields off to prevent toggling exploit" />
@@ -2128,17 +2190,6 @@
 
     <incoming_comms_text from="CHANNEL 4" sideValue="playerSide" type="STATUS">Joint Shield Matrix Prototype MkII DISABLED (reason:docked)</incoming_comms_text>
   </event>
-  <event name="3 shield sharing- on still docked msg" >
-    <log text="3 shield sharing- on still docked msg" />
-    <if_timer_finished name="player3ShieldSharingDockCooldownTimer" />
-
-    <if_variable name="player3PrevDockState" comparator="EQUALS" value="1.0" />
-    <if_exists player_slot="3" />
-    <if_docked player_slot="3" />
-
-    <incoming_comms_text from="CHANNEL 4" sideValue="playerSide" type="STATUS">Joint Shield Matrix Prototype MkII DISABLED (reason:stillDocked)</incoming_comms_text>
-  </event>
-
 
   <event name="3 prevent shield sharing right after shields off to prevent toggling exploit" >
     <log text="3 prevent shield sharing right after shields off to prevent toggling exploit" />
@@ -2765,17 +2816,6 @@
 
     <incoming_comms_text from="CHANNEL 5" sideValue="playerSide" type="STATUS">Joint Shield Matrix Prototype MkII DISABLED (reason:docked)</incoming_comms_text>
   </event>
-  <event name="4 shield sharing- on still docked msg" >
-    <log text="4 shield sharing- on still docked msg" />
-    <if_timer_finished name="player4ShieldSharingDockCooldownTimer" />
-
-    <if_variable name="player4PrevDockState" comparator="EQUALS" value="1.0" />
-    <if_exists player_slot="4" />
-    <if_docked player_slot="4" />
-
-    <incoming_comms_text from="CHANNEL 5" sideValue="playerSide" type="STATUS">Joint Shield Matrix Prototype MkII DISABLED (reason:stillDocked)</incoming_comms_text>
-  </event>
-
 
   <event name="4 prevent shield sharing right after shields off to prevent toggling exploit" >
     <log text="4 prevent shield sharing right after shields off to prevent toggling exploit" />
@@ -3402,17 +3442,6 @@
 
     <incoming_comms_text from="CHANNEL 6" sideValue="playerSide" type="STATUS">Joint Shield Matrix Prototype MkII DISABLED (reason:docked)</incoming_comms_text>
   </event>
-  <event name="5 shield sharing- on still docked msg" >
-    <log text="5 shield sharing- on still docked msg" />
-    <if_timer_finished name="player5ShieldSharingDockCooldownTimer" />
-
-    <if_variable name="player5PrevDockState" comparator="EQUALS" value="1.0" />
-    <if_exists player_slot="5" />
-    <if_docked player_slot="5" />
-
-    <incoming_comms_text from="CHANNEL 6" sideValue="playerSide" type="STATUS">Joint Shield Matrix Prototype MkII DISABLED (reason:stillDocked)</incoming_comms_text>
-  </event>
-
 
   <event name="5 prevent shield sharing right after shields off to prevent toggling exploit" >
     <log text="5 prevent shield sharing right after shields off to prevent toggling exploit" />
@@ -4039,17 +4068,6 @@
 
     <incoming_comms_text from="CHANNEL 7" sideValue="playerSide" type="STATUS">Joint Shield Matrix Prototype MkII DISABLED (reason:docked)</incoming_comms_text>
   </event>
-  <event name="6 shield sharing- on still docked msg" >
-    <log text="6 shield sharing- on still docked msg" />
-    <if_timer_finished name="player6ShieldSharingDockCooldownTimer" />
-
-    <if_variable name="player6PrevDockState" comparator="EQUALS" value="1.0" />
-    <if_exists player_slot="6" />
-    <if_docked player_slot="6" />
-
-    <incoming_comms_text from="CHANNEL 7" sideValue="playerSide" type="STATUS">Joint Shield Matrix Prototype MkII DISABLED (reason:stillDocked)</incoming_comms_text>
-  </event>
-
 
   <event name="6 prevent shield sharing right after shields off to prevent toggling exploit" >
     <log text="6 prevent shield sharing right after shields off to prevent toggling exploit" />
@@ -4676,17 +4694,6 @@
 
     <incoming_comms_text from="CHANNEL 8" sideValue="playerSide" type="STATUS">Joint Shield Matrix Prototype MkII DISABLED (reason:docked)</incoming_comms_text>
   </event>
-  <event name="7 shield sharing- on still docked msg" >
-    <log text="7 shield sharing- on still docked msg" />
-    <if_timer_finished name="player7ShieldSharingDockCooldownTimer" />
-
-    <if_variable name="player7PrevDockState" comparator="EQUALS" value="1.0" />
-    <if_exists player_slot="7" />
-    <if_docked player_slot="7" />
-
-    <incoming_comms_text from="CHANNEL 8" sideValue="playerSide" type="STATUS">Joint Shield Matrix Prototype MkII DISABLED (reason:stillDocked)</incoming_comms_text>
-  </event>
-
 
   <event name="7 prevent shield sharing right after shields off to prevent toggling exploit" >
     <log text="7 prevent shield sharing right after shields off to prevent toggling exploit" />
