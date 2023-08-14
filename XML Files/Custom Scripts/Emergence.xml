@@ -8,28 +8,27 @@
 
 
   <!-- Monkey patch custom keys bar -->
+  <!-- Unakhalai -->
   <event name="Custom Keys Menu" id_arme="acca2d78-a30b-4570-96d4-2b1356a27f4d" parent_id_arme="8d34f566-84d9-4830-a518-47fee928470a">
     <if_variable name="Ship Spawn Menu" comparator="EQUALS" value="8.0" />
-    <if_timer_finished name="Ship Spawn Menu" />
-    <set_gm_button text="Single USF\Poetry of the Night" />
+    <!-- <if_timer_finished name="Ship Spawn Menu" /> -->
+    <set_gm_button text="Single USF\+Poetry of the Night" />
   </event>
   <event name="Clear" id_arme="509244b2-e84d-4e16-9777-0782dc5214e9" parent_id_arme="8d34f566-84d9-4830-a518-47fee928470a">
     <!-- FIXME: Race condition on variable CycleSpawnMenu, rarely works.  -->
     <if_variable name="CycleSpawnMenu" comparator="EQUALS" value="1.0" />
-    <clear_gm_button text="Single USF\Poetry of the Night" />
+    <clear_gm_button text="Single USF\+Poetry of the Night" />
   </event>
 
-
-
   <event name="Poetry of the Night" id_arme="1923bd22-e490-4245-a797-2d14e56dd7f6" parent_id_arme="8d34f566-84d9-4830-a518-47fee928470a">
-    <if_gm_button text="Single USF\Poetry of the Night" />
+    <if_gm_button text="Single USF\+Poetry of the Night" />
 
     <!-- TSN Dreadnought -->
-    <create type="enemy" use_gm_position="" angle="0" name="Poetry of the Night" hullID="4" sideValue="SideValue" fleetnumber="Fleetnumber" />
+    <create type="enemy" use_gm_position="" angle="0" name="Poetry of the Night" hullID="4" sideValue="SideValue" fleetnumber="-1" />
 
-    <set_object_property property="shieldMaxStateFront" value="700" name="Poetry of the Night" />
+    <set_object_property property="shieldMaxStateFront" value="800" name="Poetry of the Night" />
     <set_object_property property="shieldMaxStateBack" value="900" name="Poetry of the Night" />
-    <set_object_property property="shieldStateFront" value="700" name="Poetry of the Night" />
+    <set_object_property property="shieldStateFront" value="800" name="Poetry of the Night" />
     <set_object_property property="shieldStateBack" value="900" name="Poetry of the Night" />
 
     <clear_ai name="Poetry of the Night" />
@@ -53,8 +52,179 @@
     <set_special name="Poetry of the Night" ability="ShldReset" />
     <set_special name="Poetry of the Night" ship="1" /> <!-- overpowered -->
 
-    <set_ship_text name="Poetry of the Night" race="" class="TSN Dreadnought" desc="Heavily modified TSN Dreadnought."
-      scan_desc="Commanded by Rear Adm. Franziska Bosch. Database match: This vessel was lost without a trace during a patrol years ago." />
+    <set_ship_text name="Poetry of the Night" race="Unakalhai" class="Dreadnought" desc="Heavily modified TSN Dreadnought."
+      scan_desc="Commanded by Rear Adm. Franziska Bosch. Database match: This vessel was lost without a trace during a patrol years ago. Specials: HET Warp Teleport AntiMine AntiTorp ShldDrain ShldReset" />
+
+  </event>
+
+
+
+
+
+  <!-- Monkey patch custom keys bar -->
+  <!-- USFP -->
+  <event name="Custom Keys Menu" id_arme="acca2d78-a30b-4570-96d4-2b1356a27f4d" parent_id_arme="8d34f566-84d9-4830-a518-47fee928470a">
+    <if_variable name="Ship Spawn Menu" comparator="EQUALS" value="4.0" />
+    <!-- <if_timer_finished name="Ship Spawn Menu" /> -->
+    <set_gm_button text="Civilian USFP\+Ubuntu" />
+  </event>
+  <event name="Clear" id_arme="509244b2-e84d-4e16-9777-0782dc5214e9" parent_id_arme="8d34f566-84d9-4830-a518-47fee928470a">
+    <!-- FIXME: Race condition on variable CycleSpawnMenu, rarely works.  -->
+    <if_variable name="CycleSpawnMenu" comparator="EQUALS" value="1.0" />
+    <clear_gm_button text="Civilian USFP\+Ubuntu" />
+  </event>
+
+
+  <event name="Ubuntu" id_arme="1923bd22-e490-4245-a797-2d14e56dd7f6" parent_id_arme="8d34f566-84d9-4830-a518-47fee928470a">
+    <if_gm_button text="Civilian USFP\+Ubuntu" />
+
+    <!-- Luxury Liner -->
+    <create type="enemy" use_gm_position="" angle="0" name="Ubuntu" hullID="1504" sideValue="SideValue" fleetnumber="-1" />
+
+    <set_object_property property="shieldMaxStateFront" value="400" name="Ubuntu" />
+    <set_object_property property="shieldMaxStateBack" value="400" name="Ubuntu" />
+    <set_object_property property="shieldStateFront" value="400" name="Ubuntu" />
+    <set_object_property property="shieldStateBack" value="400" name="Ubuntu" />
+
+    <clear_ai name="Ubuntu" />
+
+    <set_object_property property="surrenderChance" value="0" name="Ubuntu" />
+
+    <add_ai type="DIR_THROTTLE" value1="225" value2="4.0" name="Ubuntu" />
+    <add_ai type="CHASE_AI_SHIP" value1="300" value2="300" name="Ubuntu" />
+
+    <set_special name="Ubuntu" ability="Warp" />
+    <set_special name="Ubuntu" ability="Teleport" />
+    <set_special name="Ubuntu" ability="AntiMine" />
+    <set_special name="Ubuntu" ability="AntiTorp" />
+
+    <set_ship_text name="Ubuntu" race="USFP" class="Luxury Liner" desc="Reinforced presidential luxury liner."
+      scan_desc="Vessel of Madam President Kuyas Tolunay. Specials: Warp Teleport AntiMine AntiTorp" />
+
+
+  </event>
+
+
+
+
+  <!-- Monkey patch custom keys bar -->
+  <!-- Budron -->
+  <event name="Custom Keys Menu" id_arme="acca2d78-a30b-4570-96d4-2b1356a27f4d" parent_id_arme="8d34f566-84d9-4830-a518-47fee928470a">
+    <if_variable name="Ship Spawn Menu" comparator="EQUALS" value="25.0" />
+    <!-- <if_timer_finished name="Ship Spawn Menu" /> -->
+    <set_gm_button text="Budron\+Angelwing" />
+    <set_gm_button text="Budron\+Rock Garden" />
+    <set_gm_button text="Budron\+White Orchard" />
+  </event>
+  <event name="Clear" id_arme="509244b2-e84d-4e16-9777-0782dc5214e9" parent_id_arme="8d34f566-84d9-4830-a518-47fee928470a">
+    <!-- FIXME: Race condition on variable CycleSpawnMenu, rarely works.  -->
+    <if_variable name="CycleSpawnMenu" comparator="EQUALS" value="1.0" />
+    <clear_gm_button text="Budron\+Angelwing" />
+    <clear_gm_button text="Budron\+Rock Garden" />
+    <clear_gm_button text="Budron\+White Orchard" />
+  </event>
+
+  <event name="Angelwing" id_arme="1923bd22-e490-4245-a797-2d14e56dd7f6" parent_id_arme="8d34f566-84d9-4830-a518-47fee928470a">
+    <if_gm_button text="Budron\+Angelwing" />
+
+    <!-- Wretched -->
+    <create type="enemy" use_gm_position="" angle="0" name="Angelwing" hullID="7704" sideValue="SideValue" fleetnumber="-1" />
+
+    <set_object_property property="shieldMaxStateFront" value="700" name="Angelwing" />
+    <set_object_property property="shieldMaxStateBack" value="700" name="Angelwing" />
+    <set_object_property property="shieldStateFront" value="700" name="Angelwing" />
+    <set_object_property property="shieldStateBack" value="700" name="Angelwing" />
+
+    <clear_ai name="Angelwing" />
+
+    <set_object_property property="surrenderChance" value="0" name="Angelwing" />
+
+    <add_ai type="SPCL_AI" name="Angelwing" />
+    <add_ai type="CHASE_PLAYER" name="Angelwing" />
+    <add_ai type="CHASE_STATION" value1="1000" name="Angelwing" />
+    <add_ai type="CHASE_AI_SHIP" value1="3000" value2="500" name="Angelwing" />
+    <add_ai type="CHASE_PLAYER" value1="5000" value2="500" name="Angelwing" />
+    <add_ai type="CHASE_ANGER" name="Angelwing" />
+    <add_ai type="LAUNCH_FIGHTERS" value1="2000" name="Angelwing" />
+
+    <set_special name="Angelwing" ability="HET" />
+    <set_special name="Angelwing" ability="Teleback" />
+    <set_special name="Angelwing" ability="Teleport" />
+    <set_special name="Angelwing" ability="AntiMine" />
+    <set_special name="Angelwing" ability="AntiTorp" />
+    <set_special name="Angelwing" ability="ShldVamp" />
+    <set_special name="Angelwing" ability="Drones" />
+    <set_special name="Angelwing" ship="1" /> <!-- overpowered -->
+
+    <set_ship_text name="Angelwing" race="Budron" class="Desolation" desc="Heavily upgraded Desolation-class Battlecruiser."
+      scan_desc="The Holy Barge of Their Holiness Clementus Sixtus the Fifth. As with all Budron vessels, it's entirely filled with water. Specials: HET Teleback Teleport AntiMine AntiTorp ShldVamp Drones" />
+
+
+  </event>
+
+
+  <event name="Rock Garden" id_arme="1923bd22-e490-4245-a797-2d14e56dd7f6" parent_id_arme="8d34f566-84d9-4830-a518-47fee928470a">
+    <if_gm_button text="Budron\+Rock Garden" />
+
+    <!-- Cargo -->
+    <create type="enemy" use_gm_position="" angle="0" name="Rock Garden" hullID="7710" sideValue="SideValue" fleetnumber="-1" />
+
+    <set_object_property property="shieldMaxStateFront" value="700" name="Rock Garden" />
+    <set_object_property property="shieldMaxStateBack" value="700" name="Rock Garden" />
+    <set_object_property property="shieldStateFront" value="700" name="Rock Garden" />
+    <set_object_property property="shieldStateBack" value="700" name="Rock Garden" />
+
+    <clear_ai name="Rock Garden" />
+
+    <set_object_property property="surrenderChance" value="0" name="Rock Garden" />
+
+    <set_ship_text name="Rock Garden" race="Budron" class="Cargo" desc="Source of the distress signal."
+      scan_desc="Starboard fission reactor breach. Fission reactor cementation in progress. H2O contamination levels are critical. Hull breach. H2O spill. Hazardous cargo spill." />
+
+    <add_ai type="DIR_THROTTLE" value1="225" value2="4.0" name="Rock Garden" />
+    <add_ai type="CHASE_STATION" value1="100" name="Rock Garden" />
+    <add_ai type="CHASE_AI_SHIP" value1="300" value2="300" name="Rock Garden" />
+    <add_ai type="CHASE_PLAYER" value1="300" value2="300" name="Rock Garden" />
+
+  </event>
+
+
+
+  <event name="White Orchard" id_arme="1923bd22-e490-4245-a797-2d14e56dd7f6" parent_id_arme="8d34f566-84d9-4830-a518-47fee928470a">
+    <if_gm_button text="Budron\+White Orchard" />
+
+    <!-- Demolition -->
+    <create type="enemy" use_gm_position="" angle="0" name="White Orchard" hullID="7705" sideValue="SideValue" fleetnumber="-1" />
+
+    <set_object_property property="shieldMaxStateFront" value="400" name="White Orchard" />
+    <set_object_property property="shieldMaxStateBack" value="600" name="White Orchard" />
+    <set_object_property property="shieldStateFront" value="400" name="White Orchard" />
+    <set_object_property property="shieldStateBack" value="600" name="White Orchard" />
+
+    <clear_ai name="White Orchard" />
+
+    <set_object_property property="surrenderChance" value="0" name="White Orchard" />
+
+    <add_ai type="SPCL_AI" name="White Orchard" />
+    <add_ai type="CHASE_PLAYER" name="White Orchard" />
+    <add_ai type="CHASE_STATION" value1="1000" name="White Orchard" />
+    <add_ai type="CHASE_AI_SHIP" value1="2000" value2="500" name="White Orchard" />
+    <add_ai type="CHASE_PLAYER" value1="8000" value2="500" name="White Orchard" />
+    <add_ai type="CHASE_ANGER" name="White Orchard" />
+    <add_ai type="LAUNCH_FIGHTERS" value1="2000" name="White Orchard" />
+
+    <set_special name="White Orchard" ability="HET" />
+    <set_special name="White Orchard" ability="Teleport" />
+    <set_special name="White Orchard" ability="Teleback" />
+    <set_special name="White Orchard" ability="AntiMine" />
+    <set_special name="White Orchard" ability="AntiTorp" />
+    <set_special name="White Orchard" ability="Drones" />
+    <set_special name="White Orchard" ship="1" /> <!-- overpowered -->
+
+    <set_ship_text name="White Orchard" race="Budron" class="Demolition" desc="Heavily upgraded Demolition-class stand-off battleship."
+      scan_desc="As with all Budron vessels, it's entirely filled with water. Specials: HET Teleback Teleport AntiMine AntiTorp Drones" />
+
+
   </event>
 
 
@@ -64,31 +234,171 @@
 
 
 
+  
+  <!-- Monkey patch custom keys bar -->
+  <!-- Pirates -->
+  <event name="Custom Keys Menu" id_arme="acca2d78-a30b-4570-96d4-2b1356a27f4d" parent_id_arme="8d34f566-84d9-4830-a518-47fee928470a">
+    <if_variable name="Ship Spawn Menu" comparator="EQUALS" value="10.0" />
+    <!-- <if_timer_finished name="Ship Spawn Menu" /> -->
+    <set_gm_button text="Euphini Pirates\+Black Billy" />
+    <set_gm_button text="Skull Pirates\+Mercedes" />
+    <set_gm_button text="Skull Pirates\+Esmeralda" />
+    <set_gm_button text="Skull Pirates\+Constanza" />
+  </event>
+  <event name="Clear" id_arme="509244b2-e84d-4e16-9777-0782dc5214e9" parent_id_arme="8d34f566-84d9-4830-a518-47fee928470a">
+    <!-- FIXME: Race condition on variable CycleSpawnMenu, rarely works.  -->
+    <if_variable name="CycleSpawnMenu" comparator="EQUALS" value="1.0" />
+    <clear_gm_button text="Euphini Pirates\+Black Billy" />
+    <clear_gm_button text="Skull Pirates\+Mercedes" />
+    <clear_gm_button text="Skull Pirates\+Esmeralda" />
+    <clear_gm_button text="Skull Pirates\+Constanza" />
+  </event>
 
 
 
+  <event name="Black Billy" id_arme="1923bd22-e490-4245-a797-2d14e56dd7f6" parent_id_arme="8d34f566-84d9-4830-a518-47fee928470a">
+    <if_gm_button text="Euphini Pirates\+Black Billy" />
+
+    <!-- Axe -->
+    <create type="enemy" use_gm_position="" angle="0" name="Black Billy" hullID="7301" sideValue="SideValue" fleetnumber="-1" />
+
+    <set_object_property property="shieldMaxStateFront" value="400" name="Black Billy" />
+    <set_object_property property="shieldMaxStateBack" value="500" name="Black Billy" />
+    <set_object_property property="shieldStateFront" value="400" name="Black Billy" />
+    <set_object_property property="shieldStateBack" value="500" name="Black Billy" />
+
+    <clear_ai name="Black Billy" />
+
+    <set_object_property property="surrenderChance" value="0" name="Black Billy" />
+
+    <add_ai type="SPCL_AI" name="Black Billy" />
+    <add_ai type="CHASE_PLAYER" name="Black Billy" />
+    <add_ai type="CHASE_STATION" value1="1000" name="Black Billy" />
+    <add_ai type="CHASE_AI_SHIP" value1="2000" value2="500" name="Black Billy" />
+    <add_ai type="CHASE_PLAYER" value1="8000" value2="500" name="Black Billy" />
+    <add_ai type="CHASE_ANGER" name="Black Billy" />
+    <add_ai type="LAUNCH_FIGHTERS" value1="2000" name="Black Billy" />
+
+    <set_special name="Black Billy" ability="Warp" />
+    <set_special name="Black Billy" ability="HET" />
+    <set_special name="Black Billy" ability="AntiMine" />
+    <set_special name="Black Billy" ability="AntiTorp" />
+    <set_special name="Black Billy" ability="Drones" />
+    <set_special name="Black Billy" ship="1" /> <!-- overpowered -->
+
+    <set_ship_text name="Black Billy" race="Euphini Marauders" class="Axe Class" desc="Heavily upgraded Axe class."
+      scan_desc="Black Billy's warship. Crimes: piracy, hijacking, kidnapping, smuggling, illegal whaling, illegal dumping, deliberately interfering with wireless telegraphy, anti-social behavior, disorderly conduct. Specials: Warp HET AntiMine AntiTorp Drones" />
+
+  </event>
+
+
+  <event name="Mercedes" id_arme="1923bd22-e490-4245-a797-2d14e56dd7f6" parent_id_arme="8d34f566-84d9-4830-a518-47fee928470a">
+    <if_gm_button text="Skull Pirates\+Mercedes" />
+
+    <!-- Axe -->
+    <create type="enemy" use_gm_position="" angle="0" name="Mercedes" hullID="14" sideValue="SideValue" fleetnumber="-1" />
+
+    <set_object_property property="shieldMaxStateFront" value="300" name="Mercedes" />
+    <set_object_property property="shieldMaxStateBack" value="300" name="Mercedes" />
+    <set_object_property property="shieldStateFront" value="300" name="Mercedes" />
+    <set_object_property property="shieldStateBack" value="300" name="Mercedes" />
+
+    <clear_ai name="Mercedes" />
+
+    <set_object_property property="surrenderChance" value="0" name="Mercedes" />
+
+    <add_ai type="SPCL_AI" name="Mercedes" />
+    <add_ai type="CHASE_PLAYER" name="Mercedes" />
+    <add_ai type="CHASE_STATION" value1="1000" name="Mercedes" />
+    <add_ai type="CHASE_AI_SHIP" value1="2000" value2="500" name="Mercedes" />
+    <add_ai type="CHASE_PLAYER" value1="8000" value2="500" name="Mercedes" />
+    <add_ai type="CHASE_ANGER" name="Mercedes" />
+    <add_ai type="LAUNCH_FIGHTERS" value1="2000" name="Mercedes" />
+
+    <set_special name="Mercedes" ability="Warp" />
+    <set_special name="Mercedes" ability="HET" />
+    <set_special name="Mercedes" ability="AntiTorp" />
+    <set_special name="Mercedes" ability="Drones" />
+    <set_special name="Mercedes" ship="1" /> <!-- overpowered -->
+
+    <set_ship_text name="Mercedes" race="Skull Sisters" class="Strongbow" desc="Heavily upgraded Strongbow."
+      scan_desc="One of the three Skull Sisters. Crimes: smuggling, human trafficking. Specials: Warp HET AntiTorp Drones" />
+
+  </event>
 
 
 
+  
+  <event name="Esmeralda" id_arme="1923bd22-e490-4245-a797-2d14e56dd7f6" parent_id_arme="8d34f566-84d9-4830-a518-47fee928470a">
+    <if_gm_button text="Skull Pirates\+Esmeralda" />
+
+    <!-- Axe -->
+    <create type="enemy" use_gm_position="" angle="0" name="Esmeralda" hullID="15" sideValue="SideValue" fleetnumber="-1" />
+
+    <set_object_property property="shieldMaxStateFront" value="350" name="Esmeralda" />
+    <set_object_property property="shieldMaxStateBack" value="350" name="Esmeralda" />
+    <set_object_property property="shieldStateFront" value="350" name="Esmeralda" />
+    <set_object_property property="shieldStateBack" value="350" name="Esmeralda" />
+
+    <clear_ai name="Esmeralda" />
+
+    <set_object_property property="surrenderChance" value="0" name="Esmeralda" />
+
+    <add_ai type="SPCL_AI" name="Esmeralda" />
+    <add_ai type="CHASE_PLAYER" name="Esmeralda" />
+    <add_ai type="CHASE_STATION" value1="1000" name="Esmeralda" />
+    <add_ai type="CHASE_AI_SHIP" value1="2000" value2="500" name="Esmeralda" />
+    <add_ai type="CHASE_PLAYER" value1="8000" value2="500" name="Esmeralda" />
+    <add_ai type="CHASE_ANGER" name="Esmeralda" />
+    <add_ai type="LAUNCH_FIGHTERS" value1="2000" name="Esmeralda" />
+
+    <set_special name="Esmeralda" ability="Teleport" />
+    <set_special name="Esmeralda" ability="Warp" />
+    <set_special name="Esmeralda" ability="HET" />
+    <set_special name="Esmeralda" ability="AntiTorp" />
+    <set_special name="Esmeralda" ability="ShldVamp" />
+    <set_special name="Esmeralda" ship="1" /> <!-- overpowered -->
+
+    <set_ship_text name="Esmeralda" race="Skull Sisters" class="Longbow" desc="Heavily upgraded Longbow."
+      scan_desc="One of the three Skull Sisters. Crimes: disorderly conduct, animal cruelty, loitering. Specials: Teleport Warp HET AntiTorp ShldVamp" />
+
+  </event>
 
 
 
+  <event name="Constanza" id_arme="1923bd22-e490-4245-a797-2d14e56dd7f6" parent_id_arme="8d34f566-84d9-4830-a518-47fee928470a">
+    <if_gm_button text="Skull Pirates\+Constanza" />
 
+    <!-- Axe -->
+    <create type="enemy" use_gm_position="" angle="0" name="Constanza" hullID="16" sideValue="SideValue" fleetnumber="-1" />
 
+    <set_object_property property="shieldMaxStateFront" value="250" name="Constanza" />
+    <set_object_property property="shieldMaxStateBack" value="250" name="Constanza" />
+    <set_object_property property="shieldStateFront" value="250" name="Constanza" />
+    <set_object_property property="shieldStateBack" value="250" name="Constanza" />
 
+    <clear_ai name="Constanza" />
 
+    <set_object_property property="surrenderChance" value="0" name="Constanza" />
 
+    <add_ai type="SPCL_AI" name="Constanza" />
+    <add_ai type="CHASE_PLAYER" name="Constanza" />
+    <add_ai type="CHASE_STATION" value1="1000" name="Constanza" />
+    <add_ai type="CHASE_AI_SHIP" value1="2000" value2="500" name="Constanza" />
+    <add_ai type="CHASE_PLAYER" value1="8000" value2="500" name="Constanza" />
+    <add_ai type="CHASE_ANGER" name="Constanza" />
+    <add_ai type="LAUNCH_FIGHTERS" value1="2000" name="Constanza" />
 
+    <set_special name="Constanza" ability="Teleport" />
+    <set_special name="Constanza" ability="HET" />
+    <set_special name="Constanza" ability="AntiMine" />
+    <set_special name="Constanza" ability="Teleback" />
+    <set_special name="Constanza" ship="1" /> <!-- overpowered -->
 
+    <set_ship_text name="Constanza" race="Skull Sisters" class="Brigantine" desc="Heavily upgraded Brigantine."
+      scan_desc="One of the three Skull Sisters. Crimes: burglary, quiet hours violation. Specials: Teleport HET AntiMine Teleback" />
 
-
-
-
-
-
-
-
-
+  </event>
 
 
 
