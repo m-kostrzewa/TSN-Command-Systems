@@ -61,17 +61,68 @@
 
 
 
+  
+  <!-- Monkey patch custom keys bar -->
+  <!-- TSN -->
+  <event name="Custom Keys Menu" id_arme="acca2d78-a30b-4570-96d4-2b1356a27f4d" parent_id_arme="8d34f566-84d9-4830-a518-47fee928470a">
+    <if_variable name="Ship Spawn Menu" comparator="EQUALS" value="3.0" />
+    <!-- <if_timer_finished name="Ship Spawn Menu" /> -->
+    <set_gm_button text="TSN Ships\+Krakatau" />
+  </event>
+  <event name="Clear" id_arme="509244b2-e84d-4e16-9777-0782dc5214e9" parent_id_arme="8d34f566-84d9-4830-a518-47fee928470a">
+    <!-- FIXME: Race condition on variable CycleSpawnMenu, rarely works.  -->
+    <if_variable name="CycleSpawnMenu" comparator="EQUALS" value="1.0" />
+    <clear_gm_button text="TSN Ships\+Krakatau" />
+  </event>
+
+
+  <event name="Krakatau" id_arme="1923bd22-e490-4245-a797-2d14e56dd7f6" parent_id_arme="8d34f566-84d9-4830-a518-47fee928470a">
+    <if_gm_button text="TSN Ships\+Krakatau" />
+
+    <!-- Juggernaut -->
+    <create type="enemy" use_gm_position="" angle="0" name="Krakatau" hullID="7" sideValue="SideValue" fleetnumber="-1" />
+
+    <set_object_property property="shieldMaxStateFront" value="400" name="Krakatau" />
+    <set_object_property property="shieldMaxStateBack" value="400" name="Krakatau" />
+    <set_object_property property="shieldStateFront" value="400" name="Krakatau" />
+    <set_object_property property="shieldStateBack" value="400" name="Krakatau" />
+
+    <clear_ai name="Krakatau" />
+
+    <set_object_property property="surrenderChance" value="0" name="Krakatau" />
+
+    <add_ai type="SPCL_AI" name="Krakatau" />
+    <add_ai type="CHASE_AI_SHIP" value1="8000" value2="3000" name="Krakatau" />
+    <add_ai type="LAUNCH_FIGHTERS" value1="5000" name="Krakatau" />
+
+    <set_special name="Krakatau" ability="Warp" />
+    <set_special name="Krakatau" ability="HET" />
+    <set_special name="Krakatau" ability="Teleport" />
+    <set_special name="Krakatau" ship="1" /> <!-- overpowered -->
+
+    <set_ship_text name="Krakatau" race="TSN" class="SuperJuggernaut" desc="Anti-Caltron superweapon."
+      scan_desc="Pride of TSN. Fitted with experimental anti-Caltron weaponry. Beware its deadly beams. Specials: Warp HET Teleport AntiCaltronEmitters" />
+
+  </event>
+
+
+
+
   <!-- Monkey patch custom keys bar -->
   <!-- USFP -->
   <event name="Custom Keys Menu" id_arme="acca2d78-a30b-4570-96d4-2b1356a27f4d" parent_id_arme="8d34f566-84d9-4830-a518-47fee928470a">
     <if_variable name="Ship Spawn Menu" comparator="EQUALS" value="4.0" />
     <!-- <if_timer_finished name="Ship Spawn Menu" /> -->
     <set_gm_button text="Civilian USFP\+Ubuntu" />
+    <set_gm_button text="Civilian USFP\+Mistral" />
+    <set_gm_button text="Civilian USFP\+Lucky Goldstar" />
   </event>
   <event name="Clear" id_arme="509244b2-e84d-4e16-9777-0782dc5214e9" parent_id_arme="8d34f566-84d9-4830-a518-47fee928470a">
     <!-- FIXME: Race condition on variable CycleSpawnMenu, rarely works.  -->
     <if_variable name="CycleSpawnMenu" comparator="EQUALS" value="1.0" />
     <clear_gm_button text="Civilian USFP\+Ubuntu" />
+    <clear_gm_button text="Civilian USFP\+Mistral" />
+    <clear_gm_button text="Civilian USFP\+Lucky Goldstar" />
   </event>
 
 
@@ -106,9 +157,80 @@
 
 
 
+  <event name="Mistral" id_arme="1923bd22-e490-4245-a797-2d14e56dd7f6" parent_id_arme="8d34f566-84d9-4830-a518-47fee928470a">
+    <if_gm_button text="Civilian USFP\+Mistral" />
+
+    <!-- Hjorden cruiser -->
+    <create type="enemy" use_gm_position="" angle="0" name="Mistral" hullID="7003" sideValue="SideValue" fleetnumber="-1" />
+
+    <set_object_property property="shieldMaxStateFront" value="150" name="Mistral" />
+    <set_object_property property="shieldMaxStateBack" value="150" name="Mistral" />
+    <set_object_property property="shieldStateFront" value="150" name="Mistral" />
+    <set_object_property property="shieldStateBack" value="150" name="Mistral" />
+
+    <clear_ai name="Mistral" />
+
+    <set_object_property property="surrenderChance" value="0" name="Mistral" />
+
+    <add_ai type="SPCL_AI" name="Mistral" />
+    <add_ai type="CHASE_PLAYER" name="Mistral" />
+    <add_ai type="CHASE_STATION" value1="1000" name="Mistral" />
+    <add_ai type="CHASE_AI_SHIP" value1="2000" value2="500" name="Mistral" />
+    <add_ai type="CHASE_PLAYER" value1="8000" value2="500" name="Mistral" />
+    <add_ai type="CHASE_ANGER" name="Mistral" />
+    <add_ai type="LAUNCH_FIGHTERS" value1="2000" name="Mistral" />
+
+    <set_special name="Mistral" ability="HET" />
+    <set_special name="Mistral" ability="AntiTorp" />
+    <set_special name="Mistral" ability="ShldVamp" />
+    <set_special name="Mistral" ability="Stealth" />
+    <set_special name="Mistral" ship="1" /> <!-- overpowered -->
+
+    <set_ship_text name="Mistral" race="Independent" class="Light Cruiser" desc="Customized Hjorden Cruiser."
+      scan_desc="Database match. Officially, Mistral is registered in USFP as an 'independent contractor'. However, there are accusations of corporate espionage and smuggling. Specials: HET AntiTorp ShldVamp Stealth" />
+
+  </event>
+
+
+
+  <event name="Lucky Goldstar" id_arme="1923bd22-e490-4245-a797-2d14e56dd7f6" parent_id_arme="8d34f566-84d9-4830-a518-47fee928470a">
+    <if_gm_button text="Civilian USFP\+Lucky Goldstar" />
+
+    <!-- Carrier -->
+    <create type="enemy" use_gm_position="" angle="0" name="Lucky Goldstar" hullID="5" sideValue="SideValue" fleetnumber="-1" />
+
+    <set_object_property property="shieldMaxStateFront" value="200" name="Lucky Goldstar" />
+    <set_object_property property="shieldMaxStateBack" value="200" name="Lucky Goldstar" />
+    <set_object_property property="shieldStateFront" value="200" name="Lucky Goldstar" />
+    <set_object_property property="shieldStateBack" value="200" name="Lucky Goldstar" />
+
+    <clear_ai name="Lucky Goldstar" />
+
+    <set_object_property property="surrenderChance" value="0" name="Lucky Goldstar" />
+
+    <add_ai type="SPCL_AI" name="Lucky Goldstar" />
+    <add_ai type="CHASE_PLAYER" name="Lucky Goldstar" />
+    <add_ai type="CHASE_STATION" value1="1000" name="Lucky Goldstar" />
+    <add_ai type="CHASE_AI_SHIP" value1="2000" value2="500" name="Lucky Goldstar" />
+    <add_ai type="CHASE_PLAYER" value1="8000" value2="500" name="Lucky Goldstar" />
+    <add_ai type="CHASE_ANGER" name="Lucky Goldstar" />
+    <add_ai type="LAUNCH_FIGHTERS" value1="4000" name="Lucky Goldstar" />
+
+    <set_special name="Lucky Goldstar" ability="Teleport" />
+    <set_special name="Lucky Goldstar" ability="AntiMine" />
+    <set_special name="Lucky Goldstar" ability="Teleback" />
+    <set_special name="Lucky Goldstar" ability="Cloak" />
+    <set_special name="Lucky Goldstar" ability="Stealth" />
+    <set_special name="Lucky Goldstar" ship="1" /> <!-- overpowered -->
+
+    <set_ship_text name="Lucky Goldstar" race="Independent" class="Carrier" desc="Retrofitted Carrier."
+      scan_desc="Lucky Goldstar is a flagship of Lucky Goldstar Ltd. - a non-government military organization. Specials: Teleport Teleback AntiMine Stealth Cloak" />
+
+  </event>
+
 
   <!-- Monkey patch custom keys bar -->
-  <!-- Budron -->
+  <!-- Budron  -->
   <event name="Custom Keys Menu" id_arme="acca2d78-a30b-4570-96d4-2b1356a27f4d" parent_id_arme="8d34f566-84d9-4830-a518-47fee928470a">
     <if_variable name="Ship Spawn Menu" comparator="EQUALS" value="25.0" />
     <!-- <if_timer_finished name="Ship Spawn Menu" /> -->
@@ -157,7 +279,7 @@
     <set_special name="Angelwing" ship="1" /> <!-- overpowered -->
 
     <set_ship_text name="Angelwing" race="Budron" class="Desolation" desc="Heavily upgraded Desolation-class Battlecruiser."
-      scan_desc="The Holy Barge of Their Holiness Clementus Sixtus the Fifth. As with all Budron vessels, it's entirely filled with water. Specials: HET Teleback Teleport AntiMine AntiTorp ShldVamp Drones" />
+      scan_desc="The Holy Barge of Their Holiness Clementus Sixtus the Fifth. Like all Budron vessels, it's entirely filled with water. Specials: HET Teleback Teleport AntiMine AntiTorp ShldVamp Drones" />
 
 
   </event>
@@ -222,11 +344,10 @@
     <set_special name="White Orchard" ship="1" /> <!-- overpowered -->
 
     <set_ship_text name="White Orchard" race="Budron" class="Demolition" desc="Heavily upgraded Demolition-class stand-off battleship."
-      scan_desc="As with all Budron vessels, it's entirely filled with water. Specials: HET Teleback Teleport AntiMine AntiTorp Drones" />
+      scan_desc="Like all Budron vessels, it's entirely filled with water. Specials: HET Teleback Teleport AntiMine AntiTorp Drones" />
 
 
   </event>
-
 
 
 
@@ -286,7 +407,7 @@
     <set_special name="Black Billy" ability="Drones" />
     <set_special name="Black Billy" ship="1" /> <!-- overpowered -->
 
-    <set_ship_text name="Black Billy" race="Euphini Marauders" class="Axe Class" desc="Heavily upgraded Axe class."
+    <set_ship_text name="Black Billy" race="Helios Marauders" class="Axe" desc="Heavily upgraded Axe class."
       scan_desc="Black Billy's warship. Crimes: piracy, hijacking, kidnapping, smuggling, illegal whaling, illegal dumping, deliberately interfering with wireless telegraphy, anti-social behavior, disorderly conduct. Specials: Warp HET AntiMine AntiTorp Drones" />
 
   </event>
@@ -399,6 +520,9 @@
       scan_desc="One of the three Skull Sisters. Crimes: burglary, quiet hours violation. Specials: Teleport HET AntiMine Teleback" />
 
   </event>
+
+
+
 
 
 
