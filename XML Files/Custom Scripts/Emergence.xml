@@ -786,35 +786,66 @@
     <if_variable name="GM Menu" comparator="EQUALS" value="8.0" />
     <!-- <if_timer_finished name="Ship Spawn Menu" /> -->
     <set_gm_button text="Creatures\+Burin Whale pod" />
-    <set_gm_button text="Creatures\+Burin Shark" />
-    <set_gm_button text="Creatures\+Burin Piranha swarm" />
-    <set_gm_button text="Creatures\+Burin Piranha momma" />
-    <set_gm_button text="Creatures\+Burin Dragon" />
+    <set_gm_button text="Creatures\+Burin Megalodon" />
+    <set_gm_button text="Creatures\+Burin Stingray swarm" />
+    <set_gm_button text="Creatures\+Burin Giant moray" />
   </event>
   <event name="Clear" id_arme="509244b2-e84d-4e16-9777-0782dc5214e9" parent_id_arme="8d34f566-84d9-4830-a518-47fee928470a">
     <!-- FIXME: Race condition on variable CycleSpawnMenu, rarely works.  -->
     <if_variable name="GMmenuSelect" comparator="EQUALS" value="1.0" />
     <clear_gm_button text="Creatures\+Burin Whale pod" />
-    <clear_gm_button text="Creatures\+Burin Shark" />
-    <clear_gm_button text="Creatures\+Burin Piranha swarm" />
-    <clear_gm_button text="Creatures\+Burin Piranha momma" />
-    <clear_gm_button text="Creatures\+Burin Dragon" />
-
+    <clear_gm_button text="Creatures\+Burin Megalodon" />
+    <clear_gm_button text="Creatures\+Burin Stingray swarm" />
+    <clear_gm_button text="Creatures\+Burin Giant moray" />
   </event>
 
+  <event name="Create Megalodon" id_arme="e2f8ce90-9ad7-4645-9c2b-b8172f0aeb80" parent_id_arme="63f90053-02d0-4dea-b9cb-5fd5b8bdd965">
+    <if_gm_button text="Creatures\+Burin Megalodon" />
+    <create type="monster" monsterType="2" use_gm_position="" name="SHARK" />
+    <clear_ai name="SHARK" />
+    <add_ai type="RANDOM_PATROL" value2="50000" name="SHARK" />
+    <add_ai type="CHASE_MONSTER" value1="1" value2="10000" name="SHARK" />
+    <add_ai type="CHASE_PLAYER" value1="10000" value2="5000" name="SHARK" />
+    <add_ai type="CHASE_AI_SHIP" value1="10000" value2="5000" name="SHARK" />
+    <add_ai type="CHASE_STATION" value1="10000" value2="5000" name="SHARK" />
+    <add_ai type="CHASE_ANGER" name="SHARK" />
+    <!-- will chase jelly signal -->
+    <add_ai type="CHASE_SIGNAL" value2="17.1" name="SHARK" />
+    <set_object_property property="isTagged" value="0" name="SHARK" />
+    <set_object_property property="maxHealth" value="150" name="SHARK" />
+    <set_object_property property="health" value="150" name="SHARK" />
+    <set_ship_text name="SHARK" newname="Burin Megalodon" />
+  </event>
+
+  <event name="Create Moray" id_arme="e2f8ce90-9ad7-4645-9c2b-b8172f0aeb80" parent_id_arme="63f90053-02d0-4dea-b9cb-5fd5b8bdd965">
+    <if_gm_button text="Creatures\+Burin Giant moray" />
+    <create type="monster" monsterType="3" use_gm_position="" name="MORAY" />
+    <clear_ai name="MORAY" />
+    <add_ai type="RANDOM_PATROL" value2="50000" name="MORAY" />
+    <add_ai type="CHASE_MONSTER" value1="1" value2="15000" name="MORAY" />
+    <add_ai type="CHASE_PLAYER" value1="10000" value2="2000" name="MORAY" />
+    <add_ai type="CHASE_AI_SHIP" value1="10000" value2="2000" name="MORAY" />
+    <add_ai type="CHASE_STATION" value1="5000" name="MORAY" />
+    <add_ai type="CHASE_ANGER" name="MORAY" />
+    <!-- will chase piranha signal -->
+    <add_ai type="CHASE_SIGNAL" value2="11.1" name="MORAY" />
+    <set_object_property property="isTagged" value="0" name="MORAY" />
+    <set_object_property property="maxHealth" value="250" name="MORAY" />
+    <set_object_property property="health" value="250" name="MORAY" />
+    <set_ship_text name="MORAY" newname="Burin Giant moray" />
+  </event>
 
   <event name="Create Burin Whale pod" id_arme="d5d2e51e-080b-400d-9619-10acb0a31621" parent_id_arme="73b1900f-d4b4-4d9c-a1ce-a0b8bd9b076b">
     <if_gm_button text="Creatures\+Burin Whale pod" />
     <create type="monster" monsterType="1" podnumber="Podnumber" use_gm_position="" name="WHALE" />
     <clear_ai name="WHALE" />
     <add_ai type="MOVE_WITH_GROUP" value1="1" name="WHALE" />
-    <add_ai type="CHASE_MONSTER" value1="4000" name="WHALE" />
+    <add_ai type="CHASE_PLAYER" value1="15000" value2="5000" name="WHALE" />
     <add_ai type="STAY_CLOSE" value1="2000" value2="1" name="WHALE" />
     <set_object_property property="isTagged" value="0" name="WHALE" />
     <set_object_property property="maxHealth" value="50" name="WHALE" />
     <set_object_property property="health" value="50" name="WHALE" />
     <set_ship_text name="WHALE" newname="Burin Mammoth Whale" />
-
     <set_gm_button text="SPAWNING MAMMOTH WHALES" x="150" y="100" h="30" w="200" />
     <set_variable name="WHALE" value="1.0" />
     <set_timer name="WHALE" seconds="1" />
@@ -825,14 +856,12 @@
     <create type="monster" monsterType="1" podnumber="Podnumber" use_gm_position="" name="WHALE" />
     <clear_ai name="WHALE" />
     <add_ai type="MOVE_WITH_GROUP" value1="1" name="WHALE" />
-    <add_ai type="CHASE_MONSTER" value1="4000" name="WHALE" />
+    <add_ai type="CHASE_PLAYER" value1="15000" value2="5000" name="WHALE" />
     <add_ai type="STAY_CLOSE" value1="2000" value2="1" name="WHALE" />
     <set_object_property property="isTagged" value="0" name="WHALE" />
     <set_object_property property="maxHealth" value="50" name="WHALE" />
     <set_object_property property="health" value="50" name="WHALE" />
     <set_ship_text name="WHALE" newname="Burin Mammoth Whale" />
-
-
     <set_variable name="WHALE" value="2.0" />
     <set_timer name="WHALE" seconds="1" />
   </event>
@@ -842,14 +871,12 @@
     <create type="monster" monsterType="1" podnumber="Podnumber" use_gm_position="" name="WHALE" />
     <clear_ai name="WHALE" />
     <add_ai type="MOVE_WITH_GROUP" value1="1" name="WHALE" />
-    <add_ai type="CHASE_MONSTER" value1="4000" name="WHALE" />
+    <add_ai type="CHASE_PLAYER" value1="15000" value2="5000" name="WHALE" />
     <add_ai type="STAY_CLOSE" value1="2000" value2="1" name="WHALE" />
     <set_object_property property="isTagged" value="0" name="WHALE" />
     <set_object_property property="maxHealth" value="50" name="WHALE" />
     <set_object_property property="health" value="50" name="WHALE" />
     <set_ship_text name="WHALE" newname="Burin Mammoth Whale" />
-
-
     <set_variable name="WHALE" value="3.0" />
     <set_timer name="WHALE" seconds="1" />
   </event>
@@ -859,14 +886,12 @@
     <create type="monster" monsterType="1" podnumber="Podnumber" use_gm_position="" name="WHALE" />
     <clear_ai name="WHALE" />
     <add_ai type="MOVE_WITH_GROUP" value1="1" name="WHALE" />
-    <add_ai type="CHASE_MONSTER" value1="4000" name="WHALE" />
+    <add_ai type="CHASE_PLAYER" value1="15000" value2="5000" name="WHALE" />
     <add_ai type="STAY_CLOSE" value1="2000" value2="1" name="WHALE" />
     <set_object_property property="isTagged" value="0" name="WHALE" />
     <set_object_property property="maxHealth" value="50" name="WHALE" />
     <set_object_property property="health" value="50" name="WHALE" />
     <set_ship_text name="WHALE" newname="Burin Mammoth Whale" />
-
-
     <set_variable name="WHALE" value="4.0" />
     <set_timer name="WHALE" seconds="1" />
   </event>
@@ -876,13 +901,12 @@
     <create type="monster" monsterType="1" podnumber="Podnumber" use_gm_position="" name="WHALE" />
     <clear_ai name="WHALE" />
     <add_ai type="MOVE_WITH_GROUP" value1="1" name="WHALE" />
-    <add_ai type="CHASE_MONSTER" value1="4000" name="WHALE" />
+    <add_ai type="CHASE_PLAYER" value1="15000" value2="5000" name="WHALE" />
     <add_ai type="STAY_CLOSE" value1="2000" value2="1" name="WHALE" />
     <set_object_property property="isTagged" value="0" name="WHALE" />
     <set_object_property property="maxHealth" value="50" name="WHALE" />
     <set_object_property property="health" value="50" name="WHALE" />
     <set_ship_text name="WHALE" newname="Burin Mammoth Whale" />
-
     <clear_gm_button text="SPAWNING MAMMOTH WHALES" />
     <set_variable name="Pod Settings" value="1.0" />
     <set_variable name="WHALE" value="0.0" />
@@ -890,147 +914,216 @@
 
 
 
-  <event name="Create Burin PIRANHAS pod" id_arme="d5d2e51e-080b-400d-9619-10acb0a31621" parent_id_arme="73b1900f-d4b4-4d9c-a1ce-a0b8bd9b076b">
-    <if_gm_button text="Creatures\+Burin Piranha swarm" />
-    <create type="monster" monsterType="6" podnumber="Podnumber" use_gm_position="" name="PIRANHA" />
-    <clear_ai name="PIRANHA" />
+  <event name="Create Burin STINGRAYS pod" id_arme="d5d2e51e-080b-400d-9619-10acb0a31621" parent_id_arme="73b1900f-d4b4-4d9c-a1ce-a0b8bd9b076b">
+    <if_gm_button text="Creatures\+Burin Stingray swarm" />
+    <create type="monster" monsterType="6" podnumber="Podnumber" use_gm_position="" name="STINGRAY" />
+    <clear_ai name="STINGRAY" />
+    <add_ai type="MOVE_WITH_GROUP" value1="1" name="STINGRAY" />
+    <add_ai type="CHASE_PLAYER" value1="15000" value2="5000" name="STINGRAY" />
+    <add_ai type="CHASE_AI_SHIP" value1="15000" value2="5000" name="STINGRAY" />
+    <add_ai type="CHASE_STATION" value1="15000" value2="5000" name="STINGRAY" />
+    <add_ai type="CHASE_MONSTER" value1="1" value2="5000" name="STINGRAY" />
+    <add_ai type="CHASE_ANGER" name="STINGRAY" />
+    <!-- will chase charybdis signal -->
+    <add_ai type="CHASE_SIGNAL" value2="8.1" name="STINGRAY" />
+    <add_ai type="STAY_CLOSE" value1="2000" value2="1" name="STINGRAY" />
+    <set_object_property property="isTagged" value="0" name="STINGRAY" />
+    <set_object_property property="maxHealth" value="75" name="STINGRAY" />
+    <set_object_property property="health" value="75" name="STINGRAY" />
+    <set_ship_text name="STINGRAY" newname="Burin Stingray" />
+    <set_gm_button text="SPAWNING BURIN STINGRAYS" x="150" y="100" h="30" w="200" />
+    <set_variable name="STINGRAY" value="1.0" />
+    <set_timer name="STINGRAY" seconds="1" />
+  </event>
+  <event name="Create BURIN STINGRAYS 2" id_arme="9668603d-8c4b-4dfe-a5b3-f6681ce6cb47" parent_id_arme="73b1900f-d4b4-4d9c-a1ce-a0b8bd9b076b">
+    <if_variable name="STINGRAY" comparator="EQUALS" value="1.0" />
+    <if_timer_finished name="STINGRAY" />
+    <create type="monster" monsterType="6" podnumber="Podnumber" use_gm_position="" name="STINGRAY" />
+    <clear_ai name="STINGRAY" />
+    <add_ai type="MOVE_WITH_GROUP" value1="1" name="STINGRAY" />
+    <add_ai type="CHASE_PLAYER" value1="15000" value2="5000" name="STINGRAY" />
+    <add_ai type="CHASE_AI_SHIP" value1="15000" value2="5000" name="STINGRAY" />
+    <add_ai type="CHASE_STATION" value1="15000" value2="5000" name="STINGRAY" />
+    <add_ai type="CHASE_MONSTER" value1="1" value2="5000" name="STINGRAY" />
+    <add_ai type="CHASE_ANGER" name="STINGRAY" />
+    <!-- will chase charybdis signal -->
+    <add_ai type="CHASE_SIGNAL" value2="8.1" name="STINGRAY" />
+    <add_ai type="STAY_CLOSE" value1="2000" value2="1" name="STINGRAY" />
+    <set_object_property property="isTagged" value="0" name="STINGRAY" />
+    <set_object_property property="maxHealth" value="75" name="STINGRAY" />
+    <set_object_property property="health" value="75" name="STINGRAY" />
+    <set_ship_text name="STINGRAY" newname="Burin Stingray" />
+    <set_variable name="STINGRAY" value="2.0" />
+    <set_timer name="STINGRAY" seconds="1" />
+  </event>
+  <event name="Create BURIN STINGRAYS 3" id_arme="dd72d816-8c0b-4cbf-a3d5-e971ef4bc97e" parent_id_arme="73b1900f-d4b4-4d9c-a1ce-a0b8bd9b076b">
+    <if_variable name="STINGRAY" comparator="EQUALS" value="2.0" />
+    <if_timer_finished name="STINGRAY" />
+    <create type="monster" monsterType="6" podnumber="Podnumber" use_gm_position="" name="STINGRAY" />
+    <clear_ai name="STINGRAY" />
+    <add_ai type="MOVE_WITH_GROUP" value1="1" name="STINGRAY" />
+    <add_ai type="CHASE_PLAYER" value1="15000" value2="5000" name="STINGRAY" />
+    <add_ai type="CHASE_AI_SHIP" value1="15000" value2="5000" name="STINGRAY" />
+    <add_ai type="CHASE_STATION" value1="15000" value2="5000" name="STINGRAY" />
+    <add_ai type="CHASE_MONSTER" value1="1" value2="5000" name="STINGRAY" />
+    <add_ai type="CHASE_ANGER" name="STINGRAY" />
+    <!-- will chase charybdis signal -->
+    <add_ai type="CHASE_SIGNAL" value2="8.1" name="STINGRAY" />
+    <add_ai type="STAY_CLOSE" value1="2000" value2="1" name="STINGRAY" />
+    <set_object_property property="isTagged" value="0" name="STINGRAY" />
+    <set_object_property property="maxHealth" value="75" name="STINGRAY" />
+    <set_object_property property="health" value="75" name="STINGRAY" />
+    <set_ship_text name="STINGRAY" newname="Burin Stingray" />
+    <set_variable name="STINGRAY" value="3.0" />
+    <set_timer name="STINGRAY" seconds="1" />
+  </event>
+  <event name="Create BURIN STINGRAYS 4" id_arme="d32cd893-d170-46aa-9d4b-4d41508e9b25" parent_id_arme="73b1900f-d4b4-4d9c-a1ce-a0b8bd9b076b">
+    <if_variable name="STINGRAY" comparator="EQUALS" value="3.0" />
+    <if_timer_finished name="STINGRAY" />
+    <create type="monster" monsterType="6" podnumber="Podnumber" use_gm_position="" name="STINGRAY" />
+    <clear_ai name="STINGRAY" />
+    <add_ai type="MOVE_WITH_GROUP" value1="1" name="STINGRAY" />
+    <add_ai type="CHASE_PLAYER" value1="15000" value2="5000" name="STINGRAY" />
+    <add_ai type="CHASE_AI_SHIP" value1="15000" value2="5000" name="STINGRAY" />
+    <add_ai type="CHASE_STATION" value1="15000" value2="5000" name="STINGRAY" />
+    <add_ai type="CHASE_MONSTER" value1="1" value2="5000" name="STINGRAY" />
+    <add_ai type="CHASE_ANGER" name="STINGRAY" />
+    <!-- will chase charybdis signal -->
+    <add_ai type="CHASE_SIGNAL" value2="8.1" name="STINGRAY" />
+    <add_ai type="STAY_CLOSE" value1="2000" value2="1" name="STINGRAY" />
+    <set_object_property property="isTagged" value="0" name="STINGRAY" />
+    <set_object_property property="maxHealth" value="75" name="STINGRAY" />
+    <set_object_property property="health" value="75" name="STINGRAY" />
+    <set_ship_text name="STINGRAY" newname="Burin Stingray" />
+    <set_variable name="STINGRAY" value="4.0" />
+    <set_timer name="STINGRAY" seconds="1" />
+  </event>
+  <event name="Create BURIN STINGRAYS 5" id_arme="4aa8b1a7-9f7c-4028-bc26-d7ba18a22368" parent_id_arme="73b1900f-d4b4-4d9c-a1ce-a0b8bd9b076b">
+    <if_variable name="STINGRAY" comparator="EQUALS" value="4.0" />
+    <if_timer_finished name="STINGRAY" />
+    <create type="monster" monsterType="6" podnumber="Podnumber" use_gm_position="" name="STINGRAY" />
+    <clear_ai name="STINGRAY" />
+    <add_ai type="MOVE_WITH_GROUP" value1="1" name="STINGRAY" />
+    <add_ai type="CHASE_PLAYER" value1="15000" value2="5000" name="STINGRAY" />
+    <add_ai type="CHASE_AI_SHIP" value1="15000" value2="5000" name="STINGRAY" />
+    <add_ai type="CHASE_STATION" value1="15000" value2="5000" name="STINGRAY" />
+    <add_ai type="CHASE_MONSTER" value1="1" value2="5000" name="STINGRAY" />
+    <add_ai type="CHASE_ANGER" name="STINGRAY" />
+    <!-- will chase charybdis signal -->
+    <add_ai type="CHASE_SIGNAL" value2="8.1" name="STINGRAY" />
+    <add_ai type="STAY_CLOSE" value1="2000" value2="1" name="STINGRAY" />
+    <set_object_property property="isTagged" value="0" name="STINGRAY" />
+    <set_object_property property="maxHealth" value="75" name="STINGRAY" />
+    <set_object_property property="health" value="75" name="STINGRAY" />
+    <set_ship_text name="STINGRAY" newname="Burin Stingray" />
+    <clear_gm_button text="SPAWNING BURIN STINGRAYS" />
+    <set_variable name="Pod Settings" value="1.0" />
+    <set_variable name="STINGRAY" value="0.0" />
+  </event>
+
+
+  <event name="Create Loria skaffold" id_arme="971e5972-66e9-4b68-80ba-d156c408735b" parent_id_arme="43e3a1bf-d7ab-4f5a-bb32-9becb0ed71f2">
+    <if_variable name="Loria System" comparator="EQUALS" value="2.0" />
+    <if_variable name="Sector" comparator="EQUALS" value="13.0" />
+    <if_variable name="Sector Entities" comparator="EQUALS" value="3.0" />
+
+
+    <create type="genericMesh" x="32250.0" y="0.0" z="38477.0" name="Planet Loria" meshFileName="dat\TSN\USFP\marker.dxs" textureFileName="dat\TSN\USFP\marker.png" colorRed="0.5" colorGreen="0.64" colorBlue="0.35" />
+    <set_ship_text name="Planet Loria" desc="Planet Loria" scan_desc="Failed to open comms channel. Strong EM interference. Population status: unknown." />
+    <set_object_property property="pushRadius" value="0.0" name="Planet Loria" />
+    <create type="genericMesh" x="100.0" y="0.0" z="100.0" angle="0" name="PA" meshFileName="dat\TSN\Planets\planet8.dxs" textureFileName="dat\TSN\Planets\pm1.png" fakeShieldsFront="1" fakeShieldsRear="1" hasFakeShldFreq="1" colorRed="0.0" colorGreen="0.2" colorBlue="0.7" />
+    <set_object_property property="pushRadius" value="1.0" name="PA" />
+    <set_object_property property="artScale" value="8.0" name="PA" />
+    <create type="genericMesh" x="100.0" y="2.0" z="100.0" angle="0" name="PB" meshFileName="dat\TSN\Planets\planet8.dxs" textureFileName="dat\TSN\Planets\pm2.png" fakeShieldsFront="1" fakeShieldsRear="1" hasFakeShldFreq="1" colorRed="0.0" colorGreen="0.2" colorBlue="0.7" />
+    <set_object_property property="artScale" value="8.0" name="PB" />
+    <set_object_property property="pushRadius" value="1.0" name="PB" />
+    <create type="genericMesh" x="100.0" y="4.0" z="100.0" angle="0" name="PC" meshFileName="dat\TSN\Planets\planet8.dxs" textureFileName="dat\TSN\Planets\pm3.png" fakeShieldsFront="1" fakeShieldsRear="1" hasFakeShldFreq="1" colorRed="0.0" colorGreen="0.2" colorBlue="0.7" />
+    <set_object_property property="pushRadius" value="1.0" name="PC" />
+    <set_object_property property="artScale" value="8.0" name="PC" />
+    <create type="genericMesh" x="100.0" y="6.0" z="100.0" angle="0" name="PD" meshFileName="dat\TSN\Planets\planet8.dxs" textureFileName="dat\TSN\Planets\pm4.png" fakeShieldsFront="1" fakeShieldsRear="1" hasFakeShldFreq="1" colorRed="0.0" colorGreen="0.2" colorBlue="0.7" />
+    <set_object_property property="pushRadius" value="1.0" name="PD" />
+    <set_object_property property="artScale" value="8.0" name="PD" />
+    <create type="genericMesh" x="100.0" y="8.0" z="100.0" angle="0" name="PE" meshFileName="dat\TSN\Planets\planet8.dxs" textureFileName="dat\TSN\Planets\pm5.png" fakeShieldsFront="1" fakeShieldsRear="1" hasFakeShldFreq="1" colorRed="0.0" colorGreen="0.2" colorBlue="0.7" />
+    <set_object_property property="pushRadius" value="1.0" name="PE" />
+    <set_object_property property="artScale" value="8.0" name="PE" />
+    <create type="genericMesh" x="100.0" y="10.0" z="100.0" angle="0" name="PF" meshFileName="dat\TSN\Planets\planet8.dxs" textureFileName="dat\TSN\Planets\pm6.png" fakeShieldsFront="1" fakeShieldsRear="1" hasFakeShldFreq="1" colorRed="0.0" colorGreen="0.2" colorBlue="0.7" />
+    <set_object_property property="pushRadius" value="1.0" name="PF" />
+    <set_object_property property="artScale" value="8.0" name="PF" />
+    <create type="genericMesh" x="100.0" y="12.0" z="100.0" angle="0" name="PG" meshFileName="dat\TSN\Planets\planet8.dxs" textureFileName="dat\TSN\Planets\pm7.png" fakeShieldsFront="1" fakeShieldsRear="1" hasFakeShldFreq="1" colorRed="0.0" colorGreen="0.2" colorBlue="0.7" />
+    <set_object_property property="pushRadius" value="1.0" name="PG" />
+    <set_object_property property="artScale" value="8.0" name="PG" />
+    <create type="genericMesh" x="100.0" y="14.0" z="100.0" angle="0" name="PH" meshFileName="dat\TSN\Planets\planet8.dxs" textureFileName="dat\TSN\Planets\pm8.png" fakeShieldsFront="1" fakeShieldsRear="1" hasFakeShldFreq="1" colorRed="0.0" colorGreen="0.2" colorBlue="0.7" />
+    <set_object_property property="pushRadius" value="1.0" name="PH" />
+    <set_object_property property="artScale" value="8.0" name="PH" />
+    <set_relative_position name2="PA" distance="2000" angle="0.0" name1="Planet Loria" />
+    <set_relative_position name2="PB" distance="2000" angle="45.0" name1="Planet Loria" />
+    <set_relative_position name2="PC" distance="2000" angle="90.0" name1="Planet Loria" />
+    <set_relative_position name2="PD" distance="2000" angle="135.0" name1="Planet Loria" />
+    <set_relative_position name2="PE" distance="2000" angle="180.0" name1="Planet Loria" />
+    <set_relative_position name2="PF" distance="2000" angle="225.0" name1="Planet Loria" />
+    <set_relative_position name2="PG" distance="2000" angle="270.0" name1="Planet Loria" />
+    <set_relative_position name2="PH" distance="2000" angle="315.0" name1="Planet Loria" />
+    <set_object_property property="angle" value="6.283185307" name="PA" />
+    <set_object_property property="angle" value="7.068583471" name="PB" />
+    <set_object_property property="angle" value="7.853981634" name="PC" />
+    <set_object_property property="angle" value="8.639379797" name="PD" />
+    <set_object_property property="angle" value="3.141590654" name="PE" />
+    <set_object_property property="angle" value="3.926990817" name="PF" />
+    <set_object_property property="angle" value="4.71238898" name="PG" />
+    <set_object_property property="angle" value="5.497787144" name="PH" />
+
+
+    <set_ship_text name="PA" newname=" " />
+    <set_ship_text name="PB" newname=" " />
+    <set_ship_text name="PC" newname=" " />
+    <set_ship_text name="PD" newname=" " />
+    <set_ship_text name="PE" newname=" " />
+    <set_ship_text name="PF" newname=" " />
+    <set_ship_text name="PG" newname=" " />
+    <set_ship_text name="PH" newname=" " />
+
     
-    <!-- <add_ai type="MOVE_WITH_GROUP" value1="1" name="PIRANHA" /> -->
-    <add_ai type="RANDOM_PATROL" value2="50000" name="PIRANHA" />
-    <add_ai type="CHASE_MONSTER" value2="5000" name="PIRANHA" />
-    <add_ai type="CHASE_MONSTER" value2="5000" name="PIRANHA" />
-    <add_ai type="CHASE_MONSTER" value2="5000" name="PIRANHA" />
-    <add_ai type="CHASE_MONSTER" value2="5000" name="PIRANHA" />
-    <add_ai type="CHASE_MONSTER" value2="5000" name="PIRANHA" />
-    <add_ai type="CHASE_PLAYER" value1="5000" value2="2000" name="PIRANHA" />
-    <add_ai type="CHASE_AI_SHIP" value1="5000" value2="2000" name="PIRANHA" />
-    <!-- <add_ai type="STAY_CLOSE" value1="2000" value2="1" name="PIRANHA" /> -->
-    <set_object_property property="isTagged" value="0" name="PIRANHA" />
-    <set_object_property property="maxHealth" value="150" name="PIRANHA" />
-    <set_object_property property="health" value="150" name="PIRANHA" />
-    <set_ship_text name="PIRANHA" newname="Burin Piranha" />
+    <create type="genericMesh" x="32250.0" y="0.0" z="38477.0" name="r" meshFileName="dat\TSN\USFP\marker.dxs" textureFileName="dat\player_station_color_04.png" colorRed="0.5" colorGreen="0.64" colorBlue="0.35" />
+    <set_object_property property="artScale" value="21.0" name="r" />
+    <set_object_property property="pushRadius" value="0" name="r" />
+    <set_object_property property="angleDelta" value="0.04" name="r" />
+    <set_object_property property="angle" value="0" name="r" />
+    <set_ship_text name="r" newname=" Planet Loria " desc="Planet Loria" scan_desc="Failed to open comms channel. Strong EM interference. Population status: unknown." />
+    <create type="genericMesh" x="32250.0" y="0.0" z="38477.0" angle="45" name="r" meshFileName="dat\TSN\USFP\marker.dxs" textureFileName="dat\player_station_color_02.png" colorRed="0.5" colorGreen="0.64" colorBlue="0.35" />
+    <set_object_property property="artScale" value="22.0" name="r" />
+    <set_object_property property="pushRadius" value="0" name="r" />
+    <set_object_property property="angleDelta" value="0.01" name="r" />
+    <set_object_property property="angle" value="3.1415" name="r" />
+    <set_object_property property="pitch" value="3.1415" name="r" />
+    <set_ship_text name="r" newname="  Planet Loria  " desc="Planet Loria" scan_desc="Failed to open comms channel. Strong EM interference. Population status: unknown." />
 
-    <set_gm_button text="SPAWNING BURIN PIRANHASS" x="150" y="100" h="30" w="200" />
-    <set_variable name="PIRANHA" value="1.0" />
-    <set_timer name="PIRANHA" seconds="1" />
+    <set_variable name="Sector Entities" value="4.0" integer="yes" />
   </event>
-  <event name="Create BURIN PIRANHAS 2" id_arme="9668603d-8c4b-4dfe-a5b3-f6681ce6cb47" parent_id_arme="73b1900f-d4b4-4d9c-a1ce-a0b8bd9b076b">
-    <if_variable name="PIRANHA" comparator="EQUALS" value="1.0" />
-    <if_timer_finished name="PIRANHA" />
-    <create type="monster" monsterType="6" podnumber="Podnumber" use_gm_position="" name="PIRANHA" />
-    <clear_ai name="PIRANHA" />
-    <!-- <add_ai type="MOVE_WITH_GROUP" value1="1" name="PIRANHA" /> -->
-    <add_ai type="RANDOM_PATROL" value2="50000" name="PIRANHA" />
-    <add_ai type="CHASE_MONSTER" value2="5000" name="PIRANHA" />
-    <add_ai type="CHASE_MONSTER" value2="5000" name="PIRANHA" />
-    <add_ai type="CHASE_MONSTER" value2="5000" name="PIRANHA" />
-    <add_ai type="CHASE_MONSTER" value2="5000" name="PIRANHA" />
-    <add_ai type="CHASE_MONSTER" value2="5000" name="PIRANHA" />
-    <add_ai type="CHASE_PLAYER" value1="5000" value2="2000" name="PIRANHA" />
-    <add_ai type="CHASE_AI_SHIP" value1="5000" value2="2000" name="PIRANHA" />
-    <!-- <add_ai type="STAY_CLOSE" value1="2000" value2="1" name="PIRANHA" /> -->
-    <set_object_property property="isTagged" value="0" name="PIRANHA" />
-    <set_object_property property="maxHealth" value="150" name="PIRANHA" />
-    <set_object_property property="health" value="150" name="PIRANHA" />
-    <set_ship_text name="PIRANHA" newname="Burin Piranha" />
+  <event name="Destroy Loria additions" id_arme="971e5972-66e9-4b68-80ba-d156c408735b" parent_id_arme="43e3a1bf-d7ab-4f5a-bb32-9becb0ed71f2">
+    <!-- We have some time (0.5sec) to clean up before we transition to new sector (when timer Transition finishes)
+        However, there is no way to know WHICH system/sector is being deleted. So be careful. 
+        Entity names must be unique to not impact other system/sectors -->
+    <if_variable name="Sector Entities" comparator="EQUALS" value="0.0" />
 
-
-    <set_variable name="PIRANHA" value="2.0" />
-    <set_timer name="PIRANHA" seconds="1" />
-  </event>
-  <event name="Create BURIN PIRANHAS 3" id_arme="dd72d816-8c0b-4cbf-a3d5-e971ef4bc97e" parent_id_arme="73b1900f-d4b4-4d9c-a1ce-a0b8bd9b076b">
-    <if_variable name="PIRANHA" comparator="EQUALS" value="2.0" />
-    <if_timer_finished name="PIRANHA" />
-    <create type="monster" monsterType="6" podnumber="Podnumber" use_gm_position="" name="PIRANHA" />
-    <clear_ai name="PIRANHA" />
-    <!-- <add_ai type="MOVE_WITH_GROUP" value1="1" name="PIRANHA" /> -->
-    <add_ai type="RANDOM_PATROL" value2="50000" name="PIRANHA" />
-    <add_ai type="CHASE_MONSTER" value2="5000" name="PIRANHA" />
-    <add_ai type="CHASE_MONSTER" value2="5000" name="PIRANHA" />
-    <add_ai type="CHASE_MONSTER" value2="5000" name="PIRANHA" />
-    <add_ai type="CHASE_MONSTER" value2="5000" name="PIRANHA" />
-    <add_ai type="CHASE_MONSTER" value2="5000" name="PIRANHA" />
-    <add_ai type="CHASE_PLAYER" value1="5000" value2="2000" name="PIRANHA" />
-    <add_ai type="CHASE_AI_SHIP" value1="5000" value2="2000" name="PIRANHA" />
-    <!-- <add_ai type="STAY_CLOSE" value1="2000" value2="1" name="PIRANHA" /> -->
-    <set_object_property property="isTagged" value="0" name="PIRANHA" />
-    <set_object_property property="maxHealth" value="150" name="PIRANHA" />
-    <set_object_property property="health" value="150" name="PIRANHA" />
-    <set_ship_text name="PIRANHA" newname="Burin Piranha" />
-
-
-    <set_variable name="PIRANHA" value="3.0" />
-    <set_timer name="PIRANHA" seconds="1" />
-  </event>
-  <event name="Create BURIN PIRANHAS 4" id_arme="d32cd893-d170-46aa-9d4b-4d41508e9b25" parent_id_arme="73b1900f-d4b4-4d9c-a1ce-a0b8bd9b076b">
-    <if_variable name="PIRANHA" comparator="EQUALS" value="3.0" />
-    <if_timer_finished name="PIRANHA" />
-    <create type="monster" monsterType="6" podnumber="Podnumber" use_gm_position="" name="PIRANHA" />
-    <clear_ai name="PIRANHA" />
-    <!-- <add_ai type="MOVE_WITH_GROUP" value1="1" name="PIRANHA" /> -->
-    <add_ai type="RANDOM_PATROL" value2="50000" name="PIRANHA" />
-    <add_ai type="CHASE_MONSTER" value2="5000" name="PIRANHA" />
-    <add_ai type="CHASE_MONSTER" value2="5000" name="PIRANHA" />
-    <add_ai type="CHASE_MONSTER" value2="5000" name="PIRANHA" />
-    <add_ai type="CHASE_MONSTER" value2="5000" name="PIRANHA" />
-    <add_ai type="CHASE_MONSTER" value2="5000" name="PIRANHA" />
-    <add_ai type="CHASE_PLAYER" value1="5000" value2="2000" name="PIRANHA" />
-    <add_ai type="CHASE_AI_SHIP" value1="5000" value2="2000" name="PIRANHA" />
-    <!-- <add_ai type="STAY_CLOSE" value1="2000" value2="1" name="PIRANHA" /> -->
-    <set_object_property property="isTagged" value="0" name="PIRANHA" />
-    <set_object_property property="maxHealth" value="150" name="PIRANHA" />
-    <set_object_property property="health" value="150" name="PIRANHA" />
-    <set_ship_text name="PIRANHA" newname="Burin Piranha" />
-
-
-    <set_variable name="PIRANHA" value="4.0" />
-    <set_timer name="PIRANHA" seconds="1" />
-  </event>
-  <event name="Create BURIN PIRANHAS 5" id_arme="4aa8b1a7-9f7c-4028-bc26-d7ba18a22368" parent_id_arme="73b1900f-d4b4-4d9c-a1ce-a0b8bd9b076b">
-    <if_variable name="PIRANHA" comparator="EQUALS" value="4.0" />
-    <if_timer_finished name="PIRANHA" />
-    <create type="monster" monsterType="6" podnumber="Podnumber" use_gm_position="" name="PIRANHA" />
-    <clear_ai name="PIRANHA" />
-    <!-- <add_ai type="MOVE_WITH_GROUP" value1="1" name="PIRANHA" /> -->
-    <add_ai type="RANDOM_PATROL" value2="50000" name="PIRANHA" />
-    <add_ai type="CHASE_MONSTER" value2="5000" name="PIRANHA" />
-    <add_ai type="CHASE_MONSTER" value2="5000" name="PIRANHA" />
-    <add_ai type="CHASE_MONSTER" value2="5000" name="PIRANHA" />
-    <add_ai type="CHASE_MONSTER" value2="5000" name="PIRANHA" />
-    <add_ai type="CHASE_MONSTER" value2="5000" name="PIRANHA" />
-    <add_ai type="CHASE_PLAYER" value1="5000" value2="2000" name="PIRANHA" />
-    <add_ai type="CHASE_AI_SHIP" value1="5000" value2="2000" name="PIRANHA" />
-    <!-- <add_ai type="STAY_CLOSE" value1="2000" value2="1" name="PIRANHA" /> -->
-    <set_object_property property="isTagged" value="0" name="PIRANHA" />
-    <set_object_property property="maxHealth" value="150" name="PIRANHA" />
-    <set_object_property property="health" value="150" name="PIRANHA" />
-    <set_ship_text name="PIRANHA" newname="Burin Piranha" />
-
-    <clear_gm_button text="SPAWNING BURIN PIRANHASS" />
-    <set_variable name="Pod Settings" value="1.0" />
-    <set_variable name="PIRANHA" value="0.0" />
+    <!-- Destroy planet and megastructure "scaffolds" (they have the same name to fix Y-fighting on science screen) -->
+    <destroy name="Planet Loria" />
+    <destroy name="Planet Loria" />
+    <destroy name="Planet Loria" />
+    <destroy name="Planet Loria" />
+    <destroy name=" Planet Loria " />
+    <destroy name=" Planet Loria " />
+    <destroy name=" Planet Loria " />
+    <destroy name=" Planet Loria " />
+    <destroy name="  Planet Loria  " />
+    <destroy name="  Planet Loria  " />
+    <destroy name="  Planet Loria  " />
+    <destroy name="  Planet Loria  " />
+        <!-- Destroy the planet-->
+    <set_variable name="DestroyPlanet" value="1.0" integer="yes" />
   </event>
 
 
 
-  <event name="Create Burin PIRANHAS momma" id_arme="d5d2e51e-080b-400d-9619-10acb0a31621" parent_id_arme="73b1900f-d4b4-4d9c-a1ce-a0b8bd9b076b">
-    <if_gm_button text="Creatures\+Burin Piranha momma" />
-    <create type="monster" monsterType="8" podnumber="Podnumber" use_gm_position="" name="PIRANHA" />
-    <clear_ai name="PIRANHA" />
-    <add_ai type="RELEASE_PIRANHAS" value1="6000" name="PIRANHA" />
-    <!-- <add_ai type="CHASE_PLAYER" value1="5000" value2="2000" name="PIRANHA" />
-    <add_ai type="CHASE_AI_SHIP" value1="5000" value2="2000" name="PIRANHA" />
-    <add_ai type="CHASE_MONSTER" value1="5000" name="PIRANHA" /> -->
-    <add_ai type="RELEASE_PIRANHAS" value1="6000" name="PIRANHA" />
-    <set_object_property property="isTagged" value="0" name="PIRANHA" />
-    <set_object_property property="maxHealth" value="250" name="PIRANHA" />
-    <set_object_property property="health" value="250" name="PIRANHA" />
-    <set_object_property property="age" value="3" name="PIRANHA" />
-    <set_object_property property="size" value="50" name="PIRANHA" />
-    <set_ship_text name="PIRANHA" newname="Burin Moth3r" />
-
-    <set_variable name="Pod Settings" value="1.0" />
-  </event>
 
 
   
@@ -6287,7 +6380,7 @@
 
     <set_variable name="InsideIronMoon" value="0.0" />
 
-    <create type="genericMesh" x="30000.0" y="0.0" z="90000.0" name="X" meshFileName="dat\TSN\USFP\marker.dxs" textureFileName="dat\TSN\USFP\marker.png" colorRed="0.2" colorGreen="0.2" colorBlue="0.7" />
+    <create type="genericMesh" x="30000.0" y="0.0" z="85000.0" name="X" meshFileName="dat\TSN\USFP\marker.dxs" textureFileName="dat\TSN\USFP\marker.png" colorRed="0.2" colorGreen="0.2" colorBlue="0.7" />
     <set_ship_text name="X" newname="Floor" race="-" class="Experiment" desc="Perform radiometric dating" scan_desc="Dating estimates:^Uranium-lead: 2.5 bln yrs.^Samarium-neodymium: 2.6 bln yrs^Rubidium-strontium: 2.55 bln yrs.^^Date consistent with prehistoric Budron tribal era." />
 
     <create type="genericMesh" x="60000.0" y="0.0" z="30000.0" name="X" meshFileName="dat\TSN\USFP\marker.dxs" textureFileName="dat\TSN\USFP\marker.png" colorRed="0.1" colorGreen="0.1" colorBlue="0.9" />
@@ -6437,6 +6530,18 @@
     <set_variable name="SPECIAL System" value="2.0" />
 
     <set_variable name="InsideIronMoon" value="0.0" />
+    <create count="60" type="asteroids" startX="50000.0" startY="0.0" startZ="20000.0" radius="6000" startAngle="0" endAngle="360" randomRange="1000" />
+
+    <create count="100" type="asteroids" startX="50000.0" startY="0.0" startZ="20000.0" radius="60000" startAngle="120" endAngle="180" randomRange="4000" />
+
+    <create count="55" type="nebulas" nebType="1" startX="50000.0" startY="0.0" startZ="20000.0" radius="35000" startAngle="50" endAngle="190" randomRange="7000" />
+
+
+    <create count="25" type="nebulas" nebType="2" startX="50000.0" startY="0.0" startZ="20000.0" radius="55000" startAngle="190" endAngle="270" randomRange="6000" />
+
+    <create count="35" type="nebulas" nebType="3" startX="50000.0" startY="0.0" startZ="20000.0" radius="76000" startAngle="150" endAngle="200" randomRange="9000" />
+
+    <create count="5" type="nebulas" nebType="2" startX="50000.0" startY="0.0" startZ="20000.0" radius="1" startAngle="0" endAngle="0" />
 
     <set_variable name="Grid A Transition Enabled" value="1.0" />
     <set_variable name="Grid E Transition Enabled" value="0.0" />
@@ -6508,14 +6613,66 @@
     <if_variable name="SPECIAL System" comparator="EQUALS" value="2.0" />
     <if_variable name="Sector" comparator="EQUALS" value="6.0" />
     <if_variable name="Sector Entities" comparator="EQUALS" value="1.0" />
-    <create type="neutral" x="45709.0" y="0.0" z="14692.0" name="Morbek" hullID="1001" sideValue="sectorSide" />
-    <create type="neutral" x="39687.0" y="0.0" z="44654.0" name="Quesenc" hullID="1001" sideValue="sectorSide" />
-    <create type="neutral" x="20565.0" y="0.0" z="25232.0" name="Ltaris" hullID="1001" sideValue="sectorSide" />
-    <create type="neutral" x="38181.0" y="0.0" z="67841.0" name="Scolcha" hullID="1001" sideValue="sectorSide" />
-    <create type="neutral" x="78984.0" y="0.0" z="40439.0" name="M-218" hullID="1003" sideValue="sectorSide" />
-    <create type="neutral" x="74618.0" y="0.0" z="54893.0" name="M-243" hullID="1003" sideValue="sectorSide" />
-    <create type="neutral" x="16199.0" y="0.0" z="59259.0" name="RS-45" hullID="1004" sideValue="sectorSide" />
-    <create type="genericMesh" x="100000.0" y="0.0" z="0.0" name="SPECIAL VI" meshFileName="dat\TSN\USFP\marker.dxs" textureFileName="dat\TSN\USFP\marker.png" colorRed="1.0" colorGreen="1.0" colorBlue="1.0" />
+
+    <create type="genericMesh" x="50000.0" y="0.0" z="20000.0" name="Burin Prime" meshFileName="dat\TSN\USFP\marker.dxs" textureFileName="dat\TSN\USFP\marker.png" colorRed="0.5" colorGreen="0.64" colorBlue="0.35" />
+    <set_ship_text name="Burin Prime" desc="Budron homeworld. Ocean world." scan_desc="Tectonic plates layout consistent with the period of early Budron expansion, soon after they became a spacefaring race." />
+    <set_object_property property="pushRadius" value="0.0" name="Burin Prime" />
+    <create type="genericMesh" x="100.0" y="0.0" z="100.0" angle="0" name="PA" meshFileName="dat\TSN\Planets\planet8.dxs" textureFileName="dat\TSN\Planets\planetTex8.png" fakeShieldsFront="1" fakeShieldsRear="1" hasFakeShldFreq="1" colorRed="0.0" colorGreen="0.2" colorBlue="0.7" />
+    <set_object_property property="pushRadius" value="1.0" name="PA" />
+    <set_object_property property="artScale" value="8.0" name="PA" />
+    <create type="genericMesh" x="100.0" y="2.0" z="100.0" angle="0" name="PB" meshFileName="dat\TSN\Planets\planet8.dxs" textureFileName="dat\TSN\Planets\planetTex8.png" fakeShieldsFront="1" fakeShieldsRear="1" hasFakeShldFreq="1" colorRed="0.0" colorGreen="0.2" colorBlue="0.7" />
+    <set_object_property property="artScale" value="8.0" name="PB" />
+    <set_object_property property="pushRadius" value="1.0" name="PB" />
+    <create type="genericMesh" x="100.0" y="4.0" z="100.0" angle="0" name="PC" meshFileName="dat\TSN\Planets\planet8.dxs" textureFileName="dat\TSN\Planets\planetTex8.png" fakeShieldsFront="1" fakeShieldsRear="1" hasFakeShldFreq="1" colorRed="0.0" colorGreen="0.2" colorBlue="0.7" />
+    <set_object_property property="pushRadius" value="1.0" name="PC" />
+    <set_object_property property="artScale" value="8.0" name="PC" />
+    <create type="genericMesh" x="100.0" y="6.0" z="100.0" angle="0" name="PD" meshFileName="dat\TSN\Planets\planet8.dxs" textureFileName="dat\TSN\Planets\planetTex8.png" fakeShieldsFront="1" fakeShieldsRear="1" hasFakeShldFreq="1" colorRed="0.0" colorGreen="0.2" colorBlue="0.7" />
+    <set_object_property property="pushRadius" value="1.0" name="PD" />
+    <set_object_property property="artScale" value="8.0" name="PD" />
+    <create type="genericMesh" x="100.0" y="8.0" z="100.0" angle="0" name="PE" meshFileName="dat\TSN\Planets\planet8.dxs" textureFileName="dat\TSN\Planets\planetTex8.png" fakeShieldsFront="1" fakeShieldsRear="1" hasFakeShldFreq="1" colorRed="0.0" colorGreen="0.2" colorBlue="0.7" />
+    <set_object_property property="pushRadius" value="1.0" name="PE" />
+    <set_object_property property="artScale" value="8.0" name="PE" />
+    <create type="genericMesh" x="100.0" y="10.0" z="100.0" angle="0" name="PF" meshFileName="dat\TSN\Planets\planet8.dxs" textureFileName="dat\TSN\Planets\planetTex8.png" fakeShieldsFront="1" fakeShieldsRear="1" hasFakeShldFreq="1" colorRed="0.0" colorGreen="0.2" colorBlue="0.7" />
+    <set_object_property property="pushRadius" value="1.0" name="PF" />
+    <set_object_property property="artScale" value="8.0" name="PF" />
+    <create type="genericMesh" x="100.0" y="12.0" z="100.0" angle="0" name="PG" meshFileName="dat\TSN\Planets\planet8.dxs" textureFileName="dat\TSN\Planets\planetTex8.png" fakeShieldsFront="1" fakeShieldsRear="1" hasFakeShldFreq="1" colorRed="0.0" colorGreen="0.2" colorBlue="0.7" />
+    <set_object_property property="pushRadius" value="1.0" name="PG" />
+    <set_object_property property="artScale" value="8.0" name="PG" />
+    <create type="genericMesh" x="100.0" y="14.0" z="100.0" angle="0" name="PH" meshFileName="dat\TSN\Planets\planet8.dxs" textureFileName="dat\TSN\Planets\planetTex8.png" fakeShieldsFront="1" fakeShieldsRear="1" hasFakeShldFreq="1" colorRed="0.0" colorGreen="0.2" colorBlue="0.7" />
+    <set_object_property property="pushRadius" value="1.0" name="PH" />
+    <set_object_property property="artScale" value="8.0" name="PH" />
+    <set_relative_position name2="PA" distance="2000" angle="0.0" name1="Burin Prime" />
+    <set_relative_position name2="PB" distance="2000" angle="45.0" name1="Burin Prime" />
+    <set_relative_position name2="PC" distance="2000" angle="90.0" name1="Burin Prime" />
+    <set_relative_position name2="PD" distance="2000" angle="135.0" name1="Burin Prime" />
+    <set_relative_position name2="PE" distance="2000" angle="180.0" name1="Burin Prime" />
+    <set_relative_position name2="PF" distance="2000" angle="225.0" name1="Burin Prime" />
+    <set_relative_position name2="PG" distance="2000" angle="270.0" name1="Burin Prime" />
+    <set_relative_position name2="PH" distance="2000" angle="315.0" name1="Burin Prime" />
+    <set_object_property property="angle" value="6.283185307" name="PA" />
+    <set_object_property property="angle" value="7.068583471" name="PB" />
+    <set_object_property property="angle" value="7.853981634" name="PC" />
+    <set_object_property property="angle" value="8.639379797" name="PD" />
+    <set_object_property property="angle" value="3.141590654" name="PE" />
+    <set_object_property property="angle" value="3.926990817" name="PF" />
+    <set_object_property property="angle" value="4.71238898" name="PG" />
+    <set_object_property property="angle" value="5.497787144" name="PH" />
+
+    <!-- Roll every 2nd slice so that the texture loops  -->
+    <set_object_property property="roll" value="3.141592654" name="PA" />
+    <set_object_property property="roll" value="3.141592654" name="PC" />
+    <set_object_property property="roll" value="3.141592654" name="PE" />
+    <set_object_property property="roll" value="3.141592654" name="PG" />
+
+    <set_ship_text name="PA" newname=" " />
+    <set_ship_text name="PB" newname=" " />
+    <set_ship_text name="PC" newname=" " />
+    <set_ship_text name="PD" newname=" " />
+    <set_ship_text name="PE" newname=" " />
+    <set_ship_text name="PF" newname=" " />
+    <set_ship_text name="PG" newname=" " />
+    <set_ship_text name="PH" newname=" " />
+
     <set_variable name="ExitorRetreat" value="0.0" />
     <set_variable name="Sector Entities" value="2.0" />
     <set_variable name="MissionCode" value="1.0" />
@@ -6533,14 +6690,9 @@
   </event>
   <event name="Destroy Sector Entities" id_arme="261905bb-8a46-4739-a221-64cde492e259" parent_id_arme="ac9985f7-2b6a-4474-8153-be35edff1b08">
     <if_variable name="SPECIAL System" comparator="EQUALS" value="3.0" />
-    <destroy name="Morbek" />
-    <destroy name="Quesenc" />
-    <destroy name="Scolcha" />
-    <destroy name="Ltaris" />
-    <destroy name="M-218" />
-    <destroy name="M-243" />
-    <destroy name="RS-45" />
-    <destroy name="SPECIAL VI" />
+    <set_variable name="DestroyPlanet" value="1.0" integer="yes" />
+    <destroy name="Burin Prime" />
+
     <set_variable name="SPECIAL System" value="System" integer="yes" />
     <set_variable name="Sector Entities" value="0.0" />
   </event>
