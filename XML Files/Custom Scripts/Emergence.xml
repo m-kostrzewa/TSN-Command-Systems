@@ -1113,62 +1113,6 @@
     <if_variable name="Loria System" comparator="EQUALS" value="2.0" />
     <if_variable name="Sector" comparator="EQUALS" value="13.0" />
     <if_variable name="Sector Entities" comparator="EQUALS" value="3.0" />
-
-
-    <create type="genericMesh" x="32250.0" y="0.0" z="38477.0" name="Planet Loria" meshFileName="dat\TSN\USFP\marker.dxs" textureFileName="dat\TSN\USFP\marker.png" colorRed="0.5" colorGreen="0.64" colorBlue="0.35" />
-    <set_ship_text name="Planet Loria" desc="Planet Loria" scan_desc="Failed to open comms channel. Strong EM interference. Population status: unknown." />
-    <set_object_property property="pushRadius" value="0.0" name="Planet Loria" />
-    <create type="genericMesh" x="100.0" y="0.0" z="100.0" angle="0" name="PA" meshFileName="dat\TSN\Planets\planet8.dxs" textureFileName="dat\TSN\Planets\pm1.png" fakeShieldsFront="1" fakeShieldsRear="1" hasFakeShldFreq="1" colorRed="0.0" colorGreen="0.2" colorBlue="0.7" />
-    <set_object_property property="pushRadius" value="1.0" name="PA" />
-    <set_object_property property="artScale" value="8.0" name="PA" />
-    <create type="genericMesh" x="100.0" y="2.0" z="100.0" angle="0" name="PB" meshFileName="dat\TSN\Planets\planet8.dxs" textureFileName="dat\TSN\Planets\pm2.png" fakeShieldsFront="1" fakeShieldsRear="1" hasFakeShldFreq="1" colorRed="0.0" colorGreen="0.2" colorBlue="0.7" />
-    <set_object_property property="artScale" value="8.0" name="PB" />
-    <set_object_property property="pushRadius" value="1.0" name="PB" />
-    <create type="genericMesh" x="100.0" y="4.0" z="100.0" angle="0" name="PC" meshFileName="dat\TSN\Planets\planet8.dxs" textureFileName="dat\TSN\Planets\pm3.png" fakeShieldsFront="1" fakeShieldsRear="1" hasFakeShldFreq="1" colorRed="0.0" colorGreen="0.2" colorBlue="0.7" />
-    <set_object_property property="pushRadius" value="1.0" name="PC" />
-    <set_object_property property="artScale" value="8.0" name="PC" />
-    <create type="genericMesh" x="100.0" y="6.0" z="100.0" angle="0" name="PD" meshFileName="dat\TSN\Planets\planet8.dxs" textureFileName="dat\TSN\Planets\pm4.png" fakeShieldsFront="1" fakeShieldsRear="1" hasFakeShldFreq="1" colorRed="0.0" colorGreen="0.2" colorBlue="0.7" />
-    <set_object_property property="pushRadius" value="1.0" name="PD" />
-    <set_object_property property="artScale" value="8.0" name="PD" />
-    <create type="genericMesh" x="100.0" y="8.0" z="100.0" angle="0" name="PE" meshFileName="dat\TSN\Planets\planet8.dxs" textureFileName="dat\TSN\Planets\pm5.png" fakeShieldsFront="1" fakeShieldsRear="1" hasFakeShldFreq="1" colorRed="0.0" colorGreen="0.2" colorBlue="0.7" />
-    <set_object_property property="pushRadius" value="1.0" name="PE" />
-    <set_object_property property="artScale" value="8.0" name="PE" />
-    <create type="genericMesh" x="100.0" y="10.0" z="100.0" angle="0" name="PF" meshFileName="dat\TSN\Planets\planet8.dxs" textureFileName="dat\TSN\Planets\pm6.png" fakeShieldsFront="1" fakeShieldsRear="1" hasFakeShldFreq="1" colorRed="0.0" colorGreen="0.2" colorBlue="0.7" />
-    <set_object_property property="pushRadius" value="1.0" name="PF" />
-    <set_object_property property="artScale" value="8.0" name="PF" />
-    <create type="genericMesh" x="100.0" y="12.0" z="100.0" angle="0" name="PG" meshFileName="dat\TSN\Planets\planet8.dxs" textureFileName="dat\TSN\Planets\pm7.png" fakeShieldsFront="1" fakeShieldsRear="1" hasFakeShldFreq="1" colorRed="0.0" colorGreen="0.2" colorBlue="0.7" />
-    <set_object_property property="pushRadius" value="1.0" name="PG" />
-    <set_object_property property="artScale" value="8.0" name="PG" />
-    <create type="genericMesh" x="100.0" y="14.0" z="100.0" angle="0" name="PH" meshFileName="dat\TSN\Planets\planet8.dxs" textureFileName="dat\TSN\Planets\pm8.png" fakeShieldsFront="1" fakeShieldsRear="1" hasFakeShldFreq="1" colorRed="0.0" colorGreen="0.2" colorBlue="0.7" />
-    <set_object_property property="pushRadius" value="1.0" name="PH" />
-    <set_object_property property="artScale" value="8.0" name="PH" />
-    <set_relative_position name2="PA" distance="2000" angle="0.0" name1="Planet Loria" />
-    <set_relative_position name2="PB" distance="2000" angle="45.0" name1="Planet Loria" />
-    <set_relative_position name2="PC" distance="2000" angle="90.0" name1="Planet Loria" />
-    <set_relative_position name2="PD" distance="2000" angle="135.0" name1="Planet Loria" />
-    <set_relative_position name2="PE" distance="2000" angle="180.0" name1="Planet Loria" />
-    <set_relative_position name2="PF" distance="2000" angle="225.0" name1="Planet Loria" />
-    <set_relative_position name2="PG" distance="2000" angle="270.0" name1="Planet Loria" />
-    <set_relative_position name2="PH" distance="2000" angle="315.0" name1="Planet Loria" />
-    <set_object_property property="angle" value="6.283185307" name="PA" />
-    <set_object_property property="angle" value="7.068583471" name="PB" />
-    <set_object_property property="angle" value="7.853981634" name="PC" />
-    <set_object_property property="angle" value="8.639379797" name="PD" />
-    <set_object_property property="angle" value="3.141590654" name="PE" />
-    <set_object_property property="angle" value="3.926990817" name="PF" />
-    <set_object_property property="angle" value="4.71238898" name="PG" />
-    <set_object_property property="angle" value="5.497787144" name="PH" />
-
-
-    <set_ship_text name="PA" newname=" " />
-    <set_ship_text name="PB" newname=" " />
-    <set_ship_text name="PC" newname=" " />
-    <set_ship_text name="PD" newname=" " />
-    <set_ship_text name="PE" newname=" " />
-    <set_ship_text name="PF" newname=" " />
-    <set_ship_text name="PG" newname=" " />
-    <set_ship_text name="PH" newname=" " />
-
     
     <create type="genericMesh" x="32250.0" y="0.0" z="38477.0" name="r" meshFileName="dat\TSN\USFP\marker.dxs" textureFileName="dat\player_station_color_04.png" colorRed="0.5" colorGreen="0.64" colorBlue="0.35" />
     <set_object_property property="artScale" value="21.0" name="r" />
