@@ -230,6 +230,7 @@
     <if_variable name="Ship Spawn Menu" comparator="EQUALS" value="25.0" />
     <!-- <if_timer_finished name="Ship Spawn Menu" /> -->
     <set_gm_button text="Budron\+Angelwing" />
+    <set_gm_button text="Budron\+Prophet Clementus" />
     <set_gm_button text="Budron\+Rock Garden" />
     <set_gm_button text="Budron\+White Orchard" />
   </event>
@@ -237,6 +238,7 @@
     <!-- FIXME: Race condition on variable CycleSpawnMenu, rarely works.  -->
     <if_variable name="CycleSpawnMenu" comparator="EQUALS" value="1.0" />
     <clear_gm_button text="Budron\+Angelwing" />
+    <clear_gm_button text="Budron\+Prophet Clementus" />
     <clear_gm_button text="Budron\+Rock Garden" />
     <clear_gm_button text="Budron\+White Orchard" />
   </event>
@@ -274,9 +276,38 @@
     <set_special name="Angelwing" ship="1" /> <!-- overpowered -->
 
     <set_ship_text name="Angelwing" race="Budron" class="Desolation" desc="Heavily upgraded Desolation-class Battlecruiser."
-      scan_desc="The Holy Barge of Their Holiness Clementus Sixtus the Fifth. Like all Budron vessels, it's entirely filled with water. Specials: HET Teleback Teleport AntiMine AntiTorp ShldVamp Drones" />
+      scan_desc="The Holy Barge of Their Holiness Prophet Clementus Sixtus the Fifth. Like all Budron vessels, it's entirely filled with water. Specials: HET Teleback Teleport AntiMine AntiTorp ShldVamp Drones" />
 
   </event>
+
+  <event name="Prophet Clementus" id_arme="1923bd22-e490-4245-a797-2d14e56dd7f6" parent_id_arme="8d34f566-84d9-4830-a518-47fee928470a">
+    <if_gm_button text="Budron\+Prophet Clementus" />
+
+    <!-- Cargo -->
+    <create type="enemy" use_gm_position="" angle="0" name="Prophet Clementus" hullID="7710" sideValue="SideValue" fleetnumber="-1" />
+
+    <set_object_property property="shieldMaxStateFront" value="500" name="Prophet Clementus" />
+    <set_object_property property="shieldMaxStateBack" value="500" name="Prophet Clementus" />
+    <set_object_property property="shieldStateFront" value="500" name="Prophet Clementus" />
+    <set_object_property property="shieldStateBack" value="500" name="Prophet Clementus" />
+
+    <clear_ai name="Prophet Clementus" />
+
+    <set_object_property property="surrenderChance" value="0" name="Prophet Clementus" />
+
+    <add_ai type="SPCL_AI" name="Prophet Clementus" />
+    <add_ai type="CHASE_PLAYER" name="Prophet Clementus" />
+    <add_ai type="CHASE_STATION" value1="1000" name="Prophet Clementus" />
+    <add_ai type="CHASE_AI_SHIP" value1="3000" value2="500" name="Prophet Clementus" />
+    <add_ai type="CHASE_PLAYER" value1="5000" value2="500" name="Prophet Clementus" />
+    <add_ai type="CHASE_ANGER" name="Prophet Clementus" />
+    <add_ai type="LAUNCH_FIGHTERS" value1="2000" name="Prophet Clementus" />
+
+    <set_ship_text name="Prophet Clementus" race="Budron" class="Cargo" desc="A cargo vessel."
+      scan_desc="The ship of an unknown Burin mammoth whale farmer, who would then go on to become Prophet Clementus." />
+
+  </event>
+
 
   <event name="Rock Garden" id_arme="1923bd22-e490-4245-a797-2d14e56dd7f6" parent_id_arme="8d34f566-84d9-4830-a518-47fee928470a">
     <if_gm_button text="Budron\+Rock Garden" />
@@ -350,12 +381,16 @@
     <!-- <if_timer_finished name="Ship Spawn Menu" /> -->
     <set_gm_button text="Single Caltron\+Unknown" />
     <set_gm_button text="Single Caltron\+Iron Moon" />
+    <set_gm_button text="Single Caltron\+Metatron" />
 
     <set_gm_button text="Single Caltron\+L4nc3r" />
     <set_gm_button text="Single Caltron\+54b3r" />
     <set_gm_button text="Single Caltron\+5c0rp10n" />
     <set_gm_button text="Single Caltron\+H0r1z0n" />
+
     <set_gm_button text="Single Caltron\+4ng3lw1ng" />
+    <set_gm_button text="Single Caltron\+Wh1te 0rchard" />
+
     <set_gm_button text="Single Caltron\+P037ry 0f t3h N1gh7" />
     <set_gm_button text="Single Caltron\+Kr4k4t4u" />
   </event>
@@ -364,12 +399,14 @@
     <if_variable name="CycleSpawnMenu" comparator="EQUALS" value="1.0" />
     <clear_gm_button text="Single Caltron\+Unknown" />
     <clear_gm_button text="Single Caltron\+Iron Moon" />
+    <clear_gm_button text="Single Caltron\+Metatron" />
 
     <clear_gm_button text="Single Caltron\+L4nc3r" />
     <clear_gm_button text="Single Caltron\+54b3r" />
     <clear_gm_button text="Single Caltron\+5c0rp10n" />
     <clear_gm_button text="Single Caltron\+H0r1z0n" />
     <clear_gm_button text="Single Caltron\+4ng3lw1ng" />
+    <clear_gm_button text="Single Caltron\+Wh1te 0rchard" />
     <clear_gm_button text="Single Caltron\+P037ry 0f t3h N1gh7" />
     <clear_gm_button text="Single Caltron\+Kr4k4t4u" />
   </event>
@@ -401,6 +438,21 @@
 
     <set_ship_text name="Iron Moon" race="Caltron" class=" " desc="Caltron specimen discovered in Vilnara asteroid belt [see: Zu Chongzhi et al]. Size similar to that of Ceres (Sol system)."
       scan_desc="The object radiates infrared energy. Spectroscopic analysis results suggest a profile similar to a class of stellar object known as an iron star. Hawking radiation detected towards the poles. Gravity at surface: 25G. Invulnerable to conventional weaponry. Exact properties unknown. Specials: ??? ???" />
+
+  </event>
+
+  <event name="Metatron" id_arme="1923bd22-e490-4245-a797-2d14e56dd7f6" parent_id_arme="8d34f566-84d9-4830-a518-47fee928470a">
+    <if_gm_button text="Single Caltron\+Metatron" />
+
+    <create type="genericMesh" use_gm_position="" name="Metatron" 
+      meshFileName="dat\TSN\USFP\marker.dxs" textureFileName="dat\TSN\Caltron\shipHull13.png"
+      colorRed="0.5" colorGreen="0.5" colorBlue="0.5" />
+    <set_object_property property="artScale" value="20.0" name="Metatron" />
+    <set_object_property property="pushRadius" value="2200.0" name="Metatron" />
+    <set_object_property property="angleDelta" value="0.05" name="Metatron" />
+
+    <set_ship_text name="Metatron" race="Caltron" class=" " desc="Also known as The Prophet by the Budrons."
+      scan_desc="Close match to Iron Moon." />
 
   </event>
 
@@ -439,6 +491,41 @@
     <set_ship_text name="4ng3lw1ng" race="Budron" class="Desolation" desc="Database match. Budron Angelwing. Heavily upgraded Desolation-class Battlecruiser. The Holy Barge of Their Holiness Clementus Sixtus the Fifth."
       scan_desc="A near perfect replica of Angelwing. Electromagnetic analysis matches the Caltron. No lifesigns detected. Specials: HET Teleback Teleport AntiMine AntiTorp ShldVamp Drones" />
 
+  </event>
+
+  <event name="Wh1te 0rchard" id_arme="1923bd22-e490-4245-a797-2d14e56dd7f6" parent_id_arme="8d34f566-84d9-4830-a518-47fee928470a">
+    <if_gm_button text="Single Caltron\+Wh1te 0rchard" />
+
+    <!-- Demolition -->
+    <create type="enemy" use_gm_position="" angle="0" name="Wh1te 0rchard" hullID="7705" sideValue="SideValue" fleetnumber="-1" />
+
+    <set_object_property property="shieldMaxStateFront" value="400" name="Wh1te 0rchard" />
+    <set_object_property property="shieldMaxStateBack" value="600" name="Wh1te 0rchard" />
+    <set_object_property property="shieldStateFront" value="400" name="Wh1te 0rchard" />
+    <set_object_property property="shieldStateBack" value="600" name="Wh1te 0rchard" />
+
+    <clear_ai name="Wh1te 0rchard" />
+
+    <set_object_property property="surrenderChance" value="0" name="Wh1te 0rchard" />
+
+    <add_ai type="SPCL_AI" name="Wh1te 0rchard" />
+    <add_ai type="CHASE_PLAYER" name="Wh1te 0rchard" />
+    <add_ai type="CHASE_STATION" value1="1000" name="Wh1te 0rchard" />
+    <add_ai type="CHASE_AI_SHIP" value1="2000" value2="500" name="Wh1te 0rchard" />
+    <add_ai type="CHASE_PLAYER" value1="8000" value2="500" name="Wh1te 0rchard" />
+    <add_ai type="CHASE_ANGER" name="Wh1te 0rchard" />
+    <add_ai type="LAUNCH_FIGHTERS" value1="2000" name="Wh1te 0rchard" />
+
+    <set_special name="Wh1te 0rchard" ability="HET" />
+    <set_special name="Wh1te 0rchard" ability="Teleport" />
+    <set_special name="Wh1te 0rchard" ability="Teleback" />
+    <set_special name="Wh1te 0rchard" ability="AntiMine" />
+    <set_special name="Wh1te 0rchard" ability="AntiTorp" />
+    <set_special name="Wh1te 0rchard" ability="Drones" />
+    <set_special name="Wh1te 0rchard" ship="1" /> <!-- overpowered -->
+
+    <set_ship_text name="Wh1te 0rchard" race="Budron" class="Demolition" desc="Heavily upgraded Demolition-class stand-off battleship."
+      scan_desc="A near perfect replica of White Orchard. Electromagnetic analysis matches the Caltron. No lifesigns detected. Specials: HET Teleback Teleport AntiMine AntiTorp Drones" />
   </event>
 
   <event name="P037ry 0f t3h N1gh7" id_arme="1923bd22-e490-4245-a797-2d14e56dd7f6" parent_id_arme="8d34f566-84d9-4830-a518-47fee928470a">
@@ -1103,6 +1190,7 @@
     <!-- We have some time (0.5sec) to clean up before we transition to new sector (when timer Transition finishes)
         However, there is no way to know WHICH system/sector is being deleted. So be careful. 
         Entity names must be unique to not impact other system/sectors -->
+    <!-- Correction: this is racy AF but I don't see a better way to hook this into an existing sector cleanup routine... -->
     <if_variable name="Sector Entities" comparator="EQUALS" value="0.0" />
 
     <!-- Destroy planet and megastructure "scaffolds" (they have the same name to fix Y-fighting on science screen) -->
