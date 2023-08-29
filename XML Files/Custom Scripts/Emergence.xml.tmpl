@@ -46,7 +46,6 @@
 
     <set_special name="Poetry of the Night" ability="HET" />
     <set_special name="Poetry of the Night" ability="Warp" />
-    <set_special name="Poetry of the Night" ability="Teleport" />
     <set_special name="Poetry of the Night" ability="AntiMine" />
     <set_special name="Poetry of the Night" ability="AntiTorp" />
     <set_special name="Poetry of the Night" ability="ShldDrain" />
@@ -54,7 +53,7 @@
     <set_special name="Poetry of the Night" ship="1" /> <!-- overpowered -->
 
     <set_ship_text name="Poetry of the Night" race="Unakalhai" class="Dreadnought" desc="Heavily modified TSN Dreadnought."
-      scan_desc="Commanded by Rear Adm. Franziska Bosch. Database match: This vessel was lost without a trace during a patrol years ago. Specials: HET Warp Teleport AntiMine AntiTorp ShldDrain ShldReset" />
+      scan_desc="Commanded by Rear Adm. Franziska Bosch. Database match: This vessel was lost without a trace during a patrol years ago. Specials: HET Warp AntiMine AntiTorp ShldDrain ShldReset LongRangeJump" />
 
   </event>
 
@@ -212,12 +211,11 @@
     <set_special name="Lucky Goldstar" ability="Teleport" />
     <set_special name="Lucky Goldstar" ability="AntiMine" />
     <set_special name="Lucky Goldstar" ability="Teleback" />
-    <set_special name="Lucky Goldstar" ability="Cloak" />
     <set_special name="Lucky Goldstar" ability="Stealth" />
     <set_special name="Lucky Goldstar" ship="1" /> <!-- overpowered -->
 
     <set_ship_text name="Lucky Goldstar" race="Independent" class="Carrier" desc="Retrofitted Carrier."
-      scan_desc="Lucky Goldstar is a flagship of Lucky Goldstar Ltd. - a non-government military organization. Specials: Teleport Teleback AntiMine Stealth Cloak" />
+      scan_desc="Lucky Goldstar is a flagship of Lucky Goldstar Ltd. - a non-government military organization. Specials: Teleport Teleback AntiMine Stealth" />
 
   </event>
 
@@ -230,6 +228,7 @@
     <if_variable name="Ship Spawn Menu" comparator="EQUALS" value="25.0" />
     <!-- <if_timer_finished name="Ship Spawn Menu" /> -->
     <set_gm_button text="Budron\+Angelwing" />
+    <set_gm_button text="Budron\+AngelwingFleet" />
     <set_gm_button text="Budron\+Prophet Clementus" />
     <set_gm_button text="Budron\+Rock Garden" />
     <set_gm_button text="Budron\+White Orchard" />
@@ -238,6 +237,7 @@
     <!-- FIXME: Race condition on variable CycleSpawnMenu, rarely works.  -->
     <if_variable name="CycleSpawnMenu" comparator="EQUALS" value="1.0" />
     <clear_gm_button text="Budron\+Angelwing" />
+    <clear_gm_button text="Budron\+AngelwingFleet" />
     <clear_gm_button text="Budron\+Prophet Clementus" />
     <clear_gm_button text="Budron\+Rock Garden" />
     <clear_gm_button text="Budron\+White Orchard" />
@@ -267,8 +267,6 @@
     <add_ai type="LAUNCH_FIGHTERS" value1="2000" name="Angelwing" />
 
     <set_special name="Angelwing" ability="HET" />
-    <set_special name="Angelwing" ability="Teleback" />
-    <set_special name="Angelwing" ability="Teleport" />
     <set_special name="Angelwing" ability="AntiMine" />
     <set_special name="Angelwing" ability="AntiTorp" />
     <set_special name="Angelwing" ability="ShldVamp" />
@@ -276,9 +274,119 @@
     <set_special name="Angelwing" ship="1" /> <!-- overpowered -->
 
     <set_ship_text name="Angelwing" race="Budron" class="Desolation" desc="Heavily upgraded Desolation-class Battlecruiser."
-      scan_desc="The Holy Barge of Their Holiness Prophet Clementus Sixtus the Fifth. Like all Budron vessels, it's entirely filled with water. Specials: HET Teleback Teleport AntiMine AntiTorp ShldVamp Drones" />
+      scan_desc="The Holy Barge of Their Holiness Prophet Clementus Sixtus the Fifth. Like all Budron vessels, it's entirely filled with water. Specials: HET AntiMine AntiTorp ShldVamp Drones" />
 
   </event>
+
+  <event name="AngelwingFleet" id_arme="1923bd22-e490-4245-a797-2d14e56dd7f6" parent_id_arme="8d34f566-84d9-4830-a518-47fee928470a">
+    <if_gm_button text="Budron\+AngelwingFleet" />
+
+    <!-- Wretched -->
+    <create type="enemy" use_gm_position="" angle="0" name="Angelwing" hullID="7704" sideValue="SideValue" fleetnumber="Fleetnumber" />
+
+    <set_object_property property="shieldMaxStateFront" value="700" name="Angelwing" />
+    <set_object_property property="shieldMaxStateBack" value="700" name="Angelwing" />
+    <set_object_property property="shieldStateFront" value="700" name="Angelwing" />
+    <set_object_property property="shieldStateBack" value="700" name="Angelwing" />
+
+    <clear_ai name="Angelwing" />
+
+    <set_object_property property="surrenderChance" value="0" name="Angelwing" />
+
+    <add_ai type="SPCL_AI" name="Angelwing" />
+    <add_ai type="CHASE_PLAYER" name="Angelwing" />
+    <add_ai type="CHASE_STATION" value1="1000" name="Angelwing" />
+    <add_ai type="CHASE_AI_SHIP" value1="3000" value2="500" name="Angelwing" />
+    <add_ai type="CHASE_PLAYER" value1="5000" value2="500" name="Angelwing" />
+    <add_ai type="CHASE_ANGER" name="Angelwing" />
+    <add_ai type="LAUNCH_FIGHTERS" value1="2000" name="Angelwing" />
+
+    <set_special name="Angelwing" ability="HET" />
+    <set_special name="Angelwing" ability="AntiMine" />
+    <set_special name="Angelwing" ability="AntiTorp" />
+    <set_special name="Angelwing" ability="ShldVamp" />
+    <set_special name="Angelwing" ability="Drones" />
+    <set_special name="Angelwing" ship="1" /> <!-- overpowered -->
+
+    <set_ship_text name="Angelwing" race="Budron" class="Desolation" desc="Heavily upgraded Desolation-class Battlecruiser."
+      scan_desc="The Holy Barge of Their Holiness Prophet Clementus Sixtus the Fifth. Like all Budron vessels, it's entirely filled with water. Specials: HET AntiMine AntiTorp ShldVamp Drones" />
+
+
+    <get_object_property property="positionX" name="Angelwing" variable="posX" />
+    <get_object_property property="positionZ" name="Angelwing" variable="posZ" />
+      
+    <create type="enemy" x="posX - 860"  z="posZ + 1000" name="Priest 1" hullID="7700" sideValue="SideValue" fleetnumber="Fleetnumber" />
+    <create type="enemy" x="posX + 860"  z="posZ + 1000" name="Priest 2" hullID="7701" sideValue="SideValue" fleetnumber="Fleetnumber" />
+    <create type="enemy" x="posX + 1000" z="posZ"        name="Priest 3" hullID="7702" sideValue="SideValue" fleetnumber="Fleetnumber" />
+    <create type="enemy" x="posX + 860"  z="posZ - 1000" name="Priest 4" hullID="7700" sideValue="SideValue" fleetnumber="Fleetnumber" />
+    <create type="enemy" x="posX - 860"  z="posZ - 1000" name="Priest 5" hullID="7701" sideValue="SideValue" fleetnumber="Fleetnumber" />
+    <create type="enemy" x="posX - 1000" z="posZ"        name="Priest 6" hullID="7702" sideValue="SideValue" fleetnumber="Fleetnumber" />
+
+    <clear_ai name="Priest 1" />
+    <clear_ai name="Priest 2" />
+    <clear_ai name="Priest 3" />
+    <clear_ai name="Priest 4" />
+    <clear_ai name="Priest 5" />
+    <clear_ai name="Priest 6" />
+
+    <set_timer name="AngelwingFormationTimer" seconds="0"/>
+  </event>
+  <event name="Angelwing Battlegroup update" id_arme="5e421777-0fb0-4df4-9c81-7c160ff3f7e4" parent_id_arme="78fa2f1b-700f-4a72-8254-4be22e7c74ac">
+    <if_timer_finished name="AngelwingFormationTimer" />
+    <if_exists name="Angelwing" />
+
+    <get_object_property property="positionX" name="Angelwing" variable="angelwingPosX" />
+    <get_object_property property="positionZ" name="Angelwing" variable="angelwingPosZ" />
+    <get_object_property property="deltaX" name="Angelwing" variable="angelwingDX" />
+    <get_object_property property="deltaZ" name="Angelwing" variable="angelwingDZ" />
+
+    <clear_ai name="Priest 1" />
+    <add_ai type="POINT_THROTTLE" value4="2.0" value1="angelwingPosX - 860 + angelwingDX*700" value3="angelwingDZ*700 + angelwingPosZ + 1000" name="Priest 1" />
+    <add_ai type="DEFEND" value1="2000" value2="1500" name="Priest 1" />
+    <add_ai type="CHASE_AI_SHIP" value1="4000" value2="1500" name="Priest 1" />
+    <add_ai type="DEFEND" value1="3000" value2="1000" name="Priest 1" />
+    <add_ai type="LAUNCH_FIGHTERS" value1="5000" name="Priest 1" />
+
+    <clear_ai name="Priest 2" />
+    <add_ai type="POINT_THROTTLE" value4="2.0" value1="angelwingPosX + 860 + angelwingDX*700" value3="angelwingDZ*700 + angelwingPosZ + 1000" name="Priest 2" />
+    <add_ai type="DEFEND" value1="2000" value2="1500" name="Priest 2" />
+    <add_ai type="CHASE_AI_SHIP" value1="4000" value2="1500" name="Priest 2" />
+    <add_ai type="DEFEND" value1="3000" value2="1000" name="Priest 2" />
+    <add_ai type="LAUNCH_FIGHTERS" value1="5000" name="Priest 2" />
+
+    <clear_ai name="Priest 3" />
+    <add_ai type="POINT_THROTTLE" value4="2.0" value1="angelwingPosX + 1000 + angelwingDX*700" value3="angelwingDZ*700 + angelwingPosZ" name="Priest 3" />
+    <add_ai type="DEFEND" value1="2000" value2="1500" name="Priest 3" />
+    <add_ai type="CHASE_AI_SHIP" value1="4000" value2="1500" name="Priest 3" />
+    <add_ai type="DEFEND" value1="3000" value2="1000" name="Priest 3" />
+    <add_ai type="LAUNCH_FIGHTERS" value1="5000" name="Priest 3" />
+
+
+    <clear_ai name="Priest 4" />
+    <add_ai type="POINT_THROTTLE" value4="2.0" value1="angelwingPosX + 860 + angelwingDX*700" value3="angelwingDZ*700 + angelwingPosZ - 1000" name="Priest 4" />
+    <add_ai type="DEFEND" value1="2000" value2="1500" name="Priest 4" />
+    <add_ai type="CHASE_AI_SHIP" value1="4000" value2="1500" name="Priest 4" />
+    <add_ai type="DEFEND" value1="3000" value2="1000" name="Priest 4" />
+    <add_ai type="LAUNCH_FIGHTERS" value1="5000" name="Priest 4" />
+
+    <clear_ai name="Priest 5" />
+    <add_ai type="POINT_THROTTLE" value4="2.0" value1="angelwingPosX - 860 + angelwingDX*700" value3="angelwingDZ*700 + angelwingPosZ - 1000" name="Priest 5" />
+    <add_ai type="DEFEND" value1="2000" value2="1500" name="Priest 5" />
+    <add_ai type="CHASE_AI_SHIP" value1="4000" value2="1500" name="Priest 5" />
+    <add_ai type="DEFEND" value1="3000" value2="1000" name="Priest 5" />
+    <add_ai type="LAUNCH_FIGHTERS" value1="5000" name="Priest 5" />
+
+    <clear_ai name="Priest 6" />
+    <add_ai type="POINT_THROTTLE" value4="2.0" value1="angelwingPosX - 1000 + angelwingDX*700" value3="angelwingDZ*700 + angelwingPosZ" name="Priest 6" />
+    <add_ai type="DEFEND" value1="2000" value2="1500" name="Priest 6" />
+    <add_ai type="CHASE_AI_SHIP" value1="4000" value2="1500" name="Priest 6" />
+    <add_ai type="DEFEND" value1="3000" value2="1000" name="Priest 6" />
+    <add_ai type="LAUNCH_FIGHTERS" value1="5000" name="Priest 6" />
+
+    <set_timer name="AngelwingFormationTimer" seconds="1"/>
+  </event>
+
+
 
   <event name="Prophet Clementus" id_arme="1923bd22-e490-4245-a797-2d14e56dd7f6" parent_id_arme="8d34f566-84d9-4830-a518-47fee928470a">
     <if_gm_button text="Budron\+Prophet Clementus" />
@@ -480,8 +588,6 @@
     <add_ai type="LAUNCH_FIGHTERS" value1="2000" name="4ng3lw1ng" />
 
     <set_special name="4ng3lw1ng" ability="HET" />
-    <set_special name="4ng3lw1ng" ability="Teleback" />
-    <set_special name="4ng3lw1ng" ability="Teleport" />
     <set_special name="4ng3lw1ng" ability="AntiMine" />
     <set_special name="4ng3lw1ng" ability="AntiTorp" />
     <set_special name="4ng3lw1ng" ability="ShldVamp" />
@@ -489,7 +595,7 @@
     <set_special name="4ng3lw1ng" ship="1" /> <!-- overpowered -->
 
     <set_ship_text name="4ng3lw1ng" race="Budron" class="Desolation" desc="Database match. Budron Angelwing. Heavily upgraded Desolation-class Battlecruiser. The Holy Barge of Their Holiness Clementus Sixtus the Fifth."
-      scan_desc="A near perfect replica of Angelwing. Electromagnetic analysis matches the Caltron. No lifesigns detected. Specials: HET Teleback Teleport AntiMine AntiTorp ShldVamp Drones" />
+      scan_desc="A near perfect replica of Angelwing. Electromagnetic analysis matches the Caltron. No lifesigns detected. Specials: HET AntiMine AntiTorp ShldVamp Drones" />
 
   </event>
 
@@ -553,7 +659,6 @@
 
     <set_special name="P037ry 0f t3h N1gh7" ability="HET" />
     <set_special name="P037ry 0f t3h N1gh7" ability="Warp" />
-    <set_special name="P037ry 0f t3h N1gh7" ability="Teleport" />
     <set_special name="P037ry 0f t3h N1gh7" ability="AntiMine" />
     <set_special name="P037ry 0f t3h N1gh7" ability="AntiTorp" />
     <set_special name="P037ry 0f t3h N1gh7" ability="ShldDrain" />
@@ -561,7 +666,7 @@
     <set_special name="P037ry 0f t3h N1gh7" ship="1" /> <!-- overpowered -->
 
     <set_ship_text name="P037ry 0f t3h N1gh7" race="Unakalhai" class="Dreadnought" desc="Database match. Unakhalai Poetry of the Night. Heavily modified TSN Dreadnought. Commanded by Rear Adm. Franziska Bosch."
-      scan_desc="A near perfect replica of Poetry of the Night. Electromagnetic analysis matches the Caltron. No lifesigns detected. Specials: HET Warp Teleport AntiMine AntiTorp ShldDrain ShldReset" />
+      scan_desc="A near perfect replica of Poetry of the Night. Electromagnetic analysis matches the Caltron. No lifesigns detected. Specials: HET Warp AntiMine AntiTorp ShldDrain ShldReset LongRangeJump" />
 
   </event>
 
@@ -594,7 +699,7 @@
     <set_special name="Kr4k4t4u" ship="1" /> <!-- overpowered -->
 
     <set_ship_text name="Kr4k4t4u" race="TSN" class="SuperJuggernaut" desc="Database match. TSN Krakatau. Anti-Caltron superweapon. Pride of TSN. Fitted with experimental anti-Caltron weaponry. Beware its deadly beams. "
-      scan_desc="A near perfect replica of Poetry of the Night. Electromagnetic analysis matches the Caltron. No lifesigns detected. Specials: Warp HET Teleport AntiCaltronEmitters" />
+      scan_desc="A near perfect replica of Krakatau. Electromagnetic analysis matches the Caltron. No lifesigns detected. Specials: Warp HET Teleport AntiCaltronEmitters" />
 
   </event>
 
@@ -620,7 +725,7 @@
     <set_special name="54b3r" ability="ShldVamp" />
     <set_special name="54b3r" ship="1" /> <!-- overpowered -->
 
-    <set_ship_text name="54b3r" race="TSN" class="Ares" desc="Database match. TSN Sabre, the flagship of 2LF 4LD."
+    <set_ship_text name="54b3r" race="TSN" class="Ares" desc="Database match. TSN Sabre, the flagship of 2SF 4LD."
       scan_desc="A near perfect replica of Sabre. Electromagnetic analysis matches the Caltron. No lifesigns detected. Specials: Warp HET ShldVamp" />
 
   </event>
@@ -646,7 +751,7 @@
     <set_special name="L4nc3r" ability="HET" />
     <set_special name="L4nc3r" ship="1" /> <!-- overpowered -->
 
-    <set_ship_text name="L4nc3r" race="TSN" class="Nemesis" desc="Database match. TSN Lancer, of 2LF 4LD."
+    <set_ship_text name="L4nc3r" race="TSN" class="Nemesis" desc="Database match. TSN Lancer, of 2SF 4LD."
       scan_desc="A near perfect replica of Lancer. Electromagnetic analysis matches the Caltron. No lifesigns detected. Specials: LancerWarp HET" />
 
   </event>
@@ -674,7 +779,7 @@
     <set_special name="5c0rp10n" ability="AntiTorp" />
     <set_special name="5c0rp10n" ship="1" /> <!-- overpowered -->
 
-    <set_ship_text name="5c0rp10n" race="TSN" class="Allegiance" desc="Database match. TSN Scorpion, of 2LF 4LD."
+    <set_ship_text name="5c0rp10n" race="TSN" class="Allegiance" desc="Database match. TSN Scorpion, of 2SF 4LD."
       scan_desc="A near perfect replica of Scorpion. Electromagnetic analysis matches the Caltron. No lifesigns detected. Specials: Warp HET AntiMine AntiTorp" />
 
   </event>
@@ -701,7 +806,7 @@
     <set_special name="H0r1z0n" ability="Drones" />
     <set_special name="H0r1z0n" ship="1" /> <!-- overpowered -->
 
-    <set_ship_text name="H0r1z0n" race="TSN" class="Allegiance" desc="Database match. TSN Horizon, of 2LF 4LD."
+    <set_ship_text name="H0r1z0n" race="TSN" class="Allegiance" desc="Database match. TSN Horizon, of 2SF 4LD."
       scan_desc="A near perfect replica of Horizon. Electromagnetic analysis matches the Caltron. No lifesigns detected. Specials: Warp HET Drones" />
 
   </event>
