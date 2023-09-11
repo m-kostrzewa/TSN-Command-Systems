@@ -7,6 +7,97 @@
 
 
 
+  <event name="RemoveCustomShips create" id_arme="acca2d78-a30b-4570-96d4-2b1356a27f4d" parent_id_arme="8d34f566-84d9-4830-a518-47fee928470a">
+    <if_variable name="Shortcut Keys" comparator="EQUALS" value="1.0" />
+
+    <set_gm_button text="RemoveCustomShips" x="295" y="100" h="28" w="150" />
+  </event>
+  <event name="RemoveCustomShips destroy" id_arme="509244b2-e84d-4e16-9777-0782dc5214e9" parent_id_arme="8d34f566-84d9-4830-a518-47fee928470a">
+    <if_variable name="Shortcut Keys" comparator="EQUALS" value="0.0" />
+    <clear_gm_button text="RemoveCustomShips" />
+  </event>
+  <event name="RemoveCustomShips destroy" id_arme="509244b2-e84d-4e16-9777-0782dc5214e9" parent_id_arme="8d34f566-84d9-4830-a518-47fee928470a">
+    <if_variable name="GMmenuSelect" comparator="EQUALS" value="1.0" />
+    <set_variable name="Shortcut Keys" value="0.0" />
+
+    <clear_gm_button text="RemoveCustomShips" />
+  </event>
+
+  <event name="Poetry of the Night" id_arme="1923bd22-e490-4245-a797-2d14e56dd7f6" parent_id_arme="8d34f566-84d9-4830-a518-47fee928470a">
+    <if_gm_button text="RemoveCustomShips" />
+    <destroy name="Poetry of the Night" />
+    <destroy name="Krakatau" />
+    <destroy name="Ubuntu" />
+    <destroy name="Mistral" />
+    <destroy name="Lucky Goldstar" />
+    <destroy name="Angelwing" />
+    <destroy name="Priest 1" />
+    <destroy name="Priest 2" />
+    <destroy name="Priest 3" />
+    <destroy name="Priest 4" />
+    <destroy name="Priest 5" />
+    <destroy name="Priest 6" />
+    <destroy name="Prophet Clementus" />
+    <destroy name="Rock Garden" />
+    <destroy name="White Orchard" />
+    <destroy name="Unknown" />
+    <destroy name="Iron Moon" />
+    <destroy name="Metatron" />
+    <destroy name="4ng3lw1ng" />
+    <destroy name="Wh1te 0rchard" />
+    <destroy name="P037ry 0f t3h N1gh7" />
+    <destroy name="Kr4k4t4u" />
+    <destroy name="54b3r" />
+    <destroy name="L4nc3r" />
+    <destroy name="5c0rp10n" />
+    <destroy name="H0r1z0n" />
+    <destroy name="Black Billy" />
+    <destroy name="Mercedes" />
+    <destroy name="Esmeralda" />
+    <destroy name="Constanza" />
+    <destroy name="Burin Megalodon" />
+    <destroy name="Burin Megalodon" />
+    <destroy name="Burin Megalodon" />
+    <destroy name="Burin Megalodon" />
+    <destroy name="Burin Megalodon" />
+    <destroy name="Burin Megalodon" />
+    <destroy name="Burin Megalodon" />
+    <destroy name="Burin Megalodon" />
+    <destroy name="Burin Megalodon" />
+    <destroy name="Burin Megalodon" />
+    <destroy name="Burin Giant moray" />
+    <destroy name="Burin Giant moray" />
+    <destroy name="Burin Giant moray" />
+    <destroy name="Burin Giant moray" />
+    <destroy name="Burin Giant moray" />
+    <destroy name="Burin Giant moray" />
+    <destroy name="Burin Giant moray" />
+    <destroy name="Burin Giant moray" />
+    <destroy name="Burin Giant moray" />
+    <destroy name="Burin Giant moray" />
+    <destroy name="Burin Mammoth Whale" />
+    <destroy name="Burin Mammoth Whale" />
+    <destroy name="Burin Mammoth Whale" />
+    <destroy name="Burin Mammoth Whale" />
+    <destroy name="Burin Mammoth Whale" />
+    <destroy name="Burin Mammoth Whale" />
+    <destroy name="Burin Mammoth Whale" />
+    <destroy name="Burin Mammoth Whale" />
+    <destroy name="Burin Mammoth Whale" />
+    <destroy name="Burin Mammoth Whale" />
+    <destroy name="Burin Stingray" />
+    <destroy name="Burin Stingray" />
+    <destroy name="Burin Stingray" />
+    <destroy name="Burin Stingray" />
+    <destroy name="Burin Stingray" />
+    <destroy name="Burin Stingray" />
+    <destroy name="Burin Stingray" />
+    <destroy name="Burin Stingray" />
+    <destroy name="Burin Stingray" />
+    <destroy name="Burin Stingray" />
+  </event>
+
+
 
   <!-- Monkey patch custom keys bar -->
   <!-- Unakhalai -->
