@@ -170,10 +170,10 @@
     <!-- Juggernaut -->
     <create type="enemy" use_gm_position="" angle="0" name="Krakatau" hullID="7" sideValue="SideValue" fleetnumber="-1" />
 
-    <set_object_property property="shieldMaxStateFront" value="400" name="Krakatau" />
-    <set_object_property property="shieldMaxStateBack" value="400" name="Krakatau" />
-    <set_object_property property="shieldStateFront" value="400" name="Krakatau" />
-    <set_object_property property="shieldStateBack" value="400" name="Krakatau" />
+    <set_object_property property="shieldMaxStateFront" value="1200" name="Krakatau" />
+    <set_object_property property="shieldMaxStateBack" value="1200" name="Krakatau" />
+    <set_object_property property="shieldStateFront" value="1200" name="Krakatau" />
+    <set_object_property property="shieldStateBack" value="1200" name="Krakatau" />
 
     <clear_ai name="Krakatau" />
 
@@ -186,15 +186,15 @@
     <set_special name="Krakatau" ability="Warp" />
     <set_special name="Krakatau" ability="HET" />
     <set_special name="Krakatau" ability="Teleport" />
+    <set_special name="Krakatau" ability="AntiMine" />
+    <set_special name="Krakatau" ability="AntiTorp" />
+    <set_special name="Kr4k4t4u" ability="Drones" />
     <set_special name="Krakatau" ship="1" /> <!-- overpowered -->
 
     <set_ship_text name="Krakatau" race="TSN" class="SuperJuggernaut" desc="Anti-Caltron superweapon."
-      scan_desc="Pride of TSN. Fitted with experimental anti-Caltron weaponry. Beware its deadly beams. Specials: Warp HET Teleport AntiCaltronEmitters" />
+      scan_desc="Pride of TSN. Fitted with experimental anti-Caltron weaponry. Beware its deadly beams. Specials: Warp HET Teleport AntiMine AntiTorp Drones AntiCaltronEmitters" />
 
   </event>
-
-
-
 
   <!-- Monkey patch custom keys bar -->
   <!-- USFP -->
@@ -767,10 +767,10 @@
     <!-- Juggernaut -->
     <create type="enemy" use_gm_position="" angle="0" name="Kr4k4t4u" hullID="7" sideValue="SideValue" fleetnumber="-1" />
 
-    <set_object_property property="shieldMaxStateFront" value="400" name="Kr4k4t4u" />
-    <set_object_property property="shieldMaxStateBack" value="400" name="Kr4k4t4u" />
-    <set_object_property property="shieldStateFront" value="400" name="Kr4k4t4u" />
-    <set_object_property property="shieldStateBack" value="400" name="Kr4k4t4u" />
+    <set_object_property property="shieldMaxStateFront" value="1200" name="Kr4k4t4u" />
+    <set_object_property property="shieldMaxStateBack" value="1200" name="Kr4k4t4u" />
+    <set_object_property property="shieldStateFront" value="1200" name="Kr4k4t4u" />
+    <set_object_property property="shieldStateBack" value="1200" name="Kr4k4t4u" />
 
     <clear_ai name="Kr4k4t4u" />
 
@@ -782,15 +782,18 @@
     <add_ai type="CHASE_AI_SHIP" value1="3000" value2="500" name="Kr4k4t4u" />
     <add_ai type="CHASE_PLAYER" value1="5000" value2="500" name="Kr4k4t4u" />
     <add_ai type="CHASE_ANGER" name="Kr4k4t4u" />
-    <add_ai type="LAUNCH_FIGHTERS" value1="2000" name="Kr4k4t4u" />
+    <add_ai type="LAUNCH_FIGHTERS" value1="4000" name="Kr4k4t4u" />
 
     <set_special name="Kr4k4t4u" ability="Warp" />
     <set_special name="Kr4k4t4u" ability="HET" />
     <set_special name="Kr4k4t4u" ability="Teleport" />
+    <set_special name="Krakatau" ability="AntiMine" />
+    <set_special name="Krakatau" ability="AntiTorp" />
+    <set_special name="Kr4k4t4u" ability="Drones" />
     <set_special name="Kr4k4t4u" ship="1" /> <!-- overpowered -->
 
     <set_ship_text name="Kr4k4t4u" race="TSN" class="SuperJuggernaut" desc="Database match. TSN Krakatau. Anti-Caltron superweapon. Pride of TSN. Fitted with experimental anti-Caltron weaponry. Beware its deadly beams. "
-      scan_desc="A near perfect replica of Krakatau. Electromagnetic analysis matches the Caltron. No lifesigns detected. Specials: Warp HET Teleport AntiCaltronEmitters" />
+      scan_desc="A near perfect replica of Krakatau. Electromagnetic analysis matches the Caltron. No lifesigns detected. Specials: Warp HET Teleport AntiMine AntiTorp Drones AntiCaltronEmitters" />
 
   </event>
 
